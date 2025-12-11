@@ -37,7 +37,7 @@ export async function exportRoadmapPDF(roadmap) {
   doc.setTextColor(255, 255, 255);
   doc.setFontSize(24);
   doc.setFont('helvetica', 'bold');
-  doc.text('Your AI Learning Roadmap', margin, 25);
+  doc.text('Your Learning Roadmap', margin, 25);
 
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');

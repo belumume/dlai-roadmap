@@ -12,7 +12,7 @@ export default function WelcomeScreen({ onStart }) {
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
             Your Personalized
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> AI Learning </span>
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"> Learning </span>
             Roadmap
           </h1>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto">
