@@ -1,6 +1,6 @@
 # DeepLearning.AI Learning Roadmap Generator
 
-An AI-powered personalized pathway generator that transforms DeepLearning.AI's 100+ courses into customized learning roadmaps based on your goals, experience, and schedule.
+A personalized pathway generator that transforms DeepLearning.AI's 100+ courses into customized learning roadmaps based on your goals, experience, and schedule.
 
 **[Try it live](https://belumume.github.io/dlai-roadmap/)**
 
