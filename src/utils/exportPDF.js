@@ -41,7 +41,8 @@ export async function exportRoadmapPDF(roadmap) {
 
   doc.setFontSize(12);
   doc.setFont('helvetica', 'normal');
-  doc.text(`${pathwayInfo.icon} ${pathwayName} - ${pathwayInfo.tagline}`, margin, 35);
+  // Don't use emojis - jsPDF doesn't support them in default fonts
+  doc.text(`${pathwayName} - ${pathwayInfo.tagline}`, margin, 35);
 
   yPos = 60;
 
@@ -127,7 +128,7 @@ export async function exportRoadmapPDF(roadmap) {
       doc.setTextColor(59, 130, 246);
       doc.setFontSize(8);
       doc.setFont('helvetica', 'bolditalic');
-      doc.text(`✦ ${phase.milestone}`, margin + 12, yPos + 3);
+      doc.text(`>> ${phase.milestone}`, margin + 12, yPos + 3);
       yPos += 8;
     }
 
