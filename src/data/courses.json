@@ -3107,7 +3107,8 @@
           "name": "Math & ML Foundations",
           "courses": [
             "mathematics-for-machine-learning-and-data-science-specialization",
-            "machine-learning-specialization"
+            "machine-learning-specialization",
+            "natural-language-processing-specialization"
           ]
         },
         {
