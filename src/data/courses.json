@@ -2027,6 +2027,7 @@
         {
           "name": "Agents",
           "courses": [
+            "agentic-ai",
             "functions-tools-agents-langchain",
             "multi-ai-agent-systems-with-crewai",
             "ai-agents-in-langgraph"
@@ -2056,6 +2057,7 @@
           "name": "Deep Learning",
           "courses": [
             "deep-learning-specialization",
+            "pytorch-for-deep-learning",
             "attention-in-transformers-concepts-and-code-in-pytorch"
           ]
         },
@@ -2095,6 +2097,7 @@
         {
           "name": "Integration",
           "courses": [
+            "machine-learning-in-production",
             "serverless-llm-apps-amazon-bedrock"
           ]
         }
