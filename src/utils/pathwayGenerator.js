@@ -128,14 +128,29 @@ export function generatePathway(answers) {
         return c.categories?.some(cat => answers.interests.includes(cat));
       });
 
-    // Sort based on goal config
-    if (goalConfig.preferSpecializations) {
-      electiveCourses.sort((a, b) => {
-        const aSpec = a.type === 'specialization' ? 0 : 1;
-        const bSpec = b.type === 'specialization' ? 0 : 1;
-        return aSpec - bSpec;
-      });
-    }
+    // Sort by quality score (always applied for objective, merit-based ordering)
+    // Quality = partner tier + type weight + depth (hours)
+    const getQualityScore = (course) => {
+      // Partner tier: DLAI core highest, major partners next, others last
+      const partnerTiers = {
+        'DeepLearning.AI': 100,
+        'Google': 80, 'OpenAI': 80, 'Meta': 80, 'Microsoft': 80,
+        'AWS': 70, 'Anthropic': 70, 'Hugging Face': 70,
+        'LangChain': 60, 'LlamaIndex': 60, 'Stanford': 60, 'Stanford/DeepLearning.AI': 60,
+      };
+      const partnerScore = partnerTiers[course.partner] || 30;
+
+      // Type weight: certificates more comprehensive
+      const typeWeights = { 'certificate': 40, 'course': 20, 'short': 10 };
+      const typeScore = typeWeights[course.type] || 10;
+
+      // Depth: more hours = more comprehensive (capped at 50)
+      const depthScore = Math.min(course.estimated_hours || 3, 50);
+
+      return partnerScore + typeScore + depthScore;
+    };
+
+    electiveCourses.sort((a, b) => getQualityScore(b) - getQualityScore(a));
 
     // Limit electives to fit within remaining timeline
     let electiveWeeks = 0;

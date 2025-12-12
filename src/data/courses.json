@@ -360,7 +360,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 40,
       "categories": [
-        "specialization",
         "training"
       ],
       "instructor": "Laurence Moroney",
@@ -2559,7 +2558,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "deployment"
       ],
       "instructor": "Chanin Nantasenamat",
@@ -2586,7 +2584,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "rag"
       ],
       "instructor": "Zain Hasan",
@@ -2613,7 +2610,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "general"
       ],
       "instructor": "Sean Barnes",
@@ -2641,7 +2637,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "coding"
       ],
       "instructor": "Laurence Moroney",
@@ -2668,7 +2663,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "deployment"
       ],
       "instructor": "Joe Reis",
@@ -2777,7 +2771,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "safety"
       ],
       "instructor": "Robert Monarch",
@@ -2804,7 +2797,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "general"
       ],
       "instructor": "Luis Serrano",
@@ -2829,7 +2821,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "general"
       ],
       "instructor": "Andrew Ng",
@@ -2856,7 +2847,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "training"
       ],
       "instructor": "Laurence Moroney",
@@ -2883,7 +2873,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "training"
       ],
       "instructor": "Sharon Zhou",
@@ -2910,7 +2899,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "deployment"
       ],
       "instructor": "Laurence Moroney",
@@ -2938,7 +2926,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "training"
       ],
       "instructor": "Laurence Moroney",
@@ -2966,7 +2953,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "general"
       ],
       "instructor": "Younes Bensouda Mourri",
@@ -2993,7 +2979,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "training"
       ],
       "instructor": "Andrew Ng",
@@ -3020,7 +3005,6 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization",
         "general"
       ],
       "instructor": "Pranav Rajpurkar",
