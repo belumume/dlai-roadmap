@@ -36,7 +36,7 @@ export function generatePathway(answers) {
     'ml-basics': ['intermediate', 'advanced'], // skip beginner content
     'professional': ['intermediate', 'advanced'], // skip beginner content
   };
-  const allowedByExperience = experienceDifficultyMap[answers.experience] || ['beginner', 'intermediate', 'advanced'];
+  const allowedByExperience = experienceDifficultyMap[answers.experience] || ['beginner', 'intermediate'];
 
   // Determine max difficulty based on math background
   const mathDifficultyMap = {
@@ -45,7 +45,7 @@ export function generatePathway(answers) {
     'strong': ['beginner', 'intermediate', 'advanced'],
     'expert': ['beginner', 'intermediate', 'advanced'],
   };
-  const allowedDifficulties = mathDifficultyMap[answers.mathBackground] || ['beginner', 'intermediate', 'advanced'];
+  const allowedDifficulties = mathDifficultyMap[answers.mathBackground] || ['beginner'];
 
   // Determine learning priority based on goal
   const goalPriorities = {
@@ -87,7 +87,7 @@ export function generatePathway(answers) {
         .filter(id => !priorCourses.has(id))
         .map(id => courseMap.get(id))
         .filter(Boolean)
-        .filter(course => allowedByExperience.includes(course.difficulty)); // Filter by experience level
+        .filter(course => allowedByExperience.includes(course.difficulty) && allowedDifficulties.includes(course.difficulty));
 
       if (phaseCourses.length > 0) {
         // Check if this is a math-heavy phase for researcher with weak math background
@@ -200,13 +200,13 @@ export function generatePathway(answers) {
   );
   const totalWeeks = currentWeek;
 
-  // Generate milestones at 25%, 50%, 75%, 100%
-  const milestones = [
+  // Generate milestones at 25%, 50%, 75%, 100% (guard against zero weeks)
+  const milestones = totalWeeks > 0 ? [
     { percent: 25, week: Math.round(totalWeeks * 0.25), label: 'Getting Started' },
     { percent: 50, week: Math.round(totalWeeks * 0.5), label: 'Halfway There' },
     { percent: 75, week: Math.round(totalWeeks * 0.75), label: 'Home Stretch' },
     { percent: 100, week: totalWeeks, label: 'Journey Complete' },
-  ];
+  ] : [];
 
   return {
     pathway: selectedPath,

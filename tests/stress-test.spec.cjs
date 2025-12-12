@@ -393,6 +393,96 @@ test.describe('DLAI Roadmap Stress Tests', () => {
     const optionalBadge = page.locator('span:has-text("Optional")');
     await expect(optionalBadge).toBeVisible();
   });
+
+  test('Calendar export button exists and is clickable', async ({ page }) => {
+    // Load a roadmap via shareable URL
+    const encoded = Buffer.from(JSON.stringify({
+      experience: 'some-python',
+      goal: 'upskill',
+      timeCommitment: '5-10',
+      targetRole: 'builder',
+      mathBackground: 'moderate',
+      timeline: '6-months',
+      priorCourses: [],
+      interests: ['agents'],
+    })).toString('base64');
+
+    await page.goto(`${BASE_URL}?pathway=${encoded}`);
+    await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 5000 });
+
+    // Calendar button should be visible
+    const calendarBtn = page.locator('button:has-text("Calendar")');
+    await expect(calendarBtn).toBeVisible();
+
+    // Button should be clickable (will prompt for date which we cancel)
+    page.on('dialog', async dialog => {
+      expect(dialog.type()).toBe('prompt');
+      await dialog.dismiss();
+    });
+
+    await calendarBtn.click();
+    console.log('Calendar export button works correctly');
+  });
+
+  test('Algorithm applies restrictive fallbacks for invalid inputs', async ({ page }) => {
+    // Test with completely invalid/missing values to verify restrictive fallbacks
+    // This tests the algorithm indirectly by ensuring roadmap still generates
+    const encoded = Buffer.from(JSON.stringify({
+      experience: 'invalid-value', // Should fallback to ['beginner', 'intermediate']
+      goal: 'unknown-goal',
+      timeCommitment: 'invalid',
+      targetRole: 'builder',
+      mathBackground: 'fake-math', // Should fallback to ['beginner'] only
+      timeline: 'invalid',
+      priorCourses: [],
+      interests: [],
+    })).toString('base64');
+
+    await page.goto(`${BASE_URL}?pathway=${encoded}`);
+    await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 5000 });
+
+    // Verify roadmap still renders (algorithm handled invalid inputs gracefully)
+    const courses = page.locator('button:has(svg.lucide-circle), button:has(svg.lucide-check-circle)');
+    const count = await courses.count();
+    expect(count).toBeGreaterThan(0);
+    console.log(`Algorithm handled invalid inputs - generated ${count} courses`);
+  });
+
+  test('Minimal math filters out advanced courses from phases', async ({ page }) => {
+    // Minimal math should only allow beginner courses
+    const encoded = Buffer.from(JSON.stringify({
+      experience: 'some-python',
+      goal: 'upskill',
+      timeCommitment: '10-20',
+      targetRole: 'researcher', // Has advanced content
+      mathBackground: 'minimal', // Should filter to beginner only
+      timeline: '12-months',
+      priorCourses: [],
+      interests: [],
+    })).toString('base64');
+
+    await page.goto(`${BASE_URL}?pathway=${encoded}`);
+    await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 5000 });
+
+    // Expand all phases and check for advanced badges
+    // Click all phase headers to expand
+    const phaseHeaders = page.locator('button.w-full.flex.items-start.gap-4');
+    const phaseCount = await phaseHeaders.count();
+
+    for (let i = 0; i < phaseCount; i++) {
+      await phaseHeaders.nth(i).click();
+      await page.waitForTimeout(200);
+    }
+
+    // With minimal math, there should be no advanced difficulty badges visible
+    // (Algorithm now applies both experience AND math filters to pathway phases)
+    const advancedBadges = page.locator('span:has-text("advanced")');
+    const advancedCount = await advancedBadges.count();
+
+    // Minimal math = only beginner allowed, so no advanced courses should appear
+    expect(advancedCount).toBe(0);
+    console.log('Minimal math correctly filters out advanced courses');
+  });
 });
 
 // Helper functions

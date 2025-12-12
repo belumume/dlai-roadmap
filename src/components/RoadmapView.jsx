@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { formatDuration, getDifficultyColor, getPathwayDescription } from '../utils/pathwayGenerator';
 import { exportRoadmapPDF, generateShareableURL } from '../utils/exportPDF';
+import { exportAndDownloadCalendar } from '../utils/exportCalendar';
 
 const STORAGE_KEY = 'dlai-roadmap-progress';
 
@@ -178,6 +179,13 @@ export default function RoadmapView({ roadmap, onRestart }) {
             >
               {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
               {copied ? 'Copied!' : 'Share'}
+            </button>
+            <button
+              onClick={() => exportAndDownloadCalendar(roadmap)}
+              className="flex items-center gap-2 px-3 py-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
+            >
+              <Calendar className="w-4 h-4" />
+              Calendar
             </button>
             <button
               onClick={handleExportPDF}
