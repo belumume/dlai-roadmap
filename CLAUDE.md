@@ -1,5 +1,10 @@
 # DLAI Roadmap - Project Context
 
+> **IMPORTANT FOR FUTURE SESSIONS:**
+> - Read the full approved plan at: `~/.claude/plans/delegated-imagining-unicorn.md`
+> - Update this CLAUDE.md file after completing work
+> - Compare work against the approved plan, not just this summary
+
 ## Project Overview
 Personalized learning pathway generator for DeepLearning.AI's 100+ courses. Users answer 8 questions and receive a customized, timeline-based study plan they can export as PDF or share via URL.
 
