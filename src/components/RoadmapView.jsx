@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {
   Download, Share2, ChevronDown, ChevronUp, ExternalLink,
   Clock, BookOpen, Trophy, RefreshCw, CheckCircle, Circle,
-  Calendar, Target, Zap, Copy, Check, Filter, X, Star
+  Calendar, Target, Zap, Copy, Check, Filter, X, Star, AlertTriangle
 } from 'lucide-react';
 import { formatDuration, getDifficultyColor, getPathwayDescription } from '../utils/pathwayGenerator';
 import { exportRoadmapPDF, generateShareableURL } from '../utils/exportPDF';
@@ -224,6 +224,17 @@ export default function RoadmapView({ roadmap, onRestart }) {
           </div>
         </div>
 
+        {/* Timeline Warning */}
+        {summary.timelineWarning && (
+          <div className="mb-8 p-4 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-start gap-3">
+            <AlertTriangle className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+            <div>
+              <p className="text-amber-400 font-medium">Timeline Notice</p>
+              <p className="text-[var(--text-secondary)] text-sm mt-1">{summary.timelineWarning}</p>
+            </div>
+          </div>
+        )}
+
         {/* Progress Bar */}
         <div className="bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6 mb-8">
           <div className="flex items-center justify-between mb-4">
@@ -408,6 +419,14 @@ export default function RoadmapView({ roadmap, onRestart }) {
                 {/* Expanded course list */}
                 {isExpanded && (
                   <div className="ml-16 mt-4 space-y-3">
+                    {/* Math Warning for this phase */}
+                    {phase.mathWarning && (
+                      <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-start gap-3">
+                        <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
+                        <p className="text-sm text-amber-400">{phase.mathWarning}</p>
+                      </div>
+                    )}
+
                     {filteredCourses.map((course, courseIndex) => {
                       const isCompleted = completedCourses.has(course.id);
 
