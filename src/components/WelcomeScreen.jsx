@@ -174,7 +174,9 @@ export default function WelcomeScreen({ onStart }) {
           <p className="text-[var(--text-muted)] text-sm font-mono">
             Built by{' '}
             <a
-              href="https://community.deeplearning.ai"
+              href="https://community.deeplearning.ai/u/learningdeep/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[var(--node-cyan)] hover:underline"
             >
               Learning Deep

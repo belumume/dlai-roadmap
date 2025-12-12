@@ -83,17 +83,20 @@ const questions = [
   {
     id: 'priorCourses',
     title: 'Have you taken any DeepLearning.AI courses?',
-    subtitle: 'Select all that apply (or skip if none)',
+    subtitle: 'Select all that apply, or click Skip if this is your first',
     icon: BookOpen,
     type: 'multi',
     options: [
-      { value: 'ai-for-everyone', label: 'AI For Everyone' },
-      { value: 'ml-specialization', label: 'Machine Learning Specialization' },
-      { value: 'deep-learning-specialization', label: 'Deep Learning Specialization' },
-      { value: 'chatgpt-prompt-engineering', label: 'ChatGPT Prompt Engineering' },
-      { value: 'langchain', label: 'LangChain Courses' },
-      { value: 'gen-ai-llms', label: 'Generative AI with LLMs' },
-      { value: 'none', label: 'None yet - this is my first!' },
+      { value: 'ai-for-everyone', label: 'AI For Everyone', description: 'Non-technical intro to AI' },
+      { value: 'generative-ai-for-everyone', label: 'Generative AI for Everyone', description: 'Intro to GenAI concepts' },
+      { value: 'machine-learning-specialization', label: 'Machine Learning Specialization', description: 'Andrew Ng\'s foundational ML course' },
+      { value: 'deep-learning-specialization', label: 'Deep Learning Specialization', description: 'Neural networks & deep learning' },
+      { value: 'generative-ai-with-llms', label: 'Generative AI with LLMs', description: 'LLM training & deployment (AWS)' },
+      { value: 'chatgpt-prompt-engineering', label: 'ChatGPT Prompt Engineering', description: 'Prompt design fundamentals' },
+      { value: 'langchain-chat-with-your-data', label: 'LangChain: Chat With Your Data', description: 'Build chat apps with LangChain' },
+      { value: 'tensorflow-developer-professional-certificate', label: 'TensorFlow Developer Certificate', description: 'TensorFlow professional track' },
+      { value: 'natural-language-processing-specialization', label: 'NLP Specialization', description: 'Comprehensive NLP course' },
+      { value: 'mathematics-for-machine-learning-and-data-science-specialization', label: 'Math for ML Specialization', description: 'Math foundations for ML' },
     ],
   },
   {
@@ -104,14 +107,14 @@ const questions = [
     type: 'multi',
     maxSelections: 3,
     options: [
-      { value: 'llms', label: 'Large Language Models' },
-      { value: 'computer-vision', label: 'Computer Vision' },
-      { value: 'agents', label: 'AI Agents & Automation' },
-      { value: 'rag', label: 'RAG & Knowledge Systems' },
-      { value: 'mlops', label: 'MLOps & Deployment' },
-      { value: 'fine-tuning', label: 'Fine-tuning & Training' },
-      { value: 'multimodal', label: 'Multimodal AI' },
-      { value: 'responsible-ai', label: 'AI Safety & Ethics' },
+      { value: 'agents', label: 'AI Agents & Automation', description: '22 courses available' },
+      { value: 'rag', label: 'RAG & Knowledge Systems', description: '12 courses available' },
+      { value: 'prompting', label: 'Prompt Engineering', description: '6 courses available' },
+      { value: 'coding', label: 'AI-Assisted Coding', description: '5 courses available' },
+      { value: 'deployment', label: 'MLOps & Deployment', description: '5 courses available' },
+      { value: 'training', label: 'Fine-tuning & Training', description: '3 courses available' },
+      { value: 'safety', label: 'AI Safety & Ethics', description: '3 courses available' },
+      { value: 'general', label: 'General AI/ML Topics', description: '30 courses available' },
     ],
   },
 ];
@@ -132,12 +135,7 @@ export default function Questionnaire({ onComplete }) {
       if (current.includes(value)) {
         setAnswers({ ...answers, [currentQuestion.id]: current.filter(v => v !== value) });
       } else if (current.length < maxSelections) {
-        // Handle "none" option specially
-        if (value === 'none') {
-          setAnswers({ ...answers, [currentQuestion.id]: ['none'] });
-        } else {
-          setAnswers({ ...answers, [currentQuestion.id]: [...current.filter(v => v !== 'none'), value] });
-        }
+        setAnswers({ ...answers, [currentQuestion.id]: [...current, value] });
       }
     } else {
       setAnswers({ ...answers, [currentQuestion.id]: value });
@@ -269,28 +267,35 @@ export default function Questionnaire({ onComplete }) {
             </button>
 
             {currentQuestion.type === 'multi' && (
-              <button
-                onClick={handleNext}
-                disabled={!isCurrentAnswered()}
-                className={`flex items-center gap-2 px-6 py-2 rounded-lg font-medium transition-all ${
-                  isCurrentAnswered()
-                    ? 'btn-primary hover:shadow-[var(--node-cyan-dim)]'
-                    : 'bg-[var(--elevated)] text-[var(--text-muted)] cursor-not-allowed'
-                }`}
-              >
-                {currentStep === questions.length - 1 ? 'Generate My Roadmap' : 'Continue'}
-                <ChevronRight className="w-4 h-4" />
-              </button>
+              <div className="flex items-center gap-3">
+                {currentQuestion.allowSkip !== false && (
+                  <button
+                    onClick={() => {
+                      setAnswers({ ...answers, [currentQuestion.id]: [] });
+                      handleNext();
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] transition-colors"
+                  >
+                    Skip
+                  </button>
+                )}
+                <button
+                  onClick={handleNext}
+                  disabled={!isCurrentAnswered()}
+                  className={`flex items-center gap-2 px-6 py-2 rounded-lg font-medium transition-all ${
+                    isCurrentAnswered()
+                      ? 'btn-primary hover:shadow-[var(--node-cyan-dim)]'
+                      : 'bg-[var(--elevated)] text-[var(--text-muted)] cursor-not-allowed'
+                  }`}
+                >
+                  {currentStep === questions.length - 1 ? 'Generate My Roadmap' : 'Continue'}
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
             )}
           </div>
         </div>
 
-        {/* Skip hint for multi-select */}
-        {currentQuestion.type === 'multi' && currentQuestion.id === 'priorCourses' && (
-          <p className="text-center text-[var(--text-muted)] text-sm mt-4">
-            Select "None yet" if you haven't taken any courses
-          </p>
-        )}
       </div>
     </div>
   );
