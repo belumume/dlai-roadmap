@@ -192,6 +192,62 @@ test.describe('DLAI Roadmap Stress Tests', () => {
     await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 5000 });
     await expect(page.locator('text=AI Product Engineer')).toBeVisible();
   });
+
+  test('Course search and selection works', async ({ page }) => {
+    await page.goto(BASE_URL);
+    await page.click('button:has-text("Get Started")');
+
+    // Navigate to Q7 (Prior Courses with CourseSelector)
+    for (let i = 0; i < 6; i++) {
+      await page.locator('button.rounded-xl').first().click();
+      await page.waitForTimeout(400);
+    }
+
+    // Should be on Q7 - Prior Courses
+    await expect(page.locator('text=Question 7 of 8')).toBeVisible();
+    await expect(page.locator('text=Have you taken any DeepLearning.AI courses')).toBeVisible();
+
+    // Test search functionality
+    const searchInput = page.locator('input[placeholder*="Search all"]');
+    await expect(searchInput).toBeVisible();
+
+    // Focus and search for "machine learning"
+    await searchInput.focus();
+    await searchInput.fill('machine learning');
+    await page.waitForTimeout(600);
+
+    // Should show search results dropdown (z-20 class)
+    const dropdown = page.locator('.absolute.z-20');
+    await expect(dropdown).toBeVisible({ timeout: 5000 });
+
+    // Click the first search result button
+    await dropdown.locator('button').first().click();
+    await page.waitForTimeout(400);
+
+    // Verify a chip was added (X button to remove)
+    const chips = page.locator('button:has(svg.lucide-x)');
+    await expect(chips.first()).toBeVisible({ timeout: 3000 });
+
+    // Search for another course
+    await searchInput.focus();
+    await searchInput.fill('deep learning');
+    await page.waitForTimeout(600);
+
+    // Select from dropdown
+    await page.locator('.absolute.z-20 button').first().click();
+    await page.waitForTimeout(400);
+
+    // Should now have 2 chips
+    const chipCount = await chips.count();
+    expect(chipCount).toBe(2);
+
+    // Continue to next question
+    await page.click('button:has-text("Continue")');
+    await page.waitForTimeout(400);
+
+    // Should be on Q8
+    await expect(page.locator('text=Question 8 of 8')).toBeVisible();
+  });
 });
 
 // Helper functions

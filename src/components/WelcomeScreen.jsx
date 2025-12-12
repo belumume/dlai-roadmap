@@ -70,7 +70,7 @@ export default function WelcomeScreen({ onStart }) {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur-sm">
               <Cpu className="w-4 h-4 text-[var(--node-cyan)]" />
               <span className="font-mono text-sm text-[var(--text-secondary)]">
-                100+ DeepLearning.AI Courses
+                115+ DeepLearning.AI Courses
               </span>
             </div>
           </div>
