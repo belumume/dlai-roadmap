@@ -27,7 +27,16 @@ export function generatePathway(answers) {
 
   // Determine which courses to skip based on prior experience
   const priorCourses = new Set(answers.priorCourses || []);
-  const skipBeginner = answers.experience === 'professional' || answers.experience === 'ml-basics';
+  const skipFoundation = answers.experience === 'professional' || answers.experience === 'ml-basics';
+
+  // Experience-based difficulty filtering for pathway courses
+  const experienceDifficultyMap = {
+    'none': ['beginner', 'intermediate'], // beginners can stretch to intermediate
+    'some-python': ['beginner', 'intermediate', 'advanced'],
+    'ml-basics': ['intermediate', 'advanced'], // skip beginner content
+    'professional': ['intermediate', 'advanced'], // skip beginner content
+  };
+  const allowedByExperience = experienceDifficultyMap[answers.experience] || ['beginner', 'intermediate', 'advanced'];
 
   // Determine max difficulty based on math background
   const mathDifficultyMap = {
@@ -54,8 +63,8 @@ export function generatePathway(answers) {
   // Build the course sequence
   let courseSequence = [];
 
-  // Phase 1: Foundation (trunk) - unless skipping beginner content
-  if (!skipBeginner) {
+  // Phase 1: Foundation (trunk) - unless skipping foundation content
+  if (!skipFoundation) {
     const trunkCourses = pathways.trunk.courses
       .filter(id => !priorCourses.has(id))
       .map(id => courseMap.get(id))
@@ -77,27 +86,45 @@ export function generatePathway(answers) {
       const phaseCourses = phase.courses
         .filter(id => !priorCourses.has(id))
         .map(id => courseMap.get(id))
-        .filter(Boolean);
+        .filter(Boolean)
+        .filter(course => allowedByExperience.includes(course.difficulty)); // Filter by experience level
 
       if (phaseCourses.length > 0) {
+        // Check if this is a math-heavy phase for researcher with weak math background
+        const isMathPhase = selectedPath === 'researcher' && phase.name.toLowerCase().includes('math');
+        const needsMathWarning = isMathPhase && (answers.mathBackground === 'minimal' || answers.mathBackground === 'moderate');
+
         courseSequence.push({
           phase: `Phase ${index + 2}`,
           phaseName: phase.name,
           milestone: phase.milestone || `${phase.name} Complete`,
           courses: phaseCourses,
+          mathWarning: needsMathWarning ? 'This phase requires strong mathematical foundations. Consider strengthening your math background first.' : null,
         });
       }
     });
   }
 
-  // Add electives based on interests, filtered by math background
-  if (answers.interests && answers.interests.length > 0) {
+  // Calculate target weeks from timeline
+  const targetWeeks = totalMonths * 4.33;
+
+  // Calculate core pathway hours (before electives)
+  const coreHours = courseSequence.reduce((sum, phase) =>
+    sum + phase.courses.reduce((s, c) => s + (c.estimated_hours || (c.type === 'specialization' ? 40 : 3)), 0), 0
+  );
+  const coreWeeks = Math.ceil(coreHours / weeklyHours);
+  const remainingWeeks = Math.max(0, targetWeeks - coreWeeks);
+
+  // Add electives based on interests, filtered by math background, limited by timeline
+  if (answers.interests && answers.interests.length > 0 && remainingWeeks > 0) {
     let electiveCourses = courses
       .filter(c => {
         if (priorCourses.has(c.id)) return false;
         if (courseSequence.some(phase => phase.courses.some(pc => pc.id === c.id))) return false;
         // Filter by math-appropriate difficulty
         if (!allowedDifficulties.includes(c.difficulty)) return false;
+        // Filter by experience-appropriate difficulty
+        if (!allowedByExperience.includes(c.difficulty)) return false;
         return c.categories?.some(cat => answers.interests.includes(cat));
       });
 
@@ -110,7 +137,17 @@ export function generatePathway(answers) {
       });
     }
 
-    electiveCourses = electiveCourses.slice(0, goalConfig.prioritize === 'breadth' ? 7 : 5);
+    // Limit electives to fit within remaining timeline
+    let electiveWeeks = 0;
+    const maxElectives = goalConfig.prioritize === 'breadth' ? 7 : 5;
+    electiveCourses = electiveCourses.filter(c => {
+      const courseWeeks = Math.ceil((c.estimated_hours || 3) / weeklyHours);
+      if (electiveWeeks + courseWeeks <= remainingWeeks) {
+        electiveWeeks += courseWeeks;
+        return true;
+      }
+      return false;
+    }).slice(0, maxElectives);
 
     if (electiveCourses.length > 0) {
       courseSequence.push({
@@ -122,6 +159,11 @@ export function generatePathway(answers) {
       });
     }
   }
+
+  // Timeline warning if core exceeds target
+  const timelineWarning = coreWeeks > targetWeeks
+    ? `Core courses take ~${Math.ceil(coreWeeks / 4.33)} months. Consider increasing your weekly hours or extending your timeline.`
+    : null;
 
   // Calculate timeline for each course
   let currentWeek = 0;
@@ -176,8 +218,10 @@ export function generatePathway(answers) {
       totalWeeks,
       weeklyHours,
       estimatedMonths: Math.ceil(totalWeeks / 4.33),
+      targetMonths: totalMonths,
       mathLevel: answers.mathBackground,
       goal: answers.goal,
+      timelineWarning,
     },
     milestones,
     answers, // Keep for PDF export
@@ -186,6 +230,7 @@ export function generatePathway(answers) {
       mathBackground: answers.mathBackground,
       goal: answers.goal,
       allowedDifficulties,
+      allowedByExperience,
       goalConfig,
       priorCoursesSkipped: priorCourses.size,
       interestsApplied: answers.interests?.length || 0,
