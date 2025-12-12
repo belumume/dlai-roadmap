@@ -15,6 +15,20 @@
       "platform": "dlai"
     },
     {
+      "id": "safe-code-execution-for-agents",
+      "title": "Safe Code Execution for Agents",
+      "type": "short",
+      "platform": "dlai",
+      "url": "https://learn.deeplearning.ai/courses/safe-code-execution-for-agents",
+      "difficulty": "intermediate",
+      "estimated_hours": 1,
+      "categories": [
+        "agents",
+        "safety"
+      ],
+      "instructor": "E2B"
+    },
+    {
       "id": "building-coding-agents-with-tool-execution",
       "title": "Building Coding Agents with Tool Execution",
       "type": "short",
