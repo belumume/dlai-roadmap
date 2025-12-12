@@ -13,9 +13,18 @@
       ],
       "instructor": "Kacper Lukawski",
       "platform": "dlai",
-      "prerequisites": ["vector-databases-embeddings-applications"],
-      "skills_taught": ["multi-vector retrieval", "image embeddings", "ColPali", "hybrid search"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "vector-databases-embeddings-applications"
+      ],
+      "skills_taught": [
+        "multi-vector retrieval",
+        "image embeddings",
+        "ColPali",
+        "hybrid search"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Qdrant"
     },
     {
@@ -31,9 +40,18 @@
       ],
       "instructor": "Vasek Mlejnsky",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["code agents", "tool execution", "code generation", "E2B sandboxes"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "code agents",
+        "tool execution",
+        "code generation",
+        "E2B sandboxes"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "E2B"
     },
     {
@@ -49,9 +67,19 @@
       ],
       "instructor": "Brian Sam-Bodden",
       "platform": "dlai",
-      "prerequisites": ["vector-databases-embeddings-applications"],
-      "skills_taught": ["semantic caching", "Redis", "cost optimization", "agent performance"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "vector-databases-embeddings-applications"
+      ],
+      "skills_taught": [
+        "semantic caching",
+        "Redis",
+        "cost optimization",
+        "agent performance"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Redis"
     },
     {
@@ -67,9 +95,17 @@
       ],
       "instructor": "João Moura",
       "platform": "dlai",
-      "prerequisites": ["multi-ai-agent-systems-with-crewai"],
-      "skills_taught": ["multi-agent deployment", "CrewAI production", "agent orchestration"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "multi-ai-agent-systems-with-crewai"
+      ],
+      "skills_taught": [
+        "multi-agent deployment",
+        "CrewAI production",
+        "agent orchestration"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "CrewAI"
     },
     {
@@ -86,8 +122,16 @@
       "instructor": "Jason Weill",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["Jupyter AI", "notebook coding", "AI assistants", "code generation"],
-      "career_paths": ["builder", "researcher"],
+      "skills_taught": [
+        "Jupyter AI",
+        "notebook coding",
+        "AI assistants",
+        "code generation"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Jupyter"
     },
     {
@@ -103,9 +147,19 @@
       ],
       "instructor": "Jerry Liu",
       "platform": "dlai",
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "skills_taught": ["agent governance", "guardrails", "safety policies", "agent monitoring"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "functions-tools-agents-langchain"
+      ],
+      "skills_taught": [
+        "agent governance",
+        "guardrails",
+        "safety policies",
+        "agent monitoring"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "LlamaIndex"
     },
     {
@@ -121,9 +175,18 @@
       ],
       "instructor": "Patrick Marlow",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["voice agents", "Google ADK", "real-time AI", "speech processing"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "voice agents",
+        "Google ADK",
+        "real-time AI",
+        "speech processing"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Google"
     },
     {
@@ -139,9 +202,18 @@
       ],
       "instructor": "Andrew Ng",
       "platform": "dlai",
-      "prerequisites": ["generative-ai-for-everyone"],
-      "skills_taught": ["agentic workflows", "AI agent concepts", "agent design patterns"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "generative-ai-for-everyone"
+      ],
+      "skills_taught": [
+        "agentic workflows",
+        "AI agent concepts",
+        "agent design patterns"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -157,9 +229,18 @@
       ],
       "instructor": "Jerry Liu",
       "platform": "dlai",
-      "prerequisites": ["building-agentic-rag-with-llamaindex"],
-      "skills_taught": ["data agents", "agent evaluation", "LlamaIndex agents", "data pipelines"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "building-agentic-rag-with-llamaindex"
+      ],
+      "skills_taught": [
+        "data agents",
+        "agent evaluation",
+        "LlamaIndex agents",
+        "data pipelines"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "LlamaIndex"
     },
     {
@@ -175,9 +256,19 @@
       ],
       "instructor": "Shurui Zhou",
       "platform": "dlai",
-      "prerequisites": ["mcp-build-rich-context-ai-apps-with-anthropic"],
-      "skills_taught": ["MCP servers", "Box integration", "file management", "enterprise AI"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "mcp-build-rich-context-ai-apps-with-anthropic"
+      ],
+      "skills_taught": [
+        "MCP servers",
+        "Box integration",
+        "file management",
+        "enterprise AI"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Box"
     },
     {
@@ -193,9 +284,18 @@
       ],
       "instructor": "Andreas Kollegger",
       "platform": "dlai",
-      "prerequisites": ["knowledge-graphs-rag"],
-      "skills_taught": ["API discovery", "knowledge graphs", "Neo4j", "agent tooling"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "knowledge-graphs-rag"
+      ],
+      "skills_taught": [
+        "API discovery",
+        "knowledge graphs",
+        "Neo4j",
+        "agent tooling"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Neo4j"
     },
     {
@@ -211,9 +311,18 @@
       ],
       "instructor": "Andreas Kollegger",
       "platform": "dlai",
-      "prerequisites": ["knowledge-graphs-rag"],
-      "skills_taught": ["knowledge graph construction", "Neo4j", "agentic workflows", "graph extraction"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "knowledge-graphs-rag"
+      ],
+      "skills_taught": [
+        "knowledge graph construction",
+        "Neo4j",
+        "agentic workflows",
+        "graph extraction"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Neo4j"
     },
     {
@@ -229,9 +338,18 @@
       ],
       "instructor": "Sharon Zhou",
       "platform": "dlai",
-      "prerequisites": ["finetuning-large-language-models"],
-      "skills_taught": ["post-training", "RLHF", "DPO", "model alignment"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "finetuning-large-language-models"
+      ],
+      "skills_taught": [
+        "post-training",
+        "RLHF",
+        "DPO",
+        "model alignment"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Lamini"
     },
     {
@@ -247,9 +365,18 @@
       ],
       "instructor": "Laurence Moroney",
       "platform": "dlai",
-      "prerequisites": ["ai-python-for-beginners"],
-      "skills_taught": ["PyTorch", "deep learning", "neural networks", "model training"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "ai-python-for-beginners"
+      ],
+      "skills_taught": [
+        "PyTorch",
+        "deep learning",
+        "neural networks",
+        "model training"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -266,8 +393,15 @@
       "instructor": "Elie Schoppik",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["Claude Code", "agentic coding", "CLI tools", "code generation"],
-      "career_paths": ["builder"],
+      "skills_taught": [
+        "Claude Code",
+        "agentic coding",
+        "CLI tools",
+        "code generation"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Anthropic"
     },
     {
@@ -282,9 +416,18 @@
       ],
       "instructor": "Ryan Keenan",
       "platform": "dlai",
-      "prerequisites": ["ai-python-for-beginners"],
-      "skills_taught": ["Pydantic", "data validation", "structured output", "type safety"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "ai-python-for-beginners"
+      ],
+      "skills_taught": [
+        "Pydantic",
+        "data validation",
+        "structured output",
+        "type safety"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Pydantic"
     },
     {
@@ -299,9 +442,18 @@
       ],
       "instructor": "Banghua Zhu",
       "platform": "dlai",
-      "prerequisites": ["finetuning-large-language-models"],
-      "skills_taught": ["post-training", "model alignment", "instruction tuning", "RLHF"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "finetuning-large-language-models"
+      ],
+      "skills_taught": [
+        "post-training",
+        "model alignment",
+        "instruction tuning",
+        "RLHF"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "UC Berkeley"
     },
     {
@@ -316,9 +468,17 @@
       ],
       "instructor": "Sandi Besen",
       "platform": "dlai",
-      "prerequisites": ["multi-ai-agent-systems-with-crewai"],
-      "skills_taught": ["agent communication", "ACP protocol", "multi-agent coordination"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "multi-ai-agent-systems-with-crewai"
+      ],
+      "skills_taught": [
+        "agent communication",
+        "ACP protocol",
+        "multi-agent coordination"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "IBM"
     },
     {
@@ -333,9 +493,19 @@
       ],
       "instructor": "Amit Sangani",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["Llama 4", "open source LLMs", "model deployment", "Meta AI"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "Llama 4",
+        "open source LLMs",
+        "model deployment",
+        "Meta AI"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Meta"
     },
     {
@@ -350,9 +520,19 @@
       ],
       "instructor": "Kenten Danas",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["workflow orchestration", "Prefect", "GenAI pipelines", "automation"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "workflow orchestration",
+        "Prefect",
+        "GenAI pipelines",
+        "automation"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Prefect"
     },
     {
@@ -367,9 +547,19 @@
       ],
       "instructor": "Chen Qian",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["DSPy", "prompt optimization", "agentic apps", "declarative AI"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "DSPy",
+        "prompt optimization",
+        "agentic apps",
+        "declarative AI"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Stanford NLP"
     },
     {
@@ -384,9 +574,18 @@
       ],
       "instructor": "Travis Addair",
       "platform": "dlai",
-      "prerequisites": ["reinforcement-learning-from-human-feedback"],
-      "skills_taught": ["GRPO", "reinforcement fine-tuning", "LoRA", "Predibase"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "reinforcement-learning-from-human-feedback"
+      ],
+      "skills_taught": [
+        "GRPO",
+        "reinforcement fine-tuning",
+        "LoRA",
+        "Predibase"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Predibase"
     },
     {
@@ -401,9 +600,18 @@
       ],
       "instructor": "Elie Schoppik",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["MCP protocol", "context management", "Anthropic API", "tool integration"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "MCP protocol",
+        "context management",
+        "Anthropic API",
+        "tool integration"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Anthropic"
     },
     {
@@ -418,9 +626,18 @@
       ],
       "instructor": "Russ d'Sa",
       "platform": "dlai",
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "skills_taught": ["voice agents", "production deployment", "real-time speech", "Vapi"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "functions-tools-agents-langchain"
+      ],
+      "skills_taught": [
+        "voice agents",
+        "production deployment",
+        "real-time speech",
+        "Vapi"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Vapi"
     },
     {
@@ -435,9 +652,19 @@
       ],
       "instructor": "Charles Packer",
       "platform": "dlai",
-      "prerequisites": ["ai-agents-in-langgraph"],
-      "skills_taught": ["agent memory", "MemGPT", "context management", "long-term memory"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "ai-agents-in-langgraph"
+      ],
+      "skills_taught": [
+        "agent memory",
+        "MemGPT",
+        "context management",
+        "long-term memory"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Letta"
     },
     {
@@ -452,9 +679,18 @@
       ],
       "instructor": "Thomas Wolf",
       "platform": "dlai",
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "skills_taught": ["smolagents", "code agents", "Hugging Face", "tool use"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "functions-tools-agents-langchain"
+      ],
+      "skills_taught": [
+        "smolagents",
+        "code agents",
+        "Hugging Face",
+        "tool use"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Hugging Face"
     },
     {
@@ -469,9 +705,18 @@
       ],
       "instructor": "Div Garg",
       "platform": "dlai",
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "skills_taught": ["browser automation", "web agents", "MultiOn", "browser control"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "functions-tools-agents-langchain"
+      ],
+      "skills_taught": [
+        "browser automation",
+        "web agents",
+        "MultiOn",
+        "browser control"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "MultiOn"
     },
     {
@@ -486,9 +731,18 @@
       ],
       "instructor": "Will Kurt",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["structured output", "JSON schemas", "function calling", "output parsing"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "structured output",
+        "JSON schemas",
+        "function calling",
+        "output parsing"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Cohere"
     },
     {
@@ -504,8 +758,15 @@
       "instructor": "Michele Catasta",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["vibe coding", "Replit", "AI-assisted development", "prototyping"],
-      "career_paths": ["builder"],
+      "skills_taught": [
+        "vibe coding",
+        "Replit",
+        "AI-assisted development",
+        "prototyping"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Replit"
     },
     {
@@ -520,9 +781,18 @@
       ],
       "instructor": "Harrison Chase",
       "platform": "dlai",
-      "prerequisites": ["ai-agents-in-langgraph"],
-      "skills_taught": ["LangGraph memory", "long-term memory", "agent persistence", "memory management"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "ai-agents-in-langgraph"
+      ],
+      "skills_taught": [
+        "LangGraph memory",
+        "long-term memory",
+        "agent persistence",
+        "memory management"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "LangChain"
     },
     {
@@ -537,9 +807,19 @@
       ],
       "instructor": "Laurie Voss",
       "platform": "dlai",
-      "prerequisites": ["building-agentic-rag-with-llamaindex"],
-      "skills_taught": ["event-driven architecture", "document workflows", "LlamaCloud", "automation"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "building-agentic-rag-with-llamaindex"
+      ],
+      "skills_taught": [
+        "event-driven architecture",
+        "document workflows",
+        "LlamaCloud",
+        "automation"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "LlamaIndex"
     },
     {
@@ -556,8 +836,15 @@
       "instructor": "Anshul Ramachandran",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["Windsurf IDE", "AI coding", "agentic development", "code generation"],
-      "career_paths": ["builder"],
+      "skills_taught": [
+        "Windsurf IDE",
+        "AI coding",
+        "agentic development",
+        "code generation"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Codeium"
     },
     {
@@ -572,9 +859,19 @@
       ],
       "instructor": "John Gilhuly",
       "platform": "dlai",
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "skills_taught": ["agent evaluation", "testing agents", "metrics", "Arize"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "functions-tools-agents-langchain"
+      ],
+      "skills_taught": [
+        "agent evaluation",
+        "testing agents",
+        "metrics",
+        "Arize"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Arize AI"
     },
     {
@@ -589,9 +886,18 @@
       ],
       "instructor": "Josh Starmer",
       "platform": "dlai",
-      "prerequisites": ["how-transformer-llms-work"],
-      "skills_taught": ["attention mechanism", "transformers", "PyTorch", "self-attention"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "how-transformer-llms-work"
+      ],
+      "skills_taught": [
+        "attention mechanism",
+        "transformers",
+        "PyTorch",
+        "self-attention"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "StatQuest"
     },
     {
@@ -606,9 +912,18 @@
       ],
       "instructor": "Jay Alammar",
       "platform": "dlai",
-      "prerequisites": ["generative-ai-for-everyone"],
-      "skills_taught": ["transformer architecture", "LLM internals", "attention", "embeddings"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "generative-ai-for-everyone"
+      ],
+      "skills_taught": [
+        "transformer architecture",
+        "LLM internals",
+        "attention",
+        "embeddings"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Cohere"
     },
     {
@@ -623,9 +938,18 @@
       ],
       "instructor": "Colt Steele",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["computer use", "Claude API", "desktop automation", "vision models"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "computer use",
+        "Claude API",
+        "desktop automation",
+        "vision models"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Anthropic"
     },
     {
@@ -640,9 +964,18 @@
       ],
       "instructor": "Chen Wang",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["long context", "Jamba model", "AI21 Labs", "context windows"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "long context",
+        "Jamba model",
+        "AI21 Labs",
+        "context windows"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "AI21 Labs"
     },
     {
@@ -657,9 +990,19 @@
       ],
       "instructor": "Colin Jarvis",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["o1 reasoning", "chain of thought", "OpenAI API", "reasoning models"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "o1 reasoning",
+        "chain of thought",
+        "OpenAI API",
+        "reasoning models"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "OpenAI"
     },
     {
@@ -675,8 +1018,15 @@
       "instructor": "Karina Nguyen",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["OpenAI Canvas", "collaborative coding", "AI writing", "interactive editing"],
-      "career_paths": ["builder"],
+      "skills_taught": [
+        "OpenAI Canvas",
+        "collaborative coding",
+        "AI writing",
+        "interactive editing"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "OpenAI"
     },
     {
@@ -691,9 +1041,18 @@
       ],
       "instructor": "Niki Birkner",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["game AI", "Unity integration", "NPC dialogue", "AI game design"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "game AI",
+        "Unity integration",
+        "NPC dialogue",
+        "AI game design"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Unity"
     },
     {
@@ -708,9 +1067,19 @@
       ],
       "instructor": "Shreya Rajpal",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["guardrails", "AI safety", "output validation", "Guardrails AI"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "guardrails",
+        "AI safety",
+        "output validation",
+        "Guardrails AI"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Guardrails AI"
     },
     {
@@ -725,9 +1094,18 @@
       ],
       "instructor": "João Moura",
       "platform": "dlai",
-      "prerequisites": ["multi-ai-agent-systems-with-crewai"],
-      "skills_taught": ["advanced CrewAI", "complex workflows", "production agents", "multi-agent patterns"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "multi-ai-agent-systems-with-crewai"
+      ],
+      "skills_taught": [
+        "advanced CrewAI",
+        "complex workflows",
+        "production agents",
+        "multi-agent patterns"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "CrewAI"
     },
     {
@@ -743,9 +1121,19 @@
       ],
       "instructor": "Mike Chambers",
       "platform": "dlai",
-      "prerequisites": ["serverless-llm-apps-amazon-bedrock"],
-      "skills_taught": ["Bedrock agents", "serverless AI", "AWS Lambda", "agent orchestration"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "serverless-llm-apps-amazon-bedrock"
+      ],
+      "skills_taught": [
+        "Bedrock agents",
+        "serverless AI",
+        "AWS Lambda",
+        "agent orchestration"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "AWS"
     },
     {
@@ -760,9 +1148,19 @@
       ],
       "instructor": "Amit Sangani",
       "platform": "dlai",
-      "prerequisites": ["prompt-engineering-with-llama-2"],
-      "skills_taught": ["Llama 3.2", "multimodal AI", "vision-language models", "Meta AI"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "prompt-engineering-with-llama-2"
+      ],
+      "skills_taught": [
+        "Llama 3.2",
+        "multimodal AI",
+        "vision-language models",
+        "Meta AI"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Meta"
     },
     {
@@ -777,9 +1175,19 @@
       ],
       "instructor": "Kacper Łukawski",
       "platform": "dlai",
-      "prerequisites": ["vector-databases-embeddings-applications"],
-      "skills_taught": ["retrieval optimization", "tokenization", "vector quantization", "Qdrant"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "vector-databases-embeddings-applications"
+      ],
+      "skills_taught": [
+        "retrieval optimization",
+        "tokenization",
+        "vector quantization",
+        "Qdrant"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Qdrant"
     },
     {
@@ -795,8 +1203,17 @@
       "instructor": "Andrew Ng",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["Python basics", "AI programming", "data structures", "functions"],
-      "career_paths": ["builder", "researcher", "enterprise"],
+      "skills_taught": [
+        "Python basics",
+        "AI programming",
+        "data structures",
+        "functions"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher",
+        "enterprise"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -811,9 +1228,18 @@
       ],
       "instructor": "Erwin Huizenga",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["Gemini API", "multimodal prompting", "vision prompts", "Google AI"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "Gemini API",
+        "multimodal prompting",
+        "vision prompts",
+        "Google AI"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Google"
     },
     {
@@ -828,9 +1254,18 @@
       ],
       "instructor": "Tuana Çelik",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["Haystack", "pipeline building", "modular AI apps", "NLP pipelines"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "Haystack",
+        "pipeline building",
+        "modular AI apps",
+        "NLP pipelines"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "deepset"
     },
     {
@@ -845,9 +1280,19 @@
       ],
       "instructor": "Sharon Zhou",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["LLM accuracy", "evaluation", "error analysis", "Lamini"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "LLM accuracy",
+        "evaluation",
+        "error analysis",
+        "Lamini"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Lamini"
     },
     {
@@ -862,9 +1307,18 @@
       ],
       "instructor": "Ofer Mendelevitch",
       "platform": "dlai",
-      "prerequisites": ["vector-databases-embeddings-applications"],
-      "skills_taught": ["embedding architecture", "custom embeddings", "training embeddings", "Vectara"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "vector-databases-embeddings-applications"
+      ],
+      "skills_taught": [
+        "embedding architecture",
+        "custom embeddings",
+        "training embeddings",
+        "Vectara"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Vectara"
     },
     {
@@ -879,9 +1333,19 @@
       ],
       "instructor": "Daniel J. Beutel",
       "platform": "dlai",
-      "prerequisites": ["machine-learning-specialization"],
-      "skills_taught": ["federated learning", "Flower framework", "distributed ML", "privacy-preserving ML"],
-      "career_paths": ["researcher", "enterprise"],
+      "prerequisites": [
+        "machine-learning-specialization"
+      ],
+      "skills_taught": [
+        "federated learning",
+        "Flower framework",
+        "distributed ML",
+        "privacy-preserving ML"
+      ],
+      "career_paths": [
+        "researcher",
+        "enterprise"
+      ],
       "partner": "Flower Labs"
     },
     {
@@ -897,9 +1361,19 @@
         "privacy"
       ],
       "instructor": "Flower Labs",
-      "prerequisites": ["intro-to-federated-learning"],
-      "skills_taught": ["federated fine-tuning", "private LLM training", "Flower", "data privacy"],
-      "career_paths": ["researcher", "enterprise"],
+      "prerequisites": [
+        "intro-to-federated-learning"
+      ],
+      "skills_taught": [
+        "federated fine-tuning",
+        "private LLM training",
+        "Flower",
+        "data privacy"
+      ],
+      "career_paths": [
+        "researcher",
+        "enterprise"
+      ],
       "partner": "Flower Labs"
     },
     {
@@ -914,9 +1388,18 @@
       ],
       "instructor": "Sung Kim",
       "platform": "dlai",
-      "prerequisites": ["deep-learning-specialization"],
-      "skills_taught": ["LLM pretraining", "data preparation", "training pipelines", "Upstage"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "deep-learning-specialization"
+      ],
+      "skills_taught": [
+        "LLM pretraining",
+        "data preparation",
+        "training pipelines",
+        "Upstage"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Upstage"
     },
     {
@@ -931,9 +1414,18 @@
       ],
       "instructor": "Richmond Alake",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["prompt compression", "query optimization", "MongoDB", "cost reduction"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "prompt compression",
+        "query optimization",
+        "MongoDB",
+        "cost reduction"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "MongoDB"
     },
     {
@@ -949,8 +1441,16 @@
       "instructor": "Nikita Namjoshi",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["carbon-aware computing", "green AI", "sustainability", "Google Cloud"],
-      "career_paths": ["builder", "enterprise"],
+      "skills_taught": [
+        "carbon-aware computing",
+        "green AI",
+        "sustainability",
+        "Google Cloud"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Google"
     },
     {
@@ -965,9 +1465,18 @@
       ],
       "instructor": "Jiantao Jiao",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["function calling", "data extraction", "structured output", "NexusFlow"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "function calling",
+        "data extraction",
+        "structured output",
+        "NexusFlow"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "NexusFlow"
     },
     {
@@ -982,9 +1491,19 @@
       ],
       "instructor": "Adrian Gonzalez Sanchez",
       "platform": "dlai",
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "skills_taught": ["database agents", "SQL generation", "Azure OpenAI", "text-to-SQL"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "functions-tools-agents-langchain"
+      ],
+      "skills_taught": [
+        "database agents",
+        "SQL generation",
+        "Azure OpenAI",
+        "text-to-SQL"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Microsoft"
     },
     {
@@ -999,9 +1518,18 @@
       ],
       "instructor": "Harrison Chase",
       "platform": "dlai",
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "skills_taught": ["LangGraph", "agent graphs", "state machines", "cyclical agents"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "functions-tools-agents-langchain"
+      ],
+      "skills_taught": [
+        "LangGraph",
+        "agent graphs",
+        "state machines",
+        "cyclical agents"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "LangChain"
     },
     {
@@ -1016,9 +1544,19 @@
       ],
       "instructor": "Chi Wang",
       "platform": "dlai",
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "skills_taught": ["AutoGen", "multi-agent patterns", "conversation agents", "Microsoft AI"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "functions-tools-agents-langchain"
+      ],
+      "skills_taught": [
+        "AutoGen",
+        "multi-agent patterns",
+        "conversation agents",
+        "Microsoft AI"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Microsoft"
     },
     {
@@ -1034,8 +1572,16 @@
       "instructor": "Krishna Sridhar",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["on-device AI", "edge deployment", "Qualcomm", "mobile AI"],
-      "career_paths": ["builder", "researcher"],
+      "skills_taught": [
+        "on-device AI",
+        "edge deployment",
+        "Qualcomm",
+        "mobile AI"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Qualcomm"
     },
     {
@@ -1050,9 +1596,18 @@
       ],
       "instructor": "João Moura",
       "platform": "dlai",
-      "prerequisites": ["functions-tools-agents-langchain"],
-      "skills_taught": ["CrewAI", "multi-agent systems", "agent coordination", "task delegation"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "functions-tools-agents-langchain"
+      ],
+      "skills_taught": [
+        "CrewAI",
+        "multi-agent systems",
+        "agent coordination",
+        "task delegation"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "CrewAI"
     },
     {
@@ -1067,9 +1622,18 @@
       ],
       "instructor": "Sebastian Witalec",
       "platform": "dlai",
-      "prerequisites": ["vector-databases-embeddings-applications"],
-      "skills_taught": ["multimodal RAG", "image search", "Weaviate", "cross-modal retrieval"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "vector-databases-embeddings-applications"
+      ],
+      "skills_taught": [
+        "multimodal RAG",
+        "image search",
+        "Weaviate",
+        "cross-modal retrieval"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Weaviate"
     },
     {
@@ -1085,9 +1649,18 @@
       ],
       "instructor": "Jerry Liu",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["LlamaIndex", "agentic RAG", "query routing", "tool-augmented RAG"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "LlamaIndex",
+        "agentic RAG",
+        "query routing",
+        "tool-augmented RAG"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "LlamaIndex"
     },
     {
@@ -1102,9 +1675,18 @@
       ],
       "instructor": "Marc Sun",
       "platform": "dlai",
-      "prerequisites": ["quantization-fundamentals-with-hugging-face"],
-      "skills_taught": ["advanced quantization", "GPTQ", "AWQ", "model compression"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "quantization-fundamentals-with-hugging-face"
+      ],
+      "skills_taught": [
+        "advanced quantization",
+        "GPTQ",
+        "AWQ",
+        "model compression"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Hugging Face"
     },
     {
@@ -1119,9 +1701,18 @@
       ],
       "instructor": "Abby Morgan",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["vision prompting", "image generation", "Comet ML", "multimodal prompts"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "vision prompting",
+        "image generation",
+        "Comet ML",
+        "multimodal prompts"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Comet"
     },
     {
@@ -1136,9 +1727,18 @@
       ],
       "instructor": "Sophia Yang",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["Mistral AI", "function calling", "RAG with Mistral", "open models"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "Mistral AI",
+        "function calling",
+        "RAG with Mistral",
+        "open models"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Mistral AI"
     },
     {
@@ -1153,9 +1753,18 @@
       ],
       "instructor": "Younes Belkada",
       "platform": "dlai",
-      "prerequisites": ["open-source-models-hugging-face"],
-      "skills_taught": ["quantization basics", "BitsAndBytes", "4-bit models", "memory optimization"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "open-source-models-hugging-face"
+      ],
+      "skills_taught": [
+        "quantization basics",
+        "BitsAndBytes",
+        "4-bit models",
+        "memory optimization"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Hugging Face"
     },
     {
@@ -1170,9 +1779,19 @@
       ],
       "instructor": "Matt Robinson",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["data preprocessing", "document parsing", "Unstructured.io", "ETL for LLMs"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "data preprocessing",
+        "document parsing",
+        "Unstructured.io",
+        "ETL for LLMs"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Unstructured"
     },
     {
@@ -1187,9 +1806,18 @@
       ],
       "instructor": "Matteo Dora",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["red teaming", "adversarial testing", "prompt injection", "Giskard"],
-      "career_paths": ["enterprise"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "red teaming",
+        "adversarial testing",
+        "prompt injection",
+        "Giskard"
+      ],
+      "career_paths": [
+        "enterprise"
+      ],
       "partner": "Giskard"
     },
     {
@@ -1204,9 +1832,18 @@
       ],
       "instructor": "Laurie Voss",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["LlamaIndex.TS", "JavaScript RAG", "web apps", "Next.js integration"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "LlamaIndex.TS",
+        "JavaScript RAG",
+        "web apps",
+        "Next.js integration"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "LlamaIndex"
     },
     {
@@ -1221,9 +1858,19 @@
       ],
       "instructor": "Travis Addair",
       "platform": "dlai",
-      "prerequisites": ["llmops"],
-      "skills_taught": ["LLM serving", "LoRAX", "batching", "Predibase"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "llmops"
+      ],
+      "skills_taught": [
+        "LLM serving",
+        "LoRAX",
+        "batching",
+        "Predibase"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Predibase"
     },
     {
@@ -1238,9 +1885,18 @@
       ],
       "instructor": "Andreas Kollegger",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["knowledge graphs", "Neo4j", "GraphRAG", "entity relationships"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "knowledge graphs",
+        "Neo4j",
+        "GraphRAG",
+        "entity relationships"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Neo4j"
     },
     {
@@ -1255,9 +1911,19 @@
       ],
       "instructor": "Maria Khalusova",
       "platform": "dlai",
-      "prerequisites": ["generative-ai-for-everyone"],
-      "skills_taught": ["Hugging Face Hub", "open source models", "transformers library", "model selection"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "generative-ai-for-everyone"
+      ],
+      "skills_taught": [
+        "Hugging Face Hub",
+        "open source models",
+        "transformers library",
+        "model selection"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Hugging Face"
     },
     {
@@ -1272,9 +1938,18 @@
       ],
       "instructor": "Amit Sangani",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["Llama prompting", "Meta AI", "open model prompts", "system prompts"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "Llama prompting",
+        "Meta AI",
+        "open model prompts",
+        "system prompts"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Meta"
     },
     {
@@ -1289,9 +1964,19 @@
       ],
       "instructor": "Mike Chambers",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["Amazon Bedrock", "serverless deployment", "AWS Lambda", "cloud AI"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "Amazon Bedrock",
+        "serverless deployment",
+        "AWS Lambda",
+        "cloud AI"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "AWS"
     },
     {
@@ -1306,9 +1991,18 @@
       ],
       "instructor": "Tim Tully",
       "platform": "dlai",
-      "prerequisites": ["vector-databases-embeddings-applications"],
-      "skills_taught": ["vector DB apps", "Pinecone", "similarity search", "recommendation systems"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "vector-databases-embeddings-applications"
+      ],
+      "skills_taught": [
+        "vector DB apps",
+        "Pinecone",
+        "similarity search",
+        "recommendation systems"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Pinecone"
     },
     {
@@ -1323,9 +2017,19 @@
       ],
       "instructor": "Rob Zuber",
       "platform": "dlai",
-      "prerequisites": ["llmops"],
-      "skills_taught": ["LLM testing", "CI/CD for AI", "CircleCI", "automated evaluation"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "llmops"
+      ],
+      "skills_taught": [
+        "LLM testing",
+        "CI/CD for AI",
+        "CircleCI",
+        "automated evaluation"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "CircleCI"
     },
     {
@@ -1340,9 +2044,19 @@
       ],
       "instructor": "Erwin Huizenga",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["LLMOps", "pipeline orchestration", "Google Cloud", "deployment workflows"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "LLMOps",
+        "pipeline orchestration",
+        "Google Cloud",
+        "deployment workflows"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Google"
     },
     {
@@ -1357,9 +2071,18 @@
       ],
       "instructor": "Jacob Lee",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["LangChain.js", "JavaScript LLM apps", "Node.js AI", "TypeScript agents"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "LangChain.js",
+        "JavaScript LLM apps",
+        "Node.js AI",
+        "TypeScript agents"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "LangChain"
     },
     {
@@ -1374,9 +2097,19 @@
       ],
       "instructor": "Anton Troynikov",
       "platform": "dlai",
-      "prerequisites": ["building-evaluating-advanced-rag"],
-      "skills_taught": ["advanced retrieval", "Chroma", "query expansion", "re-ranking"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "building-evaluating-advanced-rag"
+      ],
+      "skills_taught": [
+        "advanced retrieval",
+        "Chroma",
+        "query expansion",
+        "re-ranking"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Chroma"
     },
     {
@@ -1391,9 +2124,18 @@
       ],
       "instructor": "Nikita Namjoshi",
       "platform": "dlai",
-      "prerequisites": ["deep-learning-specialization"],
-      "skills_taught": ["RLHF", "reward modeling", "PPO", "human preference learning"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "deep-learning-specialization"
+      ],
+      "skills_taught": [
+        "RLHF",
+        "reward modeling",
+        "PPO",
+        "human preference learning"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Google"
     },
     {
@@ -1408,9 +2150,18 @@
       ],
       "instructor": "Jerry Liu",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["advanced RAG", "RAG evaluation", "TruLens", "response quality metrics"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "advanced RAG",
+        "RAG evaluation",
+        "TruLens",
+        "response quality metrics"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "LlamaIndex"
     },
     {
@@ -1425,9 +2176,19 @@
       ],
       "instructor": "Bernease Herman",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["LLM safety", "WhyLabs", "quality monitoring", "drift detection"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "LLM safety",
+        "WhyLabs",
+        "quality monitoring",
+        "drift detection"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "WhyLabs"
     },
     {
@@ -1442,9 +2203,18 @@
       ],
       "instructor": "Sebastian Witalec",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["vector databases", "Weaviate", "embeddings", "semantic search"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "vector databases",
+        "Weaviate",
+        "embeddings",
+        "semantic search"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Weaviate"
     },
     {
@@ -1459,9 +2229,18 @@
       ],
       "instructor": "Harrison Chase",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["function calling", "tool use", "LangChain agents", "agent loops"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "function calling",
+        "tool use",
+        "LangChain agents",
+        "agent loops"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "LangChain"
     },
     {
@@ -1477,8 +2256,15 @@
       "instructor": "Laurence Moroney",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["AI pair programming", "PaLM API", "code assistance", "debugging with AI"],
-      "career_paths": ["builder"],
+      "skills_taught": [
+        "AI pair programming",
+        "PaLM API",
+        "code assistance",
+        "debugging with AI"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Google"
     },
     {
@@ -1493,9 +2279,18 @@
       ],
       "instructor": "Nikita Namjoshi",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["text embeddings", "Vertex AI", "embedding applications", "Google Cloud"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "text embeddings",
+        "Vertex AI",
+        "embedding applications",
+        "Google Cloud"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Google"
     },
     {
@@ -1511,8 +2306,16 @@
       "instructor": "John Maeda",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["Semantic Kernel", "AI plugins", "Microsoft Copilot", "enterprise AI"],
-      "career_paths": ["builder", "enterprise"],
+      "skills_taught": [
+        "Semantic Kernel",
+        "AI plugins",
+        "Microsoft Copilot",
+        "enterprise AI"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Microsoft"
     },
     {
@@ -1527,9 +2330,18 @@
       ],
       "instructor": "Sharon Zhou",
       "platform": "dlai",
-      "prerequisites": ["generative-ai-with-llms"],
-      "skills_taught": ["fine-tuning", "Lamini", "instruction tuning", "custom models"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "generative-ai-with-llms"
+      ],
+      "skills_taught": [
+        "fine-tuning",
+        "Lamini",
+        "instruction tuning",
+        "custom models"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Lamini"
     },
     {
@@ -1544,9 +2356,18 @@
       ],
       "instructor": "Jay Alammar",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["semantic search", "Cohere", "reranking", "dense retrieval"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "semantic search",
+        "Cohere",
+        "reranking",
+        "dense retrieval"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Cohere"
     },
     {
@@ -1561,9 +2382,18 @@
       ],
       "instructor": "Carey Phelps",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["W&B", "model debugging", "experiment tracking", "GenAI evaluation"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "W&B",
+        "model debugging",
+        "experiment tracking",
+        "GenAI evaluation"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Weights & Biases"
     },
     {
@@ -1578,9 +2408,18 @@
       ],
       "instructor": "Apolinário Passos",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["Gradio", "AI demos", "web interfaces", "Hugging Face Spaces"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "Gradio",
+        "AI demos",
+        "web interfaces",
+        "Hugging Face Spaces"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Hugging Face"
     },
     {
@@ -1595,9 +2434,18 @@
       ],
       "instructor": "Harrison Chase",
       "platform": "dlai",
-      "prerequisites": ["langchain-for-llm-application-development"],
-      "skills_taught": ["document Q&A", "data loaders", "conversational retrieval", "chat history"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "langchain-for-llm-application-development"
+      ],
+      "skills_taught": [
+        "document Q&A",
+        "data loaders",
+        "conversational retrieval",
+        "chat history"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "LangChain"
     },
     {
@@ -1612,9 +2460,18 @@
       ],
       "instructor": "Sharon Zhou",
       "platform": "dlai",
-      "prerequisites": ["deep-learning-specialization"],
-      "skills_taught": ["diffusion models", "DDPM", "image generation", "denoising"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "deep-learning-specialization"
+      ],
+      "skills_taught": [
+        "diffusion models",
+        "DDPM",
+        "image generation",
+        "denoising"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -1629,9 +2486,18 @@
       ],
       "instructor": "Harrison Chase",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["LangChain", "chains", "memory", "output parsers"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "LangChain",
+        "chains",
+        "memory",
+        "output parsers"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "LangChain"
     },
     {
@@ -1646,9 +2512,18 @@
       ],
       "instructor": "Isa Fulford",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["system design", "multi-turn conversations", "moderation", "chaining prompts"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "system design",
+        "multi-turn conversations",
+        "moderation",
+        "chaining prompts"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "OpenAI"
     },
     {
@@ -1664,8 +2539,16 @@
       "instructor": "Isa Fulford",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["prompt engineering", "OpenAI API", "few-shot learning", "chain of thought"],
-      "career_paths": ["builder", "enterprise"],
+      "skills_taught": [
+        "prompt engineering",
+        "OpenAI API",
+        "few-shot learning",
+        "chain of thought"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "OpenAI"
     },
     {
@@ -1676,13 +2559,23 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "deployment"
       ],
       "instructor": "Chanin Nantasenamat",
       "platform": "dlai",
-      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
-      "skills_taught": ["Streamlit", "rapid prototyping", "GenAI apps", "interactive UIs"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "chatgpt-prompt-engineering-for-developers"
+      ],
+      "skills_taught": [
+        "Streamlit",
+        "rapid prototyping",
+        "GenAI apps",
+        "interactive UIs"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Streamlit"
     },
     {
@@ -1693,13 +2586,23 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "rag"
       ],
       "instructor": "Zain Hasan",
       "platform": "dlai",
-      "prerequisites": ["vector-databases-embeddings-applications"],
-      "skills_taught": ["RAG fundamentals", "Weaviate", "retrieval systems", "context augmentation"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "vector-databases-embeddings-applications"
+      ],
+      "skills_taught": [
+        "RAG fundamentals",
+        "Weaviate",
+        "retrieval systems",
+        "context augmentation"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "Weaviate"
     },
     {
@@ -1710,13 +2613,24 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "general"
       ],
       "instructor": "Sean Barnes",
       "platform": "dlai",
-      "prerequisites": ["ai-python-for-beginners"],
-      "skills_taught": ["data analytics", "SQL", "Python data analysis", "visualization"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "ai-python-for-beginners"
+      ],
+      "skills_taught": [
+        "data analytics",
+        "SQL",
+        "Python data analysis",
+        "visualization"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -1727,13 +2641,23 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "coding"
       ],
       "instructor": "Laurence Moroney",
       "platform": "dlai",
-      "prerequisites": ["ai-python-for-beginners"],
-      "skills_taught": ["AI-assisted coding", "code generation", "software development", "LLM coding"],
-      "career_paths": ["builder"],
+      "prerequisites": [
+        "ai-python-for-beginners"
+      ],
+      "skills_taught": [
+        "AI-assisted coding",
+        "code generation",
+        "software development",
+        "LLM coding"
+      ],
+      "career_paths": [
+        "builder"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -1744,13 +2668,24 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "deployment"
       ],
       "instructor": "Joe Reis",
       "platform": "coursera",
-      "prerequisites": ["ai-python-for-beginners"],
-      "skills_taught": ["data engineering", "ETL pipelines", "data warehousing", "data modeling"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "ai-python-for-beginners"
+      ],
+      "skills_taught": [
+        "data engineering",
+        "ETL pipelines",
+        "data warehousing",
+        "data modeling"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "Coursera"
     },
     {
@@ -1765,9 +2700,19 @@
       ],
       "instructor": "Andrew Ng",
       "platform": "dlai",
-      "prerequisites": ["machine-learning-specialization"],
-      "skills_taught": ["MLOps", "production ML", "model deployment", "ML lifecycle"],
-      "career_paths": ["builder", "enterprise"],
+      "prerequisites": [
+        "machine-learning-specialization"
+      ],
+      "skills_taught": [
+        "MLOps",
+        "production ML",
+        "model deployment",
+        "ML lifecycle"
+      ],
+      "career_paths": [
+        "builder",
+        "enterprise"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -1783,8 +2728,17 @@
       "instructor": "Andrew Ng",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["GenAI concepts", "AI applications", "business use cases", "AI strategy"],
-      "career_paths": ["builder", "researcher", "enterprise"],
+      "skills_taught": [
+        "GenAI concepts",
+        "AI applications",
+        "business use cases",
+        "AI strategy"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher",
+        "enterprise"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -1800,9 +2754,19 @@
       ],
       "instructor": "Antje Barth",
       "platform": "dlai",
-      "prerequisites": ["ai-for-everyone"],
-      "skills_taught": ["LLM fundamentals", "transformer architecture", "fine-tuning", "RLHF basics"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "ai-for-everyone"
+      ],
+      "skills_taught": [
+        "LLM fundamentals",
+        "transformer architecture",
+        "fine-tuning",
+        "RLHF basics"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "AWS"
     },
     {
@@ -1813,13 +2777,23 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "safety"
       ],
       "instructor": "Robert Monarch",
       "platform": "dlai",
-      "prerequisites": ["ai-for-everyone"],
-      "skills_taught": ["AI ethics", "social impact", "responsible AI", "AI for development"],
-      "career_paths": ["enterprise"],
+      "prerequisites": [
+        "ai-for-everyone"
+      ],
+      "skills_taught": [
+        "AI ethics",
+        "social impact",
+        "responsible AI",
+        "AI for development"
+      ],
+      "career_paths": [
+        "enterprise"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -1830,13 +2804,21 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "general"
       ],
       "instructor": "Luis Serrano",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["linear algebra", "calculus", "probability", "statistics for ML"],
-      "career_paths": ["researcher"],
+      "skills_taught": [
+        "linear algebra",
+        "calculus",
+        "probability",
+        "statistics for ML"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -1847,13 +2829,23 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "general"
       ],
       "instructor": "Andrew Ng",
       "platform": "dlai",
-      "prerequisites": ["ai-python-for-beginners"],
-      "skills_taught": ["supervised learning", "unsupervised learning", "neural networks", "ML fundamentals"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "ai-python-for-beginners"
+      ],
+      "skills_taught": [
+        "supervised learning",
+        "unsupervised learning",
+        "neural networks",
+        "ML fundamentals"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Stanford/DeepLearning.AI"
     },
     {
@@ -1864,13 +2856,23 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "training"
       ],
       "instructor": "Laurence Moroney",
       "platform": "coursera",
-      "prerequisites": ["tensorflow-developer-professional-certificate"],
-      "skills_taught": ["custom models", "advanced TensorFlow", "distributed training", "model optimization"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "tensorflow-developer-professional-certificate"
+      ],
+      "skills_taught": [
+        "custom models",
+        "advanced TensorFlow",
+        "distributed training",
+        "model optimization"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Google"
     },
     {
@@ -1881,13 +2883,23 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "training"
       ],
       "instructor": "Sharon Zhou",
       "platform": "coursera",
-      "prerequisites": ["deep-learning-specialization"],
-      "skills_taught": ["GANs", "image generation", "discriminators", "generative models"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "deep-learning-specialization"
+      ],
+      "skills_taught": [
+        "GANs",
+        "image generation",
+        "discriminators",
+        "generative models"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -1898,13 +2910,24 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "deployment"
       ],
       "instructor": "Laurence Moroney",
       "platform": "coursera",
-      "prerequisites": ["tensorflow-developer-professional-certificate"],
-      "skills_taught": ["TensorFlow.js", "TensorFlow Lite", "data pipelines", "model deployment"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "tensorflow-developer-professional-certificate"
+      ],
+      "skills_taught": [
+        "TensorFlow.js",
+        "TensorFlow Lite",
+        "data pipelines",
+        "model deployment"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Google"
     },
     {
@@ -1915,13 +2938,24 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "training"
       ],
       "instructor": "Laurence Moroney",
       "platform": "dlai",
-      "prerequisites": ["ai-python-for-beginners"],
-      "skills_taught": ["TensorFlow", "neural networks", "CNNs", "NLP with TensorFlow"],
-      "career_paths": ["builder", "researcher"],
+      "prerequisites": [
+        "ai-python-for-beginners"
+      ],
+      "skills_taught": [
+        "TensorFlow",
+        "neural networks",
+        "CNNs",
+        "NLP with TensorFlow"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher"
+      ],
       "partner": "Google"
     },
     {
@@ -1932,13 +2966,23 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "general"
       ],
       "instructor": "Younes Bensouda Mourri",
       "platform": "coursera",
-      "prerequisites": ["deep-learning-specialization"],
-      "skills_taught": ["NLP", "sequence models", "attention mechanisms", "transformers"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "deep-learning-specialization"
+      ],
+      "skills_taught": [
+        "NLP",
+        "sequence models",
+        "attention mechanisms",
+        "transformers"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -1949,13 +2993,23 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "training"
       ],
       "instructor": "Andrew Ng",
       "platform": "dlai",
-      "prerequisites": ["machine-learning-specialization"],
-      "skills_taught": ["deep learning", "CNNs", "RNNs", "optimization algorithms"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "machine-learning-specialization"
+      ],
+      "skills_taught": [
+        "deep learning",
+        "CNNs",
+        "RNNs",
+        "optimization algorithms"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "DeepLearning.AI"
     },
     {
@@ -1966,13 +3020,23 @@
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
-        "specialization"
+        "specialization",
+        "general"
       ],
       "instructor": "Pranav Rajpurkar",
       "platform": "coursera",
-      "prerequisites": ["deep-learning-specialization"],
-      "skills_taught": ["medical AI", "diagnosis AI", "prognosis models", "treatment recommendation"],
-      "career_paths": ["researcher"],
+      "prerequisites": [
+        "deep-learning-specialization"
+      ],
+      "skills_taught": [
+        "medical AI",
+        "diagnosis AI",
+        "prognosis models",
+        "treatment recommendation"
+      ],
+      "career_paths": [
+        "researcher"
+      ],
       "partner": "Stanford"
     },
     {
@@ -1988,8 +3052,17 @@
       "instructor": "Andrew Ng",
       "platform": "dlai",
       "prerequisites": [],
-      "skills_taught": ["AI fundamentals", "AI strategy", "machine learning concepts", "AI in business"],
-      "career_paths": ["builder", "researcher", "enterprise"],
+      "skills_taught": [
+        "AI fundamentals",
+        "AI strategy",
+        "machine learning concepts",
+        "AI in business"
+      ],
+      "career_paths": [
+        "builder",
+        "researcher",
+        "enterprise"
+      ],
       "partner": "DeepLearning.AI"
     }
   ],
