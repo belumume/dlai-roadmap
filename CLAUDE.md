@@ -22,7 +22,8 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - `src/data/courses.json` - 116 courses + pathway definitions (fully enriched)
 - `src/utils/pathwayGenerator.js` - Core personalization algorithm
 - `src/components/Questionnaire.jsx` - 8-question assessment
-- `src/components/CourseSelector.jsx` - Searchable course picker (all 101 courses)
+- `src/components/CourseSelector.jsx` - Searchable course picker (all 116 courses)
+- `src/utils/categories.js` - Single source of truth for category labels
 - `src/components/RoadmapView.jsx` - Generated roadmap display
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
 - `src/utils/exportCalendar.js` - iCalendar (.ics) export function
@@ -62,8 +63,14 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
   - Restrictive fallbacks for invalid inputs
   - Both experience AND math filters applied to pathway phases
   - Zero weeks edge case guard for milestones
+- [x] Quality-based elective sorting (partner tier + type + hours)
+- [x] Dynamic Q8 course counts (was hardcoded)
+- [x] Centralized category labels (`src/utils/categories.js`)
+- [x] skills_taught displayed on course cards
+- [x] NLP Specialization added to Researcher path (30 courses in pathways)
+- [x] Pathway audit completed - 3 roles confirmed sufficient
 
-### ALL FEATURES COMPLETE
+### ALL FEATURES COMPLETE - READY FOR LAUNCH
 
 ## Personalization Factors (all working)
 | Factor | How It's Used |
