@@ -496,6 +496,20 @@ export default function RoadmapView({ roadmap, onRestart }) {
                                 <Calendar className="w-3 h-3" />
                                 Week {course.startWeek + 1} - {course.endWeek}
                               </div>
+
+                              {/* Skills taught */}
+                              {course.skills_taught && course.skills_taught.length > 0 && (
+                                <div className="mt-2 flex flex-wrap gap-1">
+                                  {course.skills_taught.slice(0, 4).map((skill, i) => (
+                                    <span
+                                      key={i}
+                                      className="text-xs px-2 py-0.5 bg-[var(--elevated)] text-[var(--text-secondary)] rounded"
+                                    >
+                                      {skill}
+                                    </span>
+                                  ))}
+                                </div>
+                              )}
                             </div>
                           </div>
                         </div>
