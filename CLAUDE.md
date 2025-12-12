@@ -19,13 +19,13 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - Static JSON data (no backend)
 
 ## Key Files
-- `src/data/courses.json` - 101 courses + pathway definitions
+- `src/data/courses.json` - 116 courses + pathway definitions (fully enriched)
 - `src/utils/pathwayGenerator.js` - Core personalization algorithm
 - `src/components/Questionnaire.jsx` - 8-question assessment
 - `src/components/CourseSelector.jsx` - Searchable course picker (all 101 courses)
 - `src/components/RoadmapView.jsx` - Generated roadmap display
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
-- `tests/stress-test.spec.cjs` - Playwright tests (10 tests)
+- `tests/stress-test.spec.cjs` - Playwright tests (15 tests)
 
 ## Approved Plan Status
 
@@ -45,18 +45,20 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] mathBackground filters elective difficulty
 - [x] goal affects specialization preferences
 - [x] Learning Deep attribution with profile link
-- [x] Playwright test suite (10/10 passing)
+- [x] Playwright test suite (15/15 passing)
 - [x] Filter UI on roadmap view (category + difficulty filters)
 - [x] Critical path vs optional marking (Required/Optional badges on phases)
+- [x] Timeline warning display when core courses exceed target timeline
+- [x] Math warning display for researcher path with weak math background
+- [x] Experience-based difficulty filtering (professional/ml-basics skip foundation)
+- [x] courses.json enrichment - All 116 courses have:
+  - `prerequisites` - course dependency IDs
+  - `skills_taught` - 3-4 skills per course
+  - `career_paths` - builder/researcher/enterprise relevance
+  - `partner` - company partnerships (OpenAI, LangChain, AWS, etc.)
 
 ### NOT COMPLETED
 - [ ] **Calendar export (.ics)** - Plan marked this as "Optional"
-- [ ] **courses.json enrichment** - Missing fields on all 101 courses:
-  - `prerequisites` - not populated
-  - `skills_taught` - not populated
-  - `career_paths` - not populated
-  - `partner` - not populated
-- [ ] **Critical path vs optional marking** - Not explicitly shown in UI
 
 ## Personalization Factors (all working)
 | Factor | How It's Used |
