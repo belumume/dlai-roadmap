@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft, Clock, Target, GraduationCap, Calculator, Calendar, BookOpen, CheckCircle2, Cpu, Zap, Network } from 'lucide-react';
+import CourseSelector from './CourseSelector';
 
 const questions = [
   {
@@ -83,21 +84,9 @@ const questions = [
   {
     id: 'priorCourses',
     title: 'Have you taken any DeepLearning.AI courses?',
-    subtitle: 'Select all that apply, or click Skip if this is your first',
+    subtitle: 'Search or select from popular courses, or click Skip if this is your first',
     icon: BookOpen,
-    type: 'multi',
-    options: [
-      { value: 'ai-for-everyone', label: 'AI For Everyone', description: 'Non-technical intro to AI' },
-      { value: 'generative-ai-for-everyone', label: 'Generative AI for Everyone', description: 'Intro to GenAI concepts' },
-      { value: 'machine-learning-specialization', label: 'Machine Learning Specialization', description: 'Andrew Ng\'s foundational ML course' },
-      { value: 'deep-learning-specialization', label: 'Deep Learning Specialization', description: 'Neural networks & deep learning' },
-      { value: 'generative-ai-with-llms', label: 'Generative AI with LLMs', description: 'LLM training & deployment (AWS)' },
-      { value: 'chatgpt-prompt-engineering', label: 'ChatGPT Prompt Engineering', description: 'Prompt design fundamentals' },
-      { value: 'langchain-chat-with-your-data', label: 'LangChain: Chat With Your Data', description: 'Build chat apps with LangChain' },
-      { value: 'tensorflow-developer-professional-certificate', label: 'TensorFlow Developer Certificate', description: 'TensorFlow professional track' },
-      { value: 'natural-language-processing-specialization', label: 'NLP Specialization', description: 'Comprehensive NLP course' },
-      { value: 'mathematics-for-machine-learning-and-data-science-specialization', label: 'Math for ML Specialization', description: 'Math foundations for ML' },
-    ],
+    type: 'courseSelector', // Special type for the CourseSelector component
   },
   {
     id: 'interests',
@@ -168,7 +157,7 @@ export default function Questionnaire({ onComplete }) {
 
   const isCurrentAnswered = () => {
     const answer = answers[currentQuestion.id];
-    if (currentQuestion.type === 'multi') {
+    if (currentQuestion.type === 'multi' || currentQuestion.type === 'courseSelector') {
       return answer && answer.length > 0;
     }
     return answer !== undefined;
@@ -216,39 +205,46 @@ export default function Questionnaire({ onComplete }) {
 
           {/* Options */}
           <div className="space-y-3">
-            {currentQuestion.options.map((option) => {
-              const isSelected = currentQuestion.type === 'multi'
-                ? (answers[currentQuestion.id] || []).includes(option.value)
-                : answers[currentQuestion.id] === option.value;
+            {currentQuestion.type === 'courseSelector' ? (
+              <CourseSelector
+                selected={answers[currentQuestion.id] || []}
+                onChange={(selected) => setAnswers({ ...answers, [currentQuestion.id]: selected })}
+              />
+            ) : (
+              currentQuestion.options.map((option) => {
+                const isSelected = currentQuestion.type === 'multi'
+                  ? (answers[currentQuestion.id] || []).includes(option.value)
+                  : answers[currentQuestion.id] === option.value;
 
-              return (
-                <button
-                  key={option.value}
-                  onClick={() => handleSelect(option.value)}
-                  className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 ${
-                    isSelected
-                      ? 'border-[var(--node-cyan)] bg-[var(--node-cyan-dim)] shadow-lg shadow-[var(--node-cyan-dim)]'
-                      : 'border-[var(--border)] hover:border-[var(--node-cyan-dim)] hover:bg-[var(--elevated)]/50'
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className={`font-medium ${isSelected ? 'text-[var(--node-cyan)]' : 'text-[var(--text-primary)]'}`}>
-                        {option.label}
-                      </div>
-                      {option.description && (
-                        <div className="text-sm text-[var(--text-secondary)] mt-0.5">
-                          {option.description}
+                return (
+                  <button
+                    key={option.value}
+                    onClick={() => handleSelect(option.value)}
+                    className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 ${
+                      isSelected
+                        ? 'border-[var(--node-cyan)] bg-[var(--node-cyan-dim)] shadow-lg shadow-[var(--node-cyan-dim)]'
+                        : 'border-[var(--border)] hover:border-[var(--node-cyan-dim)] hover:bg-[var(--elevated)]/50'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className={`font-medium ${isSelected ? 'text-[var(--node-cyan)]' : 'text-[var(--text-primary)]'}`}>
+                          {option.label}
                         </div>
+                        {option.description && (
+                          <div className="text-sm text-[var(--text-secondary)] mt-0.5">
+                            {option.description}
+                          </div>
+                        )}
+                      </div>
+                      {isSelected && (
+                        <CheckCircle2 className="w-5 h-5 text-[var(--node-cyan)] flex-shrink-0" />
                       )}
                     </div>
-                    {isSelected && (
-                      <CheckCircle2 className="w-5 h-5 text-[var(--node-cyan)] flex-shrink-0" />
-                    )}
-                  </div>
-                </button>
-              );
-            })}
+                  </button>
+                );
+              })
+            )}
           </div>
 
           {/* Navigation */}
@@ -266,19 +262,17 @@ export default function Questionnaire({ onComplete }) {
               Back
             </button>
 
-            {currentQuestion.type === 'multi' && (
+            {(currentQuestion.type === 'multi' || currentQuestion.type === 'courseSelector') && (
               <div className="flex items-center gap-3">
-                {currentQuestion.allowSkip !== false && (
-                  <button
-                    onClick={() => {
-                      setAnswers({ ...answers, [currentQuestion.id]: [] });
-                      handleNext();
-                    }}
-                    className="flex items-center gap-2 px-4 py-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] transition-colors"
-                  >
-                    Skip
-                  </button>
-                )}
+                <button
+                  onClick={() => {
+                    setAnswers({ ...answers, [currentQuestion.id]: [] });
+                    handleNext();
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] transition-colors"
+                >
+                  Skip
+                </button>
                 <button
                   onClick={handleNext}
                   disabled={!isCurrentAnswered()}
