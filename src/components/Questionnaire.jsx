@@ -1,6 +1,19 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { ChevronRight, ChevronLeft, Clock, Target, GraduationCap, Calculator, Calendar, BookOpen, CheckCircle2, Cpu, Zap, Network } from 'lucide-react';
 import CourseSelector from './CourseSelector';
+import coursesData from '../data/courses.json';
+
+// Calculate course counts per category dynamically
+const getCategoryCounts = () => {
+  const counts = {};
+  coursesData.courses.forEach(course => {
+    (course.categories || []).forEach(cat => {
+      counts[cat] = (counts[cat] || 0) + 1;
+    });
+  });
+  return counts;
+};
+const categoryCounts = getCategoryCounts();
 
 const questions = [
   {
@@ -96,14 +109,14 @@ const questions = [
     type: 'multi',
     maxSelections: 3,
     options: [
-      { value: 'agents', label: 'AI Agents & Automation', description: '22 courses available' },
-      { value: 'rag', label: 'RAG & Knowledge Systems', description: '12 courses available' },
-      { value: 'prompting', label: 'Prompt Engineering', description: '6 courses available' },
-      { value: 'coding', label: 'AI-Assisted Coding', description: '5 courses available' },
-      { value: 'deployment', label: 'MLOps & Deployment', description: '5 courses available' },
-      { value: 'training', label: 'Fine-tuning & Training', description: '3 courses available' },
-      { value: 'safety', label: 'AI Safety & Ethics', description: '3 courses available' },
-      { value: 'general', label: 'General AI/ML Topics', description: '30 courses available' },
+      { value: 'agents', label: 'AI Agents & Automation', description: `${categoryCounts.agents || 0} courses available` },
+      { value: 'rag', label: 'RAG & Knowledge Systems', description: `${categoryCounts.rag || 0} courses available` },
+      { value: 'prompting', label: 'Prompt Engineering', description: `${categoryCounts.prompting || 0} courses available` },
+      { value: 'coding', label: 'AI-Assisted Coding', description: `${categoryCounts.coding || 0} courses available` },
+      { value: 'deployment', label: 'MLOps & Deployment', description: `${categoryCounts.deployment || 0} courses available` },
+      { value: 'training', label: 'Fine-tuning & Training', description: `${categoryCounts.training || 0} courses available` },
+      { value: 'safety', label: 'AI Safety & Ethics', description: `${categoryCounts.safety || 0} courses available` },
+      { value: 'general', label: 'General AI/ML Topics', description: `${categoryCounts.general || 0} courses available` },
     ],
   },
 ];

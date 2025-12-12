@@ -19,7 +19,6 @@ const CATEGORY_LABELS = {
   prompting: 'Prompting',
   rag: 'RAG',
   safety: 'AI Safety',
-  specialization: 'Specialization',
   training: 'Training',
 };
 
