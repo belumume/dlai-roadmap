@@ -102,7 +102,8 @@ export default function CourseSelector({ selected = [], onChange }) {
                 return (
                   <button
                     key={course.id}
-                    onClick={() => {
+                    onMouseDown={(e) => {
+                      e.preventDefault(); // Prevent blur from firing
                       toggleCourse(course.id);
                       setSearchQuery('');
                     }}
@@ -115,7 +116,7 @@ export default function CourseSelector({ selected = [], onChange }) {
                         {course.title}
                       </div>
                       <div className="text-xs text-[var(--text-muted)]">
-                        {course.type === 'specialization' ? 'Specialization' : 'Short Course'} • {course.difficulty}
+                        {course.type === 'specialization' ? 'Specialization' : course.type === 'course' ? 'Course' : 'Short Course'} • {course.difficulty}
                       </div>
                     </div>
                     {isSelected && (
@@ -155,7 +156,7 @@ export default function CourseSelector({ selected = [], onChange }) {
                       {course.title}
                     </div>
                     <div className="text-xs text-[var(--text-muted)] mt-0.5">
-                      {course.type === 'specialization' ? 'Specialization' : 'Short Course'}
+                      {course.type === 'specialization' ? 'Specialization' : course.type === 'course' ? 'Course' : 'Short Course'}
                     </div>
                   </div>
                   {isSelected && (
