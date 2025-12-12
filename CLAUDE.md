@@ -76,6 +76,8 @@ npm run build                  # Production build
 npx playwright test --config=playwright.config.cjs  # Run tests
 ```
 
+**IMPORTANT:** Always run tests after implementing features, before committing. Never commit untested code.
+
 ## Original Resources (from project start)
 Located in: `C:\Users\elzai\PC\Downloads\deeplearning_ai roadmap resources.zip`
 - courses.json (82 short + 19 long courses)
