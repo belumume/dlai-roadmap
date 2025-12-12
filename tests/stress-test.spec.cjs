@@ -290,6 +290,31 @@ test.describe('DLAI Roadmap Stress Tests', () => {
     // Badge should be gone
     await expect(page.locator('button:has-text("Filter Courses") span.rounded-full')).not.toBeVisible();
   });
+
+  test('Critical path marking shows Required/Optional badges', async ({ page }) => {
+    // Load a roadmap with electives via shareable URL
+    const encoded = Buffer.from(JSON.stringify({
+      experience: 'none',
+      goal: 'curiosity',
+      timeCommitment: '5-10',
+      targetRole: 'builder',
+      mathBackground: 'strong',
+      timeline: '6-months',
+      priorCourses: [],
+      interests: ['agents', 'rag'],
+    })).toString('base64');
+
+    await page.goto(`${BASE_URL}?pathway=${encoded}`);
+    await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 5000 });
+
+    // Should have Required badges on core phases
+    const requiredBadges = page.locator('span:has-text("Required")');
+    await expect(requiredBadges.first()).toBeVisible();
+
+    // Should have Optional badge on Electives phase (if interests were selected)
+    const optionalBadge = page.locator('span:has-text("Optional")');
+    await expect(optionalBadge).toBeVisible();
+  });
 });
 
 // Helper functions
