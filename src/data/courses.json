@@ -46,7 +46,7 @@
       "id": "design-develop-deploy-multi-agent-systems-crewai",
       "title": "Design, Develop, and Deploy Multi-Agent Systems with CrewAI",
       "type": "course",
-      "url": "https://learn.deeplearning.ai/courses/design-develop-deploy-multi-agent-systems-crewai",
+      "url": "https://learn.deeplearning.ai/courses/design-develop-and-deploy-multi-agent-systems-with-crewai",
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
@@ -88,7 +88,7 @@
       "id": "building-live-voice-agents-google-adk",
       "title": "Building Live Voice Agents with Google's ADK",
       "type": "short",
-      "url": "https://learn.deeplearning.ai/courses/building-live-voice-agents-google-adk",
+      "url": "https://learn.deeplearning.ai/courses/building-live-voice-agents-with-googles-adk",
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
@@ -130,7 +130,7 @@
       "id": "build-ai-apps-mcp-servers-box-files",
       "title": "Build AI Apps with MCP Servers: Working with Box Files",
       "type": "short",
-      "url": "https://learn.deeplearning.ai/courses/build-ai-apps-mcp-servers-box-files",
+      "url": "https://learn.deeplearning.ai/courses/build-ai-apps-with-mcp-server-working-with-box-files",
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
@@ -144,7 +144,7 @@
       "id": "knowledge-graphs-ai-agent-api-discovery",
       "title": "Knowledge Graphs for AI Agent API Discovery",
       "type": "short",
-      "url": "https://learn.deeplearning.ai/courses/knowledge-graphs-ai-agent-api-discovery",
+      "url": "https://learn.deeplearning.ai/courses/knowledge-graphs-for-ai-agent-api-discovery",
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
@@ -172,7 +172,7 @@
       "id": "fine-tuning-rl-llms-intro-post-training",
       "title": "Fine-tuning and Reinforcement Learning for LLMs: Intro to Post-Training",
       "type": "course",
-      "url": "https://learn.deeplearning.ai/courses/fine-tuning-rl-llms-intro-post-training",
+      "url": "https://learn.deeplearning.ai/courses/fine-tuning-and-reinforcement-learning-for-llms-intro-to-post-training",
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
