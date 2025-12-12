@@ -248,6 +248,48 @@ test.describe('DLAI Roadmap Stress Tests', () => {
     // Should be on Q8
     await expect(page.locator('text=Question 8 of 8')).toBeVisible();
   });
+
+  test('Filter UI works on roadmap view', async ({ page }) => {
+    // Load a roadmap via shareable URL
+    const encoded = Buffer.from(JSON.stringify({
+      experience: 'none',
+      goal: 'upskill',
+      timeCommitment: '5-10',
+      targetRole: 'builder',
+      mathBackground: 'moderate',
+      timeline: '6-months',
+      priorCourses: [],
+      interests: ['agents', 'rag'],
+    })).toString('base64');
+
+    await page.goto(`${BASE_URL}?pathway=${encoded}`);
+    await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 5000 });
+
+    // Click Filter button
+    const filterBtn = page.locator('button:has-text("Filter Courses")');
+    await expect(filterBtn).toBeVisible();
+    await filterBtn.click();
+    await page.waitForTimeout(300);
+
+    // Filter panel should be visible
+    await expect(page.locator('text=Filter by')).toBeVisible();
+    await expect(page.locator('text=Difficulty')).toBeVisible();
+    await expect(page.locator('text=Category')).toBeVisible();
+
+    // Click Beginner filter
+    await page.click('button:has-text("Beginner")');
+    await page.waitForTimeout(300);
+
+    // Filter button should show badge with count
+    await expect(page.locator('button:has-text("Filter Courses") span.rounded-full')).toBeVisible();
+
+    // Click Clear all
+    await page.click('button:has-text("Clear all")');
+    await page.waitForTimeout(300);
+
+    // Badge should be gone
+    await expect(page.locator('button:has-text("Filter Courses") span.rounded-full')).not.toBeVisible();
+  });
 });
 
 // Helper functions
