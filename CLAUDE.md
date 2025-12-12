@@ -46,9 +46,9 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] goal affects specialization preferences
 - [x] Learning Deep attribution with profile link
 - [x] Playwright test suite (10/10 passing)
+- [x] Filter UI on roadmap view (category + difficulty filters)
 
 ### NOT COMPLETED
-- [ ] **Filter UI on roadmap view** - Filter courses by category, difficulty, partner
 - [ ] **Calendar export (.ics)** - Plan marked this as "Optional"
 - [ ] **courses.json enrichment** - Missing fields on all 101 courses:
   - `prerequisites` - not populated

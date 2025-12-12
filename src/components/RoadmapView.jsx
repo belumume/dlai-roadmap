@@ -2,15 +2,32 @@ import { useState, useEffect } from 'react';
 import {
   Download, Share2, ChevronDown, ChevronUp, ExternalLink,
   Clock, BookOpen, Trophy, RefreshCw, CheckCircle, Circle,
-  Calendar, Target, Zap, Copy, Check
+  Calendar, Target, Zap, Copy, Check, Filter, X
 } from 'lucide-react';
 import { formatDuration, getDifficultyColor, getPathwayDescription } from '../utils/pathwayGenerator';
 import { exportRoadmapPDF, generateShareableURL } from '../utils/exportPDF';
 
 const STORAGE_KEY = 'dlai-roadmap-progress';
 
+const CATEGORY_LABELS = {
+  agents: 'AI Agents',
+  coding: 'AI Coding',
+  deployment: 'Deployment',
+  general: 'General AI/ML',
+  privacy: 'Privacy',
+  prompting: 'Prompting',
+  rag: 'RAG',
+  safety: 'AI Safety',
+  specialization: 'Specialization',
+  training: 'Training',
+};
+
+const DIFFICULTY_ORDER = ['beginner', 'intermediate', 'advanced'];
+
 export default function RoadmapView({ roadmap, onRestart }) {
   const [expandedPhases, setExpandedPhases] = useState(new Set([0]));
+  const [filters, setFilters] = useState({ categories: [], difficulties: [] });
+  const [showFilters, setShowFilters] = useState(false);
   const [completedCourses, setCompletedCourses] = useState(() => {
     // Load from localStorage on init
     try {
@@ -92,6 +109,46 @@ export default function RoadmapView({ roadmap, onRestart }) {
     }
     setCompletedCourses(newCompleted);
   };
+
+  const toggleCategoryFilter = (category) => {
+    setFilters(prev => ({
+      ...prev,
+      categories: prev.categories.includes(category)
+        ? prev.categories.filter(c => c !== category)
+        : [...prev.categories, category]
+    }));
+  };
+
+  const toggleDifficultyFilter = (difficulty) => {
+    setFilters(prev => ({
+      ...prev,
+      difficulties: prev.difficulties.includes(difficulty)
+        ? prev.difficulties.filter(d => d !== difficulty)
+        : [...prev.difficulties, difficulty]
+    }));
+  };
+
+  const clearFilters = () => {
+    setFilters({ categories: [], difficulties: [] });
+  };
+
+  const courseMatchesFilters = (course) => {
+    if (filters.categories.length === 0 && filters.difficulties.length === 0) {
+      return true;
+    }
+    const categoryMatch = filters.categories.length === 0 ||
+      course.categories?.some(cat => filters.categories.includes(cat));
+    const difficultyMatch = filters.difficulties.length === 0 ||
+      filters.difficulties.includes(course.difficulty);
+    return categoryMatch && difficultyMatch;
+  };
+
+  const hasActiveFilters = filters.categories.length > 0 || filters.difficulties.length > 0;
+
+  // Get unique categories from current roadmap courses
+  const availableCategories = [...new Set(
+    phases.flatMap(p => p.courses.flatMap(c => c.categories || []))
+  )].sort();
 
   const completionPercent = Math.round((completedCourses.size / summary.totalCourses) * 100);
 
@@ -189,6 +246,83 @@ export default function RoadmapView({ roadmap, onRestart }) {
           </div>
         </div>
 
+        {/* Filter Bar */}
+        <div className="mb-8">
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+              hasActiveFilters
+                ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30'
+                : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--node-cyan-dim)]'
+            }`}
+          >
+            <Filter className="w-4 h-4" />
+            Filter Courses
+            {hasActiveFilters && (
+              <span className="ml-1 px-2 py-0.5 text-xs bg-[var(--node-cyan)] text-[var(--deep)] rounded-full">
+                {filters.categories.length + filters.difficulties.length}
+              </span>
+            )}
+          </button>
+
+          {showFilters && (
+            <div className="mt-4 bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6">
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-medium text-[var(--text-primary)]">Filter by</h4>
+                {hasActiveFilters && (
+                  <button
+                    onClick={clearFilters}
+                    className="flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--node-cyan)]"
+                  >
+                    <X className="w-3 h-3" />
+                    Clear all
+                  </button>
+                )}
+              </div>
+
+              {/* Difficulty filters */}
+              <div className="mb-6">
+                <p className="text-sm text-[var(--text-secondary)] mb-3">Difficulty</p>
+                <div className="flex flex-wrap gap-2">
+                  {DIFFICULTY_ORDER.map(diff => (
+                    <button
+                      key={diff}
+                      onClick={() => toggleDifficultyFilter(diff)}
+                      className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
+                        filters.difficulties.includes(diff)
+                          ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border-[var(--node-cyan)]/30'
+                          : 'bg-[var(--elevated)] text-[var(--text-secondary)] border-transparent hover:border-[var(--border)]'
+                      }`}
+                    >
+                      {diff.charAt(0).toUpperCase() + diff.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Category filters */}
+              <div>
+                <p className="text-sm text-[var(--text-secondary)] mb-3">Category</p>
+                <div className="flex flex-wrap gap-2">
+                  {availableCategories.map(cat => (
+                    <button
+                      key={cat}
+                      onClick={() => toggleCategoryFilter(cat)}
+                      className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
+                        filters.categories.includes(cat)
+                          ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border-[var(--node-cyan)]/30'
+                          : 'bg-[var(--elevated)] text-[var(--text-secondary)] border-transparent hover:border-[var(--border)]'
+                      }`}
+                    >
+                      {CATEGORY_LABELS[cat] || cat}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
@@ -196,10 +330,16 @@ export default function RoadmapView({ roadmap, onRestart }) {
 
           {phases.map((phase, phaseIndex) => {
             const isExpanded = expandedPhases.has(phaseIndex);
+            const filteredCourses = phase.courses.filter(courseMatchesFilters);
             const phaseCompleted = phase.courses.every(c => completedCourses.has(c.id));
             const phaseProgress = Math.round(
               (phase.courses.filter(c => completedCourses.has(c.id)).length / phase.courses.length) * 100
             );
+
+            // Skip phase if no courses match filter
+            if (hasActiveFilters && filteredCourses.length === 0) {
+              return null;
+            }
 
             return (
               <div key={phaseIndex} className="relative mb-6">
@@ -229,7 +369,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
                       <div>
                         <h3 className="font-display text-lg font-display font-semibold text-[var(--text-primary)]">{phase.phaseName}</h3>
                         <p className="text-sm text-[var(--text-secondary)]">
-                          {phase.courses.length} courses • {formatDuration(phase.endWeek - phase.startWeek)}
+                          {hasActiveFilters ? `${filteredCourses.length} of ${phase.courses.length}` : phase.courses.length} courses • {formatDuration(phase.endWeek - phase.startWeek)}
                         </p>
                       </div>
                       <div className="flex items-center gap-3">
@@ -257,7 +397,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
                 {/* Expanded course list */}
                 {isExpanded && (
                   <div className="ml-16 mt-4 space-y-3">
-                    {phase.courses.map((course, courseIndex) => {
+                    {filteredCourses.map((course, courseIndex) => {
                       const isCompleted = completedCourses.has(course.id);
 
                       return (
