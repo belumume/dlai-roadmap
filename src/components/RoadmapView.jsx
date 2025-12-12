@@ -7,20 +7,9 @@ import {
 import { formatDuration, getDifficultyColor, getPathwayDescription } from '../utils/pathwayGenerator';
 import { exportRoadmapPDF, generateShareableURL } from '../utils/exportPDF';
 import { exportAndDownloadCalendar } from '../utils/exportCalendar';
+import { getCategoryLabel } from '../utils/categories';
 
 const STORAGE_KEY = 'dlai-roadmap-progress';
-
-const CATEGORY_LABELS = {
-  agents: 'AI Agents',
-  coding: 'AI Coding',
-  deployment: 'Deployment',
-  general: 'General AI/ML',
-  privacy: 'Privacy',
-  prompting: 'Prompting',
-  rag: 'RAG',
-  safety: 'AI Safety',
-  training: 'Training',
-};
 
 const DIFFICULTY_ORDER = ['beginner', 'intermediate', 'advanced'];
 
@@ -332,7 +321,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
                           : 'bg-[var(--elevated)] text-[var(--text-secondary)] border-transparent hover:border-[var(--border)]'
                       }`}
                     >
-                      {CATEGORY_LABELS[cat] || cat}
+                      {getCategoryLabel(cat)}
                     </button>
                   ))}
                 </div>
