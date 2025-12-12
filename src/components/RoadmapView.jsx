@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import {
   Download, Share2, ChevronDown, ChevronUp, ExternalLink,
   Clock, BookOpen, Trophy, RefreshCw, CheckCircle, Circle,
-  Calendar, Target, Zap, Copy, Check, Filter, X
+  Calendar, Target, Zap, Copy, Check, Filter, X, Star
 } from 'lucide-react';
 import { formatDuration, getDifficultyColor, getPathwayDescription } from '../utils/pathwayGenerator';
 import { exportRoadmapPDF, generateShareableURL } from '../utils/exportPDF';
@@ -367,7 +367,18 @@ export default function RoadmapView({ roadmap, onRestart }) {
                   <div className="flex-1 bg-[var(--surface)] border border-[var(--border)] rounded-xl p-4 text-left group-hover:border-[var(--node-cyan-dim)] transition-colors">
                     <div className="flex items-center justify-between mb-2">
                       <div>
-                        <h3 className="font-display text-lg font-display font-semibold text-[var(--text-primary)]">{phase.phaseName}</h3>
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-display text-lg font-display font-semibold text-[var(--text-primary)]">{phase.phaseName}</h3>
+                          {phase.isOptional ? (
+                            <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                              Optional
+                            </span>
+                          ) : (
+                            <span className="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                              Required
+                            </span>
+                          )}
+                        </div>
                         <p className="text-sm text-[var(--text-secondary)]">
                           {hasActiveFilters ? `${filteredCourses.length} of ${phase.courses.length}` : phase.courses.length} courses • {formatDuration(phase.endWeek - phase.startWeek)}
                         </p>

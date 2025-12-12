@@ -4,7 +4,10 @@
       "Bash(node:*)",
       "Bash(npm run build:*)",
       "Bash(npx playwright test:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Add filter UI for courses by category and difficulty\n\n- Add collapsible filter panel on roadmap view\n- Filter by difficulty (beginner/intermediate/advanced)\n- Filter by category (agents, RAG, prompting, etc.)\n- Phases auto-hide when all courses filtered out\n- Shows filtered count (e.g., \"3 of 5 courses\")\n- Clear all filters button\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

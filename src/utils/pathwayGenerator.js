@@ -118,6 +118,7 @@ export function generatePathway(answers) {
         phaseName: 'Areas of Interest',
         milestone: 'Specialization Deepened',
         courses: electiveCourses,
+        isOptional: true,
       });
     }
   }

@@ -47,6 +47,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] Learning Deep attribution with profile link
 - [x] Playwright test suite (10/10 passing)
 - [x] Filter UI on roadmap view (category + difficulty filters)
+- [x] Critical path vs optional marking (Required/Optional badges on phases)
 
 ### NOT COMPLETED
 - [ ] **Calendar export (.ics)** - Plan marked this as "Optional"
