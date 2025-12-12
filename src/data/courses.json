@@ -1,6 +1,188 @@
 {
   "courses": [
     {
+      "id": "multi-vector-image-retrieval",
+      "title": "Multi-Vector Image Retrieval",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/multi-vector-image-retrieval",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "rag",
+        "general"
+      ],
+      "instructor": "Kacper Lukawski"
+    },
+    {
+      "id": "building-coding-agents-with-tool-execution",
+      "title": "Building Coding Agents with Tool Execution",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/building-coding-agents-with-tool-execution",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "agents",
+        "coding"
+      ],
+      "instructor": "Vasek Mlejnsky"
+    },
+    {
+      "id": "semantic-caching-for-ai-agents",
+      "title": "Semantic Caching for AI Agents",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/semantic-caching-for-ai-agents",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "agents",
+        "deployment"
+      ],
+      "instructor": "Brian Sam-Bodden"
+    },
+    {
+      "id": "design-develop-deploy-multi-agent-systems-crewai",
+      "title": "Design, Develop, and Deploy Multi-Agent Systems with CrewAI",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/design-develop-deploy-multi-agent-systems-crewai",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "agents",
+        "deployment"
+      ],
+      "instructor": "João Moura"
+    },
+    {
+      "id": "jupyter-ai-coding-in-notebooks",
+      "title": "Jupyter AI: AI Coding in Notebooks",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/jupyter-ai-coding-in-notebooks",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "coding",
+        "general"
+      ],
+      "instructor": "Jason Weill"
+    },
+    {
+      "id": "governing-ai-agents",
+      "title": "Governing AI Agents",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/governing-ai-agents",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "agents",
+        "safety"
+      ],
+      "instructor": "Jerry Liu"
+    },
+    {
+      "id": "building-live-voice-agents-google-adk",
+      "title": "Building Live Voice Agents with Google's ADK",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/building-live-voice-agents-google-adk",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "agents",
+        "general"
+      ],
+      "instructor": "Patrick Marlow"
+    },
+    {
+      "id": "agentic-ai",
+      "title": "Agentic AI",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/agentic-ai",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "agents",
+        "general"
+      ],
+      "instructor": "Andrew Ng"
+    },
+    {
+      "id": "building-and-evaluating-data-agents",
+      "title": "Building and Evaluating Data Agents",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/building-and-evaluating-data-agents",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "agents",
+        "general"
+      ],
+      "instructor": "Jerry Liu"
+    },
+    {
+      "id": "build-ai-apps-mcp-servers-box-files",
+      "title": "Build AI Apps with MCP Servers: Working with Box Files",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/build-ai-apps-mcp-servers-box-files",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "agents",
+        "general"
+      ],
+      "instructor": "Shurui Zhou"
+    },
+    {
+      "id": "knowledge-graphs-ai-agent-api-discovery",
+      "title": "Knowledge Graphs for AI Agent API Discovery",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/knowledge-graphs-ai-agent-api-discovery",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "agents",
+        "rag"
+      ],
+      "instructor": "Andreas Kollegger"
+    },
+    {
+      "id": "agentic-knowledge-graph-construction",
+      "title": "Agentic Knowledge Graph Construction",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/agentic-knowledge-graph-construction",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "agents",
+        "rag"
+      ],
+      "instructor": "Andreas Kollegger"
+    },
+    {
+      "id": "fine-tuning-rl-llms-intro-post-training",
+      "title": "Fine-tuning and Reinforcement Learning for LLMs: Intro to Post-Training",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/fine-tuning-rl-llms-intro-post-training",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": [
+        "training",
+        "general"
+      ],
+      "instructor": "Sharon Zhou"
+    },
+    {
+      "id": "pytorch-for-deep-learning",
+      "title": "PyTorch for Deep Learning Professional Certificate",
+      "type": "specialization",
+      "url": "https://learn.deeplearning.ai/specializations/pytorch-for-deep-learning-professional-certificate",
+      "difficulty": "intermediate",
+      "estimated_hours": 40,
+      "categories": [
+        "specialization",
+        "training"
+      ],
+      "instructor": "Laurence Moroney"
+    },
+    {
       "id": "claude-code-a-highly-agentic-coding-assistant",
       "title": "Claude Code: A Highly Agentic Coding Assistant",
       "type": "short",
@@ -119,7 +301,7 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Russ d\u00e2\u20ac\u2122Sa"
+      "instructor": "Russ dâ€™Sa"
     },
     {
       "id": "llms-as-operating-systems-agent-memory",
@@ -207,7 +389,7 @@
     },
     {
       "id": "build-apps-with-windsurfs-ai-coding-agents",
-      "title": "Build Apps with Windsurf\u00e2\u20ac\u2122s AI Coding Agents",
+      "title": "Build Apps with Windsurfâ€™s AI Coding Agents",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agents",
       "difficulty": "intermediate",
@@ -336,7 +518,7 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Jo\u00c3\u00a3o Moura"
+      "instructor": "JoÃ£o Moura"
     },
     {
       "id": "serverless-agentic-workflows-with-amazon-bedrock",
@@ -373,7 +555,7 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Kacper \u00c5\udc81ukawski"
+      "instructor": "Kacper Å\udc81ukawski"
     },
     {
       "id": "ai-python-for-beginners",
@@ -409,7 +591,7 @@
       "categories": [
         "general"
       ],
-      "instructor": "Tuana \u00c3\u2021elik"
+      "instructor": "Tuana Ã‡elik"
     },
     {
       "id": "improving-accuracy-of-llm-applications",
@@ -553,7 +735,7 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Jo\u00c3\u00a3o Moura"
+      "instructor": "JoÃ£o Moura"
     },
     {
       "id": "building-multimodal-search-and-rag",
@@ -926,7 +1108,7 @@
       "categories": [
         "general"
       ],
-      "instructor": "Apolin\u00c3\u00a1rio Passos"
+      "instructor": "ApolinÃ¡rio Passos"
     },
     {
       "id": "langchain-chat-with-your-data",
