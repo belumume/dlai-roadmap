@@ -1,1 +1,215 @@
 @import "tailwindcss";
+
+/* Custom Design System - Neural Network Theme */
+:root {
+  /* Typography */
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Neural Network Color Palette */
+  --void: #0a0a0f;
+  --deep: #12121a;
+  --surface: #1a1a24;
+  --elevated: #24243a;
+
+  --node-cyan: #00d4ff;
+  --node-cyan-dim: #00d4ff40;
+  --node-coral: #ff6b6b;
+  --node-coral-dim: #ff6b6b40;
+  --node-amber: #fbbf24;
+  --node-purple: #a78bfa;
+
+  --text-primary: #f0f0f5;
+  --text-secondary: #8888a0;
+  --text-muted: #55556a;
+
+  --border: #2a2a3a;
+  --border-glow: #00d4ff30;
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-body);
+  background: var(--void);
+  color: var(--text-primary);
+}
+
+/* Utility classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Neural network background pattern */
+.neural-bg {
+  background-color: var(--void);
+  background-image:
+    radial-gradient(circle at 20% 50%, var(--node-cyan-dim) 0%, transparent 25%),
+    radial-gradient(circle at 80% 20%, var(--node-coral-dim) 0%, transparent 20%),
+    radial-gradient(circle at 60% 80%, var(--node-purple) 0%, transparent 15%);
+}
+
+/* Grid pattern overlay */
+.grid-pattern {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  background-position: center center;
+}
+
+/* Glowing node effect */
+.node-glow {
+  box-shadow:
+    0 0 20px var(--node-cyan-dim),
+    0 0 40px var(--node-cyan-dim),
+    inset 0 0 20px var(--node-cyan-dim);
+}
+
+.node-glow-coral {
+  box-shadow:
+    0 0 20px var(--node-coral-dim),
+    0 0 40px var(--node-coral-dim);
+}
+
+/* Animated pulse for nodes */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Gradient text */
+.gradient-text-cyan {
+  background: linear-gradient(135deg, var(--node-cyan) 0%, var(--node-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-coral {
+  background: linear-gradient(135deg, var(--node-coral) 0%, var(--node-amber) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card styles */
+.card-neural {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.card-neural:hover {
+  border-color: var(--node-cyan-dim);
+  box-shadow: 0 0 30px var(--node-cyan-dim);
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--node-cyan) 0%, #0099cc 100%);
+  color: var(--void);
+  font-family: var(--font-display);
+  font-weight: 600;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 30px var(--node-cyan-dim), 0 10px 40px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-2deg);
+  }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-delayed {
+  animation: float 8s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+/* Progress bar glow */
+.progress-glow {
+  background: linear-gradient(90deg, var(--node-cyan), var(--node-purple));
+  box-shadow: 0 0 20px var(--node-cyan-dim);
+}
+
+/* Selection highlight */
+.selection-ring {
+  transition: all 0.2s ease;
+}
+
+.selection-ring:hover {
+  border-color: var(--node-cyan);
+}
+
+.selection-ring.selected {
+  border-color: var(--node-cyan);
+  background: var(--node-cyan-dim);
+  box-shadow: 0 0 20px var(--node-cyan-dim);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--elevated);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border);
+}

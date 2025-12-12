@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronRight, ChevronLeft, Sparkles, Clock, Target, GraduationCap, Calculator, Calendar, BookOpen, CheckCircle2 } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Clock, Target, GraduationCap, Calculator, Calendar, BookOpen, CheckCircle2, Cpu, Zap, Network } from 'lucide-react';
 
 const questions = [
   {
@@ -45,7 +45,7 @@ const questions = [
     id: 'targetRole',
     title: 'Which path resonates most with you?',
     subtitle: 'Don\'t worry - you can always pivot later',
-    icon: Sparkles,
+    icon: Network,
     type: 'single',
     options: [
       { value: 'builder', label: 'AI Product Engineer', description: 'Build apps with RAG, agents, and APIs' },
@@ -100,7 +100,7 @@ const questions = [
     id: 'interests',
     title: 'What topics excite you most?',
     subtitle: 'Pick up to 3 areas you\'d love to explore',
-    icon: Sparkles,
+    icon: Zap,
     type: 'multi',
     maxSelections: 3,
     options: [
@@ -179,17 +179,17 @@ export default function Questionnaire({ onComplete }) {
   const Icon = currentQuestion.icon;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen neural-bg relative overflow-hidden flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
         {/* Progress bar */}
         <div className="mb-8">
-          <div className="flex justify-between text-sm text-slate-400 mb-2">
+          <div className="flex justify-between text-sm text-[var(--text-secondary)] mb-2">
             <span>Question {currentStep + 1} of {questions.length}</span>
             <span>{Math.round(progress)}% complete</span>
           </div>
-          <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+          <div className="h-2 bg-[var(--elevated)] rounded-full overflow-hidden">
             <div
-              className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-500 ease-out"
+              className="h-full progress-glow transition-all duration-500 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -197,20 +197,20 @@ export default function Questionnaire({ onComplete }) {
 
         {/* Question card */}
         <div
-          className={`bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-2xl transition-all duration-150 ${
+          className={`card-neural p-8 transition-all duration-150 ${
             isTransitioning ? 'opacity-0 transform translate-x-4' : 'opacity-100 transform translate-x-0'
           }`}
         >
           {/* Question header */}
           <div className="flex items-start gap-4 mb-8">
-            <div className="p-3 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl">
-              <Icon className="w-6 h-6 text-blue-400" />
+            <div className="p-3 bg-[var(--node-cyan-dim)] rounded-xl">
+              <Icon className="w-6 h-6 text-[var(--node-cyan)]" />
             </div>
             <div>
-              <h2 className="text-2xl font-semibold text-white mb-1">
+              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-1">
                 {currentQuestion.title}
               </h2>
-              <p className="text-slate-400">
+              <p className="text-[var(--text-secondary)]">
                 {currentQuestion.subtitle}
               </p>
             </div>
@@ -229,23 +229,23 @@ export default function Questionnaire({ onComplete }) {
                   onClick={() => handleSelect(option.value)}
                   className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 ${
                     isSelected
-                      ? 'border-blue-500 bg-blue-500/10 shadow-lg shadow-blue-500/10'
-                      : 'border-slate-600 hover:border-slate-500 hover:bg-slate-700/50'
+                      ? 'border-[var(--node-cyan)] bg-[var(--node-cyan-dim)] shadow-lg shadow-[var(--node-cyan-dim)]'
+                      : 'border-[var(--border)] hover:border-[var(--node-cyan-dim)] hover:bg-[var(--elevated)]/50'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className={`font-medium ${isSelected ? 'text-blue-300' : 'text-white'}`}>
+                      <div className={`font-medium ${isSelected ? 'text-[var(--node-cyan)]' : 'text-[var(--text-primary)]'}`}>
                         {option.label}
                       </div>
                       {option.description && (
-                        <div className="text-sm text-slate-400 mt-0.5">
+                        <div className="text-sm text-[var(--text-secondary)] mt-0.5">
                           {option.description}
                         </div>
                       )}
                     </div>
                     {isSelected && (
-                      <CheckCircle2 className="w-5 h-5 text-blue-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-5 h-5 text-[var(--node-cyan)] flex-shrink-0" />
                     )}
                   </div>
                 </button>
@@ -254,14 +254,14 @@ export default function Questionnaire({ onComplete }) {
           </div>
 
           {/* Navigation */}
-          <div className="flex justify-between mt-8 pt-6 border-t border-slate-700">
+          <div className="flex justify-between mt-8 pt-6 border-t border-[var(--border)]">
             <button
               onClick={handleBack}
               disabled={currentStep === 0}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
                 currentStep === 0
-                  ? 'text-slate-600 cursor-not-allowed'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-700'
+                  ? 'text-[var(--text-muted)] cursor-not-allowed'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)]'
               }`}
             >
               <ChevronLeft className="w-4 h-4" />
@@ -274,8 +274,8 @@ export default function Questionnaire({ onComplete }) {
                 disabled={!isCurrentAnswered()}
                 className={`flex items-center gap-2 px-6 py-2 rounded-lg font-medium transition-all ${
                   isCurrentAnswered()
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:shadow-lg hover:shadow-blue-500/25'
-                    : 'bg-slate-700 text-slate-500 cursor-not-allowed'
+                    ? 'btn-primary hover:shadow-[var(--node-cyan-dim)]'
+                    : 'bg-[var(--elevated)] text-[var(--text-muted)] cursor-not-allowed'
                 }`}
               >
                 {currentStep === questions.length - 1 ? 'Generate My Roadmap' : 'Continue'}
@@ -287,7 +287,7 @@ export default function Questionnaire({ onComplete }) {
 
         {/* Skip hint for multi-select */}
         {currentQuestion.type === 'multi' && currentQuestion.id === 'priorCourses' && (
-          <p className="text-center text-slate-500 text-sm mt-4">
+          <p className="text-center text-[var(--text-muted)] text-sm mt-4">
             Select "None yet" if you haven't taken any courses
           </p>
         )}

@@ -1225,7 +1225,7 @@
         "ai-for-everyone",
         "generative-ai-for-everyone",
         "ai-python-for-beginners",
-        "generative-ai-with-large-language-models"
+        "generative-ai-with-llms"
       ],
       "milestone": "AI Literacy Complete"
     },
@@ -1237,21 +1237,21 @@
           "name": "Prompting Fundamentals",
           "courses": [
             "chatgpt-prompt-engineering-for-developers",
-            "prompt-engineering-with-llama-2-3"
+            "prompt-engineering-with-llama-2"
           ]
         },
         {
           "name": "RAG Stack",
           "courses": [
             "langchain-for-llm-application-development",
-            "building-and-evaluating-advanced-rag",
-            "knowledge-graphs-for-rag"
+            "building-evaluating-advanced-rag",
+            "knowledge-graphs-rag"
           ]
         },
         {
           "name": "Agents",
           "courses": [
-            "functions-tools-and-agents-with-langchain",
+            "functions-tools-agents-langchain",
             "multi-ai-agent-systems-with-crewai",
             "ai-agents-in-langgraph"
           ]
@@ -1307,7 +1307,7 @@
           "name": "Security Core",
           "courses": [
             "red-teaming-llm-applications",
-            "quality-and-safety-for-llm-applications"
+            "quality-safety-llm-applications"
           ]
         },
         {
