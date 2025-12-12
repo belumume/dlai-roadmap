@@ -77,9 +77,9 @@ export default function WelcomeScreen({ onStart }) {
 
           {/* Headline */}
           <h1 className="font-display text-5xl md:text-7xl font-bold text-center mb-6 leading-tight">
-            <span className="text-[var(--text-primary)]">Map Your</span>
+            <span className="text-[var(--text-primary)]">Your</span>
             <br />
-            <span className="gradient-text-cyan">Neural Pathway</span>
+            <span className="gradient-text-cyan">Learning Roadmap</span>
           </h1>
 
           {/* Subheadline */}
@@ -98,7 +98,7 @@ export default function WelcomeScreen({ onStart }) {
               className="btn-primary group flex items-center gap-3 text-lg"
             >
               <Network className="w-5 h-5" />
-              <span>Initialize Pathway</span>
+              <span>Get Started</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
