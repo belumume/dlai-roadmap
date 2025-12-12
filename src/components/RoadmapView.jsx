@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Download, Share2, ChevronDown, ChevronUp, ExternalLink,
   Clock, BookOpen, Trophy, RefreshCw, CheckCircle, Circle,
@@ -7,11 +7,38 @@ import {
 import { formatDuration, getDifficultyColor, getPathwayDescription } from '../utils/pathwayGenerator';
 import { exportRoadmapPDF, generateShareableURL } from '../utils/exportPDF';
 
+const STORAGE_KEY = 'dlai-roadmap-progress';
+
 export default function RoadmapView({ roadmap, onRestart }) {
   const [expandedPhases, setExpandedPhases] = useState(new Set([0]));
-  const [completedCourses, setCompletedCourses] = useState(new Set());
+  const [completedCourses, setCompletedCourses] = useState(() => {
+    // Load from localStorage on init
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return new Set(parsed.completedCourses || []);
+      }
+    } catch (e) {
+      console.error('Failed to load progress:', e);
+    }
+    return new Set();
+  });
   const [copied, setCopied] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
+
+  // Save progress to localStorage when completedCourses changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        completedCourses: Array.from(completedCourses),
+        pathway: roadmap.pathway,
+        lastUpdated: new Date().toISOString(),
+      }));
+    } catch (e) {
+      console.error('Failed to save progress:', e);
+    }
+  }, [completedCourses, roadmap.pathway]);
 
   const { pathway, pathwayName, phases, summary, milestones } = roadmap;
   const pathwayInfo = getPathwayDescription(pathway);

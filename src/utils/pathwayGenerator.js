@@ -29,6 +29,24 @@ export function generatePathway(answers) {
   const priorCourses = new Set(answers.priorCourses || []);
   const skipBeginner = answers.experience === 'professional' || answers.experience === 'ml-basics';
 
+  // Determine max difficulty based on math background
+  const mathDifficultyMap = {
+    'minimal': ['beginner'],
+    'moderate': ['beginner', 'intermediate'],
+    'strong': ['beginner', 'intermediate', 'advanced'],
+    'expert': ['beginner', 'intermediate', 'advanced'],
+  };
+  const allowedDifficulties = mathDifficultyMap[answers.mathBackground] || ['beginner', 'intermediate', 'advanced'];
+
+  // Determine learning priority based on goal
+  const goalPriorities = {
+    'career-switch': { prioritize: 'practical', preferSpecializations: true },
+    'upskill': { prioritize: 'practical', preferSpecializations: false },
+    'research': { prioritize: 'theoretical', preferSpecializations: true },
+    'curiosity': { prioritize: 'breadth', preferSpecializations: false },
+  };
+  const goalConfig = goalPriorities[answers.goal] || { prioritize: 'practical', preferSpecializations: false };
+
   // Select pathway based on target role
   const selectedPath = answers.targetRole === 'undecided' ? 'builder' : answers.targetRole;
   const pathway = pathways[selectedPath];
@@ -72,15 +90,27 @@ export function generatePathway(answers) {
     });
   }
 
-  // Add electives based on interests
+  // Add electives based on interests, filtered by math background
   if (answers.interests && answers.interests.length > 0) {
-    const electiveCourses = courses
+    let electiveCourses = courses
       .filter(c => {
         if (priorCourses.has(c.id)) return false;
         if (courseSequence.some(phase => phase.courses.some(pc => pc.id === c.id))) return false;
+        // Filter by math-appropriate difficulty
+        if (!allowedDifficulties.includes(c.difficulty)) return false;
         return c.categories?.some(cat => answers.interests.includes(cat));
-      })
-      .slice(0, 5); // Limit electives
+      });
+
+    // Sort based on goal config
+    if (goalConfig.preferSpecializations) {
+      electiveCourses.sort((a, b) => {
+        const aSpec = a.type === 'specialization' ? 0 : 1;
+        const bSpec = b.type === 'specialization' ? 0 : 1;
+        return aSpec - bSpec;
+      });
+    }
+
+    electiveCourses = electiveCourses.slice(0, goalConfig.prioritize === 'breadth' ? 7 : 5);
 
     if (electiveCourses.length > 0) {
       courseSequence.push({
@@ -145,9 +175,20 @@ export function generatePathway(answers) {
       totalWeeks,
       weeklyHours,
       estimatedMonths: Math.ceil(totalWeeks / 4.33),
+      mathLevel: answers.mathBackground,
+      goal: answers.goal,
     },
     milestones,
     answers, // Keep for PDF export
+    personalizationFactors: {
+      experienceLevel: answers.experience,
+      mathBackground: answers.mathBackground,
+      goal: answers.goal,
+      allowedDifficulties,
+      goalConfig,
+      priorCoursesSkipped: priorCourses.size,
+      interestsApplied: answers.interests?.length || 0,
+    },
   };
 }
 
