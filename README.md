@@ -1,6 +1,6 @@
 # DeepLearning.AI Learning Roadmap Generator
 
-A personalized pathway generator that transforms DeepLearning.AI's 100+ courses into customized learning roadmaps based on your goals, experience, and schedule.
+A personalized pathway generator that transforms DeepLearning.AI's 115+ courses into customized learning roadmaps based on your goals, experience, and schedule.
 
 **[Try it live](https://belumume.github.io/dlai-roadmap/)**
 
@@ -42,7 +42,7 @@ npm run build
 
 ## Course Data
 
-The application uses a curated dataset of 101 DeepLearning.AI courses with metadata including:
+The application uses a curated dataset of 115 DeepLearning.AI courses with metadata including:
 - Difficulty level (beginner/intermediate/advanced)
 - Estimated hours
 - Categories and topics
@@ -51,7 +51,7 @@ The application uses a curated dataset of 101 DeepLearning.AI courses with metad
 
 ## Contributing
 
-Built by [Learning Deep](https://community.deeplearning.ai) for the DeepLearning.AI community.
+Built by [Learning Deep](https://community.deeplearning.ai/u/learningdeep/) for the DeepLearning.AI community.
 
 Feel free to open issues or PRs to improve the roadmap generator!
 

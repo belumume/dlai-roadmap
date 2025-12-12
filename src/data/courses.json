@@ -1233,36 +1233,37 @@
     {
       "id": "machine-learning-in-production",
       "title": "Machine Learning in Production",
-      "type": "specialization",
+      "type": "course",
       "url": "https://www.coursera.org/learn/introduction-to-machine-learning-in-production?specialization=machine-learning-engineering-for-production-mlops?utm_source=deeplearning-ai&utm_medium=institutions",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 10,
       "categories": [
-        "specialization"
+        "deployment"
       ],
       "instructor": "Andrew Ng"
     },
     {
       "id": "generative-ai-for-everyone",
       "title": "Generative AI for Everyone",
-      "type": "specialization",
+      "type": "course",
       "url": "https://bit.ly/3tVP4uX",
-      "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "difficulty": "beginner",
+      "estimated_hours": 5,
       "categories": [
-        "specialization"
+        "general"
       ],
       "instructor": "Andrew Ng"
     },
     {
       "id": "generative-ai-with-llms",
       "title": "Generative AI with LLMs",
-      "type": "specialization",
+      "type": "course",
       "url": "https://www.coursera.org/learn/generative-ai-with-llms?utm_campaign=WebsiteCoursesGAIA&utm_medium=institutions&utm_source=deeplearning-ai",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 16,
       "categories": [
-        "specialization"
+        "training",
+        "deployment"
       ],
       "instructor": "Antje Barth"
     },
@@ -1389,12 +1390,12 @@
     {
       "id": "ai-for-everyone",
       "title": "AI for Everyone",
-      "type": "specialization",
+      "type": "course",
       "url": "http://bit.ly/2VRDrm4",
-      "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "difficulty": "beginner",
+      "estimated_hours": 6,
       "categories": [
-        "specialization"
+        "general"
       ],
       "instructor": "Andrew Ng"
     }
