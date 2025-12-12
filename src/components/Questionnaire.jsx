@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { ChevronRight, ChevronLeft, Clock, Target, GraduationCap, Calculator, Calendar, BookOpen, CheckCircle2, Cpu, Zap, Network } from 'lucide-react';
 import CourseSelector from './CourseSelector';
 import coursesData from '../data/courses.json';
+import { CATEGORY_LABELS } from '../utils/categories';
 
 // Calculate course counts per category dynamically
 const getCategoryCounts = () => {
@@ -108,16 +109,11 @@ const questions = [
     icon: Zap,
     type: 'multi',
     maxSelections: 3,
-    options: [
-      { value: 'agents', label: 'AI Agents & Automation', description: `${categoryCounts.agents || 0} courses available` },
-      { value: 'rag', label: 'RAG & Knowledge Systems', description: `${categoryCounts.rag || 0} courses available` },
-      { value: 'prompting', label: 'Prompt Engineering', description: `${categoryCounts.prompting || 0} courses available` },
-      { value: 'coding', label: 'AI-Assisted Coding', description: `${categoryCounts.coding || 0} courses available` },
-      { value: 'deployment', label: 'MLOps & Deployment', description: `${categoryCounts.deployment || 0} courses available` },
-      { value: 'training', label: 'Fine-tuning & Training', description: `${categoryCounts.training || 0} courses available` },
-      { value: 'safety', label: 'AI Safety & Ethics', description: `${categoryCounts.safety || 0} courses available` },
-      { value: 'general', label: 'General AI/ML Topics', description: `${categoryCounts.general || 0} courses available` },
-    ],
+    options: Object.entries(CATEGORY_LABELS).map(([value, label]) => ({
+      value,
+      label,
+      description: `${categoryCounts[value] || 0} courses available`
+    })),
   },
 ];
 
