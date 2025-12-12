@@ -11,7 +11,8 @@
         "rag",
         "general"
       ],
-      "instructor": "Kacper Lukawski"
+      "instructor": "Kacper Lukawski",
+      "platform": "dlai"
     },
     {
       "id": "building-coding-agents-with-tool-execution",
@@ -24,7 +25,8 @@
         "agents",
         "coding"
       ],
-      "instructor": "Vasek Mlejnsky"
+      "instructor": "Vasek Mlejnsky",
+      "platform": "dlai"
     },
     {
       "id": "semantic-caching-for-ai-agents",
@@ -37,12 +39,13 @@
         "agents",
         "deployment"
       ],
-      "instructor": "Brian Sam-Bodden"
+      "instructor": "Brian Sam-Bodden",
+      "platform": "dlai"
     },
     {
       "id": "design-develop-deploy-multi-agent-systems-crewai",
       "title": "Design, Develop, and Deploy Multi-Agent Systems with CrewAI",
-      "type": "short",
+      "type": "course",
       "url": "https://learn.deeplearning.ai/courses/design-develop-deploy-multi-agent-systems-crewai",
       "difficulty": "intermediate",
       "estimated_hours": 2,
@@ -50,7 +53,8 @@
         "agents",
         "deployment"
       ],
-      "instructor": "João Moura"
+      "instructor": "Jo\u00c3\u00a3o Moura",
+      "platform": "dlai"
     },
     {
       "id": "jupyter-ai-coding-in-notebooks",
@@ -63,7 +67,8 @@
         "coding",
         "general"
       ],
-      "instructor": "Jason Weill"
+      "instructor": "Jason Weill",
+      "platform": "dlai"
     },
     {
       "id": "governing-ai-agents",
@@ -76,7 +81,8 @@
         "agents",
         "safety"
       ],
-      "instructor": "Jerry Liu"
+      "instructor": "Jerry Liu",
+      "platform": "dlai"
     },
     {
       "id": "building-live-voice-agents-google-adk",
@@ -89,12 +95,13 @@
         "agents",
         "general"
       ],
-      "instructor": "Patrick Marlow"
+      "instructor": "Patrick Marlow",
+      "platform": "dlai"
     },
     {
       "id": "agentic-ai",
       "title": "Agentic AI",
-      "type": "short",
+      "type": "course",
       "url": "https://learn.deeplearning.ai/courses/agentic-ai",
       "difficulty": "intermediate",
       "estimated_hours": 2,
@@ -102,7 +109,8 @@
         "agents",
         "general"
       ],
-      "instructor": "Andrew Ng"
+      "instructor": "Andrew Ng",
+      "platform": "dlai"
     },
     {
       "id": "building-and-evaluating-data-agents",
@@ -115,7 +123,8 @@
         "agents",
         "general"
       ],
-      "instructor": "Jerry Liu"
+      "instructor": "Jerry Liu",
+      "platform": "dlai"
     },
     {
       "id": "build-ai-apps-mcp-servers-box-files",
@@ -128,7 +137,8 @@
         "agents",
         "general"
       ],
-      "instructor": "Shurui Zhou"
+      "instructor": "Shurui Zhou",
+      "platform": "dlai"
     },
     {
       "id": "knowledge-graphs-ai-agent-api-discovery",
@@ -141,7 +151,8 @@
         "agents",
         "rag"
       ],
-      "instructor": "Andreas Kollegger"
+      "instructor": "Andreas Kollegger",
+      "platform": "dlai"
     },
     {
       "id": "agentic-knowledge-graph-construction",
@@ -154,12 +165,13 @@
         "agents",
         "rag"
       ],
-      "instructor": "Andreas Kollegger"
+      "instructor": "Andreas Kollegger",
+      "platform": "dlai"
     },
     {
       "id": "fine-tuning-rl-llms-intro-post-training",
       "title": "Fine-tuning and Reinforcement Learning for LLMs: Intro to Post-Training",
-      "type": "short",
+      "type": "course",
       "url": "https://learn.deeplearning.ai/courses/fine-tuning-rl-llms-intro-post-training",
       "difficulty": "intermediate",
       "estimated_hours": 2,
@@ -167,12 +179,13 @@
         "training",
         "general"
       ],
-      "instructor": "Sharon Zhou"
+      "instructor": "Sharon Zhou",
+      "platform": "dlai"
     },
     {
       "id": "pytorch-for-deep-learning",
       "title": "PyTorch for Deep Learning Professional Certificate",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/pytorch-for-deep-learning-professional-certificate",
       "difficulty": "intermediate",
       "estimated_hours": 40,
@@ -180,7 +193,8 @@
         "specialization",
         "training"
       ],
-      "instructor": "Laurence Moroney"
+      "instructor": "Laurence Moroney",
+      "platform": "dlai"
     },
     {
       "id": "claude-code-a-highly-agentic-coding-assistant",
@@ -193,7 +207,8 @@
         "agents",
         "coding"
       ],
-      "instructor": "Elie Schoppik"
+      "instructor": "Elie Schoppik",
+      "platform": "dlai"
     },
     {
       "id": "pydantic-for-llm-workflows",
@@ -205,7 +220,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Ryan Keenan"
+      "instructor": "Ryan Keenan",
+      "platform": "dlai"
     },
     {
       "id": "post-training-of-llms",
@@ -217,7 +233,8 @@
       "categories": [
         "training"
       ],
-      "instructor": "Banghua Zhu"
+      "instructor": "Banghua Zhu",
+      "platform": "dlai"
     },
     {
       "id": "acp-agent-communication-protocol",
@@ -229,7 +246,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Sandi Besen"
+      "instructor": "Sandi Besen",
+      "platform": "dlai"
     },
     {
       "id": "building-with-llama-4",
@@ -241,7 +259,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Amit Sangani"
+      "instructor": "Amit Sangani",
+      "platform": "dlai"
     },
     {
       "id": "orchestrating-workflows-for-genai-applications",
@@ -253,7 +272,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Kenten Danas"
+      "instructor": "Kenten Danas",
+      "platform": "dlai"
     },
     {
       "id": "dspy-build-optimize-agentic-apps",
@@ -265,7 +285,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Chen Qian"
+      "instructor": "Chen Qian",
+      "platform": "dlai"
     },
     {
       "id": "reinforcement-fine-tuning-llms-grpo",
@@ -277,7 +298,8 @@
       "categories": [
         "training"
       ],
-      "instructor": "Travis Addair"
+      "instructor": "Travis Addair",
+      "platform": "dlai"
     },
     {
       "id": "mcp-build-rich-context-ai-apps-with-anthropic",
@@ -289,7 +311,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Elie Schoppik"
+      "instructor": "Elie Schoppik",
+      "platform": "dlai"
     },
     {
       "id": "building-ai-voice-agents-for-production",
@@ -301,7 +324,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Russ dâ€™Sa"
+      "instructor": "Russ d\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2Sa",
+      "platform": "dlai"
     },
     {
       "id": "llms-as-operating-systems-agent-memory",
@@ -313,7 +337,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Charles Packer"
+      "instructor": "Charles Packer",
+      "platform": "dlai"
     },
     {
       "id": "building-code-agents-with-hugging-face-smolagents",
@@ -325,7 +350,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Thomas Wolf"
+      "instructor": "Thomas Wolf",
+      "platform": "dlai"
     },
     {
       "id": "building-ai-browser-agents",
@@ -337,7 +363,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Div Garg"
+      "instructor": "Div Garg",
+      "platform": "dlai"
     },
     {
       "id": "getting-structured-llm-output",
@@ -349,7 +376,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Will Kurt"
+      "instructor": "Will Kurt",
+      "platform": "dlai"
     },
     {
       "id": "vibe-coding-101-with-replit",
@@ -361,7 +389,8 @@
       "categories": [
         "coding"
       ],
-      "instructor": "Michele Catasta"
+      "instructor": "Michele Catasta",
+      "platform": "dlai"
     },
     {
       "id": "long-term-agentic-memory-with-langgraph",
@@ -373,7 +402,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Harrison Chase"
+      "instructor": "Harrison Chase",
+      "platform": "dlai"
     },
     {
       "id": "event-driven-agentic-document-workflows",
@@ -385,11 +415,12 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Laurie Voss"
+      "instructor": "Laurie Voss",
+      "platform": "dlai"
     },
     {
       "id": "build-apps-with-windsurfs-ai-coding-agents",
-      "title": "Build Apps with Windsurfâ€™s AI Coding Agents",
+      "title": "Build Apps with Windsurf\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u201e\u00a2s AI Coding Agents",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agents",
       "difficulty": "intermediate",
@@ -398,7 +429,8 @@
         "agents",
         "coding"
       ],
-      "instructor": "Anshul Ramachandran"
+      "instructor": "Anshul Ramachandran",
+      "platform": "dlai"
     },
     {
       "id": "evaluating-ai-agents",
@@ -410,7 +442,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "John Gilhuly"
+      "instructor": "John Gilhuly",
+      "platform": "dlai"
     },
     {
       "id": "attention-in-transformers-concepts-and-code-in-pytorch",
@@ -422,7 +455,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Josh Starmer"
+      "instructor": "Josh Starmer",
+      "platform": "dlai"
     },
     {
       "id": "how-transformer-llms-work",
@@ -434,7 +468,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Jay Alammar"
+      "instructor": "Jay Alammar",
+      "platform": "dlai"
     },
     {
       "id": "building-towards-computer-use-with-anthropic",
@@ -446,7 +481,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Colt Steele"
+      "instructor": "Colt Steele",
+      "platform": "dlai"
     },
     {
       "id": "build-long-context-ai-apps-with-jamba",
@@ -458,7 +494,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Chen Wang"
+      "instructor": "Chen Wang",
+      "platform": "dlai"
     },
     {
       "id": "reasoning-with-o1",
@@ -470,7 +507,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Colin Jarvis"
+      "instructor": "Colin Jarvis",
+      "platform": "dlai"
     },
     {
       "id": "collaborative-writing-and-coding-with-openai-canvas",
@@ -482,7 +520,8 @@
       "categories": [
         "coding"
       ],
-      "instructor": "Karina Nguyen"
+      "instructor": "Karina Nguyen",
+      "platform": "dlai"
     },
     {
       "id": "building-an-ai-powered-game",
@@ -494,7 +533,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Niki Birkner"
+      "instructor": "Niki Birkner",
+      "platform": "dlai"
     },
     {
       "id": "safe-and-reliable-ai-via-guardrails",
@@ -506,7 +546,8 @@
       "categories": [
         "safety"
       ],
-      "instructor": "Shreya Rajpal"
+      "instructor": "Shreya Rajpal",
+      "platform": "dlai"
     },
     {
       "id": "practical-multi-ai-agents-and-advanced-use-cases-with-crewai",
@@ -518,7 +559,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "JoÃ£o Moura"
+      "instructor": "Jo\u00c3\u0192\u00c2\u00a3o Moura",
+      "platform": "dlai"
     },
     {
       "id": "serverless-agentic-workflows-with-amazon-bedrock",
@@ -531,7 +573,8 @@
         "agents",
         "deployment"
       ],
-      "instructor": "Mike Chambers"
+      "instructor": "Mike Chambers",
+      "platform": "dlai"
     },
     {
       "id": "introducing-multimodal-llama-3-2",
@@ -543,7 +586,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Amit Sangani"
+      "instructor": "Amit Sangani",
+      "platform": "dlai"
     },
     {
       "id": "retrieval-optimization-from-tokenization-to-vector-quantization",
@@ -555,19 +599,21 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Kacper Å\udc81ukawski"
+      "instructor": "Kacper \u00c3\u2026\udc81ukawski",
+      "platform": "dlai"
     },
     {
       "id": "ai-python-for-beginners",
       "title": "AI Python for Beginners",
-      "type": "short",
+      "type": "course",
       "url": "https://learn.deeplearning.ai/courses/ai-python-for-beginners",
       "difficulty": "beginner",
       "estimated_hours": 2,
       "categories": [
         "coding"
       ],
-      "instructor": "Andrew Ng"
+      "instructor": "Andrew Ng",
+      "platform": "dlai"
     },
     {
       "id": "large-multimodal-model-prompting-with-gemini",
@@ -579,7 +625,8 @@
       "categories": [
         "prompting"
       ],
-      "instructor": "Erwin Huizenga"
+      "instructor": "Erwin Huizenga",
+      "platform": "dlai"
     },
     {
       "id": "building-ai-applications-with-haystack",
@@ -591,7 +638,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Tuana Ã‡elik"
+      "instructor": "Tuana \u00c3\u0192\u00e2\u20ac\u00a1elik",
+      "platform": "dlai"
     },
     {
       "id": "improving-accuracy-of-llm-applications",
@@ -603,7 +651,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Sharon Zhou"
+      "instructor": "Sharon Zhou",
+      "platform": "dlai"
     },
     {
       "id": "embedding-models-from-architecture-to-implementation",
@@ -615,7 +664,8 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Ofer Mendelevitch"
+      "instructor": "Ofer Mendelevitch",
+      "platform": "dlai"
     },
     {
       "id": "intro-to-federated-learning",
@@ -627,7 +677,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Daniel J. Beutel"
+      "instructor": "Daniel J. Beutel",
+      "platform": "dlai"
     },
     {
       "id": "pretraining-llms",
@@ -639,7 +690,8 @@
       "categories": [
         "training"
       ],
-      "instructor": "Sung Kim"
+      "instructor": "Sung Kim",
+      "platform": "dlai"
     },
     {
       "id": "prompt-compression-and-query-optimization",
@@ -651,7 +703,8 @@
       "categories": [
         "prompting"
       ],
-      "instructor": "Richmond Alake"
+      "instructor": "Richmond Alake",
+      "platform": "dlai"
     },
     {
       "id": "carbon-aware-computing-for-genai-developers",
@@ -663,7 +716,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Nikita Namjoshi"
+      "instructor": "Nikita Namjoshi",
+      "platform": "dlai"
     },
     {
       "id": "function-calling-and-data-extraction-with-llms",
@@ -675,7 +729,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Jiantao Jiao"
+      "instructor": "Jiantao Jiao",
+      "platform": "dlai"
     },
     {
       "id": "building-your-own-database-agent",
@@ -687,7 +742,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Adrian Gonzalez Sanchez"
+      "instructor": "Adrian Gonzalez Sanchez",
+      "platform": "dlai"
     },
     {
       "id": "ai-agents-in-langgraph",
@@ -699,7 +755,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Harrison Chase"
+      "instructor": "Harrison Chase",
+      "platform": "dlai"
     },
     {
       "id": "ai-agentic-design-patterns-with-autogen",
@@ -711,7 +768,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Chi Wang"
+      "instructor": "Chi Wang",
+      "platform": "dlai"
     },
     {
       "id": "introduction-to-on-device-ai",
@@ -723,7 +781,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Krishna Sridhar"
+      "instructor": "Krishna Sridhar",
+      "platform": "dlai"
     },
     {
       "id": "multi-ai-agent-systems-with-crewai",
@@ -735,7 +794,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "JoÃ£o Moura"
+      "instructor": "Jo\u00c3\u0192\u00c2\u00a3o Moura",
+      "platform": "dlai"
     },
     {
       "id": "building-multimodal-search-and-rag",
@@ -747,7 +807,8 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Sebastian Witalec"
+      "instructor": "Sebastian Witalec",
+      "platform": "dlai"
     },
     {
       "id": "building-agentic-rag-with-llamaindex",
@@ -760,7 +821,8 @@
         "rag",
         "agents"
       ],
-      "instructor": "Jerry Liu"
+      "instructor": "Jerry Liu",
+      "platform": "dlai"
     },
     {
       "id": "quantization-in-depth",
@@ -772,7 +834,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Marc Sun"
+      "instructor": "Marc Sun",
+      "platform": "dlai"
     },
     {
       "id": "prompt-engineering-for-vision-models",
@@ -784,7 +847,8 @@
       "categories": [
         "prompting"
       ],
-      "instructor": "Abby Morgan"
+      "instructor": "Abby Morgan",
+      "platform": "dlai"
     },
     {
       "id": "getting-started-with-mistral",
@@ -796,7 +860,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Sophia Yang"
+      "instructor": "Sophia Yang",
+      "platform": "dlai"
     },
     {
       "id": "quantization-fundamentals-with-hugging-face",
@@ -808,7 +873,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Younes Belkada"
+      "instructor": "Younes Belkada",
+      "platform": "dlai"
     },
     {
       "id": "preprocessing-unstructured-data-for-llm-applications",
@@ -820,7 +886,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Matt Robinson"
+      "instructor": "Matt Robinson",
+      "platform": "dlai"
     },
     {
       "id": "red-teaming-llm-applications",
@@ -832,7 +899,8 @@
       "categories": [
         "safety"
       ],
-      "instructor": "Matteo Dora"
+      "instructor": "Matteo Dora",
+      "platform": "dlai"
     },
     {
       "id": "javascript-rag-web-apps-with-llamaindex",
@@ -844,7 +912,8 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Laurie Voss"
+      "instructor": "Laurie Voss",
+      "platform": "dlai"
     },
     {
       "id": "efficiently-serving-llms",
@@ -856,7 +925,8 @@
       "categories": [
         "deployment"
       ],
-      "instructor": "Travis Addair"
+      "instructor": "Travis Addair",
+      "platform": "dlai"
     },
     {
       "id": "knowledge-graphs-rag",
@@ -868,7 +938,8 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Andreas Kollegger"
+      "instructor": "Andreas Kollegger",
+      "platform": "dlai"
     },
     {
       "id": "open-source-models-hugging-face",
@@ -880,7 +951,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Maria Khalusova"
+      "instructor": "Maria Khalusova",
+      "platform": "dlai"
     },
     {
       "id": "prompt-engineering-with-llama-2",
@@ -892,7 +964,8 @@
       "categories": [
         "prompting"
       ],
-      "instructor": "Amit Sangani"
+      "instructor": "Amit Sangani",
+      "platform": "dlai"
     },
     {
       "id": "serverless-llm-apps-amazon-bedrock",
@@ -904,7 +977,8 @@
       "categories": [
         "deployment"
       ],
-      "instructor": "Mike Chambers"
+      "instructor": "Mike Chambers",
+      "platform": "dlai"
     },
     {
       "id": "building-applications-vector-databases",
@@ -916,7 +990,8 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Tim Tully"
+      "instructor": "Tim Tully",
+      "platform": "dlai"
     },
     {
       "id": "automated-testing-llmops",
@@ -928,7 +1003,8 @@
       "categories": [
         "deployment"
       ],
-      "instructor": "Rob Zuber"
+      "instructor": "Rob Zuber",
+      "platform": "dlai"
     },
     {
       "id": "llmops",
@@ -940,7 +1016,8 @@
       "categories": [
         "deployment"
       ],
-      "instructor": "Erwin Huizenga"
+      "instructor": "Erwin Huizenga",
+      "platform": "dlai"
     },
     {
       "id": "build-llm-apps-with-langchain-js",
@@ -952,7 +1029,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Jacob Lee"
+      "instructor": "Jacob Lee",
+      "platform": "dlai"
     },
     {
       "id": "advanced-retrieval-for-ai",
@@ -964,7 +1042,8 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Anton Troynikov"
+      "instructor": "Anton Troynikov",
+      "platform": "dlai"
     },
     {
       "id": "reinforcement-learning-from-human-feedback",
@@ -976,7 +1055,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Nikita Namjoshi"
+      "instructor": "Nikita Namjoshi",
+      "platform": "dlai"
     },
     {
       "id": "building-evaluating-advanced-rag",
@@ -988,7 +1068,8 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Jerry Liu"
+      "instructor": "Jerry Liu",
+      "platform": "dlai"
     },
     {
       "id": "quality-safety-llm-applications",
@@ -1000,7 +1081,8 @@
       "categories": [
         "safety"
       ],
-      "instructor": "Bernease Herman"
+      "instructor": "Bernease Herman",
+      "platform": "dlai"
     },
     {
       "id": "vector-databases-embeddings-applications",
@@ -1012,7 +1094,8 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Sebastian Witalec"
+      "instructor": "Sebastian Witalec",
+      "platform": "dlai"
     },
     {
       "id": "functions-tools-agents-langchain",
@@ -1024,7 +1107,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Harrison Chase"
+      "instructor": "Harrison Chase",
+      "platform": "dlai"
     },
     {
       "id": "pair-programming-llm",
@@ -1036,7 +1120,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Laurence Moroney"
+      "instructor": "Laurence Moroney",
+      "platform": "dlai"
     },
     {
       "id": "google-cloud-vertex-ai",
@@ -1048,7 +1133,8 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Nikita Namjoshi"
+      "instructor": "Nikita Namjoshi",
+      "platform": "dlai"
     },
     {
       "id": "microsoft-semantic-kernel",
@@ -1060,7 +1146,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "John Maeda"
+      "instructor": "John Maeda",
+      "platform": "dlai"
     },
     {
       "id": "finetuning-large-language-models",
@@ -1072,7 +1159,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Sharon Zhou"
+      "instructor": "Sharon Zhou",
+      "platform": "dlai"
     },
     {
       "id": "large-language-models-semantic-search",
@@ -1084,7 +1172,8 @@
       "categories": [
         "rag"
       ],
-      "instructor": "Jay Alammar"
+      "instructor": "Jay Alammar",
+      "platform": "dlai"
     },
     {
       "id": "evaluating-debugging-generative-ai",
@@ -1096,7 +1185,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Carey Phelps"
+      "instructor": "Carey Phelps",
+      "platform": "dlai"
     },
     {
       "id": "building-generative-ai-applications-with-gradio",
@@ -1108,7 +1198,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "ApolinÃ¡rio Passos"
+      "instructor": "Apolin\u00c3\u0192\u00c2\u00a1rio Passos",
+      "platform": "dlai"
     },
     {
       "id": "langchain-chat-with-your-data",
@@ -1120,7 +1211,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Harrison Chase"
+      "instructor": "Harrison Chase",
+      "platform": "dlai"
     },
     {
       "id": "how-diffusion-models-work",
@@ -1132,7 +1224,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Sharon Zhou"
+      "instructor": "Sharon Zhou",
+      "platform": "dlai"
     },
     {
       "id": "langchain-for-llm-application-development",
@@ -1144,7 +1237,8 @@
       "categories": [
         "agents"
       ],
-      "instructor": "Harrison Chase"
+      "instructor": "Harrison Chase",
+      "platform": "dlai"
     },
     {
       "id": "building-systems-with-chatgpt",
@@ -1156,7 +1250,8 @@
       "categories": [
         "prompting"
       ],
-      "instructor": "Isa Fulford"
+      "instructor": "Isa Fulford",
+      "platform": "dlai"
     },
     {
       "id": "chatgpt-prompt-engineering-for-developers",
@@ -1168,67 +1263,73 @@
       "categories": [
         "prompting"
       ],
-      "instructor": "Isa Fulford"
+      "instructor": "Isa Fulford",
+      "platform": "dlai"
     },
     {
       "id": "fast-prototyping-of-genai-apps-with-streamlit",
       "title": "Fast Prototyping of GenAI Apps with Streamlit",
-      "type": "specialization",
+      "type": "course",
       "url": "https://bit.ly/4dyvmrQ",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Chanin Nantasenamat"
+      "instructor": "Chanin Nantasenamat",
+      "platform": "dlai"
     },
     {
       "id": "retrieval-augmented-generation-rag",
       "title": "Retrieval Augmented Generation (RAG) Course",
-      "type": "specialization",
+      "type": "course",
       "url": "https://bit.ly/44l4AQT",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Zain Hasan"
+      "instructor": "Zain Hasan",
+      "platform": "dlai"
     },
     {
       "id": "data-analytics",
       "title": "Data Analytics Professional Certificate",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://www.coursera.org/professional-certificates/data-analytics?utm_campaign=WebsiteCoursesDAG&utm_medium=institutions&utm_source=deeplearning-ai",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Sean Barnes"
+      "instructor": "Sean Barnes",
+      "platform": "dlai"
     },
     {
       "id": "generative-ai-for-software-development",
       "title": "Generative AI for Software Development",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://www.coursera.org/professional-certificates/generative-ai-for-software-development?utm_campaign=WebsiteCoursesGenAI4SD&utm_medium=institutions&utm_source=deeplearning-ai",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Laurence Moroney"
+      "instructor": "Laurence Moroney",
+      "platform": "dlai"
     },
     {
       "id": "data-engineering",
       "title": "Data Engineering",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://www.coursera.org/professional-certificates/data-engineering?utm_campaign=WebsiteCoursesDE&utm_medium=institutions&utm_source=deeplearning-ai",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Joe Reis"
+      "instructor": "Joe Reis",
+      "platform": "coursera"
     },
     {
       "id": "machine-learning-in-production",
@@ -1240,7 +1341,8 @@
       "categories": [
         "deployment"
       ],
-      "instructor": "Andrew Ng"
+      "instructor": "Andrew Ng",
+      "platform": "dlai"
     },
     {
       "id": "generative-ai-for-everyone",
@@ -1252,7 +1354,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Andrew Ng"
+      "instructor": "Andrew Ng",
+      "platform": "dlai"
     },
     {
       "id": "generative-ai-with-llms",
@@ -1265,127 +1368,138 @@
         "training",
         "deployment"
       ],
-      "instructor": "Antje Barth"
+      "instructor": "Antje Barth",
+      "platform": "dlai"
     },
     {
       "id": "ai-for-good",
       "title": "AI for Good Specialization",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://www.coursera.org/specializations/ai-for-good?utm_campaign=WebsiteCoursesAI4G&utm_medium=institutions&utm_source=deeplearning-ai",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Robert Monarch"
+      "instructor": "Robert Monarch",
+      "platform": "dlai"
     },
     {
       "id": "mathematics-for-machine-learning-and-data-science-specialization",
       "title": "Mathematics for Machine Learning and Data Science Specialization",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://www.coursera.org/specializations/mathematics-for-machine-learning-and-data-science?utm_campaign=WebsiteCoursesM4ML&utm_medium=institutions&utm_source=deeplearning-ai",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Luis Serrano"
+      "instructor": "Luis Serrano",
+      "platform": "dlai"
     },
     {
       "id": "machine-learning-specialization",
       "title": "Machine Learning Specialization",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://www.coursera.org/specializations/machine-learning-introduction?utm_source=deeplearning-ai&utm_medium=institutions&utm_campaign=WebsiteCourses-MLS",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Andrew Ng"
+      "instructor": "Andrew Ng",
+      "platform": "dlai"
     },
     {
       "id": "tensorflow-advanced-techniques-specialization",
       "title": "TensorFlow: Advanced Techniques Specialization",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://bit.ly/2Jlji39",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Laurence Moroney"
+      "instructor": "Laurence Moroney",
+      "platform": "coursera"
     },
     {
       "id": "generative-adversarial-networks-gans-specialization",
       "title": "Generative Adversarial Networks (GANs) Specialization",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://bit.ly/3bxUX44",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Sharon Zhou"
+      "instructor": "Sharon Zhou",
+      "platform": "coursera"
     },
     {
       "id": "tensorflow-data-and-deployment-specialization",
       "title": "TensorFlow: Data and Deployment Specialization",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://coursera.org/specializations/tensorflow-data-and-deployment?utm_source=deeplearningai&utm_medium=institutions&utm_campaign=WebsiteCoursesTFS2FirstButton",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Laurence Moroney"
+      "instructor": "Laurence Moroney",
+      "platform": "coursera"
     },
     {
       "id": "tensorflow-developer-professional-certificate",
       "title": "TensorFlow Developer Professional Certificate",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://bit.ly/2CTYugm",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Laurence Moroney"
+      "instructor": "Laurence Moroney",
+      "platform": "dlai"
     },
     {
       "id": "natural-language-processing-specialization",
       "title": "Natural Language Processing Specialization",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://bit.ly/2zZhQPS",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Younes Bensouda Mourri"
+      "instructor": "Younes Bensouda Mourri",
+      "platform": "coursera"
     },
     {
       "id": "deep-learning-specialization",
       "title": "Deep Learning Specialization",
-      "type": "specialization",
+      "type": "certificate",
       "url": "http://bit.ly/2WjYrPB",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Andrew Ng"
+      "instructor": "Andrew Ng",
+      "platform": "dlai"
     },
     {
       "id": "ai-for-medicine-specialization",
       "title": "AI for Medicine Specialization",
-      "type": "specialization",
+      "type": "certificate",
       "url": "https://coursera.org/specializations/ai-for-medicine?utm_source=deeplearningai&utm_medium=institutions&utm_campaign=WebsiteCoursesAI4MTopButton",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "specialization"
       ],
-      "instructor": "Pranav Rajpurkar"
+      "instructor": "Pranav Rajpurkar",
+      "platform": "coursera"
     },
     {
       "id": "ai-for-everyone",
@@ -1397,7 +1511,8 @@
       "categories": [
         "general"
       ],
-      "instructor": "Andrew Ng"
+      "instructor": "Andrew Ng",
+      "platform": "dlai"
     }
   ],
   "pathways": {
