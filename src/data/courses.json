@@ -669,7 +669,7 @@
     },
     {
       "id": "intro-to-federated-learning",
-      "title": "Federated Learning",
+      "title": "Intro to Federated Learning",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/intro-to-federated-learning/",
       "difficulty": "intermediate",
@@ -679,6 +679,20 @@
       ],
       "instructor": "Daniel J. Beutel",
       "platform": "dlai"
+    },
+    {
+      "id": "federated-fine-tuning-llms-private-data",
+      "title": "Federated Fine-tuning of LLMs with Private Data",
+      "type": "short",
+      "platform": "dlai",
+      "url": "https://learn.deeplearning.ai/courses/intro-to-federated-learning-c2",
+      "difficulty": "beginner",
+      "estimated_hours": 1,
+      "categories": [
+        "training",
+        "privacy"
+      ],
+      "instructor": "Flower Labs"
     },
     {
       "id": "pretraining-llms",
@@ -1414,7 +1428,7 @@
       "id": "tensorflow-advanced-techniques-specialization",
       "title": "TensorFlow: Advanced Techniques Specialization",
       "type": "certificate",
-      "url": "https://bit.ly/2Jlji39",
+      "url": "https://www.coursera.org/specializations/tensorflow-advanced-techniques",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
@@ -1427,7 +1441,7 @@
       "id": "generative-adversarial-networks-gans-specialization",
       "title": "Generative Adversarial Networks (GANs) Specialization",
       "type": "certificate",
-      "url": "https://bit.ly/3bxUX44",
+      "url": "https://www.coursera.org/specializations/generative-adversarial-networks-gans",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
@@ -1466,7 +1480,7 @@
       "id": "natural-language-processing-specialization",
       "title": "Natural Language Processing Specialization",
       "type": "certificate",
-      "url": "https://bit.ly/2zZhQPS",
+      "url": "https://www.coursera.org/specializations/natural-language-processing",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
