@@ -1,7 +1,7 @@
 // Stress test for DLAI Roadmap - all questionnaire combinations
 const { test, expect } = require('@playwright/test');
 
-const BASE_URL = 'http://localhost:5175/dlai-roadmap/';
+const BASE_URL = 'http://localhost:5173/dlai-roadmap/';
 
 // All possible answer combinations
 const OPTIONS = {
@@ -510,7 +510,7 @@ function getLabel(value, type) {
       'builder': 'AI Product Engineer',
       'researcher': 'Model Architect',
       'enterprise': 'Enterprise AI Leader',
-      'undecided': 'Still Exploring',
+      'undecided': 'Not Sure Yet',
     },
     math: {
       'minimal': 'Basic Math Only',

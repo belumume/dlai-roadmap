@@ -6,11 +6,12 @@ module.exports = defineConfig({
   retries: 0,
   use: {
     headless: true,
-    baseURL: 'http://localhost:5175',
+    baseURL: 'http://localhost:5173/dlai-roadmap/',
   },
   webServer: {
     command: 'npm run dev',
-    port: 5175,
+    port: 5173,
     reuseExistingServer: true,
+    timeout: 120000,
   },
 });
