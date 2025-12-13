@@ -66,7 +66,7 @@ const questions = [
       { value: 'builder', label: 'AI Product Engineer', description: 'Build apps with RAG, agents, and APIs' },
       { value: 'researcher', label: 'Model Architect', description: 'Train, fine-tune, and optimize models' },
       { value: 'enterprise', label: 'Enterprise AI Leader', description: 'Strategy, governance, and deployment at scale' },
-      { value: 'undecided', label: 'Still Exploring', description: 'Show me a bit of everything' },
+      { value: 'undecided', label: 'Not Sure Yet', description: 'Start with the recommended path' },
     ],
   },
   {
