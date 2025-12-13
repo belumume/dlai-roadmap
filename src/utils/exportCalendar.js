@@ -75,7 +75,7 @@ function buildCourseEvent(course, startDate, index, phaseName) {
     course.url ? `Link: ${course.url}` : '',
     '',
     `Phase: ${phaseName}`,
-  ].filter(Boolean).join('\\n');
+  ].filter(Boolean).join('\n');
 
   return [
     'BEGIN:VEVENT',
