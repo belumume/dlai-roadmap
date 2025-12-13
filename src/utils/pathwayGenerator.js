@@ -141,7 +141,13 @@ export function generatePathway(answers) {
       const partnerScore = partnerTiers[course.partner] || 30;
 
       // Type weight: certificates more comprehensive
-      const typeWeights = { 'certificate': 40, 'course': 20, 'short': 10 };
+      // Goal-based modifier: career-switch/research prefer certificates, upskill prefers shorter
+      let typeWeights = { 'certificate': 40, 'course': 20, 'short': 10 };
+      if (goalConfig.preferSpecializations && course.type === 'certificate') {
+        typeWeights.certificate = 70; // Boost certificates for career-switch/research
+      } else if (goalConfig.prioritize === 'practical' && !goalConfig.preferSpecializations) {
+        typeWeights.short = 25; // Boost shorter courses for upskill
+      }
       const typeScore = typeWeights[course.type] || 10;
 
       // Depth: more hours = more comprehensive (capped at 50)
