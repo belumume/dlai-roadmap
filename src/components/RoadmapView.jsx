@@ -394,7 +394,9 @@ export default function RoadmapView({ roadmap, onRestart }) {
                           )}
                         </div>
                         <p className="text-sm text-[var(--text-secondary)]">
-                          {hasActiveFilters ? `${filteredCourses.length} of ${phase.courses.length}` : phase.courses.length} {(hasActiveFilters ? filteredCourses.length : phase.courses.length) === 1 ? 'course' : 'courses'} • {formatDuration(phase.endWeek - phase.startWeek)}
+                          {hasActiveFilters
+                            ? `${filteredCourses.length} of ${phase.courses.length} ${phase.courses.length === 1 ? 'course' : 'courses'}`
+                            : `${phase.courses.length} ${phase.courses.length === 1 ? 'course' : 'courses'}`} • {formatDuration(phase.endWeek - phase.startWeek)}
                         </p>
                       </div>
                       <div className="flex items-center gap-3">
