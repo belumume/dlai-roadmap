@@ -726,7 +726,8 @@
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
-        "general"
+        "general",
+        "agents"
       ],
       "instructor": "Will Kurt",
       "platform": "dlai",
@@ -1461,7 +1462,8 @@
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
-        "general"
+        "general",
+        "agents"
       ],
       "instructor": "Jiantao Jiao",
       "platform": "dlai",
@@ -1723,7 +1725,9 @@
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
-        "general"
+        "general",
+        "rag",
+        "agents"
       ],
       "instructor": "Sophia Yang",
       "platform": "dlai",
@@ -2430,7 +2434,8 @@
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
-        "agents"
+        "agents",
+        "rag"
       ],
       "instructor": "Harrison Chase",
       "platform": "dlai",
