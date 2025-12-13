@@ -76,6 +76,9 @@ export async function exportRoadmapPDF(roadmap) {
   phases.forEach((phase, phaseIndex) => {
     checkNewPage(20);
 
+    // Calculate phase total hours
+    const phaseHours = phase.courses.reduce((sum, c) => sum + (c.estimated_hours || 3), 0);
+
     // Phase header
     doc.setFillColor(59, 130, 246); // blue-500
     doc.roundedRect(margin, yPos, pageWidth - 2 * margin, 12, 2, 2, 'F');
@@ -92,7 +95,7 @@ export async function exportRoadmapPDF(roadmap) {
     const weekStart = phase.startWeek + 1;
     const weekEnd = phase.endWeek;
     const weekRange = weekStart === weekEnd ? `Week ${weekStart}` : `Week ${weekStart}-${weekEnd}`;
-    const phaseInfo = `${courseCount} ${courseWord} • ${weekRange}`;
+    const phaseInfo = `${courseCount} ${courseWord} • ${phaseHours}h • ${weekRange}`;
     doc.text(phaseInfo, pageWidth - margin - 5, yPos + 8, { align: 'right' });
 
     yPos += 16;
@@ -111,14 +114,30 @@ export async function exportRoadmapPDF(roadmap) {
       doc.setFontSize(9);
       doc.setFont('helvetica', 'normal');
 
+      // Checkbox for printing
+      doc.setDrawColor(180, 180, 180);
+      doc.rect(margin + 2, yPos - 1.5, 3, 3);
+
       // Course number
       doc.setTextColor(100, 116, 139);
-      doc.text(`${courseIndex + 1}.`, margin + 3, yPos + 3);
+      doc.text(`${courseIndex + 1}.`, margin + 7, yPos + 3);
 
-      // Course title (truncate at 62 chars to fit A4 width)
+      // Course title with partner info
       doc.setTextColor(30, 41, 59);
-      const title = course.title.length > 62 ? course.title.substring(0, 59) + '...' : course.title;
-      doc.text(title, margin + 12, yPos + 3);
+      let displayTitle = course.title;
+      if (course.partner) {
+        displayTitle += ` (${course.partner})`;
+      }
+      // Truncate if needed (accounting for partner name)
+      const maxLen = 58;
+      const title = displayTitle.length > maxLen ? displayTitle.substring(0, maxLen - 3) + '...' : displayTitle;
+      doc.text(title, margin + 14, yPos + 3);
+
+      // Make course title clickable if URL exists
+      if (course.url) {
+        const titleWidth = doc.getTextWidth(title);
+        doc.link(margin + 14, yPos - 2, titleWidth, 6, { url: course.url });
+      }
 
       // Hours
       doc.setTextColor(100, 116, 139);
