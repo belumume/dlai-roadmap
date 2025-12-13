@@ -87,7 +87,12 @@ export async function exportRoadmapPDF(roadmap) {
 
     doc.setFontSize(9);
     doc.setFont('helvetica', 'normal');
-    const phaseInfo = `${phase.courses.length} courses • Week ${phase.startWeek + 1}-${phase.endWeek}`;
+    const courseCount = phase.courses.length;
+    const courseWord = courseCount === 1 ? 'course' : 'courses';
+    const weekStart = phase.startWeek + 1;
+    const weekEnd = phase.endWeek;
+    const weekRange = weekStart === weekEnd ? `Week ${weekStart}` : `Week ${weekStart}-${weekEnd}`;
+    const phaseInfo = `${courseCount} ${courseWord} • ${weekRange}`;
     doc.text(phaseInfo, pageWidth - margin - 5, yPos + 8, { align: 'right' });
 
     yPos += 16;
@@ -110,9 +115,9 @@ export async function exportRoadmapPDF(roadmap) {
       doc.setTextColor(100, 116, 139);
       doc.text(`${courseIndex + 1}.`, margin + 3, yPos + 3);
 
-      // Course title
+      // Course title (truncate at 62 chars to fit A4 width)
       doc.setTextColor(30, 41, 59);
-      const title = course.title.length > 55 ? course.title.substring(0, 52) + '...' : course.title;
+      const title = course.title.length > 62 ? course.title.substring(0, 59) + '...' : course.title;
       doc.text(title, margin + 12, yPos + 3);
 
       // Hours
