@@ -9,7 +9,7 @@ const POPULAR_COURSE_IDS = [
   'machine-learning-specialization',
   'deep-learning-specialization',
   'generative-ai-with-llms',
-  'chatgpt-prompt-engineering',
+  'chatgpt-prompt-engineering-for-developers',
 ];
 
 export default function CourseSelector({ selected = [], onChange }) {
