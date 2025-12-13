@@ -1328,7 +1328,8 @@
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
-        "general"
+        "general",
+        "privacy"
       ],
       "instructor": "Daniel J. Beutel",
       "platform": "dlai",
