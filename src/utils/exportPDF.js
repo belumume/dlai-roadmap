@@ -167,6 +167,43 @@ export function generateShareableURL(answers) {
 }
 
 /**
+ * Validate and sanitize decoded answers object
+ */
+function validateAnswers(obj) {
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return null;
+
+  // Prevent prototype pollution
+  if ('__proto__' in obj || 'constructor' in obj || 'prototype' in obj) return null;
+
+  const allowedKeys = ['experience', 'goal', 'timeCommitment', 'targetRole',
+                       'mathBackground', 'timeline', 'priorCourses', 'interests'];
+  const validValues = {
+    experience: ['none', 'some-python', 'ml-basics', 'professional'],
+    goal: ['career-switch', 'upskill', 'research', 'curiosity'],
+    timeCommitment: ['2-5', '5-10', '10-20', '20+'],
+    targetRole: ['builder', 'researcher', 'enterprise', 'undecided'],
+    mathBackground: ['minimal', 'moderate', 'strong', 'expert'],
+    timeline: ['3-months', '6-months', '12-months', 'no-rush'],
+  };
+
+  const validated = {};
+  for (const key of allowedKeys) {
+    if (key in obj) {
+      if (key === 'priorCourses' || key === 'interests') {
+        if (Array.isArray(obj[key])) {
+          validated[key] = obj[key]
+            .filter(v => typeof v === 'string' && v.length < 100)
+            .slice(0, 50);
+        }
+      } else if (validValues[key] && validValues[key].includes(obj[key])) {
+        validated[key] = obj[key];
+      }
+    }
+  }
+  return Object.keys(validated).length > 0 ? validated : null;
+}
+
+/**
  * Decode answers from URL
  */
 export function decodePathwayFromURL() {
@@ -174,7 +211,8 @@ export function decodePathwayFromURL() {
   const encoded = params.get('pathway');
   if (encoded) {
     try {
-      return JSON.parse(atob(encoded));
+      const decoded = JSON.parse(atob(encoded));
+      return validateAnswers(decoded);
     } catch (e) {
       console.error('Failed to decode pathway from URL', e);
       return null;

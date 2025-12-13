@@ -23,7 +23,12 @@ export default function RoadmapView({ roadmap, onRestart }) {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
-        return new Set(parsed.completedCourses || []);
+        if (parsed.completedCourses && Array.isArray(parsed.completedCourses)) {
+          const validated = parsed.completedCourses
+            .filter(id => typeof id === 'string' && id.length < 100)
+            .slice(0, 200);
+          return new Set(validated);
+        }
       }
     } catch (e) {
       console.error('Failed to load progress:', e);
