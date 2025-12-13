@@ -139,7 +139,9 @@ export default function RoadmapView({ roadmap, onRestart }) {
     phases.flatMap(p => p.courses.flatMap(c => c.categories || []))
   )].sort();
 
-  const completionPercent = Math.round((completedCourses.size / summary.totalCourses) * 100);
+  const completionPercent = summary.totalCourses > 0
+    ? Math.round((completedCourses.size / summary.totalCourses) * 100)
+    : 0;
 
   return (
     <div className="min-h-screen neural-bg">
@@ -339,9 +341,9 @@ export default function RoadmapView({ roadmap, onRestart }) {
             const isExpanded = expandedPhases.has(phaseIndex);
             const filteredCourses = phase.courses.filter(courseMatchesFilters);
             const phaseCompleted = phase.courses.every(c => completedCourses.has(c.id));
-            const phaseProgress = Math.round(
-              (phase.courses.filter(c => completedCourses.has(c.id)).length / phase.courses.length) * 100
-            );
+            const phaseProgress = phase.courses.length > 0
+              ? Math.round((phase.courses.filter(c => completedCourses.has(c.id)).length / phase.courses.length) * 100)
+              : 0;
 
             // Skip phase if no courses match filter
             if (hasActiveFilters && filteredCourses.length === 0) {
