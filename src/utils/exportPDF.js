@@ -172,8 +172,10 @@ export function generateShareableURL(answers) {
 function validateAnswers(obj) {
   if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return null;
 
-  // Prevent prototype pollution
-  if ('__proto__' in obj || 'constructor' in obj || 'prototype' in obj) return null;
+  // Prevent prototype pollution - check for OWN properties only
+  if (Object.hasOwn(obj, '__proto__') || Object.hasOwn(obj, 'constructor') || Object.hasOwn(obj, 'prototype')) {
+    return null;
+  }
 
   const allowedKeys = ['experience', 'goal', 'timeCommitment', 'targetRole',
                        'mathBackground', 'timeline', 'priorCourses', 'interests'];
