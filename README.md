@@ -1,8 +1,12 @@
 # DeepLearning.AI Learning Roadmap Generator
 
-A personalized pathway generator that transforms DeepLearning.AI's 115+ courses into customized learning roadmaps based on your goals, experience, and schedule.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+A personalized pathway generator that transforms DeepLearning.AI's 100+ courses into customized learning roadmaps based on your goals, experience, and schedule.
 
 **[Try it live](https://belumume.github.io/dlai-roadmap/)**
+
+![Screenshot](src/assets/screenshot.png)
 
 ## Features
 
@@ -11,6 +15,7 @@ A personalized pathway generator that transforms DeepLearning.AI's 115+ courses 
 - **Personalized Timeline**: Week-by-week schedule based on your availability
 - **Progress Tracking**: Mark courses complete and track your journey
 - **PDF Export**: Download your roadmap to print or share
+- **Calendar Export**: Export to .ics for Google Calendar, Outlook, etc.
 - **Shareable URLs**: Generate links with your preferences encoded
 
 ## How It Works
@@ -42,7 +47,7 @@ npm run build
 
 ## Course Data
 
-The application uses a curated dataset of 115 DeepLearning.AI courses with metadata including:
+The application uses a curated dataset of 100+ DeepLearning.AI courses with metadata including:
 - Difficulty level (beginner/intermediate/advanced)
 - Estimated hours
 - Categories and topics
