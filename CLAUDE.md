@@ -1,10 +1,5 @@
 # DLAI Roadmap - Project Context
 
-> **IMPORTANT FOR FUTURE SESSIONS:**
-> - Read the full approved plan at: `~/.claude/plans/delegated-imagining-unicorn.md`
-> - Update this CLAUDE.md file after completing work
-> - Compare work against the approved plan, not just this summary
-
 ## Project Overview
 Personalized learning pathway generator for DeepLearning.AI's 100+ courses. Users answer 8 questions and receive a customized, timeline-based study plan they can export as PDF or share via URL.
 
@@ -27,7 +22,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - `src/components/RoadmapView.jsx` - Generated roadmap display
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
 - `src/utils/exportCalendar.js` - iCalendar (.ics) export function
-- `tests/stress-test.spec.cjs` - Playwright tests (18 tests)
+- `tests/stress-test.spec.cjs` - Playwright tests (20 tests)
 
 ## Approved Plan Status
 
@@ -41,7 +36,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] PDF export
 - [x] Shareable URLs (auto-load on visit)
 - [x] localStorage progress persistence
-- [x] Searchable course selector (all 101 courses)
+- [x] Searchable course selector (all 116 courses)
 - [x] Skip button for multi-select questions
 - [x] Interest categories match actual course categories
 - [x] mathBackground filters elective difficulty
@@ -69,6 +64,8 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] skills_taught displayed on course cards
 - [x] NLP Specialization added to Researcher path (30 courses in pathways)
 - [x] Pathway audit completed - 3 roles confirmed sufficient
+- [x] Responsive design (mobile-first, icon-only buttons on mobile, 44px touch targets)
+- [x] Category tabs in CourseSelector (11 categories, scrollable checklist, per @Deminiko feedback)
 
 ### ALL FEATURES COMPLETE - READY FOR LAUNCH
 
@@ -95,15 +92,6 @@ npx playwright test --config=playwright.config.cjs  # Run tests
 1. Always ADD NEW TESTS for new features before committing
 2. Run ALL tests and verify they pass
 3. Never commit code without test coverage for the changes
-
-## Original Resources (from project start)
-Located in: `C:\Users\elzai\PC\Downloads\deeplearning_ai roadmap resources.zip`
-- courses.json (82 short + 19 long courses)
-- RoadMap Project.docx (Branch Tree proposal)
-- first meeting transcript.txt
-- LT_Course_Forum Links.xlsx
-- Forum discussion HTML files
-- DL.AI.png (workflow diagram)
 
 ## Attribution
 Built by [Learning Deep](https://community.deeplearning.ai/u/learningdeep/) for the DeepLearning.AI community.
