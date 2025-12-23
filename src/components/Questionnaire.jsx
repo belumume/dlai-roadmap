@@ -193,17 +193,17 @@ export default function Questionnaire({ onComplete }) {
 
         {/* Question card */}
         <div
-          className={`card-neural p-8 transition-all duration-150 ${
+          className={`card-neural p-4 sm:p-6 md:p-8 transition-all duration-150 ${
             isTransitioning ? 'opacity-0 transform translate-x-4' : 'opacity-100 transform translate-x-0'
           }`}
         >
           {/* Question header */}
-          <div className="flex items-start gap-4 mb-8">
-            <div className="p-3 bg-[var(--node-cyan-dim)] rounded-xl">
-              <Icon className="w-6 h-6 text-[var(--node-cyan)]" />
+          <div className="flex items-start gap-3 sm:gap-4 mb-6 sm:mb-8">
+            <div className="p-2.5 sm:p-3 bg-[var(--node-cyan-dim)] rounded-xl flex-shrink-0">
+              <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--node-cyan)]" />
             </div>
             <div>
-              <h2 className="font-display text-2xl font-semibold text-[var(--text-primary)] mb-1">
+              <h2 className="font-display text-xl sm:text-2xl font-semibold text-[var(--text-primary)] mb-1">
                 {currentQuestion.title}
               </h2>
               <p className="text-[var(--text-secondary)]">
@@ -257,11 +257,11 @@ export default function Questionnaire({ onComplete }) {
           </div>
 
           {/* Navigation */}
-          <div className="flex justify-between mt-8 pt-6 border-t border-[var(--border)]">
+          <div className="flex justify-between mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-[var(--border)]">
             <button
               onClick={handleBack}
               disabled={currentStep === 0}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-2 min-h-[44px] rounded-lg transition-colors ${
                 currentStep === 0
                   ? 'text-[var(--text-muted)] cursor-not-allowed'
                   : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)]'
@@ -272,26 +272,27 @@ export default function Questionnaire({ onComplete }) {
             </button>
 
             {(currentQuestion.type === 'multi' || currentQuestion.type === 'courseSelector') && (
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <button
                   onClick={() => {
                     setAnswers({ ...answers, [currentQuestion.id]: [] });
                     handleNext();
                   }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] transition-colors"
+                  className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-2 min-h-[44px] rounded-lg text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] transition-colors"
                 >
                   Skip
                 </button>
                 <button
                   onClick={handleNext}
                   disabled={!isCurrentAnswered()}
-                  className={`flex items-center gap-2 px-6 py-2 rounded-lg font-medium transition-all ${
+                  className={`flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-2.5 sm:py-2 min-h-[44px] rounded-lg font-medium transition-all ${
                     isCurrentAnswered()
                       ? 'btn-primary hover:shadow-[var(--node-cyan-dim)]'
                       : 'bg-[var(--elevated)] text-[var(--text-muted)] cursor-not-allowed'
                   }`}
                 >
-                  {currentStep === questions.length - 1 ? 'Generate My Roadmap' : 'Continue'}
+                  <span className="hidden sm:inline">{currentStep === questions.length - 1 ? 'Generate My Roadmap' : 'Continue'}</span>
+                  <span className="sm:hidden">{currentStep === questions.length - 1 ? 'Generate' : 'Next'}</span>
                   <ChevronRight className="w-4 h-4" />
                 </button>
               </div>

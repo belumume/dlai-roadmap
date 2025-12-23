@@ -45,17 +45,20 @@ test.describe('DLAI Roadmap Stress Tests', () => {
     for (let i = 1; i <= 8; i++) {
       await expect(page.locator(`text=Question ${i} of 8`)).toBeVisible();
 
-      // Click first option for single select (auto-advances)
-      const firstOption = page.locator('button.rounded-xl').first();
-      await firstOption.click();
-
-      // For multi-select questions (7 & 8), need to click Continue or Skip
-      if (i >= 7) {
-        await page.waitForTimeout(500);
+      if (i === 7) {
+        // Q7 is CourseSelector with scrollable list
+        await page.waitForTimeout(300);
         const skipBtn = page.locator('button:has-text("Skip")');
-        if (await skipBtn.isVisible()) {
-          await skipBtn.click();
-        }
+        await skipBtn.click();
+      } else if (i === 8) {
+        // Q8 is interests multi-select
+        await page.waitForTimeout(300);
+        const skipBtn = page.locator('button:has-text("Skip")');
+        await skipBtn.click();
+      } else {
+        // Q1-6 are single select with rounded-xl buttons
+        const firstOption = page.locator('button.rounded-xl').first();
+        await firstOption.click();
       }
     }
 
@@ -92,12 +95,13 @@ test.describe('DLAI Roadmap Stress Tests', () => {
       await page.click(`button:has-text("${getLabel(testCase.timeline, 'timeline')}")`);
       await page.waitForTimeout(400);
 
-      // Q7: Prior Courses (multi-select)
+      // Q7: Prior Courses (multi-select with category tabs)
       if (testCase.skipPrior) {
         await page.click('button:has-text("Skip")');
       } else {
-        // Select first option and continue
-        await page.locator('button.rounded-xl').first().click();
+        // Select first course from the scrollable list
+        const courseList = page.locator('.max-h-\\[280px\\]');
+        await courseList.locator('button').first().click();
         await page.click('button:has-text("Continue")');
       }
       await page.waitForTimeout(400);
@@ -208,34 +212,32 @@ test.describe('DLAI Roadmap Stress Tests', () => {
     await expect(page.locator('text=Have you taken any DeepLearning.AI courses')).toBeVisible();
 
     // Test search functionality
-    const searchInput = page.locator('input[placeholder*="Search all"]');
+    const searchInput = page.locator('input[placeholder*="Search"]');
     await expect(searchInput).toBeVisible();
 
-    // Focus and search for "machine learning"
-    await searchInput.focus();
+    // Search for "machine learning"
     await searchInput.fill('machine learning');
-    await page.waitForTimeout(600);
+    await page.waitForTimeout(300);
 
-    // Should show search results dropdown (z-20 class)
-    const dropdown = page.locator('.absolute.z-20');
-    await expect(dropdown).toBeVisible({ timeout: 5000 });
+    // Should show filtered results in scrollable list
+    const courseList = page.locator('.max-h-\\[280px\\]');
+    await expect(courseList).toBeVisible();
 
-    // Click the first search result button
-    await dropdown.locator('button').first().click();
-    await page.waitForTimeout(400);
+    // Click the first course in the list
+    await courseList.locator('button').first().click();
+    await page.waitForTimeout(200);
 
     // Verify a chip was added (X button to remove)
-    const chips = page.locator('button:has(svg.lucide-x)');
+    const chips = page.locator('span.rounded-full:has(svg.lucide-x)');
     await expect(chips.first()).toBeVisible({ timeout: 3000 });
 
-    // Search for another course
-    await searchInput.focus();
+    // Clear search and select another course
     await searchInput.fill('deep learning');
-    await page.waitForTimeout(600);
+    await page.waitForTimeout(300);
 
-    // Select from dropdown
-    await page.locator('.absolute.z-20 button').first().click();
-    await page.waitForTimeout(400);
+    // Select from list
+    await courseList.locator('button').first().click();
+    await page.waitForTimeout(200);
 
     // Should now have 2 chips
     const chipCount = await chips.count();
@@ -247,6 +249,99 @@ test.describe('DLAI Roadmap Stress Tests', () => {
 
     // Should be on Q8
     await expect(page.locator('text=Question 8 of 8')).toBeVisible();
+  });
+
+  test('Category tabs in CourseSelector work', async ({ page }) => {
+    await page.goto(BASE_URL);
+    await page.click('button:has-text("Get Started")');
+
+    // Navigate to Q7 (Prior Courses with CourseSelector)
+    for (let i = 0; i < 6; i++) {
+      await page.locator('button.rounded-xl').first().click();
+      await page.waitForTimeout(400);
+    }
+
+    // Should be on Q7
+    await expect(page.locator('text=Question 7 of 8')).toBeVisible();
+
+    // Default tab should be Popular (first tab, active by default)
+    const popularTab = page.locator('button:has-text("Popular")').first();
+    await expect(popularTab).toBeVisible();
+
+    // Click "All" tab
+    await page.click('button:has-text("All")');
+    await page.waitForTimeout(300);
+
+    // Course list should show all 116 courses indicator
+    await expect(page.locator('text=Showing 116 of 116 courses')).toBeVisible();
+
+    // Click "Agents" tab
+    await page.click('button:has-text("Agents")');
+    await page.waitForTimeout(300);
+
+    // Should filter to agents category
+    const countText = page.locator('text=/Showing \\d+ of 116 courses/');
+    await expect(countText).toBeVisible();
+
+    // Select a course from the Agents category
+    const courseList = page.locator('.max-h-\\[280px\\]');
+    await courseList.locator('button').first().click();
+    await page.waitForTimeout(200);
+
+    // Should show "1 selected" indicator
+    await expect(page.locator('text=1 selected')).toBeVisible();
+
+    // Switch to another category and select more
+    await page.click('button:has-text("RAG")');
+    await page.waitForTimeout(300);
+    await courseList.locator('button').first().click();
+    await page.waitForTimeout(200);
+
+    // Should show "2 selected"
+    await expect(page.locator('text=2 selected')).toBeVisible();
+
+    console.log('Category tabs work correctly');
+  });
+
+  test('Bulk selection from CourseSelector works', async ({ page }) => {
+    await page.goto(BASE_URL);
+    await page.click('button:has-text("Get Started")');
+
+    // Navigate to Q7
+    for (let i = 0; i < 6; i++) {
+      await page.locator('button.rounded-xl').first().click();
+      await page.waitForTimeout(400);
+    }
+
+    // Switch to All courses tab
+    await page.click('button:has-text("All")');
+    await page.waitForTimeout(300);
+
+    // Select 5 courses rapidly
+    const courseList = page.locator('.max-h-\\[280px\\]');
+    const courseButtons = courseList.locator('button');
+
+    for (let i = 0; i < 5; i++) {
+      await courseButtons.nth(i).click();
+      await page.waitForTimeout(100);
+    }
+
+    // Should show "5 selected"
+    await expect(page.locator('text=5 selected')).toBeVisible();
+
+    // Verify 5 chips are shown
+    const chips = page.locator('span.rounded-full:has(svg.lucide-x)');
+    const chipCount = await chips.count();
+    expect(chipCount).toBe(5);
+
+    // Deselect one by clicking it again
+    await courseButtons.nth(0).click();
+    await page.waitForTimeout(100);
+
+    // Should now show "4 selected"
+    await expect(page.locator('text=4 selected')).toBeVisible();
+
+    console.log('Bulk selection works correctly');
   });
 
   test('Filter UI works on roadmap view', async ({ page }) => {

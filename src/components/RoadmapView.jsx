@@ -152,43 +152,47 @@ export default function RoadmapView({ roadmap, onRestart }) {
     <div className="min-h-screen neural-bg">
       {/* Header */}
       <header className="border-b border-[var(--border)] bg-[var(--deep)]/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">{pathwayInfo.icon}</span>
-            <div>
-              <h1 className="font-display text-xl font-bold text-[var(--text-primary)]">{pathwayName}</h1>
-              <p className="text-sm text-[var(--text-secondary)]">{pathwayInfo.tagline}</p>
+        <div className="max-w-6xl mx-auto px-4 py-3 sm:py-4 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <span className="text-xl sm:text-2xl flex-shrink-0">{pathwayInfo.icon}</span>
+            <div className="min-w-0">
+              <h1 className="font-display text-base sm:text-xl font-bold text-[var(--text-primary)] truncate">{pathwayName}</h1>
+              <p className="text-xs sm:text-sm text-[var(--text-secondary)] hidden sm:block">{pathwayInfo.tagline}</p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 flex-shrink-0">
             <button
               onClick={onRestart}
-              className="flex items-center gap-2 px-3 py-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
+              className="flex items-center justify-center gap-2 p-2.5 sm:px-3 sm:py-2 min-w-[44px] min-h-[44px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
+              title="Start Over"
             >
               <RefreshCw className="w-4 h-4" />
-              Start Over
+              <span className="hidden sm:inline">Start Over</span>
             </button>
             <button
               onClick={handleShare}
-              className="flex items-center gap-2 px-3 py-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
+              className="flex items-center justify-center gap-2 p-2.5 sm:px-3 sm:py-2 min-w-[44px] min-h-[44px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
+              title={copied ? 'Copied!' : 'Share'}
             >
               {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
-              {copied ? 'Copied!' : 'Share'}
+              <span className="hidden sm:inline">{copied ? 'Copied!' : 'Share'}</span>
             </button>
             <button
               onClick={() => exportAndDownloadCalendar(roadmap)}
-              className="flex items-center gap-2 px-3 py-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
+              className="flex items-center justify-center gap-2 p-2.5 sm:px-3 sm:py-2 min-w-[44px] min-h-[44px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
+              title="Export to Calendar"
             >
               <Calendar className="w-4 h-4" />
-              Calendar
+              <span className="hidden sm:inline">Calendar</span>
             </button>
             <button
               onClick={handleExportPDF}
               disabled={isExporting}
-              className="flex items-center gap-2 px-4 py-2 btn-primary transition-colors disabled:opacity-50"
+              className="flex items-center justify-center gap-2 p-2.5 sm:px-4 sm:py-2 min-w-[44px] min-h-[44px] btn-primary transition-colors disabled:opacity-50"
+              title="Export PDF"
             >
               <Download className={`w-4 h-4 ${isExporting ? 'animate-pulse' : ''}`} />
-              {isExporting ? 'Exporting...' : 'Export PDF'}
+              <span className="hidden sm:inline">{isExporting ? 'Exporting...' : 'Export PDF'}</span>
             </button>
           </div>
         </div>
@@ -251,12 +255,18 @@ export default function RoadmapView({ roadmap, onRestart }) {
             />
           </div>
           <div className="flex justify-between text-xs text-[var(--text-muted)]">
-            {milestones.map((m, i) => (
-              <div key={i} className={`text-center ${completionPercent >= m.percent ? 'text-[var(--node-cyan)]' : ''}`}>
-                <div className="font-medium">{m.percent}%</div>
-                <div>{m.label}</div>
-              </div>
-            ))}
+            {milestones.map((m, i) => {
+              const isEndpoint = i === 0 || i === milestones.length - 1;
+              return (
+                <div
+                  key={i}
+                  className={`text-center ${!isEndpoint ? 'hidden sm:block' : ''} ${completionPercent >= m.percent ? 'text-[var(--node-cyan)]' : ''}`}
+                >
+                  <div className="font-medium">{m.percent}%</div>
+                  <div className="hidden sm:block">{m.label}</div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -264,7 +274,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
         <div className="mb-8">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+            className={`flex items-center gap-2 px-4 py-3 sm:py-2 min-h-[44px] rounded-lg transition-colors ${
               hasActiveFilters
                 ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30'
                 : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--node-cyan-dim)]'
@@ -302,7 +312,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
                     <button
                       key={diff}
                       onClick={() => toggleDifficultyFilter(diff)}
-                      className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
+                      className={`px-3 py-2.5 sm:py-1.5 text-sm min-h-[44px] sm:min-h-0 rounded-lg border transition-colors ${
                         filters.difficulties.includes(diff)
                           ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border-[var(--node-cyan)]/30'
                           : 'bg-[var(--elevated)] text-[var(--text-secondary)] border-transparent hover:border-[var(--border)]'
@@ -322,7 +332,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
                     <button
                       key={cat}
                       onClick={() => toggleCategoryFilter(cat)}
-                      className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
+                      className={`px-3 py-2.5 sm:py-1.5 text-sm min-h-[44px] sm:min-h-0 rounded-lg border transition-colors ${
                         filters.categories.includes(cat)
                           ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border-[var(--node-cyan)]/30'
                           : 'bg-[var(--elevated)] text-[var(--text-secondary)] border-transparent hover:border-[var(--border)]'
@@ -340,7 +350,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[var(--border)]" />
+          <div className="absolute left-5 sm:left-6 top-0 bottom-0 w-0.5 bg-[var(--border)]" />
 
           {phases.map((phase, phaseIndex) => {
             const isExpanded = expandedPhases.has(phaseIndex);
@@ -363,7 +373,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
                   className="w-full flex items-start gap-4 group"
                 >
                   {/* Phase indicator */}
-                  <div className={`relative z-10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
+                  <div className={`relative z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
                     phaseCompleted
                       ? 'bg-emerald-500'
                       : phaseProgress > 0
@@ -423,7 +433,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
 
                 {/* Expanded course list */}
                 {isExpanded && (
-                  <div className="ml-16 mt-4 space-y-3">
+                  <div className="ml-14 sm:ml-16 mt-4 space-y-3">
                     {/* Math Warning for this phase */}
                     {phase.mathWarning && (
                       <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-start gap-3">
@@ -444,11 +454,11 @@ export default function RoadmapView({ roadmap, onRestart }) {
                               : 'border-[var(--border)] hover:border-[var(--node-cyan-dim)]'
                           }`}
                         >
-                          <div className="flex items-start gap-4">
+                          <div className="flex items-start gap-3 sm:gap-4">
                             {/* Completion toggle */}
                             <button
                               onClick={() => toggleCourseComplete(course.id)}
-                              className="flex-shrink-0 mt-1"
+                              className="flex-shrink-0 p-2 -ml-2 -mt-1 min-w-[44px] min-h-[44px] flex items-center justify-center"
                             >
                               {isCompleted ? (
                                 <CheckCircle className="w-5 h-5 text-emerald-400" />
@@ -482,7 +492,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
                                   href={course.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="flex-shrink-0 p-2 text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
+                                  className="flex-shrink-0 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
                                 >
                                   <ExternalLink className="w-4 h-4" />
                                 </a>
