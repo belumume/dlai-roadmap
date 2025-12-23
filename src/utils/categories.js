@@ -21,3 +21,17 @@ export const CATEGORY_LABELS = {
 export function getCategoryLabel(category) {
   return CATEGORY_LABELS[category] || category.charAt(0).toUpperCase() + category.slice(1);
 }
+
+/**
+ * Count courses per category
+ * Returns object with category IDs as keys and counts as values
+ */
+export function getCourseCountByCategory(courses) {
+  const counts = { all: courses.length };
+  for (const course of courses) {
+    for (const cat of course.categories || []) {
+      counts[cat] = (counts[cat] || 0) + 1;
+    }
+  }
+  return counts;
+}
