@@ -23,7 +23,7 @@ A personalized pathway generator that transforms DeepLearning.AI's 100+ courses 
 1. **Answer Questions**: Complete a quick 8-question assessment about your background and goals
 2. **Get Your Roadmap**: Receive a personalized sequence of courses organized into phases
 3. **Track Progress**: Mark courses complete as you learn
-4. **Export & Share**: Download as PDF or share your roadmap with others
+4. **Export & Share**: Download as PDF, export to calendar, or share via link
 
 ## Tech Stack
 
