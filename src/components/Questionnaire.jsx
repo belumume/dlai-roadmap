@@ -63,9 +63,9 @@ const questions = [
     icon: Network,
     type: 'single',
     options: [
-      { value: 'builder', label: 'AI Product Engineer', description: 'Build apps with RAG, agents, and APIs' },
-      { value: 'researcher', label: 'Model Architect', description: 'Train, fine-tune, and optimize models' },
-      { value: 'enterprise', label: 'Enterprise AI Leader', description: 'Strategy, governance, and deployment at scale' },
+      { value: 'builder', label: 'AI Product Engineer', description: 'Master RAG systems, AI agents, and production deployment. Perfect for developers who want to integrate AI into applications.' },
+      { value: 'researcher', label: 'Model Architect', description: 'Deep dive into model training, fine-tuning, and optimization. Ideal for those who want to understand how AI models work under the hood.' },
+      { value: 'enterprise', label: 'Enterprise AI Leader', description: 'Strategy, governance, and large-scale deployment. For leaders driving AI adoption in organizations.' },
       { value: 'undecided', label: 'Not Sure Yet', description: 'Start with the recommended path' },
     ],
   },
