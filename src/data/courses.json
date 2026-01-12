@@ -7,7 +7,7 @@
       "url": "https://learn.deeplearning.ai/courses/build-with-andrew",
       "difficulty": "beginner",
       "estimated_hours": 0.5,
-      "categories": ["general"],
+      "categories": ["general", "prompting"],
       "instructor": "Andrew Ng",
       "platform": "dlai",
       "prerequisites": [],
