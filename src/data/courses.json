@@ -1,6 +1,46 @@
 {
   "courses": [
     {
+      "id": "build-with-andrew",
+      "title": "Build with Andrew",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/build-with-andrew",
+      "difficulty": "beginner",
+      "estimated_hours": 0.5,
+      "categories": ["general"],
+      "instructor": "Andrew Ng",
+      "platform": "dlai",
+      "prerequisites": [],
+      "skills_taught": [
+        "AI-assisted app building",
+        "prompt engineering basics",
+        "no-code development",
+        "iterative prompting"
+      ],
+      "career_paths": ["builder"],
+      "partner": "DeepLearning.AI"
+    },
+    {
+      "id": "nvidia-nat-making-agents-reliable",
+      "title": "Nvidia's NeMo Agent Toolkit: Making Agents Reliable",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/nvidia-nat-making-agents-reliable",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.5,
+      "categories": ["agents", "deployment"],
+      "instructor": "Brian McBrayer",
+      "platform": "dlai",
+      "prerequisites": ["chatgpt-prompt-engineering-for-developers"],
+      "skills_taught": [
+        "production agents",
+        "Phoenix tracing",
+        "multi-agent orchestration",
+        "agent evaluation"
+      ],
+      "career_paths": ["builder", "enterprise"],
+      "partner": "Nvidia"
+    },
+    {
       "id": "multi-vector-image-retrieval",
       "title": "Multi-Vector Image Retrieval",
       "type": "short",
