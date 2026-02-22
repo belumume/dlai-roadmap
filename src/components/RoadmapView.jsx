@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import posthog from 'posthog-js';
 import {
   Download, Share2, ChevronDown, ChevronUp, ExternalLink,
   Clock, BookOpen, Trophy, RefreshCw, CheckCircle, Circle,
@@ -58,6 +59,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
     setIsExporting(true);
     try {
       await exportRoadmapPDF(roadmap);
+      posthog.capture('pdf_exported', { pathway });
     } catch (error) {
       console.error('Failed to export PDF:', error);
     } finally {
@@ -82,6 +84,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
+    posthog.capture('share_url_created', { pathway });
   };
 
   const togglePhase = (index) => {
@@ -178,7 +181,10 @@ export default function RoadmapView({ roadmap, onRestart }) {
               <span className="hidden sm:inline">{copied ? 'Copied!' : 'Share'}</span>
             </button>
             <button
-              onClick={() => exportAndDownloadCalendar(roadmap)}
+              onClick={() => {
+                exportAndDownloadCalendar(roadmap);
+                posthog.capture('calendar_exported', { pathway });
+              }}
               className="flex items-center justify-center gap-2 p-2.5 sm:px-3 sm:py-2 min-w-[44px] min-h-[44px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
               title="Export to Calendar"
             >
