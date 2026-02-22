@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import posthog from 'posthog-js';
 import WelcomeScreen from './components/WelcomeScreen';
 import Questionnaire from './components/Questionnaire';
 import RoadmapView from './components/RoadmapView';
@@ -16,6 +17,9 @@ function App() {
       const generatedRoadmap = generatePathway(sharedAnswers);
       setRoadmap(generatedRoadmap);
       setCurrentView('roadmap');
+      posthog.capture('shared_roadmap_loaded', {
+        pathway: generatedRoadmap.pathway,
+      });
       // Clean up URL
       window.history.replaceState({}, '', window.location.pathname);
     }
@@ -29,6 +33,13 @@ function App() {
     const generatedRoadmap = generatePathway(answers);
     setRoadmap(generatedRoadmap);
     setCurrentView('roadmap');
+    posthog.capture('roadmap_generated', {
+      pathway: generatedRoadmap.pathway,
+      experience: answers.experience,
+      goal: answers.goal,
+      time_commitment: answers.timeCommitment,
+      total_courses: generatedRoadmap.summary.totalCourses,
+    });
   };
 
   const handleRestart = () => {
