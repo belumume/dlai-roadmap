@@ -2705,14 +2705,14 @@
       "id": "data-engineering",
       "title": "Data Engineering",
       "type": "certificate",
-      "url": "https://learn.deeplearning.ai/specializations/data-engineering",
+      "url": "https://www.coursera.org/professional-certificates/data-engineering?utm_campaign=WebsiteCoursesDE&utm_medium=institutions&utm_source=deeplearning-ai",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "deployment"
       ],
       "instructor": "Joe Reis",
-      "platform": "dlai",
+      "platform": "coursera",
       "prerequisites": [
         "ai-python-for-beginners"
       ],
@@ -2889,14 +2889,14 @@
       "id": "tensorflow-advanced-techniques-specialization",
       "title": "TensorFlow: Advanced Techniques Specialization",
       "type": "certificate",
-      "url": "https://learn.deeplearning.ai/specializations/tensorflow-advanced-techniques",
+      "url": "https://www.coursera.org/specializations/tensorflow-advanced-techniques",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "training"
       ],
       "instructor": "Laurence Moroney",
-      "platform": "dlai",
+      "platform": "coursera",
       "prerequisites": [
         "tensorflow-developer-professional-certificate"
       ],
@@ -2915,14 +2915,14 @@
       "id": "generative-adversarial-networks-gans-specialization",
       "title": "Generative Adversarial Networks (GANs) Specialization",
       "type": "certificate",
-      "url": "https://learn.deeplearning.ai/specializations/generative-adversarial-networks-gans",
+      "url": "https://www.coursera.org/specializations/generative-adversarial-networks-gans",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "training"
       ],
       "instructor": "Sharon Zhou",
-      "platform": "dlai",
+      "platform": "coursera",
       "prerequisites": [
         "deep-learning-specialization"
       ],
