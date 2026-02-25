@@ -2705,14 +2705,14 @@
       "id": "data-engineering",
       "title": "Data Engineering",
       "type": "certificate",
-      "url": "https://www.coursera.org/professional-certificates/data-engineering?utm_campaign=WebsiteCoursesDE&utm_medium=institutions&utm_source=deeplearning-ai",
+      "url": "https://learn.deeplearning.ai/specializations/data-engineering",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "deployment"
       ],
       "instructor": "Joe Reis",
-      "platform": "coursera",
+      "platform": "dlai",
       "prerequisites": [
         "ai-python-for-beginners"
       ],
@@ -2889,14 +2889,14 @@
       "id": "tensorflow-advanced-techniques-specialization",
       "title": "TensorFlow: Advanced Techniques Specialization",
       "type": "certificate",
-      "url": "https://www.coursera.org/specializations/tensorflow-advanced-techniques",
+      "url": "https://learn.deeplearning.ai/specializations/tensorflow-advanced-techniques",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "training"
       ],
       "instructor": "Laurence Moroney",
-      "platform": "coursera",
+      "platform": "dlai",
       "prerequisites": [
         "tensorflow-developer-professional-certificate"
       ],
@@ -2915,14 +2915,14 @@
       "id": "generative-adversarial-networks-gans-specialization",
       "title": "Generative Adversarial Networks (GANs) Specialization",
       "type": "certificate",
-      "url": "https://www.coursera.org/specializations/generative-adversarial-networks-gans",
+      "url": "https://learn.deeplearning.ai/specializations/generative-adversarial-networks-gans",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "training"
       ],
       "instructor": "Sharon Zhou",
-      "platform": "coursera",
+      "platform": "dlai",
       "prerequisites": [
         "deep-learning-specialization"
       ],
@@ -2995,14 +2995,14 @@
       "id": "natural-language-processing-specialization",
       "title": "Natural Language Processing Specialization",
       "type": "certificate",
-      "url": "https://www.coursera.org/specializations/natural-language-processing",
+      "url": "https://learn.deeplearning.ai/specializations/natural-language-processing",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "general"
       ],
       "instructor": "Younes Bensouda Mourri",
-      "platform": "coursera",
+      "platform": "dlai",
       "prerequisites": [
         "deep-learning-specialization"
       ],
@@ -3047,14 +3047,14 @@
       "id": "ai-for-medicine-specialization",
       "title": "AI for Medicine Specialization",
       "type": "certificate",
-      "url": "https://coursera.org/specializations/ai-for-medicine?utm_source=deeplearningai&utm_medium=institutions&utm_campaign=WebsiteCoursesAI4MTopButton",
+      "url": "https://learn.deeplearning.ai/specializations/ai-for-medicine",
       "difficulty": "intermediate",
       "estimated_hours": 60,
       "categories": [
         "general"
       ],
       "instructor": "Pranav Rajpurkar",
-      "platform": "coursera",
+      "platform": "dlai",
       "prerequisites": [
         "deep-learning-specialization"
       ],
