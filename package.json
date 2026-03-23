@@ -12,7 +12,7 @@
   "dependencies": {
     "d3": "^7.9.0",
     "html2canvas": "^1.4.1",
-    "jspdf": "^3.0.4",
+    "jspdf": "^4.2.1",
     "lucide-react": "^0.560.0",
     "posthog-js": "^1.352.0",
     "react": "^19.2.0",
