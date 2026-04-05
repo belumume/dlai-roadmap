@@ -398,7 +398,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/pytorch-for-deep-learning-professional-certificate",
       "difficulty": "intermediate",
-      "estimated_hours": 88,
+      "estimated_hours": 102,
       "categories": [
         "training"
       ],
@@ -2841,7 +2841,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/mathematics-for-machine-learning-and-data-science",
       "difficulty": "intermediate",
-      "estimated_hours": 94,
+      "estimated_hours": 92,
       "categories": [
         "general"
       ],
@@ -3023,7 +3023,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/deep-learning",
       "difficulty": "intermediate",
-      "estimated_hours": 129,
+      "estimated_hours": 127,
       "categories": [
         "training"
       ],
