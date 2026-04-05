@@ -62,7 +62,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] Dynamic Q8 course counts (was hardcoded)
 - [x] Centralized category labels (`src/utils/categories.js`)
 - [x] skills_taught displayed on course cards
-- [x] NLP Specialization added to Researcher path (30 courses in pathways)
+- [x] NLP Specialization added to Researcher path (31 courses in pathways)
 - [x] Pathway audit completed - 3 roles confirmed sufficient
 - [x] Responsive design (mobile-first, icon-only buttons on mobile, 44px touch targets)
 - [x] Category tabs in CourseSelector (11 categories, scrollable checklist, per @Deminiko feedback)
