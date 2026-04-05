@@ -84,8 +84,8 @@ Cross-reference prerequisites against community mentor recommendations, not just
 ## Examples
 
 **Hours (DLS):**
-Before: `estimated_hours: 60` (timeline showed "~2 months" at 15h/week)
-After: `estimated_hours: 129` (Coursera sum, timeline shows "~5 months" for full phase)
+Before: `estimated_hours: 60` (DLS alone = 4 weeks at 15h/week)
+After: `estimated_hours: 129` (Coursera sum, DLS alone = 9 weeks at 15h/week)
 
 **Partner + prerequisite (TF Dev Cert):**
 Before: `prerequisites: ["ai-python-for-beginners"]`, `partner: "Google"`, not in any pathway
