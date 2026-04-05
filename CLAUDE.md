@@ -14,10 +14,10 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - Static JSON data (no backend)
 
 ## Key Files
-- `src/data/courses.json` - 118 courses + pathway definitions (fully enriched)
+- `src/data/courses.json` - 121 courses + pathway definitions (fully enriched)
 - `src/utils/pathwayGenerator.js` - Core personalization algorithm
 - `src/components/Questionnaire.jsx` - 8-question assessment
-- `src/components/CourseSelector.jsx` - Searchable course picker (all 118 courses)
+- `src/components/CourseSelector.jsx` - Searchable course picker (all 121 courses)
 - `src/utils/categories.js` - Single source of truth for category labels
 - `src/components/RoadmapView.jsx` - Generated roadmap display
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
@@ -36,7 +36,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] PDF export
 - [x] Shareable URLs (auto-load on visit)
 - [x] localStorage progress persistence
-- [x] Searchable course selector (all 118 courses)
+- [x] Searchable course selector (all 121 courses)
 - [x] Skip button for multi-select questions
 - [x] Interest categories match actual course categories
 - [x] mathBackground filters elective difficulty
@@ -48,7 +48,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] Timeline warning display when core courses exceed target timeline
 - [x] Math warning display for researcher path with weak math background
 - [x] Experience-based difficulty filtering (professional/ml-basics skip foundation)
-- [x] courses.json enrichment - All 118 courses have:
+- [x] courses.json enrichment - All 121 courses have:
   - `prerequisites` - course dependency IDs
   - `skills_taught` - 3-4 skills per course
   - `career_paths` - builder/researcher/enterprise relevance
