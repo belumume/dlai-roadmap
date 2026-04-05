@@ -87,7 +87,7 @@ export function generatePathway(answers) {
         .filter(id => !priorCourses.has(id))
         .map(id => courseMap.get(id))
         .filter(Boolean)
-        .filter(course => allowedByExperience.includes(course.difficulty) && allowedDifficulties.includes(course.difficulty));
+        .filter(course => allowedByExperience.includes(course.difficulty));
 
       if (phaseCourses.length > 0) {
         // Check if this is a math-heavy phase for researcher with weak math background
