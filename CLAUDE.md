@@ -23,6 +23,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
 - `src/utils/exportCalendar.js` - iCalendar (.ics) export function
 - `tests/stress-test.spec.cjs` - Playwright tests (20 tests)
+- `docs/solutions/` - documented solutions and methodology (data quality, curriculum design)
 
 ## Approved Plan Status
 
