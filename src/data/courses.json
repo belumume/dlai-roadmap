@@ -398,7 +398,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/pytorch-for-deep-learning-professional-certificate",
       "difficulty": "intermediate",
-      "estimated_hours": 40,
+      "estimated_hours": 88,
       "categories": [
         "training"
       ],
@@ -2602,7 +2602,7 @@
       "type": "course",
       "url": "https://learn.deeplearning.ai/courses/fast-prototyping-of-genai-apps-with-streamlit",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 9,
       "categories": [
         "deployment"
       ],
@@ -2628,7 +2628,7 @@
       "type": "course",
       "url": "https://learn.deeplearning.ai/courses/retrieval-augmented-generation",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 31,
       "categories": [
         "rag"
       ],
@@ -2654,7 +2654,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/data-analytics",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 152,
       "categories": [
         "general"
       ],
@@ -2681,7 +2681,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/generative-ai-for-software-development",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 15,
       "categories": [
         "coding"
       ],
@@ -2707,7 +2707,7 @@
       "type": "certificate",
       "url": "https://www.coursera.org/professional-certificates/data-engineering?utm_campaign=WebsiteCoursesDE&utm_medium=institutions&utm_source=deeplearning-ai",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 106,
       "categories": [
         "deployment"
       ],
@@ -2815,7 +2815,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/ai-for-good",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 36,
       "categories": [
         "safety"
       ],
@@ -2841,7 +2841,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/mathematics-for-machine-learning-and-data-science",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 94,
       "categories": [
         "general"
       ],
@@ -2865,7 +2865,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/machine-learning",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 95,
       "categories": [
         "general"
       ],
@@ -2891,7 +2891,7 @@
       "type": "certificate",
       "url": "https://www.coursera.org/specializations/tensorflow-advanced-techniques",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 90,
       "categories": [
         "training"
       ],
@@ -2909,7 +2909,7 @@
       "career_paths": [
         "researcher"
       ],
-      "partner": "Google"
+      "partner": "DeepLearning.AI"
     },
     {
       "id": "generative-adversarial-networks-gans-specialization",
@@ -2917,7 +2917,7 @@
       "type": "certificate",
       "url": "https://www.coursera.org/specializations/generative-adversarial-networks-gans",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 85,
       "categories": [
         "training"
       ],
@@ -2943,7 +2943,7 @@
       "type": "certificate",
       "url": "https://coursera.org/specializations/tensorflow-data-and-deployment?utm_source=deeplearningai&utm_medium=institutions&utm_campaign=WebsiteCoursesTFS2FirstButton",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 53,
       "categories": [
         "deployment"
       ],
@@ -2962,7 +2962,7 @@
         "builder",
         "researcher"
       ],
-      "partner": "Google"
+      "partner": "DeepLearning.AI"
     },
     {
       "id": "tensorflow-developer-professional-certificate",
@@ -2970,14 +2970,14 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/tensorflow-developer-professional-certificate",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 83,
       "categories": [
         "training"
       ],
       "instructor": "Laurence Moroney",
       "platform": "dlai",
       "prerequisites": [
-        "ai-python-for-beginners"
+        "deep-learning-specialization"
       ],
       "skills_taught": [
         "TensorFlow",
@@ -2989,7 +2989,7 @@
         "builder",
         "researcher"
       ],
-      "partner": "Google"
+      "partner": "DeepLearning.AI"
     },
     {
       "id": "natural-language-processing-specialization",
@@ -2997,7 +2997,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/natural-language-processing",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 110,
       "categories": [
         "general"
       ],
@@ -3023,7 +3023,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/deep-learning",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 129,
       "categories": [
         "training"
       ],
@@ -3049,7 +3049,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/ai-for-medicine",
       "difficulty": "intermediate",
-      "estimated_hours": 60,
+      "estimated_hours": 72,
       "categories": [
         "general"
       ],
@@ -3158,9 +3158,10 @@
           ]
         },
         {
-          "name": "Deep Learning",
+          "name": "Deep Learning & Frameworks",
           "courses": [
             "deep-learning-specialization",
+            "tensorflow-developer-professional-certificate",
             "pytorch-for-deep-learning",
             "attention-in-transformers-concepts-and-code-in-pytorch"
           ]
