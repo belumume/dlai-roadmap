@@ -1,6 +1,106 @@
 {
   "courses": [
     {
+      "id": "agent-memory-building-memory-aware-agents",
+      "title": "Agent Memory: Building Memory-Aware Agents",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/agent-memory-building-memory-aware-agents",
+      "difficulty": "intermediate",
+      "estimated_hours": 2,
+      "categories": ["agents"],
+      "instructor": "Richmond Alake",
+      "platform": "dlai",
+      "prerequisites": ["llms-as-operating-systems-agent-memory"],
+      "skills_taught": [
+        "agent memory architecture",
+        "semantic tool retrieval",
+        "memory extraction and consolidation",
+        "stateful agent design"
+      ],
+      "career_paths": ["builder", "enterprise"],
+      "partner": "Oracle"
+    },
+    {
+      "id": "build-and-train-an-llm-with-jax",
+      "title": "Build and Train an LLM with JAX",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/build-and-train-an-llm-with-jax",
+      "difficulty": "intermediate",
+      "estimated_hours": 1,
+      "categories": ["training"],
+      "instructor": "Chris Achard",
+      "platform": "dlai",
+      "prerequisites": ["how-transformer-llms-work"],
+      "skills_taught": [
+        "JAX fundamentals",
+        "LLM architecture from scratch",
+        "Flax neural network layers",
+        "model training and checkpointing"
+      ],
+      "career_paths": ["researcher"],
+      "partner": "Google"
+    },
+    {
+      "id": "agent-skills-with-anthropic",
+      "title": "Agent Skills with Anthropic",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/agent-skills-with-anthropic",
+      "difficulty": "beginner",
+      "estimated_hours": 2,
+      "categories": ["agents", "coding"],
+      "instructor": "Elie Schoppik",
+      "platform": "dlai",
+      "prerequisites": [],
+      "skills_taught": [
+        "agent skill creation",
+        "MCP integration",
+        "subagent orchestration",
+        "Claude API usage"
+      ],
+      "career_paths": ["builder"],
+      "partner": "Anthropic"
+    },
+    {
+      "id": "gemini-cli-code-and-create-with-an-open-source-agent",
+      "title": "Gemini CLI: Code & Create with an Open-Source Agent",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/gemini-cli-code-and-create-with-an-open-source-agent",
+      "difficulty": "beginner",
+      "estimated_hours": 1,
+      "categories": ["agents", "coding"],
+      "instructor": "Jack Wotherspoon",
+      "platform": "dlai",
+      "prerequisites": [],
+      "skills_taught": [
+        "Gemini CLI usage",
+        "MCP server integration",
+        "agentic coding workflows",
+        "context management"
+      ],
+      "career_paths": ["builder"],
+      "partner": "Google"
+    },
+    {
+      "id": "document-ai-from-ocr-to-agentic-doc-extraction",
+      "title": "Document AI: From OCR to Agentic Doc Extraction",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/document-ai-from-ocr-to-agentic-doc-extraction",
+      "difficulty": "intermediate",
+      "estimated_hours": 3,
+      "categories": ["rag", "deployment"],
+      "instructor": "David Park",
+      "platform": "dlai",
+      "prerequisites": ["preprocessing-unstructured-data-for-llm-applications"],
+      "skills_taught": [
+        "OCR and layout detection",
+        "agentic document extraction",
+        "document-powered RAG pipelines",
+        "serverless deployment"
+      ],
+      "career_paths": ["builder", "enterprise"],
+      "partner": "LandingAI"
+    },
+    {
       "id": "build-with-andrew",
       "title": "Build with Andrew",
       "type": "short",
@@ -496,29 +596,30 @@
       "partner": "UC Berkeley"
     },
     {
-      "id": "acp-agent-communication-protocol",
-      "title": "ACP: Agent Communication Protocol",
+      "id": "a2a-the-agent2agent-protocol",
+      "title": "A2A: The Agent2Agent Protocol",
       "type": "short",
-      "url": "https://learn.deeplearning.ai/courses/acp-agent-communication-protocol",
+      "url": "https://learn.deeplearning.ai/courses/a2a-the-agent2agent-protocol",
       "difficulty": "intermediate",
       "estimated_hours": 2,
       "categories": [
         "agents"
       ],
-      "instructor": "Sandi Besen",
+      "instructor": "Holt Skinner",
       "platform": "dlai",
       "prerequisites": [
         "multi-ai-agent-systems-with-crewai"
       ],
       "skills_taught": [
-        "agent communication",
-        "ACP protocol",
-        "multi-agent coordination"
+        "A2A protocol",
+        "agent-to-agent communication",
+        "multi-agent orchestration",
+        "agent interoperability"
       ],
       "career_paths": [
         "builder"
       ],
-      "partner": "IBM"
+      "partner": "Google Cloud"
     },
     {
       "id": "building-with-llama-4",
@@ -1390,34 +1491,6 @@
       "partner": "Flower Labs"
     },
     {
-      "id": "federated-fine-tuning-llms-private-data",
-      "title": "Federated Fine-tuning of LLMs with Private Data",
-      "type": "short",
-      "platform": "dlai",
-      "url": "https://learn.deeplearning.ai/courses/intro-to-federated-learning-c2",
-      "difficulty": "beginner",
-      "estimated_hours": 1,
-      "categories": [
-        "training",
-        "privacy"
-      ],
-      "instructor": "Flower Labs",
-      "prerequisites": [
-        "intro-to-federated-learning"
-      ],
-      "skills_taught": [
-        "federated fine-tuning",
-        "private LLM training",
-        "Flower",
-        "data privacy"
-      ],
-      "career_paths": [
-        "researcher",
-        "enterprise"
-      ],
-      "partner": "Flower Labs"
-    },
-    {
       "id": "pretraining-llms",
       "title": "Pretraining LLMs",
       "type": "short",
@@ -2207,33 +2280,6 @@
         "builder"
       ],
       "partner": "LlamaIndex"
-    },
-    {
-      "id": "quality-safety-llm-applications",
-      "title": "Quality and Safety for LLM Applications",
-      "type": "short",
-      "url": "https://learn.deeplearning.ai/courses/quality-safety-llm-applications",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
-      "categories": [
-        "safety"
-      ],
-      "instructor": "Bernease Herman",
-      "platform": "dlai",
-      "prerequisites": [
-        "chatgpt-prompt-engineering-for-developers"
-      ],
-      "skills_taught": [
-        "LLM safety",
-        "WhyLabs",
-        "quality monitoring",
-        "drift detection"
-      ],
-      "career_paths": [
-        "builder",
-        "enterprise"
-      ],
-      "partner": "WhyLabs"
     },
     {
       "id": "vector-databases-embeddings-applications",
@@ -3190,7 +3236,7 @@
           "name": "Security Core",
           "courses": [
             "red-teaming-llm-applications",
-            "quality-safety-llm-applications"
+            "safe-and-reliable-ai-via-guardrails"
           ]
         },
         {
