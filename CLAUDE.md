@@ -43,7 +43,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] mathBackground filters elective difficulty
 - [x] goal affects specialization preferences
 - [x] Learning Deep attribution with profile link
-- [x] Playwright test suite (18/18 passing)
+- [x] Playwright test suite (20/20 passing)
 - [x] Filter UI on roadmap view (category + difficulty filters)
 - [x] Critical path vs optional marking (Required/Optional badges on phases)
 - [x] Timeline warning display when core courses exceed target timeline
@@ -66,7 +66,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] NLP Specialization added to Researcher path (31 courses in pathways)
 - [x] Pathway audit completed - 3 roles confirmed sufficient
 - [x] Responsive design (mobile-first, icon-only buttons on mobile, 44px touch targets)
-- [x] Category tabs in CourseSelector (11 categories, scrollable checklist, per @Deminiko feedback)
+- [x] Category tabs in CourseSelector (9 categories + Popular/All tabs, scrollable checklist, per @Deminiko feedback)
 
 ### ALL FEATURES COMPLETE - READY FOR LAUNCH
 
