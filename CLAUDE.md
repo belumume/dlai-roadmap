@@ -57,7 +57,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] Calendar export (.ics) - Export roadmap to iCalendar format
 - [x] Algorithm robustness improvements:
   - Restrictive fallbacks for invalid inputs
-  - Both experience AND math filters applied to pathway phases
+  - Experience filter applied to pathway phases, math filter to electives only
   - Zero weeks edge case guard for milestones
 - [x] Quality-based elective sorting (partner tier + type + hours)
 - [x] Dynamic Q8 course counts (was hardcoded)
@@ -77,7 +77,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 | goal | Affects specialization priority and elective count |
 | timeCommitment | Sets weekly pace (3.5-25 hrs) |
 | targetRole | Selects pathway (builder/researcher/enterprise) |
-| mathBackground | Filters difficulty levels (phases + electives) |
+| mathBackground | Filters elective difficulty (not pathway phases) |
 | timeline | Scales duration estimates |
 | priorCourses | Removes completed courses from roadmap |
 | interests | Adds matching elective courses |
