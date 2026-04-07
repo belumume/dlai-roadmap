@@ -159,7 +159,10 @@ export default function RoadmapView({ roadmap, onRestart }) {
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <span className="text-xl sm:text-2xl flex-shrink-0">{pathwayInfo.icon}</span>
             <div className="min-w-0">
-              <h1 className="font-display text-base sm:text-xl font-bold text-[var(--text-primary)] truncate">{pathwayName}</h1>
+              <div className="flex items-center gap-2">
+                <h1 className="font-display text-base sm:text-xl font-bold text-[var(--text-primary)] truncate">{pathwayName}</h1>
+                <span className="flex-shrink-0 px-1.5 py-0.5 text-[10px] sm:text-xs font-mono font-semibold rounded-full bg-[var(--node-amber)]/15 text-[var(--node-amber)] border border-[var(--node-amber)]/30">Beta</span>
+              </div>
               <p className="text-xs sm:text-sm text-[var(--text-secondary)] hidden sm:block">{pathwayInfo.tagline}</p>
             </div>
           </div>

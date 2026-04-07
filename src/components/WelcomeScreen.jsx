@@ -73,6 +73,8 @@ export default function WelcomeScreen({ onStart }) {
               <span className="font-mono text-sm text-[var(--text-secondary)]">
                 {courseData.courses.length} DeepLearning.AI Courses
               </span>
+              <span className="w-px h-4 bg-[var(--border)]" />
+              <span className="font-mono text-xs font-semibold text-[var(--node-amber)]">Beta</span>
             </div>
           </div>
 
