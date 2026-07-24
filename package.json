@@ -12,25 +12,25 @@
   "dependencies": {
     "d3": "^7.9.0",
     "html2canvas": "^1.4.1",
-    "jspdf": "^3.0.4",
+    "jspdf": "^4.2.1",
     "lucide-react": "^0.560.0",
-    "posthog-js": "^1.352.0",
+    "posthog-js": "^1.407.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.57.0",
-    "@tailwindcss/vite": "^4.1.18",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "^5.2.0",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "playwright": "^1.57.0",
     "tailwindcss": "^4.1.18",
-    "vite": "^7.2.4"
+    "vite": "^8.1.5"
   }
 }
