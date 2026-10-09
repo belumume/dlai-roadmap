@@ -29,7 +29,7 @@ export function generatePathway(answers) {
   const priorCourses = new Set(answers.priorCourses || []);
   const skipFoundation = answers.experience === 'professional' || answers.experience === 'ml-basics';
 
-  // Experience-based difficulty filtering for pathway courses
+  // Experience-based difficulty band for electives
   const experienceDifficultyMap = {
     'none': ['beginner', 'intermediate'], // beginners can stretch to intermediate
     'some-python': ['beginner', 'intermediate', 'advanced'],
@@ -45,7 +45,12 @@ export function generatePathway(answers) {
     'strong': ['beginner', 'intermediate', 'advanced'],
     'expert': ['beginner', 'intermediate', 'advanced'],
   };
-  const allowedDifficulties = mathDifficultyMap[answers.mathBackground] || ['beginner'];
+  const mathAllowed = mathDifficultyMap[answers.mathBackground] || ['beginner'];
+  // Electives must fit both the math and experience bands. When they don't
+  // overlap (e.g. professional + minimal math), fall back to the experience band
+  // rather than offering no electives at all.
+  const bothAllowed = mathAllowed.filter(d => allowedByExperience.includes(d));
+  const allowedDifficulties = bothAllowed.length > 0 ? bothAllowed : allowedByExperience;
 
   // Determine learning priority based on goal
   const goalPriorities = {
@@ -83,11 +88,14 @@ export function generatePathway(answers) {
   // Phase 2+: Role-specific phases
   if (pathway && pathway.phases) {
     pathway.phases.forEach((phase, index) => {
+      // Pathway courses are the role's required core, so they aren't filtered by
+      // difficulty. DLAI labels describe entry level, not whether an experienced
+      // learner already knows the material; experience is applied by skipping the
+      // Foundation trunk, and learners remove courses they've done via priorCourses.
       const phaseCourses = phase.courses
         .filter(id => !priorCourses.has(id))
         .map(id => courseMap.get(id))
-        .filter(Boolean)
-        .filter(course => allowedByExperience.includes(course.difficulty));
+        .filter(Boolean);
 
       if (phaseCourses.length > 0) {
         // Check if this is a math-heavy phase for researcher with weak math background
@@ -121,10 +129,8 @@ export function generatePathway(answers) {
       .filter(c => {
         if (priorCourses.has(c.id)) return false;
         if (courseSequence.some(phase => phase.courses.some(pc => pc.id === c.id))) return false;
-        // Filter by math-appropriate difficulty
+        // Filter by math- and experience-appropriate difficulty
         if (!allowedDifficulties.includes(c.difficulty)) return false;
-        // Filter by experience-appropriate difficulty
-        if (!allowedByExperience.includes(c.difficulty)) return false;
         return c.categories?.some(cat => answers.interests.includes(cat));
       });
 
@@ -134,7 +140,7 @@ export function generatePathway(answers) {
       // Partner tier: DLAI core highest, major partners next, others last
       const partnerTiers = {
         'DeepLearning.AI': 100,
-        'Google': 80, 'OpenAI': 80, 'Meta': 80, 'Microsoft': 80,
+        'Google': 80, 'Google Cloud': 80, 'OpenAI': 80, 'Meta': 80, 'Microsoft': 80,
         'AWS': 70, 'Anthropic': 70, 'Hugging Face': 70,
         'LangChain': 60, 'LlamaIndex': 60, 'Stanford': 60, 'Stanford/DeepLearning.AI': 60,
       };
@@ -216,9 +222,10 @@ export function generatePathway(answers) {
 
   // Calculate totals
   const totalCourses = timelinedSequence.reduce((sum, phase) => sum + phase.courses.length, 0);
-  const totalHours = timelinedSequence.reduce((sum, phase) =>
+  // Short-course hours are fractional (e.g. 1.3), so round the displayed total
+  const totalHours = Math.round(timelinedSequence.reduce((sum, phase) =>
     sum + phase.courses.reduce((s, c) => s + (c.estimated_hours || 3), 0), 0
-  );
+  ));
   const totalWeeks = currentWeek;
 
   // Generate milestones at 25%, 50%, 75%, 100% (guard against zero weeks)
