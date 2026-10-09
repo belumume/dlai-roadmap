@@ -52,12 +52,16 @@ test.describe('Export and share', () => {
     // Simulates a tab left open across a deploy: the old jsPDF chunk is gone
     await page.route(/jspdf/i, (route) => route.abort());
 
-    const dialog = page.waitForEvent('dialog');
+    // Dismiss inside the handler: the click cannot finish while the alert is open
+    const dialogs = [];
+    page.on('dialog', async (dialog) => {
+      dialogs.push({ type: dialog.type(), message: dialog.message() });
+      await dialog.dismiss();
+    });
     await page.getByRole('button', { name: /Export PDF/ }).click();
-    const shown = await dialog;
-    expect(shown.type()).toBe('alert');
-    expect(shown.message()).toContain('reload');
-    await shown.dismiss();
+    await expect.poll(() => dialogs.length).toBe(1);
+    expect(dialogs[0].type).toBe('alert');
+    expect(dialogs[0].message).toContain('reload');
     await expect(page.getByRole('button', { name: /Export PDF/ })).toBeEnabled();
   });
 
