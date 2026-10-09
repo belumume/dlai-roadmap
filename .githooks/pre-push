@@ -1,3 +1,8 @@
 #!/bin/sh
-# Rejects pushes whose new commits link to a Claude session, thread or project
-exec node "$(git rev-parse --show-toplevel)/scripts/claude-link-guard.cjs" pre-push
+# Rejects pushes whose new commits link to a Claude session, thread or project,
+# then runs the global pre-push hook, which this repo's hooksPath would hide
+input=$(cat)
+printf '%s\n' "$input" | node "$(git rev-parse --show-toplevel)/scripts/claude-link-guard.cjs" pre-push || exit 1
+g=$(git config --global --type=path --get core.hooksPath)
+here=$(cd "$(dirname "$0")" && pwd -P)
+if [ -n "$g" ] && [ -x "$g/pre-push" ] && [ "$(cd "$g" && pwd -P)" != "$here" ]; then printf '%s\n' "$input" | exec "$g/pre-push" "$@"; fi
