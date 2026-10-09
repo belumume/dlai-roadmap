@@ -22,7 +22,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - `src/components/RoadmapView.jsx` - Generated roadmap display
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
 - `src/utils/exportCalendar.js` - iCalendar (.ics) export function
-- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` - Playwright tests (34 tests)
+- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` - Playwright tests (35 tests)
 - `docs/solutions/` - documented solutions and methodology (data quality, curriculum design)
 
 ## Approved Plan Status
@@ -43,7 +43,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] mathBackground filters elective difficulty
 - [x] goal affects specialization preferences
 - [x] Learning Deep attribution with profile link
-- [x] Playwright test suite (34/34 passing)
+- [x] Playwright test suite (35/35 passing)
 - [x] Filter UI on roadmap view (category + difficulty filters)
 - [x] Critical path vs optional marking (Required/Optional badges on phases)
 - [x] Timeline warning display when core courses exceed target timeline

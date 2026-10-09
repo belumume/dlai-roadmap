@@ -159,23 +159,23 @@ export async function exportRoadmapPDF(roadmap) {
     yPos += 8;
   });
 
-  // Footer on last page
+  // Footer on every page so no page reads as an official document
   const footerY = pageHeight - 15;
-  doc.setTextColor(148, 163, 184); // slate-400
-  doc.setFontSize(8);
-  doc.setFont('helvetica', 'normal');
-  doc.text(
-    'DLAI Roadmap (unofficial community tool, not affiliated with DeepLearning.AI) | belumume.github.io/dlai-roadmap',
-    pageWidth / 2,
-    footerY,
-    { align: 'center' }
-  );
-  doc.text(
-    `Generated on ${new Date().toLocaleDateString()}`,
-    pageWidth / 2,
-    footerY + 5,
-    { align: 'center' }
-  );
+  const generatedOn = `Generated on ${new Date().toLocaleDateString()}`;
+  const pageCount = doc.getNumberOfPages();
+  for (let page = 1; page <= pageCount; page++) {
+    doc.setPage(page);
+    doc.setTextColor(71, 85, 105); // slate-600, 7.6:1 on white
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.text(
+      'DLAI Roadmap (unofficial community tool, not affiliated with DeepLearning.AI) | belumume.github.io/dlai-roadmap',
+      pageWidth / 2,
+      footerY,
+      { align: 'center' }
+    );
+    doc.text(generatedOn, pageWidth / 2, footerY + 5, { align: 'center' });
+  }
 
   // Save the PDF
   doc.save(`DLAI-Roadmap-${pathwayName.replace(/\s+/g, '-')}.pdf`);

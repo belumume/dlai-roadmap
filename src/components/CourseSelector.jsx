@@ -145,7 +145,7 @@ export default function CourseSelector({ selected = [], onChange }) {
                 }}
                 className={`flex-shrink-0 px-3 py-2 rounded-lg text-sm font-medium transition-all ${
                   isActive
-                    ? 'bg-[var(--node-cyan)] text-[var(--bg-primary)]'
+                    ? 'bg-[var(--node-cyan)] text-[var(--void)]'
                     : 'bg-[var(--elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface)]'
                 }`}
               >
