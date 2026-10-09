@@ -52,19 +52,16 @@ test.describe('Export and share', () => {
     // Simulates a tab left open across a deploy: the old jsPDF chunk is gone
     await page.route(/jspdf/i, (route) => route.abort());
 
-    // Dismiss inside the handler: with waitForEvent the listener is gone by the time
-    // the test calls dismiss(), so Playwright may auto-dismiss first and dismiss() hangs
-    const shown = new Promise((resolve) => {
-      page.once('dialog', async (dialog) => {
-        const info = { type: dialog.type(), message: dialog.message() };
-        await dialog.dismiss();
-        resolve(info);
-      });
+    // Dismiss inside the handler: the click cannot finish while the alert is open
+    const dialogs = [];
+    page.on('dialog', async (dialog) => {
+      dialogs.push({ type: dialog.type(), message: dialog.message() });
+      await dialog.dismiss();
     });
     await page.getByRole('button', { name: /Export PDF/ }).click();
-    const { type, message } = await shown;
-    expect(type).toBe('alert');
-    expect(message).toContain('reload');
+    await expect.poll(() => dialogs.length).toBe(1);
+    expect(dialogs[0].type).toBe('alert');
+    expect(dialogs[0].message).toContain('reload');
     await expect(page.getByRole('button', { name: /Export PDF/ })).toBeEnabled();
   });
 
@@ -130,5 +127,83 @@ test.describe('Export and share', () => {
     await page.waitForLoadState('networkidle');
 
     expect(analyticsRequests).toEqual([]);
+  });
+});
+
+test.describe('Analytics storage', () => {
+  // Mirrors the live project's remote config, which has session replay on
+  const REMOTE_CONFIG = {
+    analytics: { endpoint: '/i/v0/e/' },
+    sessionRecording: {
+      endpoint: '/s/',
+      recorderVersion: 'v2',
+      scriptConfig: { script: 'posthog-recorder' },
+      networkPayloadCapture: { recordBody: true, recordHeaders: true },
+      consoleLogRecordingEnabled: true,
+      version: 1,
+    },
+    surveys: false,
+    heatmaps: false,
+  };
+
+  test('PostHog stores nothing in cookies or browser storage, with session replay on', async ({ page, context }) => {
+    // Serve PostHog locally so nothing reaches the live project
+    await page.route(/posthog\.com/, (route) => {
+      const { pathname } = new URL(route.request().url());
+      if (pathname.endsWith('/config.js')) {
+        return route.fulfill({
+          contentType: 'application/javascript',
+          body: `window._POSTHOG_REMOTE_CONFIG = window._POSTHOG_REMOTE_CONFIG || {};
+            window._POSTHOG_REMOTE_CONFIG['phc_97p9Je7K9hYvBgK82mG2H2RVpjzwxHqeQPKeLCOgEYG'] = { config: ${JSON.stringify(REMOTE_CONFIG)}, siteApps: [] };`,
+        });
+      }
+      const script = pathname.match(/\/static\/[^/]+\/([\w-]+\.js)$/);
+      if (script) {
+        const file = require.resolve(`posthog-js/dist/${script[1]}`);
+        return route.fulfill({ contentType: 'application/javascript', body: fs.readFileSync(file, 'utf8') });
+      }
+      return route.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+    });
+    await page.goto(BASE_URL);
+
+    await page.evaluate(async () => {
+      const { startPostHog } = await import('/dlai-roadmap/src/utils/analytics.js');
+      window.__ph = startPostHog();
+    });
+    // Replay must really be recording, or this test would not cover it
+    await expect.poll(() => page.evaluate(() => window.__ph.sessionRecording?.status), { timeout: 10000 }).toBe('active');
+    await page.mouse.move(100, 100);
+    await page.getByRole('button', { name: /Get Started/ }).click();
+    await page.waitForTimeout(2000);
+
+    const cookies = (await context.cookies()).map((c) => c.name);
+    const stored = await page.evaluate(() => [...Object.keys(localStorage), ...Object.keys(sessionStorage)]);
+    expect(cookies.filter((n) => /ph_|posthog/i.test(n))).toEqual([]);
+    expect(stored.filter((k) => /ph_|posthog/i.test(k))).toEqual([]);
+  });
+
+  test('PostHog surveys are disabled, so they cannot write their own storage keys', async ({ page }) => {
+    const surveyScripts = [];
+    await page.route(/posthog\.com/, (route) => {
+      const { pathname } = new URL(route.request().url());
+      if (/surveys/.test(pathname)) surveyScripts.push(pathname);
+      if (pathname.endsWith('/config.js')) {
+        return route.fulfill({
+          contentType: 'application/javascript',
+          body: `window._POSTHOG_REMOTE_CONFIG = window._POSTHOG_REMOTE_CONFIG || {};
+            window._POSTHOG_REMOTE_CONFIG['phc_97p9Je7K9hYvBgK82mG2H2RVpjzwxHqeQPKeLCOgEYG'] = { config: ${JSON.stringify({ ...REMOTE_CONFIG, surveys: true })}, siteApps: [] };`,
+        });
+      }
+      return route.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+    });
+    await page.goto(BASE_URL);
+    await page.evaluate(async () => {
+      const { startPostHog } = await import('/dlai-roadmap/src/utils/analytics.js');
+      window.__ph = startPostHog();
+    });
+    await page.waitForLoadState('networkidle');
+
+    expect(await page.evaluate(() => window.__ph.config.disable_surveys)).toBe(true);
+    expect(surveyScripts).toEqual([]);
   });
 });
