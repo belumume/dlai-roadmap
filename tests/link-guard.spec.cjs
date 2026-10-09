@@ -29,6 +29,30 @@ test('detects session, project and bare links, trailers and the attribution mark
   expect(findLinks('Co-Authored-By: Claude <noreply@anthropic.com>')).toHaveLength(0);
 });
 
+test('catches links with no path, a query, a subdomain or URL encoding, but not prose', () => {
+  expect(findLinks(`https://${HOST}`)).toHaveLength(1);
+  expect(findLinks(`https://${HOST}?q=1`)).toHaveLength(1);
+  expect(findLinks(`https://code.${HOST}/x`)).toHaveLength(1);
+  expect(findLinks(`www.${HOST}`)).toHaveLength(1);
+  expect(findLinks(`go=https%3A%2F%2F${HOST}%2Fcode`)).toHaveLength(1);
+  expect(findLinks(`any URL on the ${HOST} domain`)).toHaveLength(0);
+});
+
+test('scrub leaves no stray pieces and keeps required fields non-empty', () => {
+  const titled = scrub(`see [a](${SESSION} 'title') now`);
+  expect(titled).toBe('see a now');
+  expect(scrub(`intro\n\n[1]: ${SESSION}\n`)).toBe('intro\n');
+  expect(scrub(`Done.\r\n\r\n\r\n${SESSION}\r\n`)).toBe('Done.\n');
+  expect(findLinks(scrub(`x https://code.${HOST}/y z`))).toHaveLength(0);
+  expect(scrub(`x https://code.${HOST}/y z`)).toBe('x  z');
+});
+
+test('pre-push copes with a remote tip that was never fetched', () => {
+  const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim();
+  const result = run(['pre-push'], `refs/heads/x ${head} refs/heads/x ${'1'.repeat(40)}\n`);
+  expect(result.stderr).not.toContain('fatal');
+});
+
 test('scrub removes the attribution block and session lines but keeps the rest', () => {
   const body = [
     MARKER,
@@ -69,6 +93,12 @@ test('Claude Code hook blocks publishing a link and allows everything else', () 
   const push = { tool_name: 'Bash', tool_input: { command: `cd repo && git -C . commit -m "x ${SESSION}"` } };
   const search = { tool_name: 'Bash', tool_input: { command: `grep -r ${HOST}/ .` } };
   expect(run(['claude-hook'], JSON.stringify(push)).status).toBe(2);
+  const bodyFile = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'guard-')), 'body.md');
+  fs.writeFileSync(bodyFile, `Done\n\n${SESSION}\n`);
+  const viaFile = { tool_name: 'Bash', tool_input: { command: `GH_X=1 gh pr create --body-file ${bodyFile}` } };
+  const prefixed = { tool_name: 'Bash', tool_input: { command: `if true; then /usr/bin/git commit -m "${TRAILER}"; fi` } };
+  expect(run(['claude-hook'], JSON.stringify(viaFile)).status).toBe(2);
+  expect(run(['claude-hook'], JSON.stringify(prefixed)).status).toBe(2);
   const clean = { tool_name: 'mcp__github__create_pull_request', tool_input: { body: 'Done' } };
   expect(run(['claude-hook'], JSON.stringify(pr)).status).toBe(2);
   expect(run(['claude-hook'], JSON.stringify(commit)).status).toBe(2);

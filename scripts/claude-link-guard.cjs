@@ -16,20 +16,30 @@ const fs = require('fs');
 const { execFileSync } = require('child_process');
 
 const DOMAIN = 'claude' + '\\.ai';
-const LINK = new RegExp(`(?:https?://)?(?:www\\.)?${DOMAIN}/`, 'i');
+// A URL: a scheme or www. before the domain (any subdomain, any or no path), or
+// the bare domain followed by a path, query or fragment. A plain mention of the
+// domain in prose is not a link.
+const URL_SRC =
+  `(?:(?:https?://|www\\.)(?:[\\w-]+\\.)*${DOMAIN}\\b|(?:[\\w-]+\\.)*${DOMAIN}(?=[/?#]))[^\\s)>\\]'"]*`;
+const ENCODED = new RegExp(`https?%3A%2F%2F(?:[\\w-]+\\.)*${DOMAIN}`, 'i');
+const LINK = new RegExp(URL_SRC, 'i');
 const TRAILER = new RegExp('^\\s*Claude' + '-Session:', 'im');
 const MARKER = new RegExp('claude' + '-projects-attribution', 'i');
 const MD_LINK = new RegExp(
-  `\\[([^\\]]*)\\]\\(\\s*<?(?:https?://)?(?:www\\.)?${DOMAIN}/[^)\\s]*>?(?:\\s+"[^"]*")?\\s*\\)`,
+  `\\[([^\\]]*)\\]\\(\\s*<?${URL_SRC}>?(?:\\s+(?:"[^"]*"|'[^']*'|\\([^)]*\\)))?\\s*\\)`,
   'gi'
 );
-const BARE_URL = new RegExp(`<?(?:https?://)?(?:www\\.)?${DOMAIN}/[^\\s)>\\]]*>?`, 'gi');
+const REF_DEF = new RegExp(`^\\s*\\[[^\\]]+\\]:\\s*<?${URL_SRC}`, 'i');
+const BARE_URL = new RegExp(`<?${URL_SRC}>?`, 'gi');
+const ENCODED_URL = new RegExp(`\\S*${ENCODED.source}\\S*`, 'gi');
+
+function lineHasLink(line) {
+  return LINK.test(line) || ENCODED.test(line) || TRAILER.test(line) || MARKER.test(line);
+}
 
 function findLinks(text) {
   if (!text) return [];
-  return String(text)
-    .split('\n')
-    .filter((line) => LINK.test(line) || TRAILER.test(line) || MARKER.test(line));
+  return String(text).replace(/\r\n?/g, '\n').split('\n').filter(lineHasLink);
 }
 
 function hasLink(text) {
@@ -41,17 +51,25 @@ function hasLink(text) {
 function scrub(text) {
   if (!hasLink(text)) return text;
   const out = [];
-  for (const line of String(text).split('\n')) {
-    if (!(LINK.test(line) || TRAILER.test(line) || MARKER.test(line))) {
+  for (const line of String(text).replace(/\r\n?/g, '\n').split('\n')) {
+    if (!lineHasLink(line)) {
       out.push(line);
       continue;
     }
-    if (MARKER.test(line) || TRAILER.test(line) || /^\s*_*\s*Requested by\b/i.test(line)) continue;
-    const withoutLinks = line.replace(MD_LINK, '').replace(BARE_URL, '');
+    if (MARKER.test(line) || TRAILER.test(line) || REF_DEF.test(line)) continue;
+    if (/^\s*_*\s*Requested by\b/i.test(line)) continue;
+    const strip = (s) => s.replace(BARE_URL, '').replace(ENCODED_URL, '');
+    const withoutLinks = strip(line.replace(MD_LINK, ''));
     if (/^[\s·•|*_\-–—()[\]:,.→]*$/.test(withoutLinks)) continue;
-    out.push(line.replace(MD_LINK, '$1').replace(BARE_URL, '').replace(/[ \t]+$/, ''));
+    out.push(strip(line.replace(MD_LINK, '$1')).replace(/[ \t]+$/, ''));
   }
-  return out.join('\n').replace(/\n{3,}/g, '\n\n');
+  return out.join('\n').replace(/\n{3,}/g, '\n\n').replace(/\n{2,}$/, '\n');
+}
+
+// Text GitHub will accept where a field must not be empty
+function scrubField(text) {
+  const clean = scrub(text);
+  return clean.trim() ? clean : '(link removed)';
 }
 
 function report(where, lines) {
@@ -60,7 +78,7 @@ function report(where, lines) {
 }
 
 function git(args) {
-  return execFileSync('git', args, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  return execFileSync('git', args, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] });
 }
 
 function checkMessage(message, where) {
@@ -80,7 +98,10 @@ function checkCommits(range) {
 }
 
 function checkTree() {
-  const pattern = `(https?://)?(www\\.)?${DOMAIN}/|^\\s*Claude` + '-Session:|claude' + '-projects-attribution';
+  // POSIX classes only, so BSD grep (macOS) behaves the same as GNU
+  const pattern =
+    `(https?://|www\\.)[a-z0-9.-]*${DOMAIN}([^a-z0-9.-]|$)|${DOMAIN}[/?#]|https?%3a%2f%2f[a-z0-9.-]*${DOMAIN}` +
+    '|^[[:space:]]*Claude' + '-Session:|claude' + '-projects-attribution';
   try {
     const out = git(['grep', '-n', '-I', '-i', '-E', pattern]);
     report('tracked files', out.trim().split('\n'));
@@ -142,7 +163,7 @@ async function scrubEvent() {
   for (const [key, value] of Object.entries(target.fields)) {
     if (hasLink(value)) {
       report(`${target.label} ${key}`, findLinks(value));
-      update[key] = scrub(value);
+      update[key] = scrubField(value);
     }
   }
   if (!Object.keys(update).length) return true;
@@ -166,15 +187,22 @@ async function* paginate(path) {
 async function sweep() {
   const repo = process.env.GITHUB_REPOSITORY;
   let fixed = 0;
+  let failed = 0;
+  // One refused write (a locked issue, someone else's review) must not stop the sweep
   const fix = async (label, method, path, fields) => {
     const update = {};
     for (const [key, value] of Object.entries(fields)) {
-      if (hasLink(value)) update[key] = scrub(value);
+      if (hasLink(value)) update[key] = scrubField(value);
     }
     if (!Object.keys(update).length) return;
-    await api(method, path, update);
-    console.log(`Removed Claude links from ${label}.`);
-    fixed++;
+    try {
+      await api(method, path, update);
+      console.log(`Removed Claude links from ${label}.`);
+      fixed++;
+    } catch (err) {
+      console.error(`Could not scrub ${label}: ${err.message}`);
+      failed++;
+    }
   };
   for await (const issue of paginate(`/repos/${repo}/issues?state=all`)) {
     const kind = issue.pull_request ? 'pulls' : 'issues';
@@ -191,20 +219,29 @@ async function sweep() {
   for await (const c of paginate(`/repos/${repo}/pulls/comments`)) {
     await fix(`review comment ${c.id}`, 'PATCH', `/repos/${repo}/pulls/comments/${c.id}`, { body: c.body });
   }
-  console.log(`Sweep done: ${fixed} item(s) scrubbed.`);
-  return true;
+  console.log(`Sweep done: ${fixed} item(s) scrubbed, ${failed} failed.`);
+  return failed === 0;
 }
 
 function claudeHook() {
   const input = JSON.parse(fs.readFileSync(0, 'utf8') || '{}');
   const tool = input.tool_name || '';
   const toolInput = input.tool_input || {};
-  // Only guard calls that publish text outside the session
-  const publishes = /(^|[;&|(]|\n)\s*(git\b[^\n;&|]*\b(commit|push|tag)\b|gh\s+(pr|issue|api|release)\b)/;
-  if (tool === 'Bash' && !publishes.test(toolInput.command || '')) {
-    return true;
+  let text = JSON.stringify(toolInput);
+  if (tool === 'Bash') {
+    // Only guard commands that publish text outside the session, wherever git or
+    // gh appears in them, plus any message or body file they read
+    const command = toolInput.command || '';
+    const publishes = /\bgit\b[\s\S]*\b(commit|push|tag|notes)\b|\bgh\b[\s\S]*\b(pr|issue|api|release|gist)\b/;
+    if (!publishes.test(command)) return true;
+    for (const [, , file] of Array.from(command.matchAll(/(?:--body-file|--file|-F)[=\s]+(['"]?)([^\s'"]+)\1/g))) {
+      try {
+        text += '\n' + fs.readFileSync(file, 'utf8');
+      } catch {
+        // not a readable file; the command itself is still checked
+      }
+    }
   }
-  const text = JSON.stringify(toolInput);
   const hits = findLinks(text.replace(/\\n/g, '\n'));
   if (!hits.length) return true;
   console.error(
@@ -221,7 +258,16 @@ function prePush() {
   for (const line of lines) {
     const [, localSha, , remoteSha] = line.split(' ');
     if (/^0+$/.test(localSha)) continue; // branch deletion
-    const range = /^0+$/.test(remoteSha) ? [localSha, '--not', '--remotes'] : [`${remoteSha}..${localSha}`];
+    // A remote tip we never fetched (e.g. a force-push) can't anchor a range
+    let known = !/^0+$/.test(remoteSha);
+    if (known) {
+      try {
+        git(['cat-file', '-e', `${remoteSha}^{commit}`]);
+      } catch {
+        known = false;
+      }
+    }
+    const range = known ? [`${remoteSha}..${localSha}`] : [localSha, '--not', '--remotes'];
     if (!checkCommits(range)) ok = false;
   }
   return ok;

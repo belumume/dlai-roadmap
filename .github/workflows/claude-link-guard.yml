@@ -38,7 +38,7 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
 
       - name: Check files and this PR's commit messages
-        if: github.event_name == 'pull_request'
+        if: always() && github.event_name == 'pull_request'
         run: node scripts/claude-link-guard.cjs check-repo "$BASE_SHA..$HEAD_SHA"
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
