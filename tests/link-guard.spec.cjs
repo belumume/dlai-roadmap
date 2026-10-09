@@ -45,6 +45,10 @@ test('scrub leaves no stray pieces and keeps required fields non-empty', () => {
   expect(scrub(`Done.\r\n\r\n\r\n${SESSION}\r\n`)).toBe('Done.\n');
   expect(findLinks(scrub(`x https://code.${HOST}/y z`))).toHaveLength(0);
   expect(scrub(`x https://code.${HOST}/y z`)).toBe('x  z');
+  // The review bot's "Fix this" links carry parentheses inside the query
+  const fixThis = `low risk.\n\n[Fix this →](https://${HOST}/code?q=regexes%20(around%20lines%2018-26)%20slash%20(x)&repo=a/b)\n`;
+  expect(scrub(fixThis)).toBe('low risk.\n');
+  expect(scrub(`see (https://${HOST}/code) here`)).toBe('see () here');
 });
 
 test('pre-push copes with a remote tip that was never fetched', () => {

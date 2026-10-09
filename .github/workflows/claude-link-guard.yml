@@ -1,9 +1,11 @@
 name: Claude link guard
 
 # Links to Claude sessions, threads and projects must never appear on GitHub.
-# PR runs fail on links in files or commit messages, and every PR, issue,
+# PR and push runs fail on links in files or commit messages (a push to any
+# branch, from any client, turns red), and every PR, issue,
 # comment or review that carries one is edited to remove it.
 on:
+  push:
   pull_request:
     types: [opened, edited, synchronize, reopened]
   issues:
@@ -43,3 +45,19 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+
+      - name: Check files and pushed commit messages
+        if: always() && github.event_name == 'push'
+        run: |
+          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            # New branch: only the commits main doesn't already have
+            node scripts/claude-link-guard.cjs check-repo "$AFTER" --not origin/main
+          elif git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+            node scripts/claude-link-guard.cjs check-repo "$BEFORE..$AFTER"
+          else
+            # Force-push over commits we can't see: check the whole history
+            node scripts/claude-link-guard.cjs check-repo "$AFTER"
+          fi
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.event.after }}

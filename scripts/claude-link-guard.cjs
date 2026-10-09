@@ -5,7 +5,7 @@
 // Modes:
 //   check-msg <file>         commit-msg hook: reject a commit message with a link
 //   pre-push                 pre-push hook: reject outgoing commits with a link
-//   check-repo [range]       CI: scan tracked files, and commit messages in range
+//   check-repo [revs...]     CI: scan tracked files, and commit messages in revs
 //   github-event             CI: scrub the PR, issue, comment or review that fired,
 //                            or sweep the whole repo on a manual or scheduled run
 //   claude-hook              Claude Code PreToolUse hook: block the tool call
@@ -20,7 +20,9 @@ const DOMAIN = 'claude' + '\\.ai';
 // the bare domain followed by a path, query or fragment. A plain mention of the
 // domain in prose is not a link.
 const URL_SRC =
-  `(?:(?:https?://|www\\.)(?:[\\w-]+\\.)*${DOMAIN}\\b|(?:[\\w-]+\\.)*${DOMAIN}(?=[/?#]))[^\\s)>\\]'"]*`;
+  `(?:(?:https?://|www\\.)(?:[\\w-]+\\.)*${DOMAIN}\\b|(?:[\\w-]+\\.)*${DOMAIN}(?=[/?#]))` +
+  // Path and query, allowing one level of balanced parentheses inside them
+  `(?:[^\\s()<>\\]'"]|\\([^\\s()<>]*\\))*`;
 const ENCODED = new RegExp(`https?%3A%2F%2F(?:[\\w-]+\\.)*${DOMAIN}`, 'i');
 const LINK = new RegExp(URL_SRC, 'i');
 const TRAILER = new RegExp('^\\s*Claude' + '-Session:', 'im');
@@ -274,7 +276,7 @@ function prePush() {
 }
 
 async function main(argv) {
-  const [mode, arg] = argv;
+  const [mode, arg, ...rest] = argv;
   switch (mode) {
     case 'check-msg':
       return checkMessage(fs.readFileSync(arg, 'utf8'), 'commit message');
@@ -282,7 +284,7 @@ async function main(argv) {
       return prePush();
     case 'check-repo': {
       const treeOk = checkTree();
-      const commitsOk = arg ? checkCommits([arg]) : true;
+      const commitsOk = arg ? checkCommits([arg, ...rest]) : true;
       return treeOk && commitsOk;
     }
     case 'github-event':
