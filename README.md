@@ -15,6 +15,7 @@ A personalized pathway generator that transforms DeepLearning.AI's 100+ courses 
 - **Smart Questionnaire**: 8-question assessment capturing your experience level, goals, time commitment, and interests
 - **3 Career Paths**: AI Product Engineer, Model Architect, or Enterprise AI Leader
 - **Personalized Timeline**: Week-by-week schedule based on your availability
+- **Add Any Course**: Search the full catalog and add courses outside your path; they stay in the PDF, calendar and share link
 - **Progress Tracking**: Mark courses complete and track your journey
 - **PDF Export**: Download your roadmap to print or share
 - **Calendar Export**: Export to .ics for Google Calendar, Outlook, etc.

@@ -27,6 +27,8 @@ export function generatePathway(answers) {
 
   // Determine which courses to skip based on prior experience
   const priorCourses = new Set(answers.priorCourses || []);
+  // Courses the learner added by hand from the full catalog, in the order added
+  const addedCourseIds = [...new Set(answers.addedCourses || [])].filter(id => courseMap.has(id));
   const skipFoundation = answers.experience === 'professional' || answers.experience === 'ml-basics';
 
   // Experience-based difficulty band for electives
@@ -128,6 +130,7 @@ export function generatePathway(answers) {
     let electiveCourses = courses
       .filter(c => {
         if (priorCourses.has(c.id)) return false;
+        if (addedCourseIds.includes(c.id)) return false;
         if (courseSequence.some(phase => phase.courses.some(pc => pc.id === c.id))) return false;
         // Filter by math- and experience-appropriate difficulty
         if (!allowedDifficulties.includes(c.difficulty)) return false;
@@ -185,6 +188,48 @@ export function generatePathway(answers) {
         isOptional: true,
       });
     }
+  }
+
+  // Courses the learner added by hand. One that a roadmap course builds on
+  // (directly or through its prerequisites) goes right before the first course
+  // that needs it; the rest go last, in the order the learner chose. Ones
+  // already in the roadmap are skipped so nothing appears twice.
+  const prerequisiteCache = new Map();
+  const allPrerequisites = (id) => {
+    if (prerequisiteCache.has(id)) return prerequisiteCache.get(id);
+    const found = new Set();
+    prerequisiteCache.set(id, found); // guards against cycles in the data
+    for (const pre of courseMap.get(id)?.prerequisites || []) {
+      if (!courseMap.has(pre)) continue;
+      found.add(pre);
+      allPrerequisites(pre).forEach(p => found.add(p));
+    }
+    return found;
+  };
+  const unplacedAdded = [];
+  addedCourseIds
+    .filter(id => !courseSequence.some(phase => phase.courses.some(pc => pc.id === id)))
+    .forEach(id => {
+      const course = { ...courseMap.get(id), isAdded: true };
+      for (const phase of courseSequence) {
+        const index = phase.courses.findIndex(c => allPrerequisites(c.id).has(id));
+        if (index !== -1) {
+          // Name the course it now sits right before (possibly another added one)
+          course.placedBefore = phase.courses[index].title;
+          phase.courses = [...phase.courses.slice(0, index), course, ...phase.courses.slice(index)];
+          return;
+        }
+      }
+      unplacedAdded.push(course);
+    });
+  if (unplacedAdded.length > 0) {
+    courseSequence.push({
+      phase: 'Added',
+      phaseName: 'Your Added Courses',
+      milestone: 'Added Courses Complete',
+      courses: unplacedAdded,
+      isAdded: true,
+    });
   }
 
   // Timeline warning if core exceeds target

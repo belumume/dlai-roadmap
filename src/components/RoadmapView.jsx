@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { track } from '../utils/analytics';
 import {
   Download, Share2, ChevronDown, ChevronUp, ExternalLink,
   Clock, BookOpen, Trophy, RefreshCw, CheckCircle, Circle,
-  Calendar, Target, Zap, Copy, Check, Filter, X, Star, AlertTriangle, Award
+  Calendar, Target, Zap, Copy, Check, Filter, X, Star, AlertTriangle, Award, Plus, Trash2,
+  ArrowUp, ArrowDown
 } from 'lucide-react';
-import { formatDuration, getDifficultyColor, getPathwayDescription } from '../utils/pathwayGenerator';
+import { formatDuration, getDifficultyColor, getPathwayDescription, generatePathway } from '../utils/pathwayGenerator';
 import { exportRoadmapPDF, generateShareableURL } from '../utils/exportPDF';
 import { exportAndDownloadCalendar } from '../utils/exportCalendar';
 import { getCategoryLabel } from '../utils/categories';
+import AddCoursePanel from './AddCoursePanel';
 
 const STORAGE_KEY = 'dlai-roadmap-progress';
 
@@ -19,10 +21,12 @@ const DIFFICULTY_ORDER = ['beginner', 'intermediate', 'advanced'];
 // short-course pages don't; the three Coursera
 // specializations award one with paid enrollment. Checked 2026-10-09.
 
-export default function RoadmapView({ roadmap, onRestart }) {
+export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
   const [expandedPhases, setExpandedPhases] = useState(new Set([0]));
   const [filters, setFilters] = useState({ categories: [], difficulties: [] });
   const [showFilters, setShowFilters] = useState(false);
+  const [showAddCourse, setShowAddCourse] = useState(false);
+  const [addedNotice, setAddedNotice] = useState('');
   const [completedCourses, setCompletedCourses] = useState(() => {
     // Load from localStorage on init
     try {
@@ -94,6 +98,49 @@ export default function RoadmapView({ roadmap, onRestart }) {
     track('share_url_created', { pathway });
   };
 
+  const roadmapCourseIds = useMemo(
+    () => new Set(phases.flatMap(p => p.courses.map(c => c.id))),
+    [phases]
+  );
+
+  const handleAddCourse = (course) => {
+    const addedCourses = roadmap.answers.addedCourses || [];
+    if (addedCourses.includes(course.id)) return;
+    // Don't let active filters hide the course that was just added
+    if (!courseMatchesFilters(course)) clearFilters();
+    const answers = { ...roadmap.answers, addedCourses: [...addedCourses, course.id] };
+    // Where an added course lands depends on prerequisites, so build the new
+    // roadmap first to open the right phase and say where the course went
+    const nextPhases = generatePathway(answers).phases;
+    const phaseIndex = nextPhases.findIndex(p => p.courses.some(c => c.id === course.id));
+    const placed = nextPhases[phaseIndex].courses.find(c => c.id === course.id);
+    setExpandedPhases(prev => new Set(prev).add(phaseIndex));
+    setAddedNotice(placed.placedBefore
+      ? `Added ${course.title} to ${nextPhases[phaseIndex].phaseName}, before ${placed.placedBefore}, which builds on it`
+      : `Added ${course.title} to your roadmap`);
+    onAnswersChange(answers);
+    track('course_added', { pathway, course_id: course.id });
+  };
+
+  // Reorders a course within the "Your Added Courses" phase
+  const handleMoveCourse = (phase, courseId, offset) => {
+    const order = phase.courses.map(c => c.id);
+    const from = order.indexOf(courseId);
+    const to = from + offset;
+    if (from === -1 || to < 0 || to >= order.length) return;
+    [order[from], order[to]] = [order[to], order[from]];
+    const others = (roadmap.answers.addedCourses || []).filter(id => !order.includes(id));
+    onAnswersChange({ ...roadmap.answers, addedCourses: [...others, ...order] });
+    track('course_reordered', { pathway, course_id: courseId });
+  };
+
+  const handleRemoveCourse = (courseId) => {
+    const addedCourses = (roadmap.answers.addedCourses || []).filter(id => id !== courseId);
+    onAnswersChange({ ...roadmap.answers, addedCourses });
+    setAddedNotice('');
+    track('course_removed', { pathway, course_id: courseId });
+  };
+
   const togglePhase = (index) => {
     const newExpanded = new Set(expandedPhases);
     if (newExpanded.has(index)) {
@@ -150,12 +197,16 @@ export default function RoadmapView({ roadmap, onRestart }) {
   const hasActiveFilters = filters.categories.length > 0 || filters.difficulties.length > 0;
 
   // Get unique categories from current roadmap courses
-  const availableCategories = [...new Set(
-    phases.flatMap(p => p.courses.flatMap(c => c.categories || []))
-  )].sort();
+  // Active filters stay listed even if the course that had them was removed,
+  // so they can still be turned off
+  const availableCategories = [...new Set([
+    ...phases.flatMap(p => p.courses.flatMap(c => c.categories || [])),
+    ...filters.categories,
+  ])].sort();
 
   const completionPercent = summary.totalCourses > 0
-    ? Math.round((completedCourses.size / summary.totalCourses) * 100)
+    // Count only courses in this roadmap: completions are kept for removed courses too
+    ? Math.round(([...completedCourses].filter(id => roadmapCourseIds.has(id)).length / summary.totalCourses) * 100)
     : 0;
 
   return (
@@ -289,22 +340,49 @@ export default function RoadmapView({ roadmap, onRestart }) {
 
         {/* Filter Bar */}
         <div className="mb-8">
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center gap-2 px-4 py-3 sm:py-2 min-h-[44px] rounded-lg transition-colors ${
-              hasActiveFilters
-                ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30'
-                : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--node-cyan-dim)]'
-            }`}
-          >
-            <Filter className="w-4 h-4" />
-            Filter Courses
-            {hasActiveFilters && (
-              <span className="ml-1 px-2 py-0.5 text-xs bg-[var(--node-cyan)] text-[var(--deep)] rounded-full">
-                {filters.categories.length + filters.difficulties.length}
-              </span>
-            )}
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className={`flex items-center gap-2 px-4 py-3 sm:py-2 min-h-[44px] rounded-lg transition-colors ${
+                hasActiveFilters
+                  ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30'
+                  : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--node-cyan-dim)]'
+              }`}
+            >
+              <Filter className="w-4 h-4" />
+              Filter Courses
+              {hasActiveFilters && (
+                <span className="ml-1 px-2 py-0.5 text-xs bg-[var(--node-cyan)] text-[var(--deep)] rounded-full">
+                  {filters.categories.length + filters.difficulties.length}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={() => {
+                setShowAddCourse(!showAddCourse);
+                setAddedNotice('');
+              }}
+              aria-expanded={showAddCourse}
+              className={`flex items-center gap-2 px-4 py-3 sm:py-2 min-h-[44px] rounded-lg transition-colors ${
+                showAddCourse
+                  ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30'
+                  : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--node-cyan-dim)]'
+              }`}
+            >
+              <Plus className="w-4 h-4" />
+              Add Course
+            </button>
+          </div>
+
+          {showAddCourse && (
+            <AddCoursePanel
+              roadmapCourseIds={roadmapCourseIds}
+              priorCourseIds={roadmap.answers.priorCourses || []}
+              onAdd={handleAddCourse}
+              onClose={() => setShowAddCourse(false)}
+              notice={addedNotice}
+            />
+          )}
 
           {showFilters && (
             <div className="mt-4 bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6">
@@ -383,7 +461,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
             }
 
             return (
-              <div key={phaseIndex} className="relative mb-6">
+              <div key={phaseIndex} data-testid={phase.isAdded ? 'added-phase' : undefined} className="relative mb-6">
                 {/* Phase Header */}
                 <button
                   onClick={() => togglePhase(phaseIndex)}
@@ -410,7 +488,11 @@ export default function RoadmapView({ roadmap, onRestart }) {
                       <div>
                         <div className="flex items-center gap-2">
                           <h3 className="font-display text-lg font-display font-semibold text-[var(--text-primary)]">{phase.phaseName}</h3>
-                          {phase.isOptional ? (
+                          {phase.isAdded ? (
+                            <span className="whitespace-nowrap text-xs px-2 py-0.5 rounded-full bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30">
+                              Added
+                            </span>
+                          ) : phase.isOptional ? (
                             <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
                               Optional
                             </span>
@@ -512,12 +594,23 @@ export default function RoadmapView({ roadmap, onRestart }) {
                                         • {course.instructor}
                                       </span>
                                     )}
+                                    {course.isAdded && !phase.isAdded && (
+                                      <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30">
+                                        Added
+                                      </span>
+                                    )}
                                   </div>
+                                  {course.placedBefore && (
+                                    <p className="mt-2 text-xs text-[var(--text-secondary)]">
+                                      Placed before {course.placedBefore}, which builds on it.
+                                    </p>
+                                  )}
                                 </div>
                                 <a
                                   href={course.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
+                                  aria-label={`Open ${course.title} course page`}
                                   className="flex-shrink-0 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
                                 >
                                   <ExternalLink className="w-4 h-4" />
@@ -541,6 +634,43 @@ export default function RoadmapView({ roadmap, onRestart }) {
                                       {skill}
                                     </span>
                                   ))}
+                                </div>
+                              )}
+
+                              {/* Controls for courses the learner added */}
+                              {course.isAdded && (
+                                <div className="mt-2 -ml-2.5 flex items-center">
+                                  {phase.isAdded && (
+                                    <>
+                                      <button
+                                        onClick={() => handleMoveCourse(phase, course.id, -1)}
+                                        disabled={phase.courses[0].id === course.id}
+                                        aria-label={`Move ${course.title} earlier`}
+                                        title="Move earlier"
+                                        className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors disabled:opacity-30 disabled:pointer-events-none"
+                                      >
+                                        <ArrowUp className="w-4 h-4" />
+                                      </button>
+                                      <button
+                                        onClick={() => handleMoveCourse(phase, course.id, 1)}
+                                        disabled={phase.courses[phase.courses.length - 1].id === course.id}
+                                        aria-label={`Move ${course.title} later`}
+                                        title="Move later"
+                                        className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors disabled:opacity-30 disabled:pointer-events-none"
+                                      >
+                                        <ArrowDown className="w-4 h-4" />
+                                      </button>
+                                    </>
+                                  )}
+                                  <button
+                                    onClick={() => handleRemoveCourse(course.id)}
+                                    aria-label={`Remove ${course.title} from roadmap`}
+                                    title="Remove from roadmap"
+                                    className="px-2.5 min-h-[44px] flex items-center gap-1.5 text-sm text-[var(--text-muted)] hover:text-red-400 hover:bg-[var(--elevated)] rounded-lg transition-colors"
+                                  >
+                                    <Trash2 className="w-4 h-4" />
+                                    Remove
+                                  </button>
                                 </div>
                               )}
                             </div>

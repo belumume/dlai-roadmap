@@ -203,7 +203,7 @@ function validateAnswers(obj) {
   }
 
   const allowedKeys = ['experience', 'goal', 'timeCommitment', 'targetRole',
-                       'mathBackground', 'timeline', 'priorCourses', 'interests'];
+                       'mathBackground', 'timeline', 'priorCourses', 'interests', 'addedCourses'];
   const validValues = {
     experience: ['none', 'some-python', 'ml-basics', 'professional'],
     goal: ['career-switch', 'upskill', 'research', 'curiosity'],
@@ -216,11 +216,12 @@ function validateAnswers(obj) {
   const validated = {};
   for (const key of allowedKeys) {
     if (key in obj) {
-      if (key === 'priorCourses' || key === 'interests') {
+      if (key === 'priorCourses' || key === 'interests' || key === 'addedCourses') {
         if (Array.isArray(obj[key])) {
+          // Learners can add every catalog course, so that list gets a higher cap
           validated[key] = obj[key]
             .filter(v => typeof v === 'string' && v.length < 100)
-            .slice(0, 50);
+            .slice(0, key === 'addedCourses' ? 200 : 50);
         }
       } else if (validValues[key] && validValues[key].includes(obj[key])) {
         validated[key] = obj[key];
