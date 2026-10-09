@@ -8,7 +8,7 @@ const enabled = import.meta.env.PROD && !navigator.webdriver;
 // cookies or localStorage and no consent banner is needed. Each page load
 // counts as a new anonymous visitor.
 export function startPostHog() {
-  posthog.init('phc_97p9Je7K9hYvBgK82mG2H2RVpjzwxHqeQPKeLCOgEYG', {
+  return posthog.init('phc_97p9Je7K9hYvBgK82mG2H2RVpjzwxHqeQPKeLCOgEYG', {
     api_host: 'https://eu.i.posthog.com',
     persistence: 'memory',
     person_profiles: 'identified_only',

@@ -127,16 +127,50 @@ test.describe('Export and share', () => {
 });
 
 test.describe('Analytics storage', () => {
-  test('PostHog stores nothing in cookies or browser storage', async ({ page, context }) => {
-    // Answer PostHog locally so nothing reaches the live project
-    await page.route(/posthog\.com/, (route) => route.fulfill({ status: 200, contentType: 'application/json', body: '{}' }));
+  // Mirrors the live project's remote config, which has session replay on
+  const REMOTE_CONFIG = {
+    analytics: { endpoint: '/i/v0/e/' },
+    sessionRecording: {
+      endpoint: '/s/',
+      recorderVersion: 'v2',
+      scriptConfig: { script: 'posthog-recorder' },
+      networkPayloadCapture: { recordBody: true, recordHeaders: true },
+      consoleLogRecordingEnabled: true,
+      version: 1,
+    },
+    surveys: false,
+    heatmaps: false,
+  };
+
+  test('PostHog stores nothing in cookies or browser storage, with session replay on', async ({ page, context }) => {
+    // Serve PostHog locally so nothing reaches the live project
+    await page.route(/posthog\.com/, (route) => {
+      const { pathname } = new URL(route.request().url());
+      if (pathname.endsWith('/config.js')) {
+        return route.fulfill({
+          contentType: 'application/javascript',
+          body: `window._POSTHOG_REMOTE_CONFIG = window._POSTHOG_REMOTE_CONFIG || {};
+            window._POSTHOG_REMOTE_CONFIG['phc_97p9Je7K9hYvBgK82mG2H2RVpjzwxHqeQPKeLCOgEYG'] = { config: ${JSON.stringify(REMOTE_CONFIG)}, siteApps: [] };`,
+        });
+      }
+      const script = pathname.match(/\/static\/[^/]+\/([\w-]+\.js)$/);
+      if (script) {
+        const file = require.resolve(`posthog-js/dist/${script[1]}`);
+        return route.fulfill({ contentType: 'application/javascript', body: fs.readFileSync(file, 'utf8') });
+      }
+      return route.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+    });
     await page.goto(BASE_URL);
 
     await page.evaluate(async () => {
       const { startPostHog } = await import('/dlai-roadmap/src/utils/analytics.js');
-      startPostHog();
+      window.__ph = startPostHog();
     });
-    await page.waitForLoadState('networkidle');
+    // Replay must really be recording, or this test would not cover it
+    await expect.poll(() => page.evaluate(() => window.__ph.sessionRecording?.status), { timeout: 10000 }).toBe('active');
+    await page.mouse.move(100, 100);
+    await page.getByRole('button', { name: /Get Started/ }).click();
+    await page.waitForTimeout(2000);
 
     const cookies = (await context.cookies()).map((c) => c.name);
     const stored = await page.evaluate(() => [...Object.keys(localStorage), ...Object.keys(sessionStorage)]);
