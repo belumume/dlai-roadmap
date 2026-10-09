@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "playwright test --config=playwright.config.cjs"
+    "test": "playwright test --config=playwright.config.cjs",
+    "prepare": "git config core.hooksPath .githooks || true"
   },
   "dependencies": {
     "jspdf": "^4.2.1",
