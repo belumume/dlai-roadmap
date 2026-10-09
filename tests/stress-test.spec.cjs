@@ -2,6 +2,7 @@
 const { test, expect } = require('@playwright/test');
 
 const BASE_URL = 'http://localhost:5173/dlai-roadmap/';
+const TRUNK_NAME = require('../src/data/courses.json').pathways.trunk.name;
 
 // All possible answer combinations
 const OPTIONS = {
@@ -294,7 +295,8 @@ test.describe('DLAI Roadmap Stress Tests', () => {
     // Switch to another category and select more
     await page.click('button:has-text("RAG")');
     await page.waitForTimeout(300);
-    await courseList.locator('button').first().click();
+    // Pick an unselected course: one tagged both agents and rag may already be selected
+    await courseList.locator('button:has(svg.lucide-circle)').first().click();
     await page.waitForTimeout(200);
 
     // Should show "2 selected"
@@ -454,9 +456,8 @@ test.describe('DLAI Roadmap Stress Tests', () => {
     // Verify roadmap generated
     await expect(page.locator('text=AI Product Engineer')).toBeVisible();
 
-    // Professional experience skips foundation - first phase should NOT be "AI Foundations"
-    // Look for phase names
-    const foundationPhase = page.locator('h3:has-text("AI Foundations")');
+    // Professional experience skips the foundation trunk phase
+    const foundationPhase = page.getByRole('heading', { name: TRUNK_NAME, exact: true });
     const foundationCount = await foundationPhase.count();
 
     // Professional users should skip the foundation phase
