@@ -403,7 +403,7 @@
     {
       "id": "build-with-andrew",
       "title": "Build with Andrew",
-      "type": "short",
+      "type": "course",
       "url": "https://learn.deeplearning.ai/courses/build-with-andrew",
       "difficulty": "beginner",
       "estimated_hours": 1.0,
@@ -451,7 +451,7 @@
         "rag",
         "general"
       ],
-      "instructor": "Kacper Lukawski",
+      "instructor": "Kacper Łukawski",
       "platform": "dlai",
       "prerequisites": [
         "vector-databases-embeddings-applications"
@@ -478,7 +478,7 @@
         "agents",
         "coding"
       ],
-      "instructor": "Vasek Mlejnsky",
+      "instructor": "Tereza Tizkova",
       "platform": "dlai",
       "prerequisites": [
         "chatgpt-prompt-engineering-for-developers"
@@ -505,7 +505,7 @@
         "agents",
         "deployment"
       ],
-      "instructor": "Brian Sam-Bodden",
+      "instructor": "Tyler Hutcherson",
       "platform": "dlai",
       "prerequisites": [
         "vector-databases-embeddings-applications"
@@ -559,7 +559,7 @@
         "coding",
         "general"
       ],
-      "instructor": "Jason Weill",
+      "instructor": "Andrew Ng",
       "platform": "dlai",
       "prerequisites": [],
       "skills_taught": [
@@ -585,7 +585,7 @@
         "agents",
         "safety"
       ],
-      "instructor": "Jerry Liu",
+      "instructor": "Amber Roberts",
       "platform": "dlai",
       "prerequisites": [
         "functions-tools-agents-langchain"
@@ -613,7 +613,7 @@
         "agents",
         "general"
       ],
-      "instructor": "Patrick Marlow",
+      "instructor": "Lavi Nigam",
       "platform": "dlai",
       "prerequisites": [
         "chatgpt-prompt-engineering-for-developers"
@@ -667,16 +667,16 @@
         "agents",
         "general"
       ],
-      "instructor": "Jerry Liu",
+      "instructor": "Anupam Datta",
       "platform": "dlai",
       "prerequisites": [
         "building-agentic-rag-with-llamaindex"
       ],
       "skills_taught": [
-        "data agents",
-        "agent evaluation",
-        "LlamaIndex agents",
-        "data pipelines"
+        "multi-agent data agents",
+        "planner and executor design",
+        "agent tracing and evaluation",
+        "inline runtime evaluation"
       ],
       "career_paths": [
         "builder"
@@ -694,7 +694,7 @@
         "agents",
         "general"
       ],
-      "instructor": "Shurui Zhou",
+      "instructor": "Ben Kus",
       "platform": "dlai",
       "prerequisites": [
         "mcp-build-rich-context-ai-apps-with-anthropic"
@@ -722,7 +722,7 @@
         "agents",
         "rag"
       ],
-      "instructor": "Andreas Kollegger",
+      "instructor": "Pavithra G K",
       "platform": "dlai",
       "prerequisites": [
         "knowledge-graphs-rag"
@@ -965,9 +965,9 @@
       ],
       "skills_taught": [
         "workflow orchestration",
-        "Prefect",
-        "GenAI pipelines",
-        "automation"
+        "Apache Airflow",
+        "dynamic task mapping",
+        "pipeline retries and alerts"
       ],
       "career_paths": [
         "builder",
@@ -1070,10 +1070,10 @@
         "functions-tools-agents-langchain"
       ],
       "skills_taught": [
-        "voice agents",
-        "production deployment",
-        "real-time speech",
-        "Vapi"
+        "voice agent architecture",
+        "STT, LLM and TTS pipelines",
+        "voice latency optimization",
+        "LiveKit"
       ],
       "career_paths": [
         "builder"
@@ -1486,9 +1486,9 @@
         "chatgpt-prompt-engineering-for-developers"
       ],
       "skills_taught": [
-        "game AI",
-        "Unity integration",
-        "NPC dialogue",
+        "hierarchical content generation",
+        "structured JSON outputs",
+        "Llama Guard safety policies",
         "AI game design"
       ],
       "career_paths": [
@@ -1653,7 +1653,7 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "Google"
+      "partner": "Google Cloud"
     },
     {
       "id": "building-ai-applications-with-haystack",
@@ -1837,7 +1837,7 @@
         "builder",
         "enterprise"
       ],
-      "partner": "Google"
+      "partner": "Google Cloud"
     },
     {
       "id": "function-calling-and-data-extraction-with-llms",
@@ -2419,7 +2419,7 @@
         "builder",
         "enterprise"
       ],
-      "partner": "Google"
+      "partner": "Google Cloud"
     },
     {
       "id": "advanced-retrieval-for-ai",
@@ -2472,7 +2472,7 @@
       "career_paths": [
         "researcher"
       ],
-      "partner": "Google"
+      "partner": "Google Cloud"
     },
     {
       "id": "building-evaluating-advanced-rag",
@@ -2600,7 +2600,7 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "Google"
+      "partner": "Google Cloud"
     },
     {
       "id": "microsoft-semantic-kernel",
@@ -2946,7 +2946,7 @@
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/generative-ai-for-software-development",
       "difficulty": "beginner",
-      "estimated_hours": 15,
+      "estimated_hours": 34,
       "categories": [
         "coding"
       ],
@@ -3468,7 +3468,7 @@
           "name": "Integration",
           "courses": [
             "machine-learning-in-production",
-            "governing-ai-agents"
+            "orchestrating-workflows-for-genai-applications"
           ]
         }
       ]
