@@ -36,6 +36,7 @@ test('catches links with no path, a query, a subdomain or URL encoding, but not 
   expect(findLinks(`www.${HOST}`)).toHaveLength(1);
   expect(findLinks(`go=https%3A%2F%2F${HOST}%2Fcode`)).toHaveLength(1);
   expect(findLinks(`any URL on the ${HOST} domain`)).toHaveLength(0);
+  expect(findLinks(`non${HOST}/foo`)).toHaveLength(0);
 });
 
 test('scrub leaves no stray pieces and keeps required fields non-empty', () => {
@@ -97,9 +98,9 @@ test('Claude Code hook blocks publishing a link and allows everything else', () 
   const push = { tool_name: 'Bash', tool_input: { command: `cd repo && git -C . commit -m "x ${SESSION}"` } };
   const search = { tool_name: 'Bash', tool_input: { command: `grep -r ${HOST}/ .` } };
   expect(run(['claude-hook'], JSON.stringify(push)).status).toBe(2);
-  const bodyFile = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'guard-')), 'body.md');
+  const bodyFile = path.join(fs.mkdtempSync(path.join(os.tmpdir(), 'guard-')), 'pr body.md');
   fs.writeFileSync(bodyFile, `Done\n\n${SESSION}\n`);
-  const viaFile = { tool_name: 'Bash', tool_input: { command: `GH_X=1 gh pr create --body-file ${bodyFile}` } };
+  const viaFile = { tool_name: 'Bash', tool_input: { command: `GH_X=1 gh pr create --body-file "${bodyFile}"` } };
   const prefixed = { tool_name: 'Bash', tool_input: { command: `if true; then /usr/bin/git commit -m "${TRAILER}"; fi` } };
   expect(run(['claude-hook'], JSON.stringify(viaFile)).status).toBe(2);
   expect(run(['claude-hook'], JSON.stringify(prefixed)).status).toBe(2);

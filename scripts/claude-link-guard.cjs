@@ -20,7 +20,7 @@ const DOMAIN = 'claude' + '\\.ai';
 // the bare domain followed by a path, query or fragment. A plain mention of the
 // domain in prose is not a link.
 const URL_SRC =
-  `(?:(?:https?://|www\\.)(?:[\\w-]+\\.)*${DOMAIN}\\b|(?:[\\w-]+\\.)*${DOMAIN}(?=[/?#]))` +
+  `(?:(?:https?://|www\\.)(?:[\\w-]+\\.)*${DOMAIN}\\b|(?<![\\w.-])(?:[\\w-]+\\.)*${DOMAIN}(?=[/?#]))` +
   // Path and query, allowing one level of balanced parentheses inside them
   `(?:[^\\s()<>\\]'"]|\\([^\\s()<>]*\\))*`;
 const ENCODED = new RegExp(`https?%3A%2F%2F(?:[\\w-]+\\.)*${DOMAIN}`, 'i');
@@ -102,7 +102,7 @@ function checkCommits(range) {
 function checkTree() {
   // POSIX classes only, so BSD grep (macOS) behaves the same as GNU
   const pattern =
-    `(https?://|www\\.)[a-z0-9.-]*${DOMAIN}([^a-z0-9.-]|$)|${DOMAIN}[/?#]|https?%3a%2f%2f[a-z0-9.-]*${DOMAIN}` +
+    `(https?://|www\\.)[a-z0-9.-]*${DOMAIN}([^a-z0-9.-]|$)|(^|[^a-z0-9.-])([a-z0-9-]+\\.)*${DOMAIN}[/?#]|https?%3a%2f%2f[a-z0-9.-]*${DOMAIN}` +
     '|^[[:space:]]*Claude' + '-Session:|claude' + '-projects-attribution';
   try {
     const out = git(['grep', '-n', '-I', '-i', '-E', pattern]);
@@ -236,7 +236,9 @@ function claudeHook() {
     const command = toolInput.command || '';
     const publishes = /\bgit\b[\s\S]*\b(commit|push|tag|notes)\b|\bgh\b[\s\S]*\b(pr|issue|api|release|gist)\b/;
     if (!publishes.test(command)) return true;
-    for (const [, , file] of Array.from(command.matchAll(/(?:--body-file|--file|-F)[=\s]+(['"]?)([^\s'"]+)\1/g))) {
+    const fileArgs = /(?:--body-file|--file|-F)(?:=|\s+)(?:"([^"]+)"|'([^']+)'|(\S+))/g;
+    for (const m of Array.from(command.matchAll(fileArgs))) {
+      const file = m[1] || m[2] || m[3];
       try {
         text += '\n' + fs.readFileSync(file, 'utf8');
       } catch {
