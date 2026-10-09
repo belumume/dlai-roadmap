@@ -22,7 +22,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - `src/components/RoadmapView.jsx` - Generated roadmap display
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
 - `src/utils/exportCalendar.js` - iCalendar (.ics) export function
-- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` - Playwright tests (29 tests)
+- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` - Playwright tests (35 tests)
 - `docs/solutions/` - documented solutions and methodology (data quality, curriculum design)
 
 ## Approved Plan Status
@@ -43,7 +43,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] mathBackground filters elective difficulty
 - [x] goal affects specialization preferences
 - [x] Learning Deep attribution with profile link
-- [x] Playwright test suite (29/29 passing)
+- [x] Playwright test suite (35/35 passing)
 - [x] Filter UI on roadmap view (category + difficulty filters)
 - [x] Critical path vs optional marking (Required/Optional badges on phases)
 - [x] Timeline warning display when core courses exceed target timeline
@@ -67,6 +67,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] Pathway audit completed - 3 roles confirmed sufficient
 - [x] Responsive design (mobile-first, icon-only buttons on mobile, 44px touch targets)
 - [x] Category tabs in CourseSelector (9 categories + Popular/All tabs, scrollable checklist, per @Deminiko feedback)
+- [x] Unofficial-status disclaimer (welcome, roadmap, PDF, page title) and WCAG AA text contrast; own visual identity kept on purpose (see `docs/solutions/best-practices/unofficial-branding-and-contrast-2026-10-09.md`)
 
 ### ALL FEATURES COMPLETE - READY FOR LAUNCH
 
