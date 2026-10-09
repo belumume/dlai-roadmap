@@ -64,7 +64,7 @@ Course details are checked against the live DeepLearning.AI course pages; see [`
 
 ## Privacy
 
-The live site uses [PostHog](https://posthog.com) (EU region) for anonymous usage analytics: page views and events such as roadmap generated or PDF exported, with your chosen path, experience, goal and weekly hours. No name or email is collected. Local development and automated test runs send nothing.
+The live site uses [PostHog](https://posthog.com) (EU region) for anonymous usage analytics: page views and events such as roadmap generated or PDF exported, with your chosen path, experience, goal and weekly hours. No name or email is collected, and analytics sets no cookies and stores nothing in your browser, so there is no consent banner. Local development and automated test runs send nothing.
 
 ## Contributing
 

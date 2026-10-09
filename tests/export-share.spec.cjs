@@ -125,3 +125,22 @@ test.describe('Export and share', () => {
     expect(analyticsRequests).toEqual([]);
   });
 });
+
+test.describe('Analytics storage', () => {
+  test('PostHog stores nothing in cookies or browser storage', async ({ page, context }) => {
+    // Answer PostHog locally so nothing reaches the live project
+    await page.route(/posthog\.com/, (route) => route.fulfill({ status: 200, contentType: 'application/json', body: '{}' }));
+    await page.goto(BASE_URL);
+
+    await page.evaluate(async () => {
+      const { startPostHog } = await import('/dlai-roadmap/src/utils/analytics.js');
+      startPostHog();
+    });
+    await page.waitForLoadState('networkidle');
+
+    const cookies = (await context.cookies()).map((c) => c.name);
+    const stored = await page.evaluate(() => [...Object.keys(localStorage), ...Object.keys(sessionStorage)]);
+    expect(cookies.filter((n) => /ph_|posthog/i.test(n))).toEqual([]);
+    expect(stored.filter((k) => /ph_|posthog/i.test(k))).toEqual([]);
+  });
+});
