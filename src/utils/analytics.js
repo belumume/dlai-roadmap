@@ -6,11 +6,13 @@ const enabled = import.meta.env.PROD && !navigator.webdriver;
 
 // Cookieless: PostHog keeps its IDs in memory only, so nothing is written to
 // cookies or localStorage and no consent banner is needed. Each page load
-// counts as a new anonymous visitor.
+// counts as a new anonymous visitor. Surveys are off because a shown survey
+// writes its own localStorage keys; the site does not use them.
 export function startPostHog() {
   return posthog.init('phc_97p9Je7K9hYvBgK82mG2H2RVpjzwxHqeQPKeLCOgEYG', {
     api_host: 'https://eu.i.posthog.com',
     persistence: 'memory',
+    disable_surveys: true,
     person_profiles: 'identified_only',
     capture_pageview: true,
     capture_pageleave: true,

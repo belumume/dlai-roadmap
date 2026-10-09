@@ -181,4 +181,29 @@ test.describe('Analytics storage', () => {
     expect(cookies.filter((n) => /ph_|posthog/i.test(n))).toEqual([]);
     expect(stored.filter((k) => /ph_|posthog/i.test(k))).toEqual([]);
   });
+
+  test('PostHog surveys are disabled, so they cannot write their own storage keys', async ({ page }) => {
+    const surveyScripts = [];
+    await page.route(/posthog\.com/, (route) => {
+      const { pathname } = new URL(route.request().url());
+      if (/surveys/.test(pathname)) surveyScripts.push(pathname);
+      if (pathname.endsWith('/config.js')) {
+        return route.fulfill({
+          contentType: 'application/javascript',
+          body: `window._POSTHOG_REMOTE_CONFIG = window._POSTHOG_REMOTE_CONFIG || {};
+            window._POSTHOG_REMOTE_CONFIG['phc_97p9Je7K9hYvBgK82mG2H2RVpjzwxHqeQPKeLCOgEYG'] = { config: ${JSON.stringify({ ...REMOTE_CONFIG, surveys: true })}, siteApps: [] };`,
+        });
+      }
+      return route.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+    });
+    await page.goto(BASE_URL);
+    await page.evaluate(async () => {
+      const { startPostHog } = await import('/dlai-roadmap/src/utils/analytics.js');
+      window.__ph = startPostHog();
+    });
+    await page.waitForLoadState('networkidle');
+
+    expect(await page.evaluate(() => window.__ph.config.disable_surveys)).toBe(true);
+    expect(surveyScripts).toEqual([]);
+  });
 });
