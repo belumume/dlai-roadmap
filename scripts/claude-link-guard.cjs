@@ -230,7 +230,7 @@ function claudeHook() {
   const tool = input.tool_name || '';
   const toolInput = input.tool_input || {};
   let text = JSON.stringify(toolInput);
-  if (tool === 'Bash') {
+  if (tool === 'Bash' || tool === 'PowerShell') {
     // Only guard commands that publish text outside the session, wherever git or
     // gh appears in them, plus any message or body file they read
     const command = toolInput.command || '';
