@@ -21,7 +21,7 @@ tags:
 
 ## Context
 
-Six months after the April sync, a full refresh found 3 retired courses, 15 new ones, Data Engineering moved onto the DLAI platform, and widespread drift in the fields the generator depends on: 88 courses still carried the 2-hour placeholder, 53 difficulty labels disagreed with DLAI, and 19 partner attributions were wrong. None of the old difficulty values had come from DLAI, even though the April math-filter note assumed they had.
+Six months after the April sync, a full refresh found 3 retired courses, 15 new ones, Data Engineering moved onto the DLAI platform, and widespread drift in the fields the generator depends on: 88 courses still carried the 2-hour placeholder, 53 difficulty labels disagreed with DLAI, 19 partner attributions were wrong (plus 5 "Google" badges that DLAI now shows as "Google Cloud"), and 9 instructors were wrong. None of the old difficulty values had come from DLAI, even though the April math-filter note assumed they had.
 
 ## Guidance
 
@@ -37,7 +37,7 @@ From the cloud container, deeplearning.ai is blocked by the egress proxy; fetch 
 - **Hours (full courses):** keep the verified Coursera sums from April (RAG 31h, Generative AI with LLMs 16h). These are the six full courses also on Coursera: RAG, Fast Prototyping with Streamlit, Generative AI with LLMs, AI for Everyone, Generative AI for Everyone and Machine Learning in Production. `totalDurationSeconds` can be lower than Coursera's effort estimate. Other full courses use `totalDurationSeconds`.
 - **Hours (specializations):** keep the Coursera per-course sums from the April methodology; don't use `totalDurationSeconds`.
 - **Difficulty:** `wpData.courseLevel`. The catalog splits roughly evenly between Beginner and Intermediate, so the label carries real information.
-- **Partner:** the first `coursePartner` title, unless ours already matches one of the listed partners. Two badges name a product, not the partner organization (Gemini CLI, Haystack), so those keep the organization (Google, deepset).
+- **Partner:** the first `coursePartner` title, unless ours already matches one of the listed partners. Where we have "Google" and DLAI shows "Google Cloud", use "Google Cloud". Two badges name a product, not the partner organization (Gemini CLI, Haystack), so those keep the organization (Google, deepset).
 - **Title:** update only when the text actually differs. Skip case and punctuation differences, because DLAI's own casing is inconsistent ("Safe and reliable AI via guardrails").
 
 ### Retirement needs two signals
@@ -52,14 +52,32 @@ Search the forum for `deprec @Community-Team` before re-adding anything that was
 
 ### Check generator impact before syncing labels
 
-Syncing difficulty to DLAI turns many pathway core courses into Beginner. The experience filter (ml-basics and professional skip Beginner) would then have emptied whole phases: Builder Prompting Fundamentals, Enterprise Security Core and Privacy Tech. The generator now keeps a phase's full course list whenever filtering would remove all of it. Experienced learners still skip Beginner courses when the phase has a course at their level.
+Syncing difficulty to DLAI's labels moved the catalog from 108 intermediate / 8 beginner / 5 advanced to 69 intermediate / 64 beginner / 0 advanced. Many pathway core courses became Beginner.
 
-Before committing a label sync, simulate each role x experience combination against the pathway phases.
+The experience filter (ml-basics and professional skip Beginner) used to apply to pathway phases as well. With the real labels it would have:
+
+- emptied Builder Prompting Fundamentals and Enterprise Security Core and Privacy Tech;
+- dropped both math/ML specializations from Researcher Math & ML Foundations;
+- cut experienced builders from 11 to 7 core courses.
+
+This is the same failure as the April math-filter bug: a label that describes entry level was being used to hide required core courses. The generator now applies difficulty filters only to electives. Experience still skips the Foundation trunk, and learners remove courses they have already done through prior courses.
+
+A related gap was exposed too: for ml-basics or professional learners with minimal math, the math band (beginner) and the experience band (intermediate+) don't overlap, so they used to get no electives at all. Electives now fall back to the experience band when the two bands don't overlap.
+
+Before committing a label sync, simulate every role x experience x math combination and compare core course counts with the previous data.
+
+### Partners also imply instructors and skills
+
+When a partner attribution changes, the old record's instructor and skills were usually guessed from the wrong partner too (for example "Prefect" skills on an Astronomer/Airflow course). Re-check the instructor against the page's first listed instructor, and re-check the skills against the "What you'll learn" bullets.
+
+### Coursera-only specializations
+
+TensorFlow: Advanced Techniques, GANs, and TensorFlow: Data and Deployment are not in the DLAI catalog. On 2026-10-09 all three were still open for enrollment on Coursera, so they stay. Generative AI for Software Development is 34h by Coursera per-course sums (9 + 13 + 12), not 15h.
 
 ## Why This Matters
 
 - Placeholder hours made every short course look like 2h; real short-course durations range from 0.5h to 3.2h, and full courses that were stuck at 2h run 10 to 13h.
-- A blind difficulty sync would have silently removed required competencies from experienced learners' roadmaps. This is the same class of bug as the April math filter dead-end.
+- A blind difficulty sync would have silently removed required courses from experienced learners' roadmaps.
 
 ## Related
 

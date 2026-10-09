@@ -29,7 +29,7 @@ export function generatePathway(answers) {
   const priorCourses = new Set(answers.priorCourses || []);
   const skipFoundation = answers.experience === 'professional' || answers.experience === 'ml-basics';
 
-  // Experience-based difficulty filtering for pathway courses
+  // Experience-based difficulty band for electives
   const experienceDifficultyMap = {
     'none': ['beginner', 'intermediate'], // beginners can stretch to intermediate
     'some-python': ['beginner', 'intermediate', 'advanced'],
@@ -45,7 +45,12 @@ export function generatePathway(answers) {
     'strong': ['beginner', 'intermediate', 'advanced'],
     'expert': ['beginner', 'intermediate', 'advanced'],
   };
-  const allowedDifficulties = mathDifficultyMap[answers.mathBackground] || ['beginner'];
+  const mathAllowed = mathDifficultyMap[answers.mathBackground] || ['beginner'];
+  // Electives must fit both the math and experience bands. When they don't
+  // overlap (e.g. professional + minimal math), fall back to the experience band
+  // rather than offering no electives at all.
+  const bothAllowed = mathAllowed.filter(d => allowedByExperience.includes(d));
+  const allowedDifficulties = bothAllowed.length > 0 ? bothAllowed : allowedByExperience;
 
   // Determine learning priority based on goal
   const goalPriorities = {
@@ -83,15 +88,14 @@ export function generatePathway(answers) {
   // Phase 2+: Role-specific phases
   if (pathway && pathway.phases) {
     pathway.phases.forEach((phase, index) => {
-      const remainingCourses = phase.courses
+      // Pathway courses are the role's required core, so they aren't filtered by
+      // difficulty. DLAI labels describe entry level, not whether an experienced
+      // learner already knows the material; experience is applied by skipping the
+      // Foundation trunk, and learners remove courses they've done via priorCourses.
+      const phaseCourses = phase.courses
         .filter(id => !priorCourses.has(id))
         .map(id => courseMap.get(id))
         .filter(Boolean);
-      // Experienced learners skip beginner-level courses, but never a whole phase:
-      // each phase is a required competency, so if every course in it is below
-      // their level they still get the phase rather than a gap in the roadmap.
-      const levelMatched = remainingCourses.filter(course => allowedByExperience.includes(course.difficulty));
-      const phaseCourses = levelMatched.length > 0 ? levelMatched : remainingCourses;
 
       if (phaseCourses.length > 0) {
         // Check if this is a math-heavy phase for researcher with weak math background
@@ -125,10 +129,8 @@ export function generatePathway(answers) {
       .filter(c => {
         if (priorCourses.has(c.id)) return false;
         if (courseSequence.some(phase => phase.courses.some(pc => pc.id === c.id))) return false;
-        // Filter by math-appropriate difficulty
+        // Filter by math- and experience-appropriate difficulty
         if (!allowedDifficulties.includes(c.difficulty)) return false;
-        // Filter by experience-appropriate difficulty
-        if (!allowedByExperience.includes(c.difficulty)) return false;
         return c.categories?.some(cat => answers.interests.includes(cat));
       });
 

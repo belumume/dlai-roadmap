@@ -75,10 +75,10 @@ test.describe('Catalog data integrity', () => {
   });
 });
 
-test.describe('Pathway phases with experienced learners', () => {
+test.describe('Pathway core and electives for experienced learners', () => {
   test('professional enterprise roadmap keeps every required phase', async ({ page }) => {
     // Security Core and Privacy Tech courses are all beginner-level on DLAI.
-    // Experienced learners skip beginner courses, but must never lose a whole phase.
+    // Pathway core must not be filtered by difficulty, so every phase stays.
     await page.goto(`${BASE_URL}?pathway=${encode({
       experience: 'professional',
       goal: 'upskill',
@@ -94,20 +94,39 @@ test.describe('Pathway phases with experienced learners', () => {
     }
   });
 
-  test('professional builder roadmap keeps every required phase', async ({ page }) => {
+  test('ml-basics researcher keeps every core course in Math & ML Foundations', async ({ page }) => {
+    // Both math/ML specializations are beginner-level on DLAI; they are still required core.
+    await page.goto(`${BASE_URL}?pathway=${encode({
+      experience: 'ml-basics',
+      goal: 'research',
+      timeCommitment: '10-20',
+      targetRole: 'researcher',
+      mathBackground: 'strong',
+      timeline: '12-months',
+    })}`);
+    await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 5000 });
+
+    const titles = new Map(data.courses.map(c => [c.id, c.title]));
+    const firstPhase = data.pathways.researcher.phases[0];
+    for (const id of firstPhase.courses) {
+      await expect(page.getByText(titles.get(id), { exact: true }).first()).toBeVisible();
+    }
+  });
+
+  test('professional with minimal math still gets electives', async ({ page }) => {
+    // Math band (beginner) and experience band (intermediate+) don't overlap;
+    // electives fall back to the experience band instead of disappearing.
     await page.goto(`${BASE_URL}?pathway=${encode({
       experience: 'professional',
       goal: 'upskill',
       timeCommitment: '10-20',
       targetRole: 'builder',
-      mathBackground: 'strong',
-      timeline: '6-months',
+      mathBackground: 'minimal',
+      timeline: '12-months',
+      interests: ['agents', 'deployment'],
     })}`);
     await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 5000 });
-
-    for (const phase of data.pathways.builder.phases) {
-      await expect(page.getByRole('heading', { name: phase.name, exact: true })).toBeVisible();
-    }
+    await expect(page.getByRole('heading', { name: 'Areas of Interest', exact: true })).toBeVisible();
   });
 
   test('total hours display as a whole number', async ({ page }) => {
