@@ -214,11 +214,8 @@ export function generatePathway(answers) {
       for (const phase of courseSequence) {
         const index = phase.courses.findIndex(c => allPrerequisites(c.id).has(id));
         if (index !== -1) {
-          // Name the roadmap course that needs it, not another added one
-          const neededBy = courseSequence
-            .flatMap(p => p.courses)
-            .find(c => !c.isAdded && allPrerequisites(c.id).has(id));
-          course.placedBefore = (neededBy || phase.courses[index]).title;
+          // Name the course it now sits right before (possibly another added one)
+          course.placedBefore = phase.courses[index].title;
           phase.courses = [...phase.courses.slice(0, index), course, ...phase.courses.slice(index)];
           return;
         }

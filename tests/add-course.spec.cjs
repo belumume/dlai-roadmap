@@ -221,4 +221,17 @@ test.describe('Add any course to a roadmap', () => {
     const answers = JSON.parse(Buffer.from(new URL(copied).searchParams.get('pathway'), 'base64').toString());
     expect(answers.addedCourses).toEqual(['machine-learning-specialization', 'deep-learning-specialization']);
   });
+
+  test('The placement note names the course right after it, even when that one was added too', async ({ page }) => {
+    // Quantization Fundamentals is needed by the Researcher path and builds on Open Source Models
+    const QUANT = 'Quantization Fundamentals with Hugging Face';
+    const OPEN = 'Open Source Models with Hugging Face';
+    await openRoadmap(page, { ...ANSWERS, targetRole: 'researcher' });
+    await addCourse(page, 'Quantization Fundamentals', QUANT);
+    await addCourse(page, 'Open Source Models', OPEN);
+
+    await expect(page.getByRole('status')).toContainText(`before ${QUANT}, which builds on it`);
+    const all = await page.getByRole('heading', { level: 4 }).allInnerTexts();
+    expect(all.indexOf(OPEN)).toBe(all.indexOf(QUANT) - 1);
+  });
 });
