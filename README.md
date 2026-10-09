@@ -1,4 +1,4 @@
-# DeepLearning.AI Learning Roadmap Generator
+# DLAI Roadmap: AI Learning Path Generator (Unofficial)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
