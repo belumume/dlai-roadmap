@@ -111,6 +111,39 @@ test('Claude Code hook blocks publishing a link and allows everything else', () 
   expect(run(['claude-hook'], JSON.stringify(clean)).status).toBe(0);
 });
 
+test('Claude Code hook guards PowerShell commands like Bash', () => {
+  const ps = { tool_name: 'PowerShell', tool_input: { command: `git commit -m "x ${SESSION}"` } };
+  const read = { tool_name: 'PowerShell', tool_input: { command: `Select-String ${HOST}/ *.md` } };
+  expect(run(['claude-hook'], JSON.stringify(ps)).status).toBe(2);
+  expect(run(['claude-hook'], JSON.stringify(read)).status).toBe(0);
+  const settings = JSON.parse(fs.readFileSync(path.join(ROOT, '.claude/settings.json'), 'utf8'));
+  expect(settings.hooks.PreToolUse.some((h) => new RegExp(`^(${h.matcher})$`).test('PowerShell'))).toBe(true);
+});
+
+test('repo git hooks still run the global hooks that core.hooksPath would hide', () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'guard-'));
+  const globalHooks = path.join(dir, 'hooks');
+  fs.mkdirSync(globalHooks);
+  const ran = path.join(dir, 'ran');
+  for (const hook of ['commit-msg', 'pre-push']) {
+    fs.writeFileSync(path.join(globalHooks, hook), `#!/bin/sh\ncat >/dev/null\necho ${hook} >> "${ran}"\n`, { mode: 0o755 });
+  }
+  const config = path.join(dir, 'gitconfig');
+  fs.writeFileSync(config, `[core]\n\thooksPath = ${globalHooks}\n`);
+  const env = { ...process.env, GIT_CONFIG_GLOBAL: config };
+  const msg = path.join(dir, 'msg');
+  const hook = (name, args, input) =>
+    spawnSync(path.join(ROOT, '.githooks', name), args, { cwd: ROOT, env, input, encoding: 'utf8' });
+  fs.writeFileSync(msg, 'Fix thing\n');
+  expect(hook('commit-msg', [msg], '').status).toBe(0);
+  expect(hook('pre-push', ['origin', 'url'], '').status).toBe(0);
+  expect(fs.readFileSync(ran, 'utf8').split('\n').filter(Boolean)).toEqual(['commit-msg', 'pre-push']);
+  // A rejected message never reaches the global hook
+  fs.writeFileSync(msg, `Fix thing\n\n${TRAILER}\n`);
+  expect(hook('commit-msg', [msg], '').status).toBe(1);
+  expect(fs.readFileSync(ran, 'utf8').split('\n').filter(Boolean)).toHaveLength(2);
+});
+
 test('no tracked file links to a Claude session, thread or project', () => {
   const result = run(['check-repo']);
   expect(result.stderr).toBe('');
