@@ -62,6 +62,8 @@ export default function RoadmapView({ roadmap, onRestart }) {
       track('pdf_exported', { pathway });
     } catch (error) {
       console.error('Failed to export PDF:', error);
+      // The PDF library is a separate file; after a new deploy an open tab can no longer fetch it
+      alert('Could not create the PDF. Please reload the page and try again.');
     } finally {
       setIsExporting(false);
     }

@@ -47,6 +47,20 @@ test.describe('Export and share', () => {
     expect(pdfRequests.length).toBeGreaterThan(0);
   });
 
+  test('PDF export tells the user when the PDF library cannot load', async ({ page }) => {
+    await openSharedRoadmap(page);
+    // Simulates a tab left open across a deploy: the old jsPDF chunk is gone
+    await page.route(/jspdf/i, (route) => route.abort());
+
+    const dialog = page.waitForEvent('dialog');
+    await page.getByRole('button', { name: /Export PDF/ }).click();
+    const shown = await dialog;
+    expect(shown.type()).toBe('alert');
+    expect(shown.message()).toContain('reload');
+    await shown.dismiss();
+    await expect(page.getByRole('button', { name: /Export PDF/ })).toBeEnabled();
+  });
+
   test.describe('Calendar export west of UTC', () => {
     test.use({ timezoneId: 'America/Los_Angeles' });
 
