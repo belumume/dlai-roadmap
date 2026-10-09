@@ -14,13 +14,34 @@ function formatICSDate(date) {
 }
 
 /**
- * Format date as iCalendar datetime string (YYYYMMDDTHHMMSSZ)
+ * Format date as iCalendar UTC datetime string (YYYYMMDDTHHMMSSZ)
  */
 function formatICSDateTime(date) {
-  return formatICSDate(date) + 'T' +
-    String(date.getHours()).padStart(2, '0') +
-    String(date.getMinutes()).padStart(2, '0') +
-    String(date.getSeconds()).padStart(2, '0') + 'Z';
+  return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
+}
+
+/**
+ * Fold a content line to at most 75 octets per line (RFC 5545 section 3.1)
+ */
+function foldLine(line) {
+  const encoder = new TextEncoder();
+  const parts = [];
+  let current = '';
+  let currentBytes = 0;
+  for (const char of line) {
+    const charBytes = encoder.encode(char).length;
+    // Continuation lines start with a space, which counts toward the limit
+    const limit = parts.length === 0 ? 75 : 74;
+    if (currentBytes + charBytes > limit) {
+      parts.push(current);
+      current = '';
+      currentBytes = 0;
+    }
+    current += char;
+    currentBytes += charBytes;
+  }
+  parts.push(current);
+  return parts.join('\r\n ');
 }
 
 /**
@@ -174,7 +195,31 @@ export function exportRoadmapCalendar(roadmap, startDate = new Date()) {
     'END:VCALENDAR',
   ].join('\r\n');
 
-  return calendar;
+  return calendar.split('\r\n').map(foldLine).join('\r\n') + '\r\n';
+}
+
+/**
+ * Format date as YYYY-MM-DD in local time
+ */
+function formatISODate(date) {
+  const ymd = formatICSDate(date);
+  return `${ymd.slice(0, 4)}-${ymd.slice(4, 6)}-${ymd.slice(6, 8)}`;
+}
+
+/**
+ * Parse YYYY-MM-DD as a local calendar date. new Date('YYYY-MM-DD') would
+ * parse it as UTC midnight, which is the previous day west of UTC.
+ * @returns {Date|null}
+ */
+export function parseLocalDate(dateStr) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr);
+  if (!match) return null;
+  const [year, month, day] = match.slice(1).map(Number);
+  const date = new Date(year, month - 1, day);
+  if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+    return null;
+  }
+  return date;
 }
 
 /**
@@ -193,29 +238,32 @@ export function downloadCalendar(icsContent, filename = 'dlai-roadmap.ics') {
   link.click();
   document.body.removeChild(link);
 
-  URL.revokeObjectURL(url);
+  // Revoke after the click has been handled so the download is not cancelled
+  setTimeout(() => URL.revokeObjectURL(url), 0);
 }
 
 /**
  * Export and download roadmap calendar with date picker prompt
  * @param {Object} roadmap - Generated roadmap
+ * @returns {boolean} - true when a file was downloaded
  */
 export function exportAndDownloadCalendar(roadmap) {
-  // Prompt user for start date
+  // Prompt user for start date, defaulting to today in their own time zone
   const dateStr = prompt(
     'Enter your learning start date (YYYY-MM-DD):',
-    new Date().toISOString().split('T')[0]
+    formatISODate(new Date())
   );
 
-  if (!dateStr) return; // User cancelled
+  if (!dateStr) return false; // User cancelled
 
-  const startDate = new Date(dateStr);
-  if (isNaN(startDate.getTime())) {
+  const startDate = parseLocalDate(dateStr.trim());
+  if (!startDate) {
     alert('Invalid date format. Please use YYYY-MM-DD.');
-    return;
+    return false;
   }
 
   const icsContent = exportRoadmapCalendar(roadmap, startDate);
   const filename = `dlai-${roadmap.pathway}-pathway.ics`;
   downloadCalendar(icsContent, filename);
+  return true;
 }

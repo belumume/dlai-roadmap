@@ -7,8 +7,8 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 **Repo:** https://github.com/belumume/dlai-roadmap
 
 ## Tech Stack
-- React + Vite
-- Tailwind CSS
+- React 19 + Vite 8
+- Tailwind CSS 4
 - jsPDF for PDF export
 - GitHub Pages deployment
 - Static JSON data (no backend)
@@ -22,7 +22,9 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - `src/components/RoadmapView.jsx` - Generated roadmap display
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
 - `src/utils/exportCalendar.js` - iCalendar (.ics) export function
-- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` - Playwright tests (35 tests)
+- `src/utils/analytics.js` - PostHog wrapper (`track`); sends nothing in dev or automated browsers
+- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` + `tests/export-share.spec.cjs` - Playwright tests (41 tests)
+- `.github/workflows/ci.yml` - lint, build and Playwright on every PR; `deploy.yml` reuses it so main deploys only when green
 - `docs/solutions/` - documented solutions and methodology (data quality, curriculum design)
 
 ## Approved Plan Status
@@ -43,7 +45,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] mathBackground filters elective difficulty
 - [x] goal affects specialization preferences
 - [x] Learning Deep attribution with profile link
-- [x] Playwright test suite (35/35 passing)
+- [x] Playwright test suite (41/41 passing), run in CI on every PR and before every deploy
 - [x] Filter UI on roadmap view (category + difficulty filters)
 - [x] Critical path vs optional marking (Required/Optional badges on phases)
 - [x] Timeline warning display when core courses exceed target timeline
@@ -68,6 +70,8 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] Responsive design (mobile-first, icon-only buttons on mobile, 44px touch targets)
 - [x] Category tabs in CourseSelector (9 categories + Popular/All tabs, scrollable checklist, per @Deminiko feedback)
 - [x] Unofficial-status disclaimer (welcome, roadmap, PDF, page title) and WCAG AA text contrast; own visual identity kept on purpose (see `docs/solutions/best-practices/unofficial-branding-and-contrast-2026-10-09.md`)
+- [x] Calendar export uses the learner's local date, RFC 5545 line folding and rejects impossible dates (see `docs/solutions/logic-errors/calendar-export-off-by-one-day-2026-10-09.md`)
+- [x] jsPDF loaded on demand (initial bundle about 200 kB gzip, was 275 kB); zero `npm audit` findings
 
 ### ALL FEATURES COMPLETE - READY FOR LAUNCH
 
@@ -86,9 +90,11 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 ## Testing
 ```bash
 npm run dev                    # Start dev server
+npm run lint                   # ESLint (src and tests)
 npm run build                  # Production build
-npx playwright test --config=playwright.config.cjs  # Run tests
+npm test                       # = npx playwright test --config=playwright.config.cjs
 ```
+Node 22.12+ (`.nvmrc` = 24, used by CI).
 
 **IMPORTANT:**
 1. Always ADD NEW TESTS for new features before committing

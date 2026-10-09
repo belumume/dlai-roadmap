@@ -26,4 +26,14 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
   },
+  {
+    // Playwright config and tests run in Node as CommonJS
+    files: ['**/*.cjs'],
+    extends: [js.configs.recommended],
+    languageOptions: {
+      ecmaVersion: 'latest',
+      sourceType: 'commonjs',
+      globals: { ...globals.node, ...globals.browser },
+    },
+  },
 ])

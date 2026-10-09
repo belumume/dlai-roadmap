@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { ChevronRight, ChevronLeft, Clock, Target, GraduationCap, Calculator, Calendar, BookOpen, CheckCircle2, Cpu, Zap, Network } from 'lucide-react';
 import CourseSelector from './CourseSelector';
 import coursesData from '../data/courses.json';
