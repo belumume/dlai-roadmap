@@ -1,6 +1,306 @@
 {
   "courses": [
     {
+      "id": "building-ai-assistants-with-on-device-memory",
+      "title": "Building AI Assistants with On-Device Memory",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/building-ai-assistants-with-on-device-memory",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.1,
+      "categories": ["agents", "rag"],
+      "instructor": "Dylan Couzon",
+      "platform": "dlai",
+      "prerequisites": ["vector-databases-embeddings-applications"],
+      "skills_taught": [
+        "on-device vector memory",
+        "multimodal retrieval",
+        "offline assistants",
+        "few-shot object recognition"
+      ],
+      "career_paths": ["builder"],
+      "partner": "Qdrant"
+    },
+    {
+      "id": "building-adaptive-ai-agents",
+      "title": "Building Adaptive AI Agents",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/building-adaptive-ai-agents",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.1,
+      "categories": ["agents"],
+      "instructor": "Nacho Martínez",
+      "platform": "dlai",
+      "prerequisites": ["agent-memory-building-memory-aware-agents"],
+      "skills_taught": [
+        "agent skill extraction from traces",
+        "human-in-the-loop approval",
+        "code knowledge graphs",
+        "agent adaptation strategies"
+      ],
+      "career_paths": ["builder", "enterprise"],
+      "partner": "Oracle"
+    },
+    {
+      "id": "ai-coding-workflows-from-cloud-to-local",
+      "title": "AI Coding Workflows: From Cloud to Local",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/ai-coding-workflows-from-cloud-to-local",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.5,
+      "categories": ["coding"],
+      "instructor": "Paul Everitt",
+      "platform": "dlai",
+      "prerequisites": ["spec-driven-development-with-coding-agents"],
+      "skills_taught": [
+        "local and hybrid coding agents",
+        "model and provider selection",
+        "context scoping for small models",
+        "cost and latency tradeoffs"
+      ],
+      "career_paths": ["builder"],
+      "partner": "JetBrains"
+    },
+    {
+      "id": "ai-code-review",
+      "title": "AI Code Review",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/ai-code-review",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.1,
+      "categories": ["coding", "agents"],
+      "instructor": "Nnenna Ndukwe",
+      "platform": "dlai",
+      "prerequisites": ["ai-python-for-beginners"],
+      "skills_taught": [
+        "AI code review practices",
+        "context engines for code",
+        "review agent ensembles",
+        "risk-based finding triage"
+      ],
+      "career_paths": ["builder", "enterprise"],
+      "partner": "Qodo"
+    },
+    {
+      "id": "fast-llm-inference-with-cerebras",
+      "title": "Fast LLM Inference with Cerebras",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/fast-llm-inference-with-cerebras",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.7,
+      "categories": ["deployment"],
+      "instructor": "Zhenwei Gao",
+      "platform": "dlai",
+      "prerequisites": ["ai-python-for-beginners"],
+      "skills_taught": [
+        "low-latency LLM inference",
+        "memory-bandwidth bottlenecks",
+        "real-time multi-tool workflows",
+        "wafer-scale inference"
+      ],
+      "career_paths": ["builder"],
+      "partner": "Cerebras"
+    },
+    {
+      "id": "voice-for-ai-agents-and-applications",
+      "title": "Voice for AI Agents and Applications",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/voice-for-ai-agents-and-applications",
+      "difficulty": "beginner",
+      "estimated_hours": 1.4,
+      "categories": ["agents"],
+      "instructor": "Ashwyn Sharma",
+      "platform": "dlai",
+      "prerequisites": ["ai-python-for-beginners"],
+      "skills_taught": [
+        "voice agent integration patterns",
+        "voice as a callable tool",
+        "outbound call agents",
+        "voice agent evaluation"
+      ],
+      "career_paths": ["builder"],
+      "partner": "Vocal Bridge"
+    },
+    {
+      "id": "fast-and-efficient-llm-inference-with-vllm",
+      "title": "Fast & Efficient LLM Inference with vLLM",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/fast-and-efficient-llm-inference-with-vllm",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.6,
+      "categories": ["deployment"],
+      "instructor": "Cedric Clyburn",
+      "platform": "dlai",
+      "prerequisites": ["efficiently-serving-llms"],
+      "skills_taught": [
+        "vLLM serving",
+        "continuous batching and PagedAttention",
+        "model quantization tradeoffs",
+        "inference benchmarking"
+      ],
+      "career_paths": ["builder", "enterprise"],
+      "partner": "Red Hat"
+    },
+    {
+      "id": "ai-agents-for-image-and-video-generation",
+      "title": "AI Agents for Image and Video Generation",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/ai-agents-for-image-and-video-generation",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.6,
+      "categories": ["agents"],
+      "instructor": "Katie Nguyen",
+      "platform": "dlai",
+      "prerequisites": ["agentic-ai"],
+      "skills_taught": [
+        "image and video generation agents",
+        "LLM-as-judge evaluation",
+        "rubric-based evaluation",
+        "iterative refinement loops"
+      ],
+      "career_paths": ["builder"],
+      "partner": "Google"
+    },
+    {
+      "id": "transformers-in-practice",
+      "title": "Transformers in Practice",
+      "type": "course",
+      "url": "https://learn.deeplearning.ai/courses/transformers-in-practice",
+      "difficulty": "intermediate",
+      "estimated_hours": 11.0,
+      "categories": ["training", "general"],
+      "instructor": "Sharon Zhou",
+      "platform": "dlai",
+      "prerequisites": ["generative-ai-with-llms"],
+      "skills_taught": [
+        "transformer internals",
+        "attention and positional encoding",
+        "KV caching and flash attention",
+        "debugging model behavior"
+      ],
+      "career_paths": ["researcher", "builder"],
+      "partner": "AMD"
+    },
+    {
+      "id": "build-interactive-agents-with-generative-ui",
+      "title": "Build Interactive Agents with Generative UI",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/build-interactive-agents-with-generative-ui",
+      "difficulty": "beginner",
+      "estimated_hours": 1.5,
+      "categories": ["agents", "coding"],
+      "instructor": "Atai Barkai",
+      "platform": "dlai",
+      "prerequisites": ["ai-python-for-beginners"],
+      "skills_taught": [
+        "generative UI patterns",
+        "AG-UI protocol",
+        "CopilotKit with LangChain agents",
+        "MCP Apps"
+      ],
+      "career_paths": ["builder"],
+      "partner": "CopilotKit"
+    },
+    {
+      "id": "ai-prompting-for-everyone",
+      "title": "AI Prompting for Everyone",
+      "type": "course",
+      "url": "https://learn.deeplearning.ai/courses/ai-prompting-for-everyone",
+      "difficulty": "beginner",
+      "estimated_hours": 7.1,
+      "categories": ["prompting", "general"],
+      "instructor": "Andrew Ng",
+      "platform": "dlai",
+      "prerequisites": [],
+      "skills_taught": [
+        "effective prompting",
+        "AI-assisted research",
+        "AI writing and brainstorming",
+        "no-code app building"
+      ],
+      "career_paths": ["builder", "researcher", "enterprise"],
+      "partner": "DeepLearning.AI"
+    },
+    {
+      "id": "building-multimodal-data-pipelines",
+      "title": "Building Multimodal Data Pipelines",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/building-multimodal-data-pipelines",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.0,
+      "categories": ["rag"],
+      "instructor": "Gilberto Hernandez",
+      "platform": "dlai",
+      "prerequisites": ["ai-python-for-beginners"],
+      "skills_taught": [
+        "multimodal data extraction",
+        "OCR, ASR and VLM pipelines",
+        "video scene understanding",
+        "multimodal RAG"
+      ],
+      "career_paths": ["builder", "enterprise"],
+      "partner": "Snowflake"
+    },
+    {
+      "id": "spec-driven-development-with-coding-agents",
+      "title": "Spec-Driven Development with Coding Agents",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/spec-driven-development-with-coding-agents",
+      "difficulty": "beginner",
+      "estimated_hours": 1.3,
+      "categories": ["coding"],
+      "instructor": "Paul Everitt",
+      "platform": "dlai",
+      "prerequisites": ["ai-python-for-beginners"],
+      "skills_taught": [
+        "spec-driven development",
+        "project constitutions",
+        "plan-implement-verify workflow",
+        "custom agent skills"
+      ],
+      "career_paths": ["builder"],
+      "partner": "JetBrains"
+    },
+    {
+      "id": "efficient-inference-with-sglang",
+      "title": "Efficient Inference with SGLang: Text and Image Generation",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/efficient-inference-with-sglang-text-and-image-generation",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.3,
+      "categories": ["deployment"],
+      "instructor": "Richard Chen",
+      "platform": "dlai",
+      "prerequisites": ["efficiently-serving-llms"],
+      "skills_taught": [
+        "KV cache",
+        "RadixAttention",
+        "SGLang serving",
+        "diffusion model acceleration"
+      ],
+      "career_paths": ["builder", "researcher"],
+      "partner": "RadixArk"
+    },
+    {
+      "id": "federated-fine-tuning-llms-private-data",
+      "title": "Federated Fine-tuning of LLMs with Private Data",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/intro-to-federated-learning-c2",
+      "difficulty": "beginner",
+      "estimated_hours": 2.0,
+      "categories": ["training", "privacy"],
+      "instructor": "Daniel J. Beutel",
+      "platform": "dlai",
+      "prerequisites": ["intro-to-federated-learning"],
+      "skills_taught": [
+        "federated fine-tuning",
+        "parameter-efficient fine-tuning",
+        "differential privacy",
+        "Flower framework"
+      ],
+      "career_paths": ["researcher", "enterprise"],
+      "partner": "Flower Labs"
+    },
+    {
       "id": "agent-memory-building-memory-aware-agents",
       "title": "Agent Memory: Building Memory-Aware Agents",
       "type": "short",
@@ -26,7 +326,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/build-and-train-an-llm-with-jax",
       "difficulty": "intermediate",
-      "estimated_hours": 1,
+      "estimated_hours": 0.8,
       "categories": ["training"],
       "instructor": "Chris Achard",
       "platform": "dlai",
@@ -46,7 +346,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/agent-skills-with-anthropic",
       "difficulty": "beginner",
-      "estimated_hours": 2,
+      "estimated_hours": 2.3,
       "categories": ["agents", "coding"],
       "instructor": "Elie Schoppik",
       "platform": "dlai",
@@ -66,7 +366,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/gemini-cli-code-and-create-with-an-open-source-agent",
       "difficulty": "beginner",
-      "estimated_hours": 1,
+      "estimated_hours": 1.4,
       "categories": ["agents", "coding"],
       "instructor": "Jack Wotherspoon",
       "platform": "dlai",
@@ -86,7 +386,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/document-ai-from-ocr-to-agentic-doc-extraction",
       "difficulty": "intermediate",
-      "estimated_hours": 3,
+      "estimated_hours": 3.2,
       "categories": ["rag", "deployment"],
       "instructor": "David Park",
       "platform": "dlai",
@@ -106,7 +406,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/build-with-andrew",
       "difficulty": "beginner",
-      "estimated_hours": 0.5,
+      "estimated_hours": 1.0,
       "categories": ["general", "prompting"],
       "instructor": "Andrew Ng",
       "platform": "dlai",
@@ -126,7 +426,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/nvidia-nat-making-agents-reliable",
       "difficulty": "intermediate",
-      "estimated_hours": 1.5,
+      "estimated_hours": 1.3,
       "categories": ["agents", "deployment"],
       "instructor": "Brian McBrayer",
       "platform": "dlai",
@@ -146,7 +446,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/multi-vector-image-retrieval",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.7,
       "categories": [
         "rag",
         "general"
@@ -173,7 +473,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-coding-agents-with-tool-execution",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.4,
       "categories": [
         "agents",
         "coding"
@@ -200,7 +500,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/semantic-caching-for-ai-agents",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.4,
       "categories": [
         "agents",
         "deployment"
@@ -227,8 +527,8 @@
       "title": "Design, Develop, and Deploy Multi-Agent Systems with CrewAI",
       "type": "course",
       "url": "https://learn.deeplearning.ai/courses/design-develop-and-deploy-multi-agent-systems-with-crewai",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 13.1,
       "categories": [
         "agents",
         "deployment"
@@ -253,8 +553,8 @@
       "title": "Jupyter AI: AI Coding in Notebooks",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/jupyter-ai-coding-in-notebooks",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.2,
       "categories": [
         "coding",
         "general"
@@ -279,8 +579,8 @@
       "title": "Governing AI Agents",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/governing-ai-agents",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.5,
       "categories": [
         "agents",
         "safety"
@@ -300,7 +600,7 @@
         "builder",
         "enterprise"
       ],
-      "partner": "LlamaIndex"
+      "partner": "Databricks"
     },
     {
       "id": "building-live-voice-agents-google-adk",
@@ -308,7 +608,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-live-voice-agents-with-googles-adk",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.4,
       "categories": [
         "agents",
         "general"
@@ -335,7 +635,7 @@
       "type": "course",
       "url": "https://learn.deeplearning.ai/courses/agentic-ai",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 9.9,
       "categories": [
         "agents",
         "general"
@@ -381,15 +681,15 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "LlamaIndex"
+      "partner": "Snowflake"
     },
     {
       "id": "build-ai-apps-mcp-servers-box-files",
-      "title": "Build AI Apps with MCP Servers: Working with Box Files",
+      "title": "Build AI Apps with MCP Server: Working with Box Files",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/build-ai-apps-with-mcp-server-working-with-box-files",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 0.6,
       "categories": [
         "agents",
         "general"
@@ -417,7 +717,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/knowledge-graphs-for-ai-agent-api-discovery",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.2,
       "categories": [
         "agents",
         "rag"
@@ -436,7 +736,7 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "Neo4j"
+      "partner": "SAP"
     },
     {
       "id": "agentic-knowledge-graph-construction",
@@ -444,7 +744,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/agentic-knowledge-graph-construction",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 3.1,
       "categories": [
         "agents",
         "rag"
@@ -467,11 +767,11 @@
     },
     {
       "id": "fine-tuning-rl-llms-intro-post-training",
-      "title": "Fine-tuning and Reinforcement Learning for LLMs: Intro to Post-Training",
+      "title": "Fine-tuning & RL for LLMs: Intro to Post-training",
       "type": "course",
       "url": "https://learn.deeplearning.ai/courses/fine-tuning-and-reinforcement-learning-for-llms-intro-to-post-training",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 13.3,
       "categories": [
         "training",
         "general"
@@ -490,11 +790,11 @@
       "career_paths": [
         "researcher"
       ],
-      "partner": "Lamini"
+      "partner": "AMD"
     },
     {
       "id": "pytorch-for-deep-learning",
-      "title": "PyTorch for Deep Learning Professional Certificate",
+      "title": "PyTorch for Deep Learning",
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/pytorch-for-deep-learning-professional-certificate",
       "difficulty": "intermediate",
@@ -549,7 +849,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/pydantic-for-llm-workflows",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.8,
       "categories": [
         "general"
       ],
@@ -567,7 +867,7 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "Pydantic"
+      "partner": "DeepLearning.AI"
     },
     {
       "id": "post-training-of-llms",
@@ -575,7 +875,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/post-training-of-llms",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.4,
       "categories": [
         "training"
       ],
@@ -593,7 +893,7 @@
       "career_paths": [
         "researcher"
       ],
-      "partner": "UC Berkeley"
+      "partner": "University of Washington"
     },
     {
       "id": "a2a-the-agent2agent-protocol",
@@ -601,7 +901,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/a2a-the-agent2agent-protocol",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.5,
       "categories": [
         "agents"
       ],
@@ -626,8 +926,8 @@
       "title": "Building with Llama 4",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-with-llama-4",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.3,
       "categories": [
         "general"
       ],
@@ -654,7 +954,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/orchestrating-workflows-for-genai-applications",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.8,
       "categories": [
         "general"
       ],
@@ -673,7 +973,7 @@
         "builder",
         "enterprise"
       ],
-      "partner": "Prefect"
+      "partner": "Astronomer"
     },
     {
       "id": "dspy-build-optimize-agentic-apps",
@@ -681,7 +981,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/dspy-build-optimize-agentic-apps",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.0,
       "categories": [
         "agents"
       ],
@@ -700,7 +1000,7 @@
         "builder",
         "researcher"
       ],
-      "partner": "Stanford NLP"
+      "partner": "Databricks"
     },
     {
       "id": "reinforcement-fine-tuning-llms-grpo",
@@ -708,7 +1008,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/reinforcement-fine-tuning-llms-grpo",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.9,
       "categories": [
         "training"
       ],
@@ -760,7 +1060,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-ai-voice-agents-for-production",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.0,
       "categories": [
         "agents"
       ],
@@ -778,7 +1078,7 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "Vapi"
+      "partner": "LiveKit"
     },
     {
       "id": "llms-as-operating-systems-agent-memory",
@@ -786,7 +1086,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/llms-as-operating-systems-agent-memory/",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.5,
       "categories": [
         "agents"
       ],
@@ -813,7 +1113,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-code-agents-with-hugging-face-smolagents",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 0.9,
       "categories": [
         "agents"
       ],
@@ -839,7 +1139,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-ai-browser-agents",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.1,
       "categories": [
         "agents"
       ],
@@ -857,7 +1157,7 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "MultiOn"
+      "partner": "AGI Inc"
     },
     {
       "id": "getting-structured-llm-output",
@@ -865,7 +1165,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/getting-structured-llm-output",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.4,
       "categories": [
         "general",
         "agents"
@@ -884,15 +1184,15 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "Cohere"
+      "partner": "DotTxt"
     },
     {
       "id": "vibe-coding-101-with-replit",
       "title": "Vibe Coding 101 with Replit",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/vibe-coding-101-with-replit",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.6,
       "categories": [
         "coding"
       ],
@@ -916,7 +1216,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/long-term-agentic-memory-with-langgraph",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.4,
       "categories": [
         "agents"
       ],
@@ -941,8 +1241,8 @@
       "title": "Event-Driven Agentic Document Workflows",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/event-driven-agentic-document-workflows",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.3,
       "categories": [
         "agents"
       ],
@@ -968,8 +1268,8 @@
       "title": "Build Apps with Windsurf's AI Coding Agents",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/build-apps-with-windsurfs-ai-coding-agents",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.5,
       "categories": [
         "agents",
         "coding"
@@ -986,15 +1286,15 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "Codeium"
+      "partner": "Windsurf"
     },
     {
       "id": "evaluating-ai-agents",
       "title": "Evaluating AI Agents",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/evaluating-ai-agents",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 2.6,
       "categories": [
         "agents"
       ],
@@ -1020,8 +1320,8 @@
       "title": "Attention in Transformers: Concepts and Code in PyTorch",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/attention-in-transformers-concepts-and-code-in-pytorch",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.3,
       "categories": [
         "general"
       ],
@@ -1046,8 +1346,8 @@
       "title": "How Transformer LLMs Work",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/how-transformer-llms-work",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.7,
       "categories": [
         "general"
       ],
@@ -1065,15 +1365,15 @@
       "career_paths": [
         "researcher"
       ],
-      "partner": "Cohere"
+      "partner": "Jay Alammar, Maarten Grootendorst"
     },
     {
       "id": "building-towards-computer-use-with-anthropic",
-      "title": "Building Towards Computer Use with Anthropic",
+      "title": "Building toward Computer Use with Anthropic",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-toward-computer-use-with-anthropic",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.8,
       "categories": [
         "general"
       ],
@@ -1098,8 +1398,8 @@
       "title": "Build Long-Context AI Apps with Jamba",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/build-long-context-ai-apps-with-jamba",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.2,
       "categories": [
         "general"
       ],
@@ -1125,7 +1425,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/reasoning-with-o1",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.7,
       "categories": [
         "general"
       ],
@@ -1151,8 +1451,8 @@
       "title": "Collaborative Writing and Coding with OpenAI Canvas",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/collaborative-writing-and-coding-with-openai-canvas",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.0,
       "categories": [
         "coding"
       ],
@@ -1175,8 +1475,8 @@
       "title": "Building an AI-Powered Game",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-an-ai-powered-game",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.1,
       "categories": [
         "general"
       ],
@@ -1194,7 +1494,7 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "Unity"
+      "partner": "Together AI"
     },
     {
       "id": "safe-and-reliable-ai-via-guardrails",
@@ -1202,7 +1502,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/safe-and-reliable-ai-via-guardrails",
       "difficulty": "beginner",
-      "estimated_hours": 2,
+      "estimated_hours": 1.7,
       "categories": [
         "safety"
       ],
@@ -1228,8 +1528,8 @@
       "title": "Practical Multi AI Agents and Advanced Use Cases with crewAI",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/practical-multi-ai-agents-and-advanced-use-cases-with-crewai/",
-      "difficulty": "advanced",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 2.8,
       "categories": [
         "agents"
       ],
@@ -1250,40 +1550,12 @@
       "partner": "CrewAI"
     },
     {
-      "id": "serverless-agentic-workflows-with-amazon-bedrock",
-      "title": "Serverless Agentic Workflows with Amazon Bedrock",
-      "type": "short",
-      "url": "https://learn.deeplearning.ai/courses/serverless-agentic-workflows-with-amazon-bedrock",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
-      "categories": [
-        "agents",
-        "deployment"
-      ],
-      "instructor": "Mike Chambers",
-      "platform": "dlai",
-      "prerequisites": [
-        "serverless-llm-apps-amazon-bedrock"
-      ],
-      "skills_taught": [
-        "Bedrock agents",
-        "serverless AI",
-        "AWS Lambda",
-        "agent orchestration"
-      ],
-      "career_paths": [
-        "builder",
-        "enterprise"
-      ],
-      "partner": "AWS"
-    },
-    {
       "id": "introducing-multimodal-llama-3-2",
       "title": "Introducing Multimodal Llama 3.2",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/introducing-multimodal-llama-3-2",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.7,
       "categories": [
         "general"
       ],
@@ -1306,11 +1578,11 @@
     },
     {
       "id": "retrieval-optimization-from-tokenization-to-vector-quantization",
-      "title": "Retrieval Optimization: From Tokenization to Vector Quantization",
+      "title": "Retrieval Optimization: Tokenization to Vector Quantization",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/retrieval-optimization-from-tokenization-to-vector-quantization",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.7,
       "categories": [
         "rag"
       ],
@@ -1337,7 +1609,7 @@
       "type": "course",
       "url": "https://learn.deeplearning.ai/courses/ai-python-for-beginners",
       "difficulty": "beginner",
-      "estimated_hours": 2,
+      "estimated_hours": 11.5,
       "categories": [
         "coding"
       ],
@@ -1362,8 +1634,8 @@
       "title": "Large Multimodal Model Prompting with Gemini",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/large-multimodal-model-prompting-with-gemini",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 2.3,
       "categories": [
         "prompting"
       ],
@@ -1389,7 +1661,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-ai-applications-with-haystack",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.6,
       "categories": [
         "general"
       ],
@@ -1415,7 +1687,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/improving-accuracy-of-llm-applications",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.9,
       "categories": [
         "general"
       ],
@@ -1441,8 +1713,8 @@
       "title": "Embedding Models: From Architecture to Implementation",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/embedding-models-from-architecture-to-implementation",
-      "difficulty": "advanced",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.0,
       "categories": [
         "rag"
       ],
@@ -1467,8 +1739,8 @@
       "title": "Intro to Federated Learning",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/intro-to-federated-learning/",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.3,
       "categories": [
         "general",
         "privacy"
@@ -1496,7 +1768,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/pretraining-llms",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.5,
       "categories": [
         "training"
       ],
@@ -1522,7 +1794,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/prompt-compression-and-query-optimization",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.8,
       "categories": [
         "prompting"
       ],
@@ -1547,7 +1819,7 @@
       "title": "Carbon Aware Computing for GenAI Developers",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/carbon-aware-computing-for-genai-developers",
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "estimated_hours": 2,
       "categories": [
         "general"
@@ -1572,8 +1844,8 @@
       "title": "Function-Calling and Data Extraction with LLMs",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/function-calling-and-data-extraction-with-llms",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.3,
       "categories": [
         "general",
         "agents"
@@ -1599,8 +1871,8 @@
       "title": "Building Your Own Database Agent",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-your-own-database-agent",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.1,
       "categories": [
         "agents"
       ],
@@ -1627,7 +1899,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/ai-agents-in-langgraph",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.7,
       "categories": [
         "agents"
       ],
@@ -1652,8 +1924,8 @@
       "title": "AI Agentic Design Patterns with AutoGen",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/ai-agentic-design-patterns-with-autogen",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.6,
       "categories": [
         "agents"
       ],
@@ -1680,7 +1952,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/introduction-to-on-device-ai",
       "difficulty": "beginner",
-      "estimated_hours": 2,
+      "estimated_hours": 1.3,
       "categories": [
         "general"
       ],
@@ -1704,8 +1976,8 @@
       "title": "Multi AI Agent Systems with crewAI",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/multi-ai-agent-systems-with-crewai",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 3.0,
       "categories": [
         "agents"
       ],
@@ -1731,7 +2003,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-multimodal-search-and-rag",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.6,
       "categories": [
         "rag"
       ],
@@ -1756,8 +2028,8 @@
       "title": "Building Agentic RAG with LlamaIndex",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-agentic-rag-with-llamaindex",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 0.9,
       "categories": [
         "rag",
         "agents"
@@ -1783,8 +2055,8 @@
       "title": "Quantization in Depth",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/quantization-in-depth",
-      "difficulty": "advanced",
-      "estimated_hours": 2,
+      "difficulty": "intermediate",
+      "estimated_hours": 2.3,
       "categories": [
         "general"
       ],
@@ -1809,8 +2081,8 @@
       "title": "Prompt Engineering for Vision Models",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/prompt-engineering-for-vision-models",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.5,
       "categories": [
         "prompting"
       ],
@@ -1835,8 +2107,8 @@
       "title": "Getting Started With Mistral",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/getting-started-with-mistral",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.0,
       "categories": [
         "general",
         "rag",
@@ -1863,8 +2135,8 @@
       "title": "Quantization Fundamentals with Hugging Face",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/quantization-fundamentals",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.2,
       "categories": [
         "general"
       ],
@@ -1889,8 +2161,8 @@
       "title": "Preprocessing Unstructured Data for LLM Applications",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/preprocessing-unstructured-data-for-llm-applications",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.4,
       "categories": [
         "general"
       ],
@@ -1916,8 +2188,8 @@
       "title": "Red Teaming LLM Applications",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/red-teaming-llm-applications",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.7,
       "categories": [
         "safety"
       ],
@@ -1942,8 +2214,8 @@
       "title": "JavaScript RAG Web Apps with LlamaIndex",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/javascript-rag-web-apps-with-llamaindex",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 0.8,
       "categories": [
         "rag"
       ],
@@ -1969,7 +2241,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/efficiently-serving-llms",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 2.2,
       "categories": [
         "deployment"
       ],
@@ -1996,7 +2268,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/knowledge-graphs-rag",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 2.1,
       "categories": [
         "rag"
       ],
@@ -2021,8 +2293,8 @@
       "title": "Open Source Models with Hugging Face",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/open-source-models-hugging-face",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 2.2,
       "categories": [
         "general"
       ],
@@ -2048,8 +2320,8 @@
       "title": "Prompt Engineering with Llama 2 & 3",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/prompt-engineering-with-llama-2",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 2.1,
       "categories": [
         "prompting"
       ],
@@ -2070,39 +2342,12 @@
       "partner": "Meta"
     },
     {
-      "id": "serverless-llm-apps-amazon-bedrock",
-      "title": "Serverless LLM Apps with Amazon Bedrock",
-      "type": "short",
-      "url": "https://learn.deeplearning.ai/courses/serverless-llm-apps-amazon-bedrock",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
-      "categories": [
-        "deployment"
-      ],
-      "instructor": "Mike Chambers",
-      "platform": "dlai",
-      "prerequisites": [
-        "chatgpt-prompt-engineering-for-developers"
-      ],
-      "skills_taught": [
-        "Amazon Bedrock",
-        "serverless deployment",
-        "AWS Lambda",
-        "cloud AI"
-      ],
-      "career_paths": [
-        "builder",
-        "enterprise"
-      ],
-      "partner": "AWS"
-    },
-    {
       "id": "building-applications-vector-databases",
       "title": "Building Applications with Vector Databases",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-applications-vector-databases",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.6,
       "categories": [
         "rag"
       ],
@@ -2128,7 +2373,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/automated-testing-llmops",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.2,
       "categories": [
         "deployment"
       ],
@@ -2154,8 +2399,8 @@
       "title": "LLMOps",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/llmops",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.5,
       "categories": [
         "deployment"
       ],
@@ -2177,38 +2422,12 @@
       "partner": "Google"
     },
     {
-      "id": "build-llm-apps-with-langchain-js",
-      "title": "Build LLM Apps with LangChain.js",
-      "type": "short",
-      "url": "https://learn.deeplearning.ai/courses/build-llm-apps-with-langchain-js",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
-      "categories": [
-        "agents"
-      ],
-      "instructor": "Jacob Lee",
-      "platform": "dlai",
-      "prerequisites": [
-        "langchain-for-llm-application-development"
-      ],
-      "skills_taught": [
-        "LangChain.js",
-        "JavaScript LLM apps",
-        "Node.js AI",
-        "TypeScript agents"
-      ],
-      "career_paths": [
-        "builder"
-      ],
-      "partner": "LangChain"
-    },
-    {
       "id": "advanced-retrieval-for-ai",
       "title": "Advanced Retrieval for AI with Chroma",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/advanced-retrieval-for-ai",
-      "difficulty": "advanced",
-      "estimated_hours": 2,
+      "difficulty": "intermediate",
+      "estimated_hours": 1.0,
       "categories": [
         "rag"
       ],
@@ -2235,7 +2454,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/reinforcement-learning-from-human-feedback",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.5,
       "categories": [
         "general"
       ],
@@ -2257,11 +2476,11 @@
     },
     {
       "id": "building-evaluating-advanced-rag",
-      "title": "Building and Evaluating Advanced RAG Applications",
+      "title": "Building and Evaluating Advanced RAG",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/building-evaluating-advanced-rag",
-      "difficulty": "advanced",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 2.1,
       "categories": [
         "rag"
       ],
@@ -2287,7 +2506,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/vector-databases-embeddings-applications",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.1,
       "categories": [
         "rag"
       ],
@@ -2313,7 +2532,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/functions-tools-agents-langchain",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.9,
       "categories": [
         "agents"
       ],
@@ -2338,8 +2557,8 @@
       "title": "Pair Programming with a Large Language Model",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/pair-programming-llm",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.2,
       "categories": [
         "general"
       ],
@@ -2362,8 +2581,8 @@
       "title": "Understanding and Applying Text Embeddings",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/google-cloud-vertex-ai",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.7,
       "categories": [
         "rag"
       ],
@@ -2388,8 +2607,8 @@
       "title": "How Business Thinkers Can Start Building AI Plugins With Semantic Kernel",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/microsoft-semantic-kernel",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.4,
       "categories": [
         "general"
       ],
@@ -2414,7 +2633,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/finetuning-large-language-models",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.6,
       "categories": [
         "general"
       ],
@@ -2439,8 +2658,8 @@
       "title": "Large Language Models with Semantic Search",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/large-language-models-semantic-search",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.5,
       "categories": [
         "rag"
       ],
@@ -2462,11 +2681,11 @@
     },
     {
       "id": "evaluating-debugging-generative-ai",
-      "title": "Evaluating and Debugging Generative AI Models Using Weights and Biases",
+      "title": "Evaluating and Debugging Generative AI",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/evaluating-debugging-generative-ai",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 1.0,
       "categories": [
         "general"
       ],
@@ -2491,8 +2710,8 @@
       "title": "Building Generative AI Applications with Gradio",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/huggingface-gradio",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.0,
       "categories": [
         "general"
       ],
@@ -2517,8 +2736,8 @@
       "title": "LangChain: Chat with Your Data",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/langchain-chat-with-your-data",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.3,
       "categories": [
         "agents",
         "rag"
@@ -2545,7 +2764,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/diffusion-models",
       "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "estimated_hours": 0.8,
       "categories": [
         "general"
       ],
@@ -2563,15 +2782,15 @@
       "career_paths": [
         "researcher"
       ],
-      "partner": "DeepLearning.AI"
+      "partner": "Lamini"
     },
     {
       "id": "langchain-for-llm-application-development",
       "title": "LangChain for LLM Application Development",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/langchain",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.8,
       "categories": [
         "agents"
       ],
@@ -2596,8 +2815,8 @@
       "title": "Building Systems with the ChatGPT API",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/chatgpt-building-system",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.9,
       "categories": [
         "prompting"
       ],
@@ -2622,8 +2841,8 @@
       "title": "ChatGPT Prompt Engineering for Developers",
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/chatgpt-prompt-eng",
-      "difficulty": "intermediate",
-      "estimated_hours": 2,
+      "difficulty": "beginner",
+      "estimated_hours": 1.7,
       "categories": [
         "prompting"
       ],
@@ -2666,11 +2885,11 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "Streamlit"
+      "partner": "Snowflake"
     },
     {
       "id": "retrieval-augmented-generation-rag",
-      "title": "Retrieval Augmented Generation (RAG) Course",
+      "title": "Retrieval Augmented Generation (RAG)",
       "type": "course",
       "url": "https://learn.deeplearning.ai/courses/retrieval-augmented-generation",
       "difficulty": "intermediate",
@@ -2692,14 +2911,14 @@
       "career_paths": [
         "builder"
       ],
-      "partner": "Weaviate"
+      "partner": "DeepLearning.AI"
     },
     {
       "id": "data-analytics",
-      "title": "Data Analytics Professional Certificate",
+      "title": "Data Analytics",
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/data-analytics",
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "estimated_hours": 152,
       "categories": [
         "general"
@@ -2726,7 +2945,7 @@
       "title": "Generative AI for Software Development",
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/generative-ai-for-software-development",
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "estimated_hours": 15,
       "categories": [
         "coding"
@@ -2751,14 +2970,14 @@
       "id": "data-engineering",
       "title": "Data Engineering",
       "type": "certificate",
-      "url": "https://www.coursera.org/professional-certificates/data-engineering?utm_campaign=WebsiteCoursesDE&utm_medium=institutions&utm_source=deeplearning-ai",
+      "url": "https://learn.deeplearning.ai/specializations/data-engineering",
       "difficulty": "intermediate",
       "estimated_hours": 106,
       "categories": [
         "deployment"
       ],
       "instructor": "Joe Reis",
-      "platform": "coursera",
+      "platform": "dlai",
       "prerequisites": [
         "ai-python-for-beginners"
       ],
@@ -2772,7 +2991,7 @@
         "builder",
         "enterprise"
       ],
-      "partner": "Coursera"
+      "partner": "AWS"
     },
     {
       "id": "machine-learning-in-production",
@@ -2829,7 +3048,7 @@
     },
     {
       "id": "generative-ai-with-llms",
-      "title": "Generative AI with LLMs",
+      "title": "Generative AI with Large Language Models",
       "type": "course",
       "url": "https://learn.deeplearning.ai/courses/generative-ai-with-llms",
       "difficulty": "intermediate",
@@ -2857,10 +3076,10 @@
     },
     {
       "id": "ai-for-good",
-      "title": "AI for Good Specialization",
+      "title": "AI for Good",
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/ai-for-good",
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "estimated_hours": 36,
       "categories": [
         "safety"
@@ -2883,10 +3102,10 @@
     },
     {
       "id": "mathematics-for-machine-learning-and-data-science-specialization",
-      "title": "Mathematics for Machine Learning and Data Science Specialization",
+      "title": "Mathematics for Machine Learning and Data Science",
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/mathematics-for-machine-learning-and-data-science",
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "estimated_hours": 94,
       "categories": [
         "general"
@@ -2910,7 +3129,7 @@
       "title": "Machine Learning Specialization",
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/machine-learning",
-      "difficulty": "intermediate",
+      "difficulty": "beginner",
       "estimated_hours": 95,
       "categories": [
         "general"
@@ -3091,7 +3310,7 @@
     },
     {
       "id": "ai-for-medicine-specialization",
-      "title": "AI for Medicine Specialization",
+      "title": "AI for Medicine",
       "type": "certificate",
       "url": "https://learn.deeplearning.ai/specializations/ai-for-medicine",
       "difficulty": "intermediate",
@@ -3113,7 +3332,7 @@
       "career_paths": [
         "researcher"
       ],
-      "partner": "Stanford"
+      "partner": "DeepLearning.AI"
     },
     {
       "id": "ai-for-everyone",
@@ -3249,7 +3468,7 @@
           "name": "Integration",
           "courses": [
             "machine-learning-in-production",
-            "serverless-llm-apps-amazon-bedrock"
+            "governing-ai-agents"
           ]
         }
       ]

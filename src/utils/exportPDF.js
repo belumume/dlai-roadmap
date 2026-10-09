@@ -77,7 +77,7 @@ export async function exportRoadmapPDF(roadmap) {
     checkNewPage(20);
 
     // Calculate phase total hours
-    const phaseHours = phase.courses.reduce((sum, c) => sum + (c.estimated_hours || 3), 0);
+    const phaseHours = Math.round(phase.courses.reduce((sum, c) => sum + (c.estimated_hours || 3), 0));
 
     // Phase header
     doc.setFillColor(59, 130, 246); // blue-500

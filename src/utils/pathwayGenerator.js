@@ -83,11 +83,15 @@ export function generatePathway(answers) {
   // Phase 2+: Role-specific phases
   if (pathway && pathway.phases) {
     pathway.phases.forEach((phase, index) => {
-      const phaseCourses = phase.courses
+      const remainingCourses = phase.courses
         .filter(id => !priorCourses.has(id))
         .map(id => courseMap.get(id))
-        .filter(Boolean)
-        .filter(course => allowedByExperience.includes(course.difficulty));
+        .filter(Boolean);
+      // Experienced learners skip beginner-level courses, but never a whole phase:
+      // each phase is a required competency, so if every course in it is below
+      // their level they still get the phase rather than a gap in the roadmap.
+      const levelMatched = remainingCourses.filter(course => allowedByExperience.includes(course.difficulty));
+      const phaseCourses = levelMatched.length > 0 ? levelMatched : remainingCourses;
 
       if (phaseCourses.length > 0) {
         // Check if this is a math-heavy phase for researcher with weak math background
@@ -134,7 +138,7 @@ export function generatePathway(answers) {
       // Partner tier: DLAI core highest, major partners next, others last
       const partnerTiers = {
         'DeepLearning.AI': 100,
-        'Google': 80, 'OpenAI': 80, 'Meta': 80, 'Microsoft': 80,
+        'Google': 80, 'Google Cloud': 80, 'OpenAI': 80, 'Meta': 80, 'Microsoft': 80,
         'AWS': 70, 'Anthropic': 70, 'Hugging Face': 70,
         'LangChain': 60, 'LlamaIndex': 60, 'Stanford': 60, 'Stanford/DeepLearning.AI': 60,
       };
@@ -216,9 +220,10 @@ export function generatePathway(answers) {
 
   // Calculate totals
   const totalCourses = timelinedSequence.reduce((sum, phase) => sum + phase.courses.length, 0);
-  const totalHours = timelinedSequence.reduce((sum, phase) =>
+  // Short-course hours are fractional (e.g. 1.3), so round the displayed total
+  const totalHours = Math.round(timelinedSequence.reduce((sum, phase) =>
     sum + phase.courses.reduce((s, c) => s + (c.estimated_hours || 3), 0), 0
-  );
+  ));
   const totalWeeks = currentWeek;
 
   // Generate milestones at 25%, 50%, 75%, 100% (guard against zero weeks)
