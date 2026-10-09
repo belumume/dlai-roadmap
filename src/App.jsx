@@ -1,29 +1,32 @@
 import { useState, useEffect } from 'react';
-import posthog from 'posthog-js';
+import { track } from './utils/analytics';
 import WelcomeScreen from './components/WelcomeScreen';
 import Questionnaire from './components/Questionnaire';
 import RoadmapView from './components/RoadmapView';
 import { generatePathway } from './utils/pathwayGenerator';
 import { decodePathwayFromURL } from './utils/exportPDF';
 
-function App() {
-  const [currentView, setCurrentView] = useState('welcome'); // welcome | questionnaire | roadmap
-  const [roadmap, setRoadmap] = useState(null);
+function loadSharedRoadmap() {
+  const sharedAnswers = decodePathwayFromURL();
+  return sharedAnswers ? generatePathway(sharedAnswers) : null;
+}
 
-  // Check for shared roadmap URL on mount
+function App() {
+  // A shared roadmap URL is read once, during the first render, so the
+  // roadmap shows immediately instead of after a second render.
+  const [sharedRoadmap] = useState(loadSharedRoadmap);
+  const [currentView, setCurrentView] = useState(sharedRoadmap ? 'roadmap' : 'welcome'); // welcome | questionnaire | roadmap
+  const [roadmap, setRoadmap] = useState(sharedRoadmap);
+
   useEffect(() => {
-    const sharedAnswers = decodePathwayFromURL();
-    if (sharedAnswers) {
-      const generatedRoadmap = generatePathway(sharedAnswers);
-      setRoadmap(generatedRoadmap);
-      setCurrentView('roadmap');
-      posthog.capture('shared_roadmap_loaded', {
-        pathway: generatedRoadmap.pathway,
+    if (sharedRoadmap) {
+      track('shared_roadmap_loaded', {
+        pathway: sharedRoadmap.pathway,
       });
       // Clean up URL
       window.history.replaceState({}, '', window.location.pathname);
     }
-  }, []);
+  }, [sharedRoadmap]);
 
   const handleStartQuestionnaire = () => {
     setCurrentView('questionnaire');
@@ -33,7 +36,7 @@ function App() {
     const generatedRoadmap = generatePathway(answers);
     setRoadmap(generatedRoadmap);
     setCurrentView('roadmap');
-    posthog.capture('roadmap_generated', {
+    track('roadmap_generated', {
       pathway: generatedRoadmap.pathway,
       experience: answers.experience,
       goal: answers.goal,

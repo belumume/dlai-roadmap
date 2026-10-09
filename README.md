@@ -19,6 +19,7 @@ A personalized pathway generator that transforms DeepLearning.AI's 100+ courses 
 - **PDF Export**: Download your roadmap to print or share
 - **Calendar Export**: Export to .ics for Google Calendar, Outlook, etc.
 - **Shareable URLs**: Generate links with your preferences encoded
+- **No signup**: Progress is saved in your browser (localStorage)
 
 ## How It Works
 
@@ -29,32 +30,41 @@ A personalized pathway generator that transforms DeepLearning.AI's 100+ courses 
 
 ## Tech Stack
 
-- React + Vite
-- Tailwind CSS
-- jsPDF (PDF export)
+- React 19 + Vite 8
+- Tailwind CSS 4
+- jsPDF (PDF export, loaded only when you export)
 - Lucide React (icons)
+- Static JSON data, no backend; deployed to GitHub Pages
 
 ## Local Development
 
+Requires Node.js 22.12 or newer (`.nvmrc` pins the version CI uses).
+
 ```bash
-# Install dependencies
-npm install
-
-# Start dev server
-npm run dev
-
-# Build for production
-npm run build
+npm ci                      # Install dependencies
+npm run dev                 # Start dev server at http://localhost:5173/dlai-roadmap/
+npm run lint                # ESLint
+npm run build               # Production build
+npx playwright install chromium   # Once, to get a test browser
+npm test                    # Playwright end-to-end tests
 ```
+
+Every pull request runs lint, build and the Playwright suite in GitHub Actions, and a push to `main` deploys only after the same checks pass.
 
 ## Course Data
 
-The application uses a curated dataset of 100+ DeepLearning.AI courses with metadata including:
+`src/data/courses.json` holds 133 DeepLearning.AI courses and the pathway definitions. Every course carries:
 - Difficulty level (beginner/intermediate/advanced)
 - Estimated hours
-- Categories and topics
+- Categories, skills taught and partner
 - Career path alignment
 - Prerequisites
+
+Course details are checked against the live DeepLearning.AI course pages; see [`docs/solutions/`](docs/solutions/) for the verification method.
+
+## Privacy
+
+The live site uses [PostHog](https://posthog.com) (EU region) for anonymous usage analytics: page views and events such as roadmap generated or PDF exported, with your chosen path, experience, goal and weekly hours. No name or email is collected. Local development and automated test runs send nothing.
 
 ## Contributing
 

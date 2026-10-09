@@ -1,12 +1,13 @@
-import jsPDF from 'jspdf';
 import { getPathwayDescription, formatDuration } from './pathwayGenerator';
 
 /**
  * Export roadmap as PDF
  */
 export async function exportRoadmapPDF(roadmap) {
-  const { pathway, pathwayName, phases, summary, answers } = roadmap;
+  const { pathway, pathwayName, phases, summary } = roadmap;
   const pathwayInfo = getPathwayDescription(pathway);
+  // Loaded on demand so the PDF library stays out of the initial bundle
+  const { jsPDF } = await import('jspdf');
 
   // Create PDF document
   const doc = new jsPDF({
