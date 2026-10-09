@@ -100,6 +100,8 @@ export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
   const handleAddCourse = (course) => {
     const addedCourses = roadmap.answers.addedCourses || [];
     if (addedCourses.includes(course.id)) return;
+    // Don't let active filters hide the course that was just added
+    if (!courseMatchesFilters(course)) clearFilters();
     // Open the added-courses phase so the new course is in view
     const addedIndex = phases.findIndex(p => p.isAdded);
     setExpandedPhases(prev => new Set(prev).add(addedIndex === -1 ? phases.length : addedIndex));
@@ -171,12 +173,16 @@ export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
   const hasActiveFilters = filters.categories.length > 0 || filters.difficulties.length > 0;
 
   // Get unique categories from current roadmap courses
-  const availableCategories = [...new Set(
-    phases.flatMap(p => p.courses.flatMap(c => c.categories || []))
-  )].sort();
+  // Active filters stay listed even if the course that had them was removed,
+  // so they can still be turned off
+  const availableCategories = [...new Set([
+    ...phases.flatMap(p => p.courses.flatMap(c => c.categories || [])),
+    ...filters.categories,
+  ])].sort();
 
   const completionPercent = summary.totalCourses > 0
-    ? Math.round((completedCourses.size / summary.totalCourses) * 100)
+    // Count only courses in this roadmap: completions are kept for removed courses too
+    ? Math.round(([...completedCourses].filter(id => roadmapCourseIds.has(id)).length / summary.totalCourses) * 100)
     : 0;
 
   return (
@@ -347,6 +353,7 @@ export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
           {showAddCourse && (
             <AddCoursePanel
               roadmapCourseIds={roadmapCourseIds}
+              priorCourseIds={roadmap.answers.priorCourses || []}
               onAdd={handleAddCourse}
               onClose={() => setShowAddCourse(false)}
               notice={addedNotice}
@@ -430,7 +437,7 @@ export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
             }
 
             return (
-              <div key={phaseIndex} className="relative mb-6">
+              <div key={phaseIndex} data-testid={phase.isAdded ? 'added-phase' : undefined} className="relative mb-6">
                 {/* Phase Header */}
                 <button
                   onClick={() => togglePhase(phaseIndex)}

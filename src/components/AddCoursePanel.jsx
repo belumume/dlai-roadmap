@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
 import { Search, X, Plus } from 'lucide-react';
 import coursesData from '../data/courses.json';
 import { getDifficultyColor } from '../utils/pathwayGenerator';
@@ -9,8 +9,9 @@ const MAX_RESULTS = 8;
  * Search the full catalog and add any course to the roadmap, whatever the
  * learner's path or profile. Courses already in the roadmap aren't offered.
  */
-export default function AddCoursePanel({ roadmapCourseIds, onAdd, onClose, notice }) {
+export default function AddCoursePanel({ roadmapCourseIds, priorCourseIds, onAdd, onClose, notice }) {
   const [searchTerm, setSearchTerm] = useState('');
+  const inputRef = useRef(null);
 
   const matches = useMemo(() => {
     const term = searchTerm.trim().toLowerCase();
@@ -43,6 +44,7 @@ export default function AddCoursePanel({ roadmapCourseIds, onAdd, onClose, notic
         <input
           type="search"
           autoFocus
+          ref={inputRef}
           aria-label="Search all courses"
           placeholder="Search all courses, e.g. Deep Learning Specialization"
           value={searchTerm}
@@ -59,7 +61,11 @@ export default function AddCoursePanel({ roadmapCourseIds, onAdd, onClose, notic
             matches.slice(0, MAX_RESULTS).map(course => (
               <li key={course.id} className="border-b border-[var(--border)] last:border-b-0">
                 <button
-                  onClick={() => onAdd(course)}
+                  onClick={() => {
+                    onAdd(course);
+                    // The clicked result disappears once added, so keep keyboard focus in the search
+                    inputRef.current?.focus();
+                  }}
                   aria-label={`Add ${course.title}`}
                   className="w-full text-left px-4 py-3 min-h-[44px] flex items-center gap-3 hover:bg-[var(--elevated)] transition-colors"
                 >
@@ -72,6 +78,9 @@ export default function AddCoursePanel({ roadmapCourseIds, onAdd, onClose, notic
                       </span>
                       <span>{course.estimated_hours || 3} hrs</span>
                       {course.partner && <span>• {course.partner}</span>}
+                      {priorCourseIds.includes(course.id) && (
+                        <span className="text-amber-400">• You marked this as done</span>
+                      )}
                     </div>
                   </div>
                 </button>

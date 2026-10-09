@@ -80,7 +80,7 @@ test.describe('Add any course to a roadmap', () => {
     await addCourse(page, DLS, DLS);
     await addCourse(page, 'Machine Learning Spec', 'Machine Learning Specialization');
 
-    const phase = page.locator('div.relative.mb-6', { has: addedPhase(page) });
+    const phase = page.getByTestId('added-phase');
     await expect(phase.getByRole('heading', { level: 4 })).toHaveText([DLS, 'Machine Learning Specialization']);
     await expect(phase.getByText('2 courses')).toBeVisible();
   });
@@ -112,7 +112,7 @@ test.describe('Add any course to a roadmap', () => {
       addedCourses: ['not-a-real-course', 'deep-learning-specialization', 'deep-learning-specialization'],
     });
     await addedPhase(page).click();
-    const phase = page.locator('div.relative.mb-6', { has: addedPhase(page) });
+    const phase = page.getByTestId('added-phase');
     await expect(phase.getByRole('heading', { level: 4 })).toHaveText([DLS]);
   });
 
@@ -143,5 +143,42 @@ test.describe('Add any course to a roadmap', () => {
     const ics = fs.readFileSync(await download.path(), 'utf8').replace(/\r\n /g, '');
     expect(ics).toContain(`SUMMARY:${DLS}`);
     expect(ics).toContain('Your Added Courses Complete');
+  });
+
+  test('Progress counts only courses in the roadmap after an added course is removed', async ({ page }) => {
+    await openRoadmap(page);
+    await addCourse(page, DLS, DLS);
+    const phase = page.getByTestId('added-phase');
+    await phase.locator('button').filter({ has: page.locator('svg.lucide-circle') }).first().click();
+    const percent = page.getByText('Your Progress', { exact: true }).locator('xpath=..').locator('span');
+    await expect(percent).not.toHaveText('0%');
+
+    await page.getByRole('button', { name: `Remove ${DLS} from roadmap` }).click();
+    await expect(percent).toHaveText('0%');
+  });
+
+  test('Adding a course clears filters that would hide it and keeps focus in the search', async ({ page }) => {
+    await openRoadmap(page);
+    await page.getByRole('button', { name: 'Filter Courses' }).click();
+    await page.getByRole('button', { name: 'Beginner', exact: true }).click();
+
+    // The Deep Learning Specialization is intermediate, so the Beginner filter would hide it
+    await addCourse(page, DLS, DLS);
+    await expect(courseTitle(page, DLS)).toBeVisible();
+    await expect(page.getByRole('searchbox', { name: 'Search all courses' })).toBeFocused();
+  });
+
+  test('Courses the learner marked as done are flagged in the results', async ({ page }) => {
+    await openRoadmap(page, { ...ANSWERS, priorCourses: ['deep-learning-specialization'] });
+    await page.getByRole('button', { name: 'Add Course' }).click();
+    await page.getByRole('searchbox', { name: 'Search all courses' }).fill(DLS);
+    await expect(page.getByRole('button', { name: `Add ${DLS}`, exact: true })).toContainText('You marked this as done');
+  });
+
+  test('A skipped foundation course can be added back', async ({ page }) => {
+    await openRoadmap(page, { ...ANSWERS, experience: 'professional' });
+    await expect(courseTitle(page, 'AI for Everyone')).toHaveCount(0);
+    await addCourse(page, 'AI for Everyone', 'AI for Everyone');
+    await expect(page.getByTestId('added-phase').getByRole('heading', { level: 4 })).toHaveText(['AI for Everyone']);
   });
 });

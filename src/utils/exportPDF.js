@@ -218,9 +218,10 @@ function validateAnswers(obj) {
     if (key in obj) {
       if (key === 'priorCourses' || key === 'interests' || key === 'addedCourses') {
         if (Array.isArray(obj[key])) {
+          // Learners can add every catalog course, so that list gets a higher cap
           validated[key] = obj[key]
             .filter(v => typeof v === 'string' && v.length < 100)
-            .slice(0, 50);
+            .slice(0, key === 'addedCourses' ? 200 : 50);
         }
       } else if (validValues[key] && validValues[key].includes(obj[key])) {
         validated[key] = obj[key];
