@@ -170,7 +170,7 @@ export async function exportRoadmapPDF(roadmap) {
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
     doc.text(
-      'DLAI Roadmap (unofficial community tool, not affiliated with DeepLearning.AI) | belumume.github.io/dlai-roadmap',
+      'DLAI Roadmap | Community project, not an official DeepLearning.AI product | belumume.github.io/dlai-roadmap',
       pageWidth / 2,
       footerY,
       { align: 'center' }

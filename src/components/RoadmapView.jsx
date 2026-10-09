@@ -557,7 +557,16 @@ export default function RoadmapView({ roadmap, onRestart }) {
             Click courses to mark them complete and track your progress.
           </p>
           <p data-testid="unofficial-disclaimer" className="mt-4 text-[var(--text-muted)] text-xs">
-            Unofficial community project. Not affiliated with or endorsed by DeepLearning.AI.
+            Community project started in the{' '}
+            <a
+              href="https://community.deeplearning.ai/t/deeplearning-ai-course-roadmap-tool-personalized-study-plans/885591"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--node-cyan)] hover:underline"
+            >
+              DeepLearning.AI Community Program
+            </a>
+            . Not an official DeepLearning.AI product.
             Course details may change; check deeplearning.ai before enrolling.
           </p>
         </div>
