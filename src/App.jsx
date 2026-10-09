@@ -45,6 +45,12 @@ function App() {
     });
   };
 
+  // Adding or removing a course rebuilds the roadmap from the updated answers,
+  // so the timeline, totals, share link and exports all include the change
+  const handleAnswersChange = (answers) => {
+    setRoadmap(generatePathway(answers));
+  };
+
   const handleRestart = () => {
     setRoadmap(null);
     setCurrentView('welcome');
@@ -59,7 +65,7 @@ function App() {
         <Questionnaire onComplete={handleQuestionnaireComplete} />
       )}
       {currentView === 'roadmap' && roadmap && (
-        <RoadmapView roadmap={roadmap} onRestart={handleRestart} />
+        <RoadmapView roadmap={roadmap} onRestart={handleRestart} onAnswersChange={handleAnswersChange} />
       )}
     </>
   );

@@ -27,6 +27,8 @@ export function generatePathway(answers) {
 
   // Determine which courses to skip based on prior experience
   const priorCourses = new Set(answers.priorCourses || []);
+  // Courses the learner added by hand from the full catalog, in the order added
+  const addedCourseIds = [...new Set(answers.addedCourses || [])].filter(id => courseMap.has(id));
   const skipFoundation = answers.experience === 'professional' || answers.experience === 'ml-basics';
 
   // Experience-based difficulty band for electives
@@ -128,6 +130,7 @@ export function generatePathway(answers) {
     let electiveCourses = courses
       .filter(c => {
         if (priorCourses.has(c.id)) return false;
+        if (addedCourseIds.includes(c.id)) return false;
         if (courseSequence.some(phase => phase.courses.some(pc => pc.id === c.id))) return false;
         // Filter by math- and experience-appropriate difficulty
         if (!allowedDifficulties.includes(c.difficulty)) return false;
@@ -185,6 +188,21 @@ export function generatePathway(answers) {
         isOptional: true,
       });
     }
+  }
+
+  // Courses the learner added by hand go last, whatever their path or profile.
+  // Ones already in the roadmap are skipped so nothing appears twice.
+  const addedCourses = addedCourseIds
+    .filter(id => !courseSequence.some(phase => phase.courses.some(pc => pc.id === id)))
+    .map(id => courseMap.get(id));
+  if (addedCourses.length > 0) {
+    courseSequence.push({
+      phase: 'Added',
+      phaseName: 'Your Added Courses',
+      milestone: 'Added Courses Complete',
+      courses: addedCourses,
+      isAdded: true,
+    });
   }
 
   // Timeline warning if core exceeds target

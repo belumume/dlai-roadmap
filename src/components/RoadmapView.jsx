@@ -1,23 +1,26 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { track } from '../utils/analytics';
 import {
   Download, Share2, ChevronDown, ChevronUp, ExternalLink,
   Clock, BookOpen, Trophy, RefreshCw, CheckCircle, Circle,
-  Calendar, Target, Zap, Copy, Check, Filter, X, Star, AlertTriangle
+  Calendar, Target, Zap, Copy, Check, Filter, X, Star, AlertTriangle, Plus, Trash2
 } from 'lucide-react';
 import { formatDuration, getDifficultyColor, getPathwayDescription } from '../utils/pathwayGenerator';
 import { exportRoadmapPDF, generateShareableURL } from '../utils/exportPDF';
 import { exportAndDownloadCalendar } from '../utils/exportCalendar';
 import { getCategoryLabel } from '../utils/categories';
+import AddCoursePanel from './AddCoursePanel';
 
 const STORAGE_KEY = 'dlai-roadmap-progress';
 
 const DIFFICULTY_ORDER = ['beginner', 'intermediate', 'advanced'];
 
-export default function RoadmapView({ roadmap, onRestart }) {
+export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
   const [expandedPhases, setExpandedPhases] = useState(new Set([0]));
   const [filters, setFilters] = useState({ categories: [], difficulties: [] });
   const [showFilters, setShowFilters] = useState(false);
+  const [showAddCourse, setShowAddCourse] = useState(false);
+  const [addedNotice, setAddedNotice] = useState('');
   const [completedCourses, setCompletedCourses] = useState(() => {
     // Load from localStorage on init
     try {
@@ -87,6 +90,29 @@ export default function RoadmapView({ roadmap, onRestart }) {
       setTimeout(() => setCopied(false), 2000);
     }
     track('share_url_created', { pathway });
+  };
+
+  const roadmapCourseIds = useMemo(
+    () => new Set(phases.flatMap(p => p.courses.map(c => c.id))),
+    [phases]
+  );
+
+  const handleAddCourse = (course) => {
+    const addedCourses = roadmap.answers.addedCourses || [];
+    if (addedCourses.includes(course.id)) return;
+    // Open the added-courses phase so the new course is in view
+    const addedIndex = phases.findIndex(p => p.isAdded);
+    setExpandedPhases(prev => new Set(prev).add(addedIndex === -1 ? phases.length : addedIndex));
+    onAnswersChange({ ...roadmap.answers, addedCourses: [...addedCourses, course.id] });
+    setAddedNotice(`Added ${course.title} to your roadmap`);
+    track('course_added', { pathway, course_id: course.id });
+  };
+
+  const handleRemoveCourse = (courseId) => {
+    const addedCourses = (roadmap.answers.addedCourses || []).filter(id => id !== courseId);
+    onAnswersChange({ ...roadmap.answers, addedCourses });
+    setAddedNotice('');
+    track('course_removed', { pathway, course_id: courseId });
   };
 
   const togglePhase = (index) => {
@@ -284,22 +310,48 @@ export default function RoadmapView({ roadmap, onRestart }) {
 
         {/* Filter Bar */}
         <div className="mb-8">
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className={`flex items-center gap-2 px-4 py-3 sm:py-2 min-h-[44px] rounded-lg transition-colors ${
-              hasActiveFilters
-                ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30'
-                : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--node-cyan-dim)]'
-            }`}
-          >
-            <Filter className="w-4 h-4" />
-            Filter Courses
-            {hasActiveFilters && (
-              <span className="ml-1 px-2 py-0.5 text-xs bg-[var(--node-cyan)] text-[var(--deep)] rounded-full">
-                {filters.categories.length + filters.difficulties.length}
-              </span>
-            )}
-          </button>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className={`flex items-center gap-2 px-4 py-3 sm:py-2 min-h-[44px] rounded-lg transition-colors ${
+                hasActiveFilters
+                  ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30'
+                  : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--node-cyan-dim)]'
+              }`}
+            >
+              <Filter className="w-4 h-4" />
+              Filter Courses
+              {hasActiveFilters && (
+                <span className="ml-1 px-2 py-0.5 text-xs bg-[var(--node-cyan)] text-[var(--deep)] rounded-full">
+                  {filters.categories.length + filters.difficulties.length}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={() => {
+                setShowAddCourse(!showAddCourse);
+                setAddedNotice('');
+              }}
+              aria-expanded={showAddCourse}
+              className={`flex items-center gap-2 px-4 py-3 sm:py-2 min-h-[44px] rounded-lg transition-colors ${
+                showAddCourse
+                  ? 'bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30'
+                  : 'bg-[var(--surface)] text-[var(--text-secondary)] border border-[var(--border)] hover:border-[var(--node-cyan-dim)]'
+              }`}
+            >
+              <Plus className="w-4 h-4" />
+              Add Course
+            </button>
+          </div>
+
+          {showAddCourse && (
+            <AddCoursePanel
+              roadmapCourseIds={roadmapCourseIds}
+              onAdd={handleAddCourse}
+              onClose={() => setShowAddCourse(false)}
+              notice={addedNotice}
+            />
+          )}
 
           {showFilters && (
             <div className="mt-4 bg-[var(--surface)] border border-[var(--border)] rounded-xl p-6">
@@ -405,7 +457,11 @@ export default function RoadmapView({ roadmap, onRestart }) {
                       <div>
                         <div className="flex items-center gap-2">
                           <h3 className="font-display text-lg font-display font-semibold text-[var(--text-primary)]">{phase.phaseName}</h3>
-                          {phase.isOptional ? (
+                          {phase.isAdded ? (
+                            <span className="whitespace-nowrap text-xs px-2 py-0.5 rounded-full bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30">
+                              Added
+                            </span>
+                          ) : phase.isOptional ? (
                             <span className="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
                               Optional
                             </span>
@@ -500,14 +556,27 @@ export default function RoadmapView({ roadmap, onRestart }) {
                                     )}
                                   </div>
                                 </div>
-                                <a
-                                  href={course.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex-shrink-0 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
-                                >
-                                  <ExternalLink className="w-4 h-4" />
-                                </a>
+                                <div className="flex flex-shrink-0">
+                                  {phase.isAdded && (
+                                    <button
+                                      onClick={() => handleRemoveCourse(course.id)}
+                                      aria-label={`Remove ${course.title} from roadmap`}
+                                      title="Remove from roadmap"
+                                      className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-red-400 hover:bg-[var(--elevated)] rounded-lg transition-colors"
+                                    >
+                                      <Trash2 className="w-4 h-4" />
+                                    </button>
+                                  )}
+                                  <a
+                                    href={course.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Open ${course.title} course page`}
+                                    className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
+                                  >
+                                    <ExternalLink className="w-4 h-4" />
+                                  </a>
+                                </div>
                               </div>
 
                               {/* Timeline indicator */}
