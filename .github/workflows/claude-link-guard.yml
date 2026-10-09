@@ -1,0 +1,45 @@
+name: Claude link guard
+
+# Links to Claude sessions, threads and projects must never appear on GitHub.
+# PR runs fail on links in files or commit messages, and every PR, issue,
+# comment or review that carries one is edited to remove it.
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created, edited]
+  pull_request_review:
+    types: [submitted, edited]
+  pull_request_review_comment:
+    types: [created, edited]
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Remove links from the text that triggered this run
+        run: node scripts/claude-link-guard.cjs github-event
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Check files and this PR's commit messages
+        if: github.event_name == 'pull_request'
+        run: node scripts/claude-link-guard.cjs check-repo "$BASE_SHA..$HEAD_SHA"
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}

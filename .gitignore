@@ -22,7 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.claude/
+.claude/*
+!.claude/settings.json
 .playwright-mcp/
 test-results/
 playwright-report/

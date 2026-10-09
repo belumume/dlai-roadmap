@@ -1,0 +1,3 @@
+#!/bin/sh
+# Rejects commit messages that link to a Claude session, thread or project
+exec node "$(git rev-parse --show-toplevel)/scripts/claude-link-guard.cjs" check-msg "$1"
