@@ -49,15 +49,17 @@ jobs:
       - name: Check files and pushed commit messages
         if: always() && github.event_name == 'push'
         run: |
-          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
-            # New branch: only the commits main doesn't already have
-            node scripts/claude-link-guard.cjs check-repo "$AFTER" --not origin/main
-          elif git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+          if git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
             node scripts/claude-link-guard.cjs check-repo "$BEFORE..$AFTER"
+          elif [ "$BRANCH" != "$DEFAULT" ]; then
+            # New or force-pushed branch: only the commits the default branch doesn't have
+            node scripts/claude-link-guard.cjs check-repo "$AFTER" --not "origin/$DEFAULT"
           else
-            # Force-push over commits we can't see: check the whole history
+            # Force-push to the default branch over commits we can't see: check all of it
             node scripts/claude-link-guard.cjs check-repo "$AFTER"
           fi
         env:
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.event.after }}
+          BRANCH: ${{ github.ref_name }}
+          DEFAULT: ${{ github.event.repository.default_branch }}
