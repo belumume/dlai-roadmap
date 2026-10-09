@@ -187,7 +187,16 @@ export default function WelcomeScreen({ onStart }) {
             {' '}// 2 min // No signup
           </p>
           <p data-testid="unofficial-disclaimer" className="mt-1 text-[var(--text-muted)] text-xs">
-            Unofficial community project. Not affiliated with or endorsed by DeepLearning.AI.
+            Community project started in the{' '}
+            <a
+              href="https://community.deeplearning.ai/t/deeplearning-ai-course-roadmap-tool-personalized-study-plans/885591"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--node-cyan)] hover:underline"
+            >
+              DeepLearning.AI Community Program
+            </a>
+            . Not an official DeepLearning.AI product.
           </p>
         </div>
       </div>
