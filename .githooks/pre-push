@@ -1,0 +1,3 @@
+#!/bin/sh
+# Rejects pushes whose new commits link to a Claude session, thread or project
+exec node "$(git rev-parse --show-toplevel)/scripts/claude-link-guard.cjs" pre-push
