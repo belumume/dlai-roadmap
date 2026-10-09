@@ -77,7 +77,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 | goal | Affects specialization priority and elective count |
 | timeCommitment | Sets weekly pace (3.5-25 hrs) |
 | targetRole | Selects pathway (builder/researcher/enterprise) |
-| mathBackground | Filters elective difficulty (not pathway phases) |
+| mathBackground | Narrows elective difficulty (falls back to the experience band when they conflict; never filters pathway phases) |
 | timeline | Scales duration estimates |
 | priorCourses | Removes completed courses from roadmap |
 | interests | Adds matching elective courses |
