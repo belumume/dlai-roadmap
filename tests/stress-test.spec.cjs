@@ -294,7 +294,8 @@ test.describe('DLAI Roadmap Stress Tests', () => {
     // Switch to another category and select more
     await page.click('button:has-text("RAG")');
     await page.waitForTimeout(300);
-    await courseList.locator('button').first().click();
+    // Pick an unselected course: one tagged both agents and rag may already be selected
+    await courseList.locator('button:has(svg.lucide-circle)').first().click();
     await page.waitForTimeout(200);
 
     // Should show "2 selected"
