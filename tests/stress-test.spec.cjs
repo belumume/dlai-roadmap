@@ -1,18 +1,8 @@
-// Stress test for DLAI Roadmap - all questionnaire combinations
+// Stress test for DLAI Roadmap - representative questionnaire combinations and core flows
 const { test, expect } = require('@playwright/test');
 
 const BASE_URL = 'http://localhost:5173/dlai-roadmap/';
 const TRUNK_NAME = require('../src/data/courses.json').pathways.trunk.name;
-
-// All possible answer combinations
-const OPTIONS = {
-  experience: ['none', 'some-python', 'ml-basics', 'professional'],
-  goal: ['career-switch', 'upskill', 'research', 'curiosity'],
-  timeCommitment: ['2-5', '5-10', '10-20', '20+'],
-  targetRole: ['builder', 'researcher', 'enterprise', 'undecided'],
-  mathBackground: ['minimal', 'moderate', 'strong', 'expert'],
-  timeline: ['3-months', '6-months', '12-months', 'no-rush'],
-};
 
 // Test combinations to stress test
 const TEST_CASES = [

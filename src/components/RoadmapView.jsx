@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import posthog from 'posthog-js';
+import { track } from '../utils/analytics';
 import {
   Download, Share2, ChevronDown, ChevronUp, ExternalLink,
   Clock, BookOpen, Trophy, RefreshCw, CheckCircle, Circle,
@@ -59,9 +59,11 @@ export default function RoadmapView({ roadmap, onRestart }) {
     setIsExporting(true);
     try {
       await exportRoadmapPDF(roadmap);
-      posthog.capture('pdf_exported', { pathway });
+      track('pdf_exported', { pathway });
     } catch (error) {
       console.error('Failed to export PDF:', error);
+      // The PDF library is a separate file; after a new deploy an open tab can no longer fetch it
+      alert('Could not create the PDF. Please reload the page and try again.');
     } finally {
       setIsExporting(false);
     }
@@ -73,7 +75,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch (error) {
+    } catch {
       // Fallback for older browsers
       const textArea = document.createElement('textarea');
       textArea.value = url;
@@ -84,7 +86,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
-    posthog.capture('share_url_created', { pathway });
+    track('share_url_created', { pathway });
   };
 
   const togglePhase = (index) => {
@@ -185,8 +187,9 @@ export default function RoadmapView({ roadmap, onRestart }) {
             </button>
             <button
               onClick={() => {
-                exportAndDownloadCalendar(roadmap);
-                posthog.capture('calendar_exported', { pathway });
+                if (exportAndDownloadCalendar(roadmap)) {
+                  track('calendar_exported', { pathway });
+                }
               }}
               className="flex items-center justify-center gap-2 p-2.5 sm:px-3 sm:py-2 min-w-[44px] min-h-[44px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
               title="Export to Calendar"
@@ -451,7 +454,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
                       </div>
                     )}
 
-                    {filteredCourses.map((course, courseIndex) => {
+                    {filteredCourses.map((course) => {
                       const isCompleted = completedCourses.has(course.id);
 
                       return (
