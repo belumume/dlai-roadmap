@@ -52,12 +52,19 @@ test.describe('Export and share', () => {
     // Simulates a tab left open across a deploy: the old jsPDF chunk is gone
     await page.route(/jspdf/i, (route) => route.abort());
 
-    const dialog = page.waitForEvent('dialog');
+    // Dismiss inside the handler: with waitForEvent the listener is gone by the time
+    // the test calls dismiss(), so Playwright may auto-dismiss first and dismiss() hangs
+    const shown = new Promise((resolve) => {
+      page.once('dialog', async (dialog) => {
+        const info = { type: dialog.type(), message: dialog.message() };
+        await dialog.dismiss();
+        resolve(info);
+      });
+    });
     await page.getByRole('button', { name: /Export PDF/ }).click();
-    const shown = await dialog;
-    expect(shown.type()).toBe('alert');
-    expect(shown.message()).toContain('reload');
-    await shown.dismiss();
+    const { type, message } = await shown;
+    expect(type).toBe('alert');
+    expect(message).toContain('reload');
     await expect(page.getByRole('button', { name: /Export PDF/ })).toBeEnabled();
   });
 
