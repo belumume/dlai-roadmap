@@ -3,7 +3,7 @@ import { track } from '../utils/analytics';
 import {
   Download, Share2, ChevronDown, ChevronUp, ExternalLink,
   Clock, BookOpen, Trophy, RefreshCw, CheckCircle, Circle,
-  Calendar, Target, Zap, Copy, Check, Filter, X, Star, AlertTriangle
+  Calendar, Target, Zap, Copy, Check, Filter, X, Star, AlertTriangle, Award
 } from 'lucide-react';
 import { formatDuration, getDifficultyColor, getPathwayDescription } from '../utils/pathwayGenerator';
 import { exportRoadmapPDF, generateShareableURL } from '../utils/exportPDF';
@@ -13,6 +13,11 @@ import { getCategoryLabel } from '../utils/categories';
 const STORAGE_KEY = 'dlai-roadmap-progress';
 
 const DIFFICULTY_ORDER = ['beginner', 'intermediate', 'advanced'];
+
+// Certificates: every DLAI full course and specialization page says "Earn a
+// certificate with PRO" (some also sell one-off access that includes it) and
+// short-course pages don't; the three Coursera
+// specializations award one with paid enrollment. Checked 2026-10-09.
 
 export default function RoadmapView({ roadmap, onRestart }) {
   const [expandedPhases, setExpandedPhases] = useState(new Set([0]));
@@ -493,6 +498,15 @@ export default function RoadmapView({ roadmap, onRestart }) {
                                     <span className="text-xs text-[var(--text-muted)]">
                                       {course.estimated_hours || 3} hrs
                                     </span>
+                                    {course.type !== 'short' && (
+                                      <span
+                                        data-testid="certificate-badge"
+                                        className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full border border-[var(--node-amber)]/30 bg-[var(--node-amber)]/10 text-[var(--node-amber)]"
+                                      >
+                                        <Award className="w-3 h-3" aria-hidden="true" />
+                                        {course.platform === 'coursera' ? 'Certificate (paid on Coursera)' : 'Certificate (paid)'}
+                                      </span>
+                                    )}
                                     {course.instructor && (
                                       <span className="text-xs text-[var(--text-muted)]">
                                         • {course.instructor}
