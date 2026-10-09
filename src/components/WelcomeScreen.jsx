@@ -173,7 +173,7 @@ export default function WelcomeScreen({ onStart }) {
         </div>
 
         {/* Footer */}
-        <div className="absolute bottom-6 left-0 right-0 text-center">
+        <div data-testid="welcome-footer" className="mt-12 text-center">
           <p className="text-[var(--text-muted)] text-sm font-mono">
             Built by{' '}
             <a
@@ -185,6 +185,9 @@ export default function WelcomeScreen({ onStart }) {
               Learning Deep
             </a>
             {' '}// 2 min // No signup
+          </p>
+          <p data-testid="unofficial-disclaimer" className="mt-1 text-[var(--text-muted)] text-xs">
+            Unofficial community project. Not affiliated with or endorsed by DeepLearning.AI.
           </p>
         </div>
       </div>

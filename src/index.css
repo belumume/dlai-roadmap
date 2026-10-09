@@ -21,8 +21,9 @@
   --node-purple: #a78bfa;
 
   --text-primary: #f0f0f5;
-  --text-secondary: #8888a0;
-  --text-muted: #55556a;
+  /* Both pass WCAG AA (4.5:1) on every surface, incl. --elevated */
+  --text-secondary: #a0a0b8;
+  --text-muted: #8c8ca4;
 
   --border: #2a2a3a;
   --border-glow: #00d4ff30;

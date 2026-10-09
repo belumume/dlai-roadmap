@@ -553,6 +553,10 @@ export default function RoadmapView({ roadmap, onRestart }) {
             <br />
             Click courses to mark them complete and track your progress.
           </p>
+          <p data-testid="unofficial-disclaimer" className="mt-4 text-[var(--text-muted)] text-xs">
+            Unofficial community project. Not affiliated with or endorsed by DeepLearning.AI.
+            Course details may change; check deeplearning.ai before enrolling.
+          </p>
         </div>
       </div>
     </div>

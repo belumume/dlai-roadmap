@@ -1,10 +1,12 @@
-# DeepLearning.AI Learning Roadmap Generator
+# DLAI Roadmap: AI Learning Path Generator (Unofficial)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 A personalized pathway generator that transforms DeepLearning.AI's 100+ courses into customized learning roadmaps based on your goals, experience, and schedule.
 
 **[Try it live](https://belumume.github.io/dlai-roadmap/)**
+
+> Unofficial community project. Not affiliated with or endorsed by DeepLearning.AI. Course names and links belong to their respective owners.
 
 ![Screenshot](src/assets/screenshot.png)
 
