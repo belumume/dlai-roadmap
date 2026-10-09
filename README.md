@@ -6,6 +6,8 @@ A personalized pathway generator that transforms DeepLearning.AI's 100+ courses 
 
 **[Try it live](https://belumume.github.io/dlai-roadmap/)**
 
+> Unofficial community project. Not affiliated with or endorsed by DeepLearning.AI. Course names and links belong to their respective owners.
+
 ![Screenshot](src/assets/screenshot.png)
 
 ## Features
