@@ -15,7 +15,8 @@ const STORAGE_KEY = 'dlai-roadmap-progress';
 const DIFFICULTY_ORDER = ['beginner', 'intermediate', 'advanced'];
 
 // Certificates: every DLAI full course and specialization page says "Earn a
-// certificate with PRO" and short-course pages don't; the three Coursera
+// certificate with PRO" (some also sell one-off access that includes it) and
+// short-course pages don't; the three Coursera
 // specializations award one with paid enrollment. Checked 2026-10-09.
 
 export default function RoadmapView({ roadmap, onRestart }) {
@@ -503,7 +504,7 @@ export default function RoadmapView({ roadmap, onRestart }) {
                                         className="inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-full border border-[var(--node-amber)]/30 bg-[var(--node-amber)]/10 text-[var(--node-amber)]"
                                       >
                                         <Award className="w-3 h-3" aria-hidden="true" />
-                                        {course.platform === 'coursera' ? 'Certificate (paid on Coursera)' : 'Certificate with DLAI Pro'}
+                                        {course.platform === 'coursera' ? 'Certificate (paid on Coursera)' : 'Certificate (paid)'}
                                       </span>
                                     )}
                                     {course.instructor && (

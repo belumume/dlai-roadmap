@@ -72,7 +72,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] Category tabs in CourseSelector (9 categories + Popular/All tabs, scrollable checklist, per @Deminiko feedback)
 - [x] Unofficial-status disclaimer (welcome, roadmap, PDF, page title) and WCAG AA text contrast; own visual identity kept on purpose (see `docs/solutions/best-practices/unofficial-branding-and-contrast-2026-10-09.md`)
 - [x] Calendar export uses the learner's local date, RFC 5545 line folding and rejects impossible dates (see `docs/solutions/logic-errors/calendar-export-off-by-one-day-2026-10-09.md`)
-- [x] Certificate badge on full courses and specializations (DLAI Pro or paid Coursera); short courses award none (Community Program meeting item, Dec 2025; see `docs/solutions/best-practices/certificates-2026-10-09.md`)
+- [x] Certificate badge on full courses and specializations (paid on DLAI or Coursera); short courses award none (Community Program meeting item, Dec 2025; see `docs/solutions/best-practices/certificates-2026-10-09.md`)
 - [x] jsPDF loaded on demand (initial bundle about 200 kB gzip, was 275 kB); zero `npm audit` findings
 
 ### ALL FEATURES COMPLETE - READY FOR LAUNCH

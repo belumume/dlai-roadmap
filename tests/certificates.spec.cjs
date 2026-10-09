@@ -1,5 +1,5 @@
-// Certificate badges: DLAI full courses and specializations award a certificate
-// with DLAI Pro; short courses award none (checked against all catalog pages)
+// Certificate badges: DLAI full courses and specializations award a paid
+// certificate; short courses award none (checked against all catalog pages)
 const { test, expect } = require('@playwright/test');
 
 const BASE_URL = 'http://localhost:5173/dlai-roadmap/';
@@ -9,7 +9,7 @@ const card = (page, title) =>
   page.locator('div.rounded-xl', { has: page.getByRole('heading', { level: 4, name: title, exact: true }) }).last();
 
 test.describe('Certificate badges', () => {
-  test('Full courses show a DLAI Pro certificate badge; short courses do not', async ({ page }) => {
+  test('Full courses show a paid-certificate badge; short courses do not', async ({ page }) => {
     await page.goto(shareUrl({
       experience: 'some-python', goal: 'upskill', timeCommitment: '5-10', targetRole: 'builder',
       mathBackground: 'moderate', timeline: '6-months', priorCourses: [], interests: ['agents'],
@@ -18,7 +18,7 @@ test.describe('Certificate badges', () => {
     // Builder Agents phase holds Agentic AI (full course) and short courses
     await page.getByRole('button', { name: /^\d*\s*Agents/ }).click();
 
-    await expect(card(page, 'Agentic AI').getByTestId('certificate-badge')).toHaveText('Certificate with DLAI Pro');
+    await expect(card(page, 'Agentic AI').getByTestId('certificate-badge')).toHaveText('Certificate (paid)');
     await expect(card(page, 'AI Agents in LangGraph').getByTestId('certificate-badge')).toHaveCount(0);
   });
 
@@ -33,6 +33,6 @@ test.describe('Certificate badges', () => {
     }
     // A Coursera specialization elective, and a DLAI specialization in the core path
     await expect(page.getByTestId('certificate-badge').filter({ hasText: 'Certificate (paid on Coursera)' }).first()).toBeVisible();
-    await expect(card(page, 'Deep Learning Specialization').getByTestId('certificate-badge')).toHaveText('Certificate with DLAI Pro');
+    await expect(card(page, 'Deep Learning Specialization').getByTestId('certificate-badge')).toHaveText('Certificate (paid)');
   });
 });
