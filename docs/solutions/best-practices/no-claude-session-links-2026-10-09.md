@@ -26,4 +26,6 @@ The GitHub connector Claude uses appends its own footer, with a link, to every c
 
 ## Existing history
 
-Five commits already on `main` (#17 to #21, 16 trailer lines) carry `Claude-Session` links. Removing them needs a history rewrite of `main` and a force-push, which changes every commit hash from #17 on. That is the owner's call and has not been done.
+The owner had the history rewritten on 2026-10-09. `git filter-repo` removed the links from commit messages and files in this repo and 14 others, then every branch and tag was force-pushed with a lease. Commit hashes on `main` from #17 on changed, so rebase or re-clone any older local checkout instead of pushing it.
+
+The old commits stay reachable on GitHub through pull request refs and cached views until GitHub Support purges them. One purge request covering all 15 repos was filed the same day. Never push from a checkout made before the rewrite: it would bring the old history back.
