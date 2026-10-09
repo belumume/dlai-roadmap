@@ -190,17 +190,47 @@ export function generatePathway(answers) {
     }
   }
 
-  // Courses the learner added by hand go last, whatever their path or profile.
-  // Ones already in the roadmap are skipped so nothing appears twice.
-  const addedCourses = addedCourseIds
+  // Courses the learner added by hand. One that a roadmap course builds on
+  // (directly or through its prerequisites) goes right before the first course
+  // that needs it; the rest go last, in the order the learner chose. Ones
+  // already in the roadmap are skipped so nothing appears twice.
+  const prerequisiteCache = new Map();
+  const allPrerequisites = (id) => {
+    if (prerequisiteCache.has(id)) return prerequisiteCache.get(id);
+    const found = new Set();
+    prerequisiteCache.set(id, found); // guards against cycles in the data
+    for (const pre of courseMap.get(id)?.prerequisites || []) {
+      if (!courseMap.has(pre)) continue;
+      found.add(pre);
+      allPrerequisites(pre).forEach(p => found.add(p));
+    }
+    return found;
+  };
+  const unplacedAdded = [];
+  addedCourseIds
     .filter(id => !courseSequence.some(phase => phase.courses.some(pc => pc.id === id)))
-    .map(id => courseMap.get(id));
-  if (addedCourses.length > 0) {
+    .forEach(id => {
+      const course = { ...courseMap.get(id), isAdded: true };
+      for (const phase of courseSequence) {
+        const index = phase.courses.findIndex(c => allPrerequisites(c.id).has(id));
+        if (index !== -1) {
+          // Name the roadmap course that needs it, not another added one
+          const neededBy = courseSequence
+            .flatMap(p => p.courses)
+            .find(c => !c.isAdded && allPrerequisites(c.id).has(id));
+          course.placedBefore = (neededBy || phase.courses[index]).title;
+          phase.courses = [...phase.courses.slice(0, index), course, ...phase.courses.slice(index)];
+          return;
+        }
+      }
+      unplacedAdded.push(course);
+    });
+  if (unplacedAdded.length > 0) {
     courseSequence.push({
       phase: 'Added',
       phaseName: 'Your Added Courses',
       milestone: 'Added Courses Complete',
-      courses: addedCourses,
+      courses: unplacedAdded,
       isAdded: true,
     });
   }

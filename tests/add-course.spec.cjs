@@ -181,4 +181,44 @@ test.describe('Add any course to a roadmap', () => {
     await addCourse(page, 'AI for Everyone', 'AI for Everyone');
     await expect(page.getByTestId('added-phase').getByRole('heading', { level: 4 })).toHaveText(['AI for Everyone']);
   });
+
+  test('A course the roadmap builds on is placed before the course that needs it', async ({ page }) => {
+    // Intro to Federated Learning in the Enterprise path lists the Machine Learning Specialization as a prerequisite
+    await openRoadmap(page, { ...ANSWERS, targetRole: 'enterprise' });
+    await addCourse(page, 'Machine Learning Spec', 'Machine Learning Specialization');
+
+    await expect(page.getByRole('status')).toHaveText(
+      'Added Machine Learning Specialization to Privacy Tech, before Intro to Federated Learning, which builds on it'
+    );
+    await expect(page.getByTestId('added-phase')).toHaveCount(0);
+    const titles = page.getByRole('heading', { level: 4 });
+    const all = await titles.allInnerTexts();
+    expect(all.indexOf('Machine Learning Specialization')).toBe(all.indexOf('Intro to Federated Learning') - 1);
+    await expect(page.getByText('Placed before Intro to Federated Learning, which builds on it.')).toBeVisible();
+
+    await page.getByRole('button', { name: 'Remove Machine Learning Specialization from roadmap' }).click();
+    await expect(courseTitle(page, 'Machine Learning Specialization')).toHaveCount(0);
+  });
+
+  test('Added courses can be moved earlier or later, and the share link keeps the order', async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(navigator, 'clipboard', {
+        value: { writeText: async (text) => { window.__copied = text; } },
+      });
+    });
+    await openRoadmap(page);
+    await addCourse(page, DLS, DLS);
+    await addCourse(page, 'Machine Learning Spec', 'Machine Learning Specialization');
+    const phase = page.getByTestId('added-phase');
+    await expect(page.getByRole('button', { name: `Move ${DLS} earlier` })).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Move Machine Learning Specialization later' })).toBeDisabled();
+
+    await page.getByRole('button', { name: 'Move Machine Learning Specialization earlier' }).click();
+    await expect(phase.getByRole('heading', { level: 4 })).toHaveText(['Machine Learning Specialization', DLS]);
+
+    await page.getByRole('button', { name: 'Share' }).click();
+    const copied = await page.evaluate(() => window.__copied);
+    const answers = JSON.parse(Buffer.from(new URL(copied).searchParams.get('pathway'), 'base64').toString());
+    expect(answers.addedCourses).toEqual(['machine-learning-specialization', 'deep-learning-specialization']);
+  });
 });

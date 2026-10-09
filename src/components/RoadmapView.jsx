@@ -3,9 +3,10 @@ import { track } from '../utils/analytics';
 import {
   Download, Share2, ChevronDown, ChevronUp, ExternalLink,
   Clock, BookOpen, Trophy, RefreshCw, CheckCircle, Circle,
-  Calendar, Target, Zap, Copy, Check, Filter, X, Star, AlertTriangle, Plus, Trash2
+  Calendar, Target, Zap, Copy, Check, Filter, X, Star, AlertTriangle, Plus, Trash2,
+  ArrowUp, ArrowDown
 } from 'lucide-react';
-import { formatDuration, getDifficultyColor, getPathwayDescription } from '../utils/pathwayGenerator';
+import { formatDuration, getDifficultyColor, getPathwayDescription, generatePathway } from '../utils/pathwayGenerator';
 import { exportRoadmapPDF, generateShareableURL } from '../utils/exportPDF';
 import { exportAndDownloadCalendar } from '../utils/exportCalendar';
 import { getCategoryLabel } from '../utils/categories';
@@ -102,12 +103,30 @@ export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
     if (addedCourses.includes(course.id)) return;
     // Don't let active filters hide the course that was just added
     if (!courseMatchesFilters(course)) clearFilters();
-    // Open the added-courses phase so the new course is in view
-    const addedIndex = phases.findIndex(p => p.isAdded);
-    setExpandedPhases(prev => new Set(prev).add(addedIndex === -1 ? phases.length : addedIndex));
-    onAnswersChange({ ...roadmap.answers, addedCourses: [...addedCourses, course.id] });
-    setAddedNotice(`Added ${course.title} to your roadmap`);
+    const answers = { ...roadmap.answers, addedCourses: [...addedCourses, course.id] };
+    // Where an added course lands depends on prerequisites, so build the new
+    // roadmap first to open the right phase and say where the course went
+    const nextPhases = generatePathway(answers).phases;
+    const phaseIndex = nextPhases.findIndex(p => p.courses.some(c => c.id === course.id));
+    const placed = nextPhases[phaseIndex].courses.find(c => c.id === course.id);
+    setExpandedPhases(prev => new Set(prev).add(phaseIndex));
+    setAddedNotice(placed.placedBefore
+      ? `Added ${course.title} to ${nextPhases[phaseIndex].phaseName}, before ${placed.placedBefore}, which builds on it`
+      : `Added ${course.title} to your roadmap`);
+    onAnswersChange(answers);
     track('course_added', { pathway, course_id: course.id });
+  };
+
+  // Reorders a course within the "Your Added Courses" phase
+  const handleMoveCourse = (phase, courseId, offset) => {
+    const order = phase.courses.map(c => c.id);
+    const from = order.indexOf(courseId);
+    const to = from + offset;
+    if (from === -1 || to < 0 || to >= order.length) return;
+    [order[from], order[to]] = [order[to], order[from]];
+    const others = (roadmap.answers.addedCourses || []).filter(id => !order.includes(id));
+    onAnswersChange({ ...roadmap.answers, addedCourses: [...others, ...order] });
+    track('course_reordered', { pathway, course_id: courseId });
   };
 
   const handleRemoveCourse = (courseId) => {
@@ -561,29 +580,27 @@ export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
                                         • {course.instructor}
                                       </span>
                                     )}
+                                    {course.isAdded && !phase.isAdded && (
+                                      <span className="text-xs px-2 py-0.5 rounded-full bg-[var(--node-cyan-dim)] text-[var(--node-cyan)] border border-[var(--node-cyan)]/30">
+                                        Added
+                                      </span>
+                                    )}
                                   </div>
-                                </div>
-                                <div className="flex flex-shrink-0">
-                                  {phase.isAdded && (
-                                    <button
-                                      onClick={() => handleRemoveCourse(course.id)}
-                                      aria-label={`Remove ${course.title} from roadmap`}
-                                      title="Remove from roadmap"
-                                      className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-red-400 hover:bg-[var(--elevated)] rounded-lg transition-colors"
-                                    >
-                                      <Trash2 className="w-4 h-4" />
-                                    </button>
+                                  {course.placedBefore && (
+                                    <p className="mt-2 text-xs text-[var(--text-secondary)]">
+                                      Placed before {course.placedBefore}, which builds on it.
+                                    </p>
                                   )}
-                                  <a
-                                    href={course.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label={`Open ${course.title} course page`}
-                                    className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
-                                  >
-                                    <ExternalLink className="w-4 h-4" />
-                                  </a>
                                 </div>
+                                <a
+                                  href={course.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`Open ${course.title} course page`}
+                                  className="flex-shrink-0 p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors"
+                                >
+                                  <ExternalLink className="w-4 h-4" />
+                                </a>
                               </div>
 
                               {/* Timeline indicator */}
@@ -603,6 +620,43 @@ export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
                                       {skill}
                                     </span>
                                   ))}
+                                </div>
+                              )}
+
+                              {/* Controls for courses the learner added */}
+                              {course.isAdded && (
+                                <div className="mt-2 -ml-2.5 flex items-center">
+                                  {phase.isAdded && (
+                                    <>
+                                      <button
+                                        onClick={() => handleMoveCourse(phase, course.id, -1)}
+                                        disabled={phase.courses[0].id === course.id}
+                                        aria-label={`Move ${course.title} earlier`}
+                                        title="Move earlier"
+                                        className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors disabled:opacity-30 disabled:pointer-events-none"
+                                      >
+                                        <ArrowUp className="w-4 h-4" />
+                                      </button>
+                                      <button
+                                        onClick={() => handleMoveCourse(phase, course.id, 1)}
+                                        disabled={phase.courses[phase.courses.length - 1].id === course.id}
+                                        aria-label={`Move ${course.title} later`}
+                                        title="Move later"
+                                        className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--node-cyan)] hover:bg-[var(--elevated)] rounded-lg transition-colors disabled:opacity-30 disabled:pointer-events-none"
+                                      >
+                                        <ArrowDown className="w-4 h-4" />
+                                      </button>
+                                    </>
+                                  )}
+                                  <button
+                                    onClick={() => handleRemoveCourse(course.id)}
+                                    aria-label={`Remove ${course.title} from roadmap`}
+                                    title="Remove from roadmap"
+                                    className="px-2.5 min-h-[44px] flex items-center gap-1.5 text-sm text-[var(--text-muted)] hover:text-red-400 hover:bg-[var(--elevated)] rounded-lg transition-colors"
+                                  >
+                                    <Trash2 className="w-4 h-4" />
+                                    Remove
+                                  </button>
                                 </div>
                               )}
                             </div>
