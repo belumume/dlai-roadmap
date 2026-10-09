@@ -234,4 +234,17 @@ test.describe('Add any course to a roadmap', () => {
     const all = await page.getByRole('heading', { level: 4 }).allInnerTexts();
     expect(all.indexOf(OPEN)).toBe(all.indexOf(QUANT) - 1);
   });
+
+  test('Search results say which courses award a certificate', async ({ page }) => {
+    await openRoadmap(page);
+    await page.getByRole('button', { name: 'Add Course' }).click();
+    const search = page.getByRole('searchbox', { name: 'Search all courses' });
+    await search.fill(DLS);
+    await expect(page.getByRole('button', { name: `Add ${DLS}`, exact: true }).getByTestId('certificate-badge')).toHaveText('Certificate (paid)');
+    // A short course awards none
+    await search.fill('Quantization Fundamentals');
+    const short = page.getByRole('button', { name: 'Add Quantization Fundamentals with Hugging Face', exact: true });
+    await expect(short).toBeVisible();
+    await expect(short.getByTestId('certificate-badge')).toHaveCount(0);
+  });
 });

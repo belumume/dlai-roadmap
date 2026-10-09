@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from 'react';
-import { Search, X, Plus } from 'lucide-react';
+import { Search, X, Plus, Award } from 'lucide-react';
 import coursesData from '../data/courses.json';
 import { getDifficultyColor } from '../utils/pathwayGenerator';
 
@@ -77,6 +77,12 @@ export default function AddCoursePanel({ roadmapCourseIds, priorCourseIds, onAdd
                         {course.difficulty}
                       </span>
                       <span>{course.estimated_hours || 3} hrs</span>
+                      {course.type !== 'short' && (
+                        <span data-testid="certificate-badge" className="inline-flex items-center gap-1 text-[var(--node-amber)]">
+                          <Award className="w-3 h-3" aria-hidden="true" />
+                          {course.platform === 'coursera' ? 'Certificate (paid on Coursera)' : 'Certificate (paid)'}
+                        </span>
+                      )}
                       {course.partner && <span>• {course.partner}</span>}
                       {priorCourseIds.includes(course.id) && (
                         <span className="text-amber-400">• You marked this as done</span>
