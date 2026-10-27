@@ -54,7 +54,7 @@ Every pull request runs lint, build and the Playwright suite in GitHub Actions, 
 
 ## Course Data
 
-`src/data/courses.json` holds 133 DeepLearning.AI courses and the pathway definitions. Every course carries:
+`src/data/courses.json` holds 134 DeepLearning.AI courses and the pathway definitions. Every course carries:
 - Difficulty level (beginner/intermediate/advanced)
 - Estimated hours
 - Categories, skills taught and partner

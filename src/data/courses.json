@@ -657,6 +657,34 @@
       "partner": "DeepLearning.AI"
     },
     {
+      "id": "context-engineering",
+      "title": "Context Engineering",
+      "type": "course",
+      "url": "https://learn.deeplearning.ai/courses/context-engineering",
+      "difficulty": "intermediate",
+      "estimated_hours": 18.9,
+      "categories": [
+        "agents",
+        "rag"
+      ],
+      "instructor": "Jeff Huber",
+      "platform": "dlai",
+      "prerequisites": [
+        "agentic-ai",
+        "retrieval-augmented-generation-rag"
+      ],
+      "skills_taught": [
+        "agentic search",
+        "context pruning and compaction",
+        "agentic memory",
+        "agent traces and evals"
+      ],
+      "career_paths": [
+        "builder"
+      ],
+      "partner": "Chroma"
+    },
+    {
       "id": "building-and-evaluating-data-agents",
       "title": "Building and Evaluating Data Agents",
       "type": "short",
@@ -2790,7 +2818,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/langchain",
       "difficulty": "beginner",
-      "estimated_hours": 1.8,
+      "estimated_hours": 1.9,
       "categories": [
         "agents"
       ],

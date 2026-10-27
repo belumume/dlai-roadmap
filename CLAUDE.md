@@ -14,17 +14,17 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - Static JSON data (no backend)
 
 ## Key Files
-- `src/data/courses.json` - 133 courses + pathway definitions (fully enriched)
+- `src/data/courses.json` - 134 courses + pathway definitions (fully enriched)
 - `src/utils/pathwayGenerator.js` - Core personalization algorithm
 - `src/components/Questionnaire.jsx` - 8-question assessment
-- `src/components/CourseSelector.jsx` - Searchable course picker (all 133 courses)
+- `src/components/CourseSelector.jsx` - Searchable course picker (all 134 courses)
 - `src/utils/categories.js` - Single source of truth for category labels
 - `src/components/RoadmapView.jsx` - Generated roadmap display
 - `src/components/AddCoursePanel.jsx` - Search the full catalog and add any course to a generated roadmap
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
 - `src/utils/exportCalendar.js` - iCalendar (.ics) export function
 - `src/utils/analytics.js` - PostHog wrapper (`track`); cookieless (`persistence: 'memory'`), sends nothing in dev or automated browsers
-- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` + `tests/export-share.spec.cjs` + `tests/link-guard.spec.cjs` + `tests/certificates.spec.cjs` + `tests/add-course.spec.cjs` - Playwright tests (72 tests)
+- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` + `tests/export-share.spec.cjs` + `tests/link-guard.spec.cjs` + `tests/certificates.spec.cjs` + `tests/add-course.spec.cjs` - Playwright tests (73 tests)
 - `.github/workflows/ci.yml` - lint, build and Playwright on every PR; `deploy.yml` reuses it so main deploys only when green
 - `scripts/claude-link-guard.cjs` - blocks Claude session links (see the hard rule below); run by `.githooks/`, `.claude/settings.json` and `.github/workflows/claude-link-guard.yml`
 - `docs/solutions/` - documented solutions and methodology (data quality, curriculum design)
@@ -41,19 +41,19 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] PDF export
 - [x] Shareable URLs (auto-load on visit)
 - [x] localStorage progress persistence
-- [x] Searchable course selector (all 133 courses)
+- [x] Searchable course selector (all 134 courses)
 - [x] Skip button for multi-select questions
 - [x] Interest categories match actual course categories
 - [x] mathBackground filters elective difficulty
 - [x] goal affects specialization preferences
 - [x] Learning Deep attribution with profile link
-- [x] Playwright test suite (72/72 passing), run in CI on every PR and before every deploy
+- [x] Playwright test suite (73/73 passing), run in CI on every PR and before every deploy
 - [x] Filter UI on roadmap view (category + difficulty filters)
 - [x] Critical path vs optional marking (Required/Optional badges on phases)
 - [x] Timeline warning display when core courses exceed target timeline
 - [x] Math warning display for researcher path with weak math background
 - [x] Experience-based difficulty filtering (professional/ml-basics skip foundation)
-- [x] courses.json enrichment - All 133 courses have:
+- [x] courses.json enrichment - All 134 courses have:
   - `prerequisites` - course dependency IDs
   - `skills_taught` - 3-4 skills per course
   - `career_paths` - builder/researcher/enterprise relevance

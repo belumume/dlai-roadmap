@@ -67,6 +67,22 @@ test.describe('Catalog data integrity', () => {
     expect(problems).toEqual([]);
   });
 
+  test('Oct 27 2026 sync: Context Engineering carries the DLAI catalog values', () => {
+    // Full course released 2026-10-20: Intermediate, 68209s (18h56m), partner Chroma
+    const course = data.courses.find(c => c.id === 'context-engineering');
+    expect(course).toMatchObject({
+      type: 'course',
+      url: 'https://learn.deeplearning.ai/courses/context-engineering',
+      difficulty: 'intermediate',
+      estimated_hours: 18.9,
+      partner: 'Chroma',
+      instructor: 'Jeff Huber',
+      career_paths: ['builder'],
+    });
+    expect(course.prerequisites).toEqual(['agentic-ai', 'retrieval-augmented-generation-rag']);
+    expect(data.courses.find(c => c.id === 'langchain-for-llm-application-development').estimated_hours).toBe(1.9);
+  });
+
   test('short-course hours are not placeholders', () => {
     // Short courses used to default to 2h; real durations come from the DLAI course page
     const shorts = data.courses.filter(c => c.type === 'short');
