@@ -1,6 +1,26 @@
 {
   "courses": [
     {
+      "id": "loop-engineering-with-langchain-deep-agents",
+      "title": "Loop Engineering with LangChain Deep Agents",
+      "type": "short",
+      "url": "https://learn.deeplearning.ai/courses/loop-engineering-with-langchain-deep-agents",
+      "difficulty": "intermediate",
+      "estimated_hours": 1.3,
+      "categories": ["agents"],
+      "instructor": "Sydney Runkle",
+      "platform": "dlai",
+      "prerequisites": ["ai-agents-in-langgraph"],
+      "skills_taught": [
+        "agent loops",
+        "verification loops",
+        "event-driven agents",
+        "trace-driven agent improvement"
+      ],
+      "career_paths": ["builder"],
+      "partner": "LangChain"
+    },
+    {
       "id": "building-ai-assistants-with-on-device-memory",
       "title": "Building AI Assistants with On-Device Memory",
       "type": "short",
@@ -2005,7 +2025,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/multi-ai-agent-systems-with-crewai",
       "difficulty": "beginner",
-      "estimated_hours": 3.0,
+      "estimated_hours": 3.1,
       "categories": [
         "agents"
       ],

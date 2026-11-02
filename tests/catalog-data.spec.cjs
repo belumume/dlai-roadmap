@@ -83,6 +83,23 @@ test.describe('Catalog data integrity', () => {
     expect(data.courses.find(c => c.id === 'langchain-for-llm-application-development').estimated_hours).toBe(1.9);
   });
 
+  test('Nov 2 2026 sync: Loop Engineering with LangChain Deep Agents carries the DLAI catalog values', () => {
+    // Short course released 2026-10-28: Intermediate, 1h16m, partner LangChain
+    const course = data.courses.find(c => c.id === 'loop-engineering-with-langchain-deep-agents');
+    expect(course).toMatchObject({
+      type: 'short',
+      url: 'https://learn.deeplearning.ai/courses/loop-engineering-with-langchain-deep-agents',
+      difficulty: 'intermediate',
+      estimated_hours: 1.3,
+      partner: 'LangChain',
+      instructor: 'Sydney Runkle',
+      career_paths: ['builder'],
+    });
+    expect(course.prerequisites).toEqual(['ai-agents-in-langgraph']);
+    // crewAI short course page now lists 3h6m
+    expect(data.courses.find(c => c.id === 'multi-ai-agent-systems-with-crewai').estimated_hours).toBe(3.1);
+  });
+
   test('short-course hours are not placeholders', () => {
     // Short courses used to default to 2h; real durations come from the DLAI course page
     const shorts = data.courses.filter(c => c.type === 'short');
