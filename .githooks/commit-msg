@@ -2,6 +2,11 @@
 # Rejects commit messages that link to a Claude session, thread or project,
 # then runs the global commit-msg hook, which this repo's hooksPath would hide
 node "$(git rev-parse --show-toplevel)/scripts/claude-link-guard.cjs" check-msg "$1" || exit 1
+# Strip Claude attribution trailers (owner's rule: no Claude identifiers in commits)
+tmp="$1.tmp.$$"
+grep -v -i -E '^(Claude-Session:|Co-Authored-By:.*(claude|anthropic))' "$1" > "$tmp"
+awk 'NF{for(;n>0;n--)print "";print;next}{n++}' "$tmp" > "$1"
+rm -f "$tmp"
 g=$(git config --global --type=path --get core.hooksPath)
 here=$(cd "$(dirname "$0")" && pwd -P)
 if [ -n "$g" ] && [ -x "$g/commit-msg" ] && [ "$(cd "$g" && pwd -P)" != "$here" ]; then exec "$g/commit-msg" "$@"; fi
