@@ -230,6 +230,7 @@ test.describe('Analytics storage', () => {
   });
 
   test('No share-link answers reach PostHog, in events or session replay', async ({ browser }) => {
+    test.setTimeout(60000);
     // PostHog drops events from headless and automated browsers, so look like a desktop Chrome.
     // main.jsx still sends nothing: analytics only starts in a production build.
     const context = await browser.newContext({
@@ -288,10 +289,12 @@ test.describe('Analytics storage', () => {
     await page.waitForTimeout(3000);
     await page.evaluate(() => window.__ph.sessionRecording?._lazyLoadedSessionRecording?._flushBuffer?.());
 
-    // Both an event batch and a replay batch with the network timeline must have been sent,
+    // An event batch, a replay batch with the network timeline and web vitals must all have been sent,
     // or this test would not cover them
     await expect.poll(() => bodies.some((b) => b.text.includes('mask_check')), { timeout: 10000 }).toBe(true);
     await expect.poll(() => bodies.some((b) => b.text.includes('rrweb/network')), { timeout: 10000 }).toBe(true);
+    // Web vitals are sent in a batch about 5 s after the first metric
+    await expect.poll(() => bodies.some((b) => b.text.includes('$web_vitals')), { timeout: 15000 }).toBe(true);
     const sent = bodies.map((b) => b.text).join('\n');
     expect(sent).not.toContain(secret.slice(0, 16));
     expect(sent).toContain('pathway=<masked>');

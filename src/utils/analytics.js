@@ -23,7 +23,14 @@ export function startPostHog() {
     mask_personal_data_properties: true,
     custom_personal_data_properties: ['pathway'],
     session_recording: {
-      maskCapturedNetworkRequestFn: (request) => ({ ...request, name: maskPathway(request.name) }),
+      // A custom mask turns off PostHog's own body scrubbing, so bodies are dropped
+      // (the project doesn't record them anyway)
+      maskCapturedNetworkRequestFn: (request) => ({
+        ...request,
+        name: maskPathway(request.name),
+        requestBody: undefined,
+        responseBody: undefined,
+      }),
     },
     person_profiles: 'identified_only',
     capture_pageview: true,
