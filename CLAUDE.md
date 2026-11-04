@@ -19,12 +19,13 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - `src/components/Questionnaire.jsx` - 8-question assessment
 - `src/components/CourseSelector.jsx` - Searchable course picker (all 136 courses)
 - `src/utils/categories.js` - Single source of truth for category labels
+- `src/data/skills.json` - DLAI AI Engineering Skills Map (4 pillars, 20 skills) plus a "Getting started" pillar; each course in courses.json names 1-3 of these in `skills_map`, primary first
 - `src/components/RoadmapView.jsx` - Generated roadmap display
 - `src/components/AddCoursePanel.jsx` - Search the full catalog and add any course to a generated roadmap
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
 - `src/utils/exportCalendar.js` - iCalendar (.ics) export function
 - `src/utils/analytics.js` - PostHog wrapper (`track`); cookieless (`persistence: 'memory'`), sends nothing in dev or automated browsers
-- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` + `tests/export-share.spec.cjs` + `tests/link-guard.spec.cjs` + `tests/certificates.spec.cjs` + `tests/add-course.spec.cjs` + `tests/course-repos.spec.cjs` + `tests/strip-claude-ids.spec.cjs` + `tests/roadmap-fit.spec.cjs` - Playwright tests (88 tests)
+- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` + `tests/export-share.spec.cjs` + `tests/link-guard.spec.cjs` + `tests/certificates.spec.cjs` + `tests/add-course.spec.cjs` + `tests/course-repos.spec.cjs` + `tests/strip-claude-ids.spec.cjs` + `tests/roadmap-fit.spec.cjs` + `tests/skills-map.spec.cjs` - Playwright tests (92 tests)
 - `.github/workflows/ci.yml` - lint, build and Playwright on every PR; `deploy.yml` reuses it so main deploys only when green
 - `scripts/claude-link-guard.cjs` - blocks Claude session links (see the hard rule below); run by `.githooks/`, `.claude/settings.json` and `.github/workflows/claude-link-guard.yml`
 - `docs/solutions/` - documented solutions and methodology (data quality, curriculum design)
