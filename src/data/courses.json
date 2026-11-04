@@ -1,6 +1,26 @@
 {
   "courses": [
     {
+      "id": "evaluating-and-improving-agentic-applications",
+      "title": "Evaluating and Improving Agentic Applications",
+      "type": "course",
+      "url": "https://learn.deeplearning.ai/courses/evaluating-and-improving-agentic-applications",
+      "difficulty": "intermediate",
+      "estimated_hours": 15.1,
+      "categories": ["agents", "deployment"],
+      "instructor": "Laurie Voss",
+      "platform": "dlai",
+      "prerequisites": [],
+      "skills_taught": [
+        "agent tracing",
+        "error analysis and test sets",
+        "code and LLM-judge evaluators",
+        "evaluation-driven improvement"
+      ],
+      "career_paths": ["builder"],
+      "partner": "Arize AI"
+    },
+    {
       "id": "loop-engineering-with-langchain-deep-agents",
       "title": "Loop Engineering with LangChain Deep Agents",
       "type": "short",
@@ -3254,7 +3274,7 @@
       "id": "tensorflow-data-and-deployment-specialization",
       "title": "TensorFlow: Data and Deployment Specialization",
       "type": "certificate",
-      "url": "https://coursera.org/specializations/tensorflow-data-and-deployment?utm_source=deeplearningai&utm_medium=institutions&utm_campaign=WebsiteCoursesTFS2FirstButton",
+      "url": "https://www.coursera.org/specializations/tensorflow-data-and-deployment",
       "difficulty": "intermediate",
       "estimated_hours": 53,
       "categories": [
@@ -3496,7 +3516,7 @@
       ]
     },
     "enterprise": {
-      "name": "Enterprise AI Architect",
+      "name": "Enterprise AI Leader",
       "description": "Security, governance, and enterprise integration",
       "phases": [
         {
