@@ -1,0 +1,75 @@
+{
+  "source": {
+    "name": "AI Engineering Skills Map",
+    "publisher": "DeepLearning.AI",
+    "url": "https://www.deeplearning.ai/resources/ai-engineering-skills",
+    "checked": "2026-11-04"
+  },
+  "pillars": [
+    {
+      "id": "start",
+      "name": "Getting started",
+      "inSkillsMap": false,
+      "summary": "Where people who are new to AI or to code begin. Not part of DeepLearning.AI's map, which assumes you already build software.",
+      "skills": [
+        { "id": "ai-literacy", "number": null, "name": "AI literacy", "summary": "Knowing what AI can and can't do, and using AI tools well in your own work." },
+        { "id": "python", "number": null, "name": "Python basics", "summary": "Writing and running simple Python programs, the language most AI courses use." }
+      ]
+    },
+    {
+      "id": "build",
+      "name": "Building and deploying AI applications",
+      "inSkillsMap": true,
+      "summary": "Turning unpredictable models into reliable systems by building, examining the results and deciding what to try next.",
+      "skills": [
+        { "id": "llm-foundations", "number": "1.1", "name": "LLM foundations", "summary": "How LLMs work, when they fail, and how to choose, prompt, configure and adapt them." },
+        { "id": "grounding-with-data", "number": "1.2", "name": "Grounding models with data", "summary": "Giving models the right context: retrieval, knowledge graphs and documents turned into LLM-ready input." },
+        { "id": "agentic-systems", "number": "1.3", "name": "Building agentic systems", "summary": "Workflows and agents with tools, memory and context management, made safe enough for production." },
+        { "id": "evals", "number": "1.4", "name": "Evaluation-driven development", "summary": "A disciplined evals and error-analysis loop that shows what to improve next." },
+        { "id": "ai-in-production", "number": "1.5", "name": "Operating in production", "summary": "Observability, release testing, and cost and latency for AI systems with real users." },
+        { "id": "ml-foundations", "number": "1.6", "name": "Machine learning foundations", "summary": "Machine learning and deep learning: models, training, data and error analysis." }
+      ]
+    },
+    {
+      "id": "software",
+      "name": "Software engineering fundamentals",
+      "inSkillsMap": true,
+      "summary": "The software knowledge you need to steer coding agents toward the right tradeoffs.",
+      "skills": [
+        { "id": "full-stack", "number": "2.1", "name": "Building full-stack applications", "summary": "Front end and back end: UI, APIs, state, persistence and testing." },
+        { "id": "managing-data", "number": "2.2", "name": "Managing data", "summary": "Data models, storage and pipelines, kept clean, fresh, private and compliant." },
+        { "id": "system-architecture", "number": "2.3", "name": "Designing system architectures", "summary": "Choosing the architecture and stack, and evolving them from prototype to scale." },
+        { "id": "secure-reliable", "number": "2.4", "name": "Making systems secure and reliable", "summary": "Testing strategy, designing around failure and building security in from the start." },
+        { "id": "scaling-operating", "number": "2.5", "name": "Scaling and operating in production", "summary": "Deployment, CI/CD, monitoring and scaling for real traffic." }
+      ]
+    },
+    {
+      "id": "coding-agents",
+      "name": "Using coding agents",
+      "inSkillsMap": true,
+      "summary": "Directing and customizing coding agents while keeping control of what gets built.",
+      "skills": [
+        { "id": "directing-workflow", "number": "3.1", "name": "Directing the workflow", "summary": "Planning, writing specs and splitting work into steps an agent can build and you can verify." },
+        { "id": "agent-autonomy", "number": "3.2", "name": "Enabling agent autonomy", "summary": "Choosing how much to delegate, running agents in parallel and setting safe permissions." },
+        { "id": "reviewing-work", "number": "3.3", "name": "Reviewing the work", "summary": "Testing and reviewing what agents produce, including AI code review." },
+        { "id": "customizing-agent", "number": "3.4", "name": "Customizing the agent and its environment", "summary": "Skills, memory, hooks, MCP servers and standing context files." },
+        { "id": "coding-agent-foundations", "number": "3.5", "name": "Coding agent foundations", "summary": "How coding agents work inside, so you can spot their failure modes." }
+      ]
+    },
+    {
+      "id": "shaping",
+      "name": "Shaping the build",
+      "inSkillsMap": true,
+      "summary": "Owning projects end to end with product sense, fast build loops and leadership.",
+      "skills": [
+        { "id": "build-loop", "number": "4.1", "name": "Driving the build loop", "summary": "Prototypes and MVPs that test an idea fast and decide the next step." },
+        { "id": "product-decisions", "number": "4.2", "name": "Making product decisions", "summary": "Product and business sense, and user empathy grounded in research and metrics." },
+        { "id": "communicating-leading", "number": "4.3", "name": "Communicating and leading", "summary": "Aligning stakeholders and helping an organization understand what AI can do." },
+        { "id": "ownership", "number": "4.4", "name": "High agency ownership", "summary": "Driving projects end to end, acting in ambiguity and measuring work by its value." }
+      ]
+    }
+  ],
+  "gaps": {
+    "ownership": "No DeepLearning.AI course teaches this directly yet."
+  }
+}

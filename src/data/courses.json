@@ -17,6 +17,7 @@
         "code and LLM-judge evaluators",
         "evaluation-driven improvement"
       ],
+      "skills_map": ["evals", "agentic-systems"],
       "career_paths": ["builder"],
       "partner": "Arize AI"
     },
@@ -37,6 +38,7 @@
         "event-driven agents",
         "trace-driven agent improvement"
       ],
+      "skills_map": ["agentic-systems", "evals"],
       "career_paths": ["builder"],
       "partner": "LangChain"
     },
@@ -57,6 +59,7 @@
         "offline assistants",
         "few-shot object recognition"
       ],
+      "skills_map": ["grounding-with-data", "agentic-systems"],
       "career_paths": ["builder"],
       "partner": "Qdrant"
     },
@@ -77,6 +80,7 @@
         "code knowledge graphs",
         "agent adaptation strategies"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": ["builder", "enterprise"],
       "partner": "Oracle"
     },
@@ -97,6 +101,7 @@
         "context scoping for small models",
         "cost and latency tradeoffs"
       ],
+      "skills_map": ["customizing-agent", "coding-agent-foundations"],
       "career_paths": ["builder"],
       "partner": "JetBrains"
     },
@@ -117,6 +122,7 @@
         "review agent ensembles",
         "risk-based finding triage"
       ],
+      "skills_map": ["reviewing-work"],
       "career_paths": ["builder", "enterprise"],
       "partner": "Qodo"
     },
@@ -137,6 +143,7 @@
         "real-time multi-tool workflows",
         "wafer-scale inference"
       ],
+      "skills_map": ["ai-in-production"],
       "career_paths": ["builder"],
       "partner": "Cerebras"
     },
@@ -157,6 +164,7 @@
         "outbound call agents",
         "voice agent evaluation"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": ["builder"],
       "partner": "Vocal Bridge"
     },
@@ -177,6 +185,7 @@
         "model quantization tradeoffs",
         "inference benchmarking"
       ],
+      "skills_map": ["ai-in-production"],
       "career_paths": ["builder", "enterprise"],
       "partner": "Red Hat"
     },
@@ -197,6 +206,7 @@
         "rubric-based evaluation",
         "iterative refinement loops"
       ],
+      "skills_map": ["agentic-systems", "evals"],
       "career_paths": ["builder"],
       "partner": "Google"
     },
@@ -217,6 +227,7 @@
         "KV caching and flash attention",
         "debugging model behavior"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": ["researcher", "builder"],
       "partner": "AMD"
     },
@@ -237,6 +248,7 @@
         "CopilotKit with LangChain agents",
         "MCP Apps"
       ],
+      "skills_map": ["agentic-systems", "full-stack"],
       "career_paths": ["builder"],
       "partner": "CopilotKit"
     },
@@ -257,6 +269,7 @@
         "AI writing and brainstorming",
         "no-code app building"
       ],
+      "skills_map": ["ai-literacy"],
       "career_paths": ["builder", "researcher", "enterprise"],
       "partner": "DeepLearning.AI"
     },
@@ -277,6 +290,7 @@
         "video scene understanding",
         "multimodal RAG"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": ["builder", "enterprise"],
       "partner": "Snowflake"
     },
@@ -297,6 +311,7 @@
         "plan-implement-verify workflow",
         "custom agent skills"
       ],
+      "skills_map": ["directing-workflow", "customizing-agent"],
       "career_paths": ["builder"],
       "partner": "JetBrains"
     },
@@ -317,6 +332,7 @@
         "SGLang serving",
         "diffusion model acceleration"
       ],
+      "skills_map": ["ai-in-production", "llm-foundations"],
       "career_paths": ["builder", "researcher"],
       "partner": "RadixArk"
     },
@@ -337,6 +353,7 @@
         "differential privacy",
         "Flower framework"
       ],
+      "skills_map": ["llm-foundations", "managing-data"],
       "career_paths": ["researcher", "enterprise"],
       "partner": "Flower Labs"
     },
@@ -357,6 +374,7 @@
         "memory extraction and consolidation",
         "stateful agent design"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": ["builder", "enterprise"],
       "partner": "Oracle"
     },
@@ -377,6 +395,7 @@
         "Flax neural network layers",
         "model training and checkpointing"
       ],
+      "skills_map": ["llm-foundations", "ml-foundations"],
       "career_paths": ["researcher"],
       "partner": "Google"
     },
@@ -397,6 +416,7 @@
         "subagent orchestration",
         "Claude API usage"
       ],
+      "skills_map": ["customizing-agent", "agentic-systems"],
       "career_paths": ["builder"],
       "partner": "Anthropic"
     },
@@ -417,6 +437,7 @@
         "agentic coding workflows",
         "context management"
       ],
+      "skills_map": ["directing-workflow", "customizing-agent"],
       "career_paths": ["builder"],
       "partner": "Google"
     },
@@ -437,6 +458,7 @@
         "document-powered RAG pipelines",
         "serverless deployment"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": ["builder", "enterprise"],
       "partner": "LandingAI"
     },
@@ -457,6 +479,7 @@
         "no-code development",
         "iterative prompting"
       ],
+      "skills_map": ["ai-literacy", "build-loop"],
       "career_paths": ["builder"],
       "partner": "DeepLearning.AI"
     },
@@ -477,6 +500,7 @@
         "multi-agent orchestration",
         "agent evaluation"
       ],
+      "skills_map": ["ai-in-production", "evals"],
       "career_paths": ["builder", "enterprise"],
       "partner": "Nvidia"
     },
@@ -502,6 +526,7 @@
         "ColPali",
         "hybrid search"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -529,6 +554,7 @@
         "code generation",
         "E2B sandboxes"
       ],
+      "skills_map": ["agentic-systems", "coding-agent-foundations"],
       "career_paths": [
         "builder"
       ],
@@ -556,6 +582,7 @@
         "cost optimization",
         "agent performance"
       ],
+      "skills_map": ["ai-in-production"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -583,6 +610,7 @@
         "CrewAI production",
         "agent orchestration"
       ],
+      "skills_map": ["agentic-systems", "ai-in-production"],
       "career_paths": [
         "builder"
       ],
@@ -608,6 +636,7 @@
         "AI assistants",
         "code generation"
       ],
+      "skills_map": ["directing-workflow"],
       "career_paths": [
         "builder",
         "researcher"
@@ -636,6 +665,7 @@
         "safety policies",
         "agent monitoring"
       ],
+      "skills_map": ["managing-data", "agentic-systems"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -664,6 +694,7 @@
         "real-time AI",
         "speech processing"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -690,6 +721,7 @@
         "AI agent concepts",
         "agent design patterns"
       ],
+      "skills_map": ["agentic-systems", "evals"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -719,6 +751,7 @@
         "agentic memory",
         "agent traces and evals"
       ],
+      "skills_map": ["agentic-systems", "grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -746,6 +779,7 @@
         "agent tracing and evaluation",
         "inline runtime evaluation"
       ],
+      "skills_map": ["agentic-systems", "evals"],
       "career_paths": [
         "builder"
       ],
@@ -773,6 +807,7 @@
         "file management",
         "enterprise AI"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -801,6 +836,7 @@
         "Neo4j",
         "agent tooling"
       ],
+      "skills_map": ["agentic-systems", "grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -828,6 +864,7 @@
         "agentic workflows",
         "graph extraction"
       ],
+      "skills_map": ["grounding-with-data", "agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -855,6 +892,7 @@
         "DPO",
         "model alignment"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -881,6 +919,7 @@
         "neural networks",
         "model training"
       ],
+      "skills_map": ["ml-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -906,6 +945,7 @@
         "CLI tools",
         "code generation"
       ],
+      "skills_map": ["directing-workflow", "agent-autonomy", "customizing-agent"],
       "career_paths": [
         "builder"
       ],
@@ -932,6 +972,7 @@
         "structured output",
         "type safety"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder"
       ],
@@ -958,6 +999,7 @@
         "instruction tuning",
         "RLHF"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -984,6 +1026,7 @@
         "multi-agent orchestration",
         "agent interoperability"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -1010,6 +1053,7 @@
         "model deployment",
         "Meta AI"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder",
         "researcher"
@@ -1037,6 +1081,7 @@
         "dynamic task mapping",
         "pipeline retries and alerts"
       ],
+      "skills_map": ["managing-data", "scaling-operating"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -1064,6 +1109,7 @@
         "agentic apps",
         "declarative AI"
       ],
+      "skills_map": ["agentic-systems", "evals"],
       "career_paths": [
         "builder",
         "researcher"
@@ -1091,6 +1137,7 @@
         "LoRA",
         "Predibase"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -1117,6 +1164,7 @@
         "Anthropic API",
         "tool integration"
       ],
+      "skills_map": ["agentic-systems", "customizing-agent"],
       "career_paths": [
         "builder"
       ],
@@ -1143,6 +1191,7 @@
         "voice latency optimization",
         "LiveKit"
       ],
+      "skills_map": ["agentic-systems", "ai-in-production"],
       "career_paths": [
         "builder"
       ],
@@ -1169,6 +1218,7 @@
         "context management",
         "long-term memory"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder",
         "researcher"
@@ -1196,6 +1246,7 @@
         "Hugging Face",
         "tool use"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -1222,6 +1273,7 @@
         "MultiOn",
         "browser control"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -1249,6 +1301,7 @@
         "function calling",
         "output parsing"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder"
       ],
@@ -1273,6 +1326,7 @@
         "AI-assisted development",
         "prototyping"
       ],
+      "skills_map": ["directing-workflow", "build-loop"],
       "career_paths": [
         "builder"
       ],
@@ -1299,6 +1353,7 @@
         "agent persistence",
         "memory management"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -1325,6 +1380,7 @@
         "LlamaCloud",
         "automation"
       ],
+      "skills_map": ["agentic-systems", "grounding-with-data"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -1351,6 +1407,7 @@
         "agentic development",
         "code generation"
       ],
+      "skills_map": ["directing-workflow"],
       "career_paths": [
         "builder"
       ],
@@ -1377,6 +1434,7 @@
         "metrics",
         "Arize"
       ],
+      "skills_map": ["evals"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -1404,6 +1462,7 @@
         "PyTorch",
         "self-attention"
       ],
+      "skills_map": ["llm-foundations", "ml-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -1430,6 +1489,7 @@
         "attention",
         "embeddings"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -1456,6 +1516,7 @@
         "desktop automation",
         "vision models"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -1482,6 +1543,7 @@
         "AI21 Labs",
         "context windows"
       ],
+      "skills_map": ["llm-foundations", "grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -1508,6 +1570,7 @@
         "OpenAI API",
         "reasoning models"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder",
         "researcher"
@@ -1533,6 +1596,7 @@
         "AI writing",
         "interactive editing"
       ],
+      "skills_map": ["ai-literacy", "directing-workflow"],
       "career_paths": [
         "builder"
       ],
@@ -1559,6 +1623,7 @@
         "Llama Guard safety policies",
         "AI game design"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder"
       ],
@@ -1585,6 +1650,7 @@
         "output validation",
         "Guardrails AI"
       ],
+      "skills_map": ["agentic-systems", "secure-reliable"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -1612,6 +1678,7 @@
         "production agents",
         "multi-agent patterns"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -1638,6 +1705,7 @@
         "vision-language models",
         "Meta AI"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder",
         "researcher"
@@ -1665,6 +1733,7 @@
         "vector quantization",
         "Qdrant"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder",
         "researcher"
@@ -1690,6 +1759,7 @@
         "data structures",
         "functions"
       ],
+      "skills_map": ["python"],
       "career_paths": [
         "builder",
         "researcher",
@@ -1718,6 +1788,7 @@
         "vision prompts",
         "Google AI"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder"
       ],
@@ -1744,6 +1815,7 @@
         "modular AI apps",
         "NLP pipelines"
       ],
+      "skills_map": ["grounding-with-data", "agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -1770,6 +1842,7 @@
         "error analysis",
         "Lamini"
       ],
+      "skills_map": ["evals", "llm-foundations"],
       "career_paths": [
         "builder",
         "researcher"
@@ -1797,6 +1870,7 @@
         "training embeddings",
         "Vectara"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "researcher"
       ],
@@ -1824,6 +1898,7 @@
         "distributed ML",
         "privacy-preserving ML"
       ],
+      "skills_map": ["ml-foundations", "managing-data"],
       "career_paths": [
         "researcher",
         "enterprise"
@@ -1851,6 +1926,7 @@
         "training pipelines",
         "Upstage"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -1877,6 +1953,7 @@
         "MongoDB",
         "cost reduction"
       ],
+      "skills_map": ["grounding-with-data", "ai-in-production"],
       "career_paths": [
         "builder"
       ],
@@ -1901,6 +1978,7 @@
         "sustainability",
         "Google Cloud"
       ],
+      "skills_map": ["ai-in-production"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -1929,6 +2007,7 @@
         "structured output",
         "NexusFlow"
       ],
+      "skills_map": ["llm-foundations", "agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -1955,6 +2034,7 @@
         "Azure OpenAI",
         "text-to-SQL"
       ],
+      "skills_map": ["agentic-systems", "managing-data"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -1982,6 +2062,7 @@
         "state machines",
         "cyclical agents"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -2008,6 +2089,7 @@
         "conversation agents",
         "Microsoft AI"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder",
         "researcher"
@@ -2033,6 +2115,7 @@
         "Qualcomm",
         "mobile AI"
       ],
+      "skills_map": ["ai-in-production"],
       "career_paths": [
         "builder",
         "researcher"
@@ -2060,6 +2143,7 @@
         "agent coordination",
         "task delegation"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -2086,6 +2170,7 @@
         "Weaviate",
         "cross-modal retrieval"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -2113,6 +2198,7 @@
         "query routing",
         "tool-augmented RAG"
       ],
+      "skills_map": ["grounding-with-data", "agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -2139,6 +2225,7 @@
         "AWQ",
         "model compression"
       ],
+      "skills_map": ["llm-foundations", "ai-in-production"],
       "career_paths": [
         "researcher"
       ],
@@ -2165,6 +2252,7 @@
         "Comet ML",
         "multimodal prompts"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder"
       ],
@@ -2193,6 +2281,7 @@
         "RAG with Mistral",
         "open models"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder"
       ],
@@ -2219,6 +2308,7 @@
         "4-bit models",
         "memory optimization"
       ],
+      "skills_map": ["ai-in-production", "llm-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -2245,6 +2335,7 @@
         "Unstructured.io",
         "ETL for LLMs"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -2272,6 +2363,7 @@
         "prompt injection",
         "Giskard"
       ],
+      "skills_map": ["secure-reliable", "ai-in-production"],
       "career_paths": [
         "enterprise"
       ],
@@ -2298,6 +2390,7 @@
         "web apps",
         "Next.js integration"
       ],
+      "skills_map": ["full-stack", "grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -2324,6 +2417,7 @@
         "batching",
         "Predibase"
       ],
+      "skills_map": ["ai-in-production"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -2351,6 +2445,7 @@
         "GraphRAG",
         "entity relationships"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -2377,6 +2472,7 @@
         "transformers library",
         "model selection"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder",
         "researcher"
@@ -2404,6 +2500,7 @@
         "open model prompts",
         "system prompts"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder"
       ],
@@ -2430,6 +2527,7 @@
         "similarity search",
         "recommendation systems"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -2456,6 +2554,7 @@
         "CircleCI",
         "automated evaluation"
       ],
+      "skills_map": ["evals", "scaling-operating"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -2483,6 +2582,7 @@
         "Google Cloud",
         "deployment workflows"
       ],
+      "skills_map": ["ai-in-production"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -2510,6 +2610,7 @@
         "query expansion",
         "re-ranking"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder",
         "researcher"
@@ -2537,6 +2638,7 @@
         "PPO",
         "human preference learning"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -2563,6 +2665,7 @@
         "TruLens",
         "response quality metrics"
       ],
+      "skills_map": ["grounding-with-data", "evals"],
       "career_paths": [
         "builder"
       ],
@@ -2589,6 +2692,7 @@
         "embeddings",
         "semantic search"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -2615,6 +2719,7 @@
         "LangChain agents",
         "agent loops"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder"
       ],
@@ -2639,6 +2744,7 @@
         "code assistance",
         "debugging with AI"
       ],
+      "skills_map": ["directing-workflow"],
       "career_paths": [
         "builder"
       ],
@@ -2665,6 +2771,7 @@
         "embedding applications",
         "Google Cloud"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -2689,6 +2796,7 @@
         "Microsoft Copilot",
         "enterprise AI"
       ],
+      "skills_map": ["agentic-systems"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -2716,6 +2824,7 @@
         "instruction tuning",
         "custom models"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -2742,6 +2851,7 @@
         "reranking",
         "dense retrieval"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -2768,6 +2878,7 @@
         "experiment tracking",
         "GenAI evaluation"
       ],
+      "skills_map": ["evals"],
       "career_paths": [
         "researcher"
       ],
@@ -2794,6 +2905,7 @@
         "web interfaces",
         "Hugging Face Spaces"
       ],
+      "skills_map": ["full-stack", "build-loop"],
       "career_paths": [
         "builder"
       ],
@@ -2821,6 +2933,7 @@
         "conversational retrieval",
         "chat history"
       ],
+      "skills_map": ["grounding-with-data"],
       "career_paths": [
         "builder"
       ],
@@ -2847,6 +2960,7 @@
         "image generation",
         "denoising"
       ],
+      "skills_map": ["ml-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -2873,6 +2987,7 @@
         "memory",
         "output parsers"
       ],
+      "skills_map": ["agentic-systems", "llm-foundations"],
       "career_paths": [
         "builder"
       ],
@@ -2899,6 +3014,7 @@
         "moderation",
         "chaining prompts"
       ],
+      "skills_map": ["llm-foundations", "evals"],
       "career_paths": [
         "builder"
       ],
@@ -2923,6 +3039,7 @@
         "few-shot learning",
         "chain of thought"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -2950,6 +3067,7 @@
         "GenAI apps",
         "interactive UIs"
       ],
+      "skills_map": ["build-loop", "full-stack"],
       "career_paths": [
         "builder"
       ],
@@ -2976,6 +3094,7 @@
         "retrieval systems",
         "context augmentation"
       ],
+      "skills_map": ["grounding-with-data", "evals"],
       "career_paths": [
         "builder"
       ],
@@ -3002,6 +3121,7 @@
         "Python data analysis",
         "visualization"
       ],
+      "skills_map": ["managing-data", "product-decisions"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -3029,6 +3149,7 @@
         "software development",
         "LLM coding"
       ],
+      "skills_map": ["directing-workflow", "system-architecture", "secure-reliable"],
       "career_paths": [
         "builder"
       ],
@@ -3055,6 +3176,7 @@
         "data warehousing",
         "data modeling"
       ],
+      "skills_map": ["managing-data", "scaling-operating"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -3082,6 +3204,7 @@
         "model deployment",
         "ML lifecycle"
       ],
+      "skills_map": ["ml-foundations", "ai-in-production"],
       "career_paths": [
         "builder",
         "enterprise"
@@ -3107,6 +3230,7 @@
         "business use cases",
         "AI strategy"
       ],
+      "skills_map": ["ai-literacy", "product-decisions"],
       "career_paths": [
         "builder",
         "researcher",
@@ -3136,6 +3260,7 @@
         "fine-tuning",
         "RLHF basics"
       ],
+      "skills_map": ["llm-foundations"],
       "career_paths": [
         "builder",
         "researcher"
@@ -3163,6 +3288,7 @@
         "responsible AI",
         "AI for development"
       ],
+      "skills_map": ["ml-foundations", "product-decisions"],
       "career_paths": [
         "enterprise"
       ],
@@ -3187,6 +3313,7 @@
         "probability",
         "statistics for ML"
       ],
+      "skills_map": ["ml-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -3213,6 +3340,7 @@
         "neural networks",
         "ML fundamentals"
       ],
+      "skills_map": ["ml-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -3239,6 +3367,7 @@
         "distributed training",
         "model optimization"
       ],
+      "skills_map": ["ml-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -3265,6 +3394,7 @@
         "discriminators",
         "generative models"
       ],
+      "skills_map": ["ml-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -3291,6 +3421,7 @@
         "data pipelines",
         "model deployment"
       ],
+      "skills_map": ["ml-foundations", "ai-in-production"],
       "career_paths": [
         "builder",
         "researcher"
@@ -3318,6 +3449,7 @@
         "CNNs",
         "NLP with TensorFlow"
       ],
+      "skills_map": ["ml-foundations"],
       "career_paths": [
         "builder",
         "researcher"
@@ -3345,6 +3477,7 @@
         "attention mechanisms",
         "transformers"
       ],
+      "skills_map": ["ml-foundations", "llm-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -3371,6 +3504,7 @@
         "RNNs",
         "optimization algorithms"
       ],
+      "skills_map": ["ml-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -3397,6 +3531,7 @@
         "prognosis models",
         "treatment recommendation"
       ],
+      "skills_map": ["ml-foundations"],
       "career_paths": [
         "researcher"
       ],
@@ -3421,6 +3556,7 @@
         "machine learning concepts",
         "AI in business"
       ],
+      "skills_map": ["ai-literacy", "communicating-leading", "product-decisions"],
       "career_paths": [
         "builder",
         "researcher",
