@@ -3466,8 +3466,7 @@
           "name": "Math & ML Foundations",
           "courses": [
             "mathematics-for-machine-learning-and-data-science-specialization",
-            "machine-learning-specialization",
-            "natural-language-processing-specialization"
+            "machine-learning-specialization"
           ]
         },
         {
@@ -3476,7 +3475,8 @@
             "deep-learning-specialization",
             "tensorflow-developer-professional-certificate",
             "pytorch-for-deep-learning",
-            "attention-in-transformers-concepts-and-code-in-pytorch"
+            "attention-in-transformers-concepts-and-code-in-pytorch",
+            "natural-language-processing-specialization"
           ]
         },
         {
