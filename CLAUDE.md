@@ -14,17 +14,17 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - Static JSON data (no backend)
 
 ## Key Files
-- `src/data/courses.json` - 135 courses + pathway definitions (fully enriched)
+- `src/data/courses.json` - 136 courses + pathway definitions (fully enriched)
 - `src/utils/pathwayGenerator.js` - Core personalization algorithm
 - `src/components/Questionnaire.jsx` - 8-question assessment
-- `src/components/CourseSelector.jsx` - Searchable course picker (all 135 courses)
+- `src/components/CourseSelector.jsx` - Searchable course picker (all 136 courses)
 - `src/utils/categories.js` - Single source of truth for category labels
 - `src/components/RoadmapView.jsx` - Generated roadmap display
 - `src/components/AddCoursePanel.jsx` - Search the full catalog and add any course to a generated roadmap
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
 - `src/utils/exportCalendar.js` - iCalendar (.ics) export function
 - `src/utils/analytics.js` - PostHog wrapper (`track`); cookieless (`persistence: 'memory'`), sends nothing in dev or automated browsers
-- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` + `tests/export-share.spec.cjs` + `tests/link-guard.spec.cjs` + `tests/certificates.spec.cjs` + `tests/add-course.spec.cjs` + `tests/course-repos.spec.cjs` + `tests/strip-claude-ids.spec.cjs` - Playwright tests (80 tests)
+- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` + `tests/export-share.spec.cjs` + `tests/link-guard.spec.cjs` + `tests/certificates.spec.cjs` + `tests/add-course.spec.cjs` + `tests/course-repos.spec.cjs` + `tests/strip-claude-ids.spec.cjs` + `tests/roadmap-fit.spec.cjs` - Playwright tests (90 tests)
 - `.github/workflows/ci.yml` - lint, build and Playwright on every PR; `deploy.yml` reuses it so main deploys only when green
 - `scripts/claude-link-guard.cjs` - blocks Claude session links (see the hard rule below); run by `.githooks/`, `.claude/settings.json` and `.github/workflows/claude-link-guard.yml`
 - `docs/solutions/` - documented solutions and methodology (data quality, curriculum design)
@@ -41,19 +41,19 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] PDF export
 - [x] Shareable URLs (auto-load on visit)
 - [x] localStorage progress persistence
-- [x] Searchable course selector (all 135 courses)
+- [x] Searchable course selector (all 136 courses)
 - [x] Skip button for multi-select questions
 - [x] Interest categories match actual course categories
 - [x] mathBackground filters elective difficulty
 - [x] goal affects specialization preferences
 - [x] Learning Deep attribution with profile link
-- [x] Playwright test suite (80/80 passing), run in CI on every PR and before every deploy
+- [x] Playwright test suite (90/90 passing), run in CI on every PR and before every deploy
 - [x] Filter UI on roadmap view (category + difficulty filters)
 - [x] Critical path vs optional marking (Required/Optional badges on phases)
 - [x] Timeline warning display when core courses exceed target timeline
 - [x] Math warning display for researcher path with weak math background
 - [x] Experience-based difficulty filtering (professional/ml-basics skip foundation)
-- [x] courses.json enrichment - All 135 courses have:
+- [x] courses.json enrichment - All 136 courses have:
   - `prerequisites` - course dependency IDs
   - `skills_taught` - 3-4 skills per course
   - `career_paths` - builder/researcher/enterprise relevance
@@ -63,7 +63,8 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
   - Restrictive fallbacks for invalid inputs
   - Pathway core is never difficulty-filtered; experience and math filters apply to electives only
   - Zero weeks edge case guard for milestones
-- [x] Quality-based elective sorting (partner tier + type + hours)
+- [x] Fit-based elective sorting (interest matches, then the course type the goal favours; no partner ranking)
+- [x] Learners who code skip AI Python for Beginners and, outside the Enterprise track, the two "for Everyone" overviews
 - [x] Dynamic Q8 course counts (was hardcoded)
 - [x] Centralized category labels (`src/utils/categories.js`)
 - [x] skills_taught displayed on course cards
@@ -89,7 +90,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 | goal | Affects specialization priority and elective count |
 | timeCommitment | Sets weekly pace (3.5-25 hrs) |
 | targetRole | Selects pathway (builder/researcher/enterprise) |
-| mathBackground | Narrows elective difficulty (falls back to the experience band when they conflict; never filters pathway phases) |
+| mathBackground | Narrows difficulty of math-heavy (training) electives only (falls back to the experience band when they conflict; never filters pathway phases) |
 | timeline | Scales duration estimates |
 | priorCourses | Removes completed courses from roadmap |
 | interests | Adds matching elective courses |
