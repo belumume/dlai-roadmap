@@ -5,8 +5,11 @@
 DLAI Roadmap has no releases. Only the live site, built from `main`, is supported:
 https://belumume.github.io/dlai-roadmap/
 
-The site is static. It has no backend, accounts or server-side storage. Answers and progress stay
-in the learner's browser (`localStorage`) and in share URLs they create themselves.
+The site is static, with no backend or accounts of its own. Progress is saved only in the
+learner's browser (`localStorage`), and full answers leave it only inside share URLs the learner
+makes. The live site also sends anonymous, cookieless analytics to PostHog (EU): page views,
+session recordings and events that include some chosen answers. See the
+[Privacy section of the README](README.md#privacy).
 
 ## Reporting a Vulnerability
 
