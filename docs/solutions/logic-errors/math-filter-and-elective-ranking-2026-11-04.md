@@ -3,7 +3,14 @@ title: "Math gates only math-heavy electives; electives rank by fit, not vendor"
 date: 2026-11-04
 category: logic-errors
 module: pathway-generator
-component: src/utils/pathwayGenerator.js
+problem_type: logic_error
+component: utility
+symptoms:
+  - "Learners with basic math got only beginner electives, even agent and RAG courses that need no math"
+  - "Electives were ordered by a hardcoded partner ranking rather than fit"
+  - "Learners who already code started with AI Python for Beginners and two non-technical overviews"
+root_cause: logic_error
+severity: medium
 tags:
   - personalization
   - electives
