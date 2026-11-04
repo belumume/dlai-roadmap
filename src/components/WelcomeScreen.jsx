@@ -119,7 +119,7 @@ export default function WelcomeScreen({ onStart }) {
                     Three Specialized Tracks
                   </h3>
                   <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
-                    AI Product Engineer, Model Architect, or Enterprise Leader.
+                    AI Product Engineer, Model Architect, or Enterprise AI Leader.
                     Each path optimized for real-world outcomes.
                   </p>
                 </div>
@@ -135,7 +135,7 @@ export default function WelcomeScreen({ onStart }) {
                 Paced Timeline
               </h3>
               <p className="text-[var(--text-secondary)] text-sm">
-                Weeks, not months. Realistic scheduling.
+                A week-by-week schedule set to your weekly hours.
               </p>
             </div>
 

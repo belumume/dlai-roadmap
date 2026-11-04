@@ -48,11 +48,18 @@ export function generatePathway(answers) {
     'expert': ['beginner', 'intermediate', 'advanced'],
   };
   const mathAllowed = mathDifficultyMap[answers.mathBackground] || ['beginner'];
-  // Electives must fit both the math and experience bands. When they don't
-  // overlap (e.g. professional + minimal math), fall back to the experience band
-  // rather than offering no electives at all.
+  // Math only gates math-heavy electives (the 'training' category: fine-tuning,
+  // pretraining, model internals). Agent, RAG or coding courses need Python, not
+  // math, so they use the experience band alone. When the math and experience
+  // bands don't overlap (e.g. professional + minimal math), fall back to the
+  // experience band rather than offering no training electives at all.
   const bothAllowed = mathAllowed.filter(d => allowedByExperience.includes(d));
   const allowedDifficulties = bothAllowed.length > 0 ? bothAllowed : allowedByExperience;
+  const MATH_HEAVY_CATEGORIES = ['training'];
+  const fitsLevel = (course) => {
+    const mathHeavy = course.categories?.some(cat => MATH_HEAVY_CATEGORIES.includes(cat));
+    return (mathHeavy ? allowedDifficulties : allowedByExperience).includes(course.difficulty);
+  };
 
   // Determine learning priority based on goal
   const goalPriorities = {
@@ -71,9 +78,20 @@ export function generatePathway(answers) {
   let courseSequence = [];
 
   // Phase 1: Foundation (trunk) - unless skipping foundation content
+  // Learners who already code skip the Python primer; outside the leadership
+  // track they also skip the two non-technical "for Everyone" overviews.
+  const trunkSkips = new Set();
+  if (answers.experience === 'some-python') {
+    trunkSkips.add('ai-python-for-beginners');
+    if (answers.targetRole !== 'enterprise') {
+      trunkSkips.add('ai-for-everyone');
+      trunkSkips.add('generative-ai-for-everyone');
+    }
+  }
+
   if (!skipFoundation) {
     const trunkCourses = pathways.trunk.courses
-      .filter(id => !priorCourses.has(id))
+      .filter(id => !priorCourses.has(id) && !trunkSkips.has(id))
       .map(id => courseMap.get(id))
       .filter(Boolean);
 
@@ -131,41 +149,27 @@ export function generatePathway(answers) {
       .filter(c => {
         if (priorCourses.has(c.id)) return false;
         if (addedCourseIds.includes(c.id)) return false;
+        if (trunkSkips.has(c.id)) return false; // skipped foundation courses stay skipped
         if (courseSequence.some(phase => phase.courses.some(pc => pc.id === c.id))) return false;
-        // Filter by math- and experience-appropriate difficulty
-        if (!allowedDifficulties.includes(c.difficulty)) return false;
+        // Filter by experience (and, for math-heavy courses, math) difficulty
+        if (!fitsLevel(c)) return false;
         return c.categories?.some(cat => answers.interests.includes(cat));
       });
 
-    // Sort by quality score (always applied for objective, merit-based ordering)
-    // Quality = partner tier + type weight + depth (hours)
-    const getQualityScore = (course) => {
-      // Partner tier: DLAI core highest, major partners next, others last
-      const partnerTiers = {
-        'DeepLearning.AI': 100,
-        'Google': 80, 'Google Cloud': 80, 'OpenAI': 80, 'Meta': 80, 'Microsoft': 80,
-        'AWS': 70, 'Anthropic': 70, 'Hugging Face': 70,
-        'LangChain': 60, 'LlamaIndex': 60, 'Stanford': 60, 'Stanford/DeepLearning.AI': 60,
-      };
-      const partnerScore = partnerTiers[course.partner] || 30;
-
-      // Type weight: certificates more comprehensive
-      // Goal-based modifier: career-switch/research prefer certificates, upskill prefers shorter
-      let typeWeights = { 'certificate': 40, 'course': 20, 'short': 10 };
-      if (goalConfig.preferSpecializations && course.type === 'certificate') {
-        typeWeights.certificate = 70; // Boost certificates for career-switch/research
-      } else if (goalConfig.prioritize === 'practical' && !goalConfig.preferSpecializations) {
-        typeWeights.short = 25; // Boost shorter courses for upskill
-      }
-      const typeScore = typeWeights[course.type] || 10;
-
-      // Depth: more hours = more comprehensive (capped at 50)
-      const depthScore = Math.min(course.estimated_hours || 3, 50);
-
-      return partnerScore + typeScore + depthScore;
-    };
-
-    electiveCourses.sort((a, b) => getQualityScore(b) - getQualityScore(a));
+    // Rank by fit, not by vendor: first how many of the learner's interests a
+    // course covers, then the course type the learner's goal favours. Ties keep
+    // catalog order, where newer courses sit near the top.
+    const typeWeights = goalConfig.preferSpecializations
+      ? { certificate: 3, course: 2, short: 1 } // career-switch/research: depth first
+      : goalConfig.prioritize === 'practical'
+        ? { short: 3, course: 2, certificate: 1 } // upskill: short, applied courses first
+        : { short: 1, course: 1, certificate: 1 }; // curiosity: breadth, no preference
+    const fitScore = (course) =>
+      (course.categories || []).filter(cat => answers.interests.includes(cat)).length * 10
+      + (typeWeights[course.type] || 0);
+    const catalogOrder = new Map(courses.map((c, i) => [c.id, i]));
+    electiveCourses.sort((a, b) =>
+      fitScore(b) - fitScore(a) || catalogOrder.get(a.id) - catalogOrder.get(b.id));
 
     // Limit electives to fit within remaining timeline
     let electiveWeeks = 0;

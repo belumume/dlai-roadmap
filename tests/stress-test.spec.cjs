@@ -624,7 +624,7 @@ function getPathwayName(role) {
   const names = {
     'builder': 'AI Product Engineer',
     'researcher': 'Model Architect',
-    'enterprise': 'Enterprise AI Architect',
+    'enterprise': 'Enterprise AI Leader',
   };
   return names[role];
 }
