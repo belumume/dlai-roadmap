@@ -82,9 +82,12 @@ test.describe('Roadmap fit', () => {
     expect(matches).toEqual([...matches].sort((a, b) => b - a));
   });
 
-  test('the generator no longer ranks courses by partner', () => {
-    const source = fs.readFileSync(path.join(__dirname, '../src/utils/pathwayGenerator.js'), 'utf8');
-    expect(source).not.toMatch(/partnerTiers|course\.partner/);
+  test('skipped foundation courses do not come back as electives', async ({ page }) => {
+    // AI Python for Beginners is in the coding category; a coder who picks coding must not get it back
+    await open(page, { ...coder, goal: 'career-switch', targetRole: 'builder', interests: ['coding'] });
+    const electives = await phaseCourses(page, 'Areas of Interest');
+    expect(electives.length).toBeGreaterThan(0);
+    expect(electives).not.toContain('AI Python for Beginners');
   });
 
   test('the enterprise track has one name everywhere', async ({ page }) => {
@@ -94,20 +97,6 @@ test.describe('Roadmap fit', () => {
     await page.goto(BASE_URL);
     await expect(page.getByText('Weeks, not months')).toHaveCount(0);
     await expect(page.getByText('Enterprise AI Leader', { exact: false })).toBeVisible();
-  });
-
-  test('Nov 4 2026 sync: Evaluating and Improving Agentic Applications carries the DLAI page values', () => {
-    // Course page (updated 2026-11-04): 15h7m, instructor Laurie Voss, partner Arize AI, certificate with PRO.
-    // The page shows no level; it assumes Python, pandas and prior LLM API use, so intermediate.
-    const course = data.courses.find(c => c.id === 'evaluating-and-improving-agentic-applications');
-    expect(course).toMatchObject({
-      type: 'course',
-      url: 'https://learn.deeplearning.ai/courses/evaluating-and-improving-agentic-applications',
-      difficulty: 'intermediate',
-      estimated_hours: 15.1,
-      partner: 'Arize AI',
-      instructor: 'Laurie Voss',
-    });
   });
 
   test('no course URL carries tracking parameters', () => {

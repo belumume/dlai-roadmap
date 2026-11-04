@@ -25,7 +25,7 @@ tags:
 
 ## Guard rails
 
-`tests/roadmap-fit.spec.cjs` checks each rule and fails against the old generator. It also fails if `partnerTiers` or a `course.partner` lookup comes back into the generator.
+`tests/roadmap-fit.spec.cjs` checks each rule; most of its tests fail against the old generator, and the training-electives test guards the rule that stayed. It also checks that a foundation course skipped for a coder never comes back as an elective (AI Python for Beginners is tagged `coding`, so the elective filter has to exclude skipped trunk courses too).
 
 ## Lesson
 

@@ -100,6 +100,20 @@ test.describe('Catalog data integrity', () => {
     expect(data.courses.find(c => c.id === 'multi-ai-agent-systems-with-crewai').estimated_hours).toBe(3.1);
   });
 
+  test('Nov 4 2026 sync: Evaluating and Improving Agentic Applications carries the DLAI page values', () => {
+    // Course page (updated 2026-11-04): 15h7m, instructor Laurie Voss, partner Arize AI, certificate with PRO.
+    // The page shows no level; it assumes Python, pandas and prior LLM API use, so intermediate.
+    const course = data.courses.find(c => c.id === 'evaluating-and-improving-agentic-applications');
+    expect(course).toMatchObject({
+      type: 'course',
+      url: 'https://learn.deeplearning.ai/courses/evaluating-and-improving-agentic-applications',
+      difficulty: 'intermediate',
+      estimated_hours: 15.1,
+      partner: 'Arize AI',
+      instructor: 'Laurie Voss',
+    });
+  });
+
   test('short-course hours are not placeholders', () => {
     // Short courses used to default to 2h; real durations come from the DLAI course page
     const shorts = data.courses.filter(c => c.type === 'short');

@@ -149,6 +149,7 @@ export function generatePathway(answers) {
       .filter(c => {
         if (priorCourses.has(c.id)) return false;
         if (addedCourseIds.includes(c.id)) return false;
+        if (trunkSkips.has(c.id)) return false; // skipped foundation courses stay skipped
         if (courseSequence.some(phase => phase.courses.some(pc => pc.id === c.id))) return false;
         // Filter by experience (and, for math-heavy courses, math) difficulty
         if (!fitsLevel(c)) return false;
