@@ -46,6 +46,29 @@ test.describe('Catalog data integrity', () => {
     expect(missingPrereqs).toEqual([]);
   });
 
+  test('no pathway lists a course before a course it builds on', () => {
+    // A roadmap is Foundation (trunk) then the role's phases, in order. Any course
+    // that a later course depends on (directly or transitively) must come first.
+    const byId = new Map(data.courses.map(c => [c.id, c]));
+    const allPrereqs = (id, seen = new Set()) => {
+      for (const p of byId.get(id)?.prerequisites || []) {
+        if (!seen.has(p)) { seen.add(p); allPrereqs(p, seen); }
+      }
+      return seen;
+    };
+    const outOfOrder = [];
+    for (const [key, pathway] of Object.entries(data.pathways)) {
+      if (!pathway.phases) continue;
+      const seq = [...data.pathways.trunk.courses, ...pathway.phases.flatMap(ph => ph.courses)];
+      seq.forEach((id, i) => {
+        for (const p of allPrereqs(id)) {
+          if (seq.indexOf(p) > i) outOfOrder.push(`${key}: ${id} before ${p}`);
+        }
+      });
+    }
+    expect(outOfOrder).toEqual([]);
+  });
+
   test('retired courses are not in the catalog', () => {
     const ids = new Set(data.courses.map(c => c.id));
     expect(RETIRED_IDS.filter(id => ids.has(id))).toEqual([]);
@@ -144,6 +167,31 @@ test.describe('Pathway core and electives for experienced learners', () => {
     for (const id of firstPhase.courses) {
       await expect(page.getByText(titles.get(id), { exact: true }).first()).toBeVisible();
     }
+  });
+
+  test('researcher roadmap shows the NLP Specialization after the Deep Learning Specialization', async ({ page }) => {
+    await page.goto(`${BASE_URL}?pathway=${encode({
+      experience: 'some-python',
+      goal: 'research',
+      timeCommitment: '10-20',
+      targetRole: 'researcher',
+      mathBackground: 'strong',
+      timeline: '12-months',
+    })}`);
+    await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 5000 });
+
+    // Later phases start collapsed; open the two that matter
+    await page.getByRole('button', { name: /Math & ML Foundations/ }).click();
+    await page.getByRole('button', { name: /Deep Learning & Frameworks/ }).click();
+    const dls = page.getByRole('heading', { level: 4, name: 'Deep Learning Specialization', exact: true });
+    const nlp = page.getByRole('heading', { level: 4, name: 'Natural Language Processing Specialization', exact: true });
+    await expect(dls).toBeVisible();
+    await expect(nlp).toBeVisible();
+    const nlpFollowsDls = await dls.evaluate(
+      (a, b) => Boolean(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING),
+      await nlp.elementHandle()
+    );
+    expect(nlpFollowsDls).toBe(true);
   });
 
   test('professional with minimal math still gets electives', async ({ page }) => {
