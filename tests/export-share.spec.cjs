@@ -1,6 +1,7 @@
 // Export and share flows: PDF download, calendar (.ics) contents, shared-link cleanup
 const { test, expect } = require('@playwright/test');
 const fs = require('fs');
+const zlib = require('zlib');
 
 const BASE_URL = 'http://localhost:5173/dlai-roadmap/';
 
@@ -25,6 +26,27 @@ test.describe('Export and share', () => {
   test('Shared link opens the roadmap and removes the answers from the address bar', async ({ page }) => {
     await openSharedRoadmap(page);
     expect(new URL(page.url()).search).toBe('');
+  });
+
+  test('Shared answers leave the address bar before the app renders, so analytics never sees them', async ({ page }) => {
+    // PostHog starts before React renders and records location.href in its first
+    // pageview and in session replay. Record the URL at the first DOM change in #root.
+    await page.addInitScript(() => {
+      new MutationObserver((records, observer) => {
+        if (records.some((r) => r.target.id === 'root')) {
+          window.__urlAtFirstRender = location.href;
+          observer.disconnect();
+        }
+      }).observe(document, { childList: true, subtree: true });
+    });
+    await page.goto(`${SHARE_URL}&utm_source=forum#top`);
+    await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 5000 });
+
+    const atFirstRender = new URL(await page.evaluate(() => window.__urlAtFirstRender));
+    expect(atFirstRender.searchParams.has('pathway')).toBe(false);
+    // Other parameters and the hash are kept
+    expect(atFirstRender.searchParams.get('utm_source')).toBe('forum');
+    expect(atFirstRender.hash).toBe('#top');
   });
 
   test('PDF export downloads a PDF and loads the PDF library only on demand', async ({ page }) => {
@@ -205,5 +227,78 @@ test.describe('Analytics storage', () => {
 
     expect(await page.evaluate(() => window.__ph.config.disable_surveys)).toBe(true);
     expect(surveyScripts).toEqual([]);
+  });
+
+  test('No share-link answers reach PostHog, in events or session replay', async ({ browser }) => {
+    test.setTimeout(60000);
+    // PostHog drops events from headless and automated browsers, so look like a desktop Chrome.
+    // main.jsx still sends nothing: analytics only starts in a production build.
+    const context = await browser.newContext({
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
+    });
+    await context.addInitScript(() => {
+      Object.defineProperty(Navigator.prototype, 'userAgentData', { get: () => undefined });
+      Object.defineProperty(Navigator.prototype, 'webdriver', { get: () => false });
+    });
+    const page = await context.newPage();
+    // Replay's network timeline is off on localhost, so serve the dev server under another name
+    await page.route(/^http:\/\/roadmap\.test\//, async (route) => {
+      const url = route.request().url().replace('http://roadmap.test/', BASE_URL.replace(/dlai-roadmap\/$/, ''));
+      return route.fulfill({ response: await route.fetch({ url }) });
+    });
+    const bodies = [];
+    await page.route(/posthog\.com/, (route) => {
+      const request = route.request();
+      const { pathname } = new URL(request.url());
+      if (pathname.endsWith('/config.js')) {
+        // The live project's settings, including web vitals and replay's network timeline
+        const config = { ...REMOTE_CONFIG, capturePerformance: { network_timing: true, web_vitals: true } };
+        return route.fulfill({
+          contentType: 'application/javascript',
+          body: `window._POSTHOG_REMOTE_CONFIG = window._POSTHOG_REMOTE_CONFIG || {};
+            window._POSTHOG_REMOTE_CONFIG['phc_97p9Je7K9hYvBgK82mG2H2RVpjzwxHqeQPKeLCOgEYG'] = { config: ${JSON.stringify(config)}, siteApps: [] };`,
+        });
+      }
+      const script = pathname.match(/\/static\/[^/]+\/([\w-]+\.js)$/);
+      if (script) {
+        const file = require.resolve(`posthog-js/dist/${script[1]}`);
+        return route.fulfill({ contentType: 'application/javascript', body: fs.readFileSync(file, 'utf8') });
+      }
+      const buffer = request.postDataBuffer();
+      if (buffer) {
+        let text;
+        try { text = zlib.gunzipSync(buffer).toString(); } catch { text = buffer.toString(); }
+        if (request.url().includes('compression=base64')) {
+          text = Buffer.from(decodeURIComponent(text.replace(/^data=/, '')), 'base64').toString();
+        }
+        bodies.push({ pathname, text });
+      }
+      return route.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
+    });
+
+    const secret = Buffer.from(JSON.stringify(ANSWERS)).toString('base64');
+    await page.goto(`http://roadmap.test/dlai-roadmap/?pathway=${secret}&utm_source=forum`);
+    await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 15000 });
+    await page.evaluate(async () => {
+      const { startPostHog } = await import('/dlai-roadmap/src/utils/analytics.js');
+      window.__ph = startPostHog();
+      window.__ph.capture('mask_check', { url: location.href });
+    });
+    await expect.poll(() => page.evaluate(() => window.__ph.sessionRecording?.status), { timeout: 15000 }).toBe('active');
+    await page.mouse.move(100, 100);
+    await page.waitForTimeout(3000);
+    await page.evaluate(() => window.__ph.sessionRecording?._lazyLoadedSessionRecording?._flushBuffer?.());
+
+    // An event batch, a replay batch with the network timeline and web vitals must all have been sent,
+    // or this test would not cover them
+    await expect.poll(() => bodies.some((b) => b.text.includes('mask_check')), { timeout: 10000 }).toBe(true);
+    await expect.poll(() => bodies.some((b) => b.text.includes('rrweb/network')), { timeout: 10000 }).toBe(true);
+    // Web vitals are sent in a batch about 5 s after the first metric
+    await expect.poll(() => bodies.some((b) => b.text.includes('$web_vitals')), { timeout: 15000 }).toBe(true);
+    const sent = bodies.map((b) => b.text).join('\n');
+    expect(sent).not.toContain(secret.slice(0, 16));
+    expect(sent).toContain('pathway=<masked>');
+    expect(sent).toContain('utm_source=forum');
+    await context.close();
   });
 });

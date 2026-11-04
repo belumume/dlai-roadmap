@@ -231,12 +231,16 @@ function validateAnswers(obj) {
   return Object.keys(validated).length > 0 ? validated : null;
 }
 
-/**
- * Decode answers from URL
- */
-export function decodePathwayFromURL() {
-  const params = new URLSearchParams(window.location.search);
-  const encoded = params.get('pathway');
+// Reads shared answers from ?pathway= and removes them from the address bar,
+// keeping any other parameters and the hash. main.jsx calls this before
+// analytics starts, because PostHog records location.href in its first
+// pageview and in session replay.
+export function takePathwayFromURL() {
+  const url = new URL(window.location.href);
+  const encoded = url.searchParams.get('pathway');
+  if (encoded === null) return null;
+  url.searchParams.delete('pathway');
+  window.history.replaceState(window.history.state, '', url.pathname + url.search + url.hash);
   if (encoded) {
     try {
       const decoded = JSON.parse(atob(encoded));
