@@ -24,7 +24,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - `src/utils/exportPDF.js` - PDF export + shareable URL functions
 - `src/utils/exportCalendar.js` - iCalendar (.ics) export function
 - `src/utils/analytics.js` - PostHog wrapper (`track`); cookieless (`persistence: 'memory'`), sends nothing in dev or automated browsers
-- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` + `tests/export-share.spec.cjs` + `tests/link-guard.spec.cjs` + `tests/certificates.spec.cjs` + `tests/add-course.spec.cjs` + `tests/strip-claude-ids.spec.cjs` - Playwright tests (75 tests)
+- `tests/stress-test.spec.cjs` + `tests/catalog-data.spec.cjs` + `tests/branding-a11y.spec.cjs` + `tests/export-share.spec.cjs` + `tests/link-guard.spec.cjs` + `tests/certificates.spec.cjs` + `tests/add-course.spec.cjs` + `tests/course-repos.spec.cjs` + `tests/strip-claude-ids.spec.cjs` - Playwright tests (76 tests)
 - `.github/workflows/ci.yml` - lint, build and Playwright on every PR; `deploy.yml` reuses it so main deploys only when green
 - `scripts/claude-link-guard.cjs` - blocks Claude session links (see the hard rule below); run by `.githooks/`, `.claude/settings.json` and `.github/workflows/claude-link-guard.yml`
 - `docs/solutions/` - documented solutions and methodology (data quality, curriculum design)
@@ -47,7 +47,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] mathBackground filters elective difficulty
 - [x] goal affects specialization preferences
 - [x] Learning Deep attribution with profile link
-- [x] Playwright test suite (75/75 passing), run in CI on every PR and before every deploy
+- [x] Playwright test suite (76/76 passing), run in CI on every PR and before every deploy
 - [x] Filter UI on roadmap view (category + difficulty filters)
 - [x] Critical path vs optional marking (Required/Optional badges on phases)
 - [x] Timeline warning display when core courses exceed target timeline
@@ -75,6 +75,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] Calendar export uses the learner's local date, RFC 5545 line folding and rejects impossible dates (see `docs/solutions/logic-errors/calendar-export-off-by-one-day-2026-10-09.md`)
 - [x] Certificate badge on full courses and specializations (paid on DLAI or Coursera); short courses award none (Community Program meeting item, Dec 2025; see `docs/solutions/best-practices/certificates-2026-10-09.md`)
 - [x] Add any catalog course to a roadmap, reorder or remove it (stored as `answers.addedCourses`, so the share URL, PDF and .ics carry it; per Vinaysk1's forum request). An added course that a roadmap course builds on (by `prerequisites`, transitively) is placed right before it; the rest go in a "Your Added Courses" phase at the end, in the learner's order
+- [x] Footer link to DeepLearning.AI's public course repos on GitHub, so learners can check code and library versions before enrolling (forum suggestion, Oct 2026)
 - [x] jsPDF loaded on demand (initial bundle about 200 kB gzip, was 275 kB); zero `npm audit` findings
 
 ### ALL FEATURES COMPLETE - READY FOR LAUNCH
