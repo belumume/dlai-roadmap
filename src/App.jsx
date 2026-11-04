@@ -4,17 +4,11 @@ import WelcomeScreen from './components/WelcomeScreen';
 import Questionnaire from './components/Questionnaire';
 import RoadmapView from './components/RoadmapView';
 import { generatePathway } from './utils/pathwayGenerator';
-import { decodePathwayFromURL } from './utils/exportPDF';
 
-function loadSharedRoadmap() {
-  const sharedAnswers = decodePathwayFromURL();
-  return sharedAnswers ? generatePathway(sharedAnswers) : null;
-}
-
-function App() {
-  // A shared roadmap URL is read once, during the first render, so the
-  // roadmap shows immediately instead of after a second render.
-  const [sharedRoadmap] = useState(loadSharedRoadmap);
+// sharedAnswers come from a share link; main.jsx reads them before rendering,
+// so the roadmap shows immediately instead of after a second render.
+function App({ sharedAnswers = null }) {
+  const [sharedRoadmap] = useState(() => (sharedAnswers ? generatePathway(sharedAnswers) : null));
   const [currentView, setCurrentView] = useState(sharedRoadmap ? 'roadmap' : 'welcome'); // welcome | questionnaire | roadmap
   const [roadmap, setRoadmap] = useState(sharedRoadmap);
 
@@ -23,8 +17,6 @@ function App() {
       track('shared_roadmap_loaded', {
         pathway: sharedRoadmap.pathway,
       });
-      // Clean up URL
-      window.history.replaceState({}, '', window.location.pathname);
     }
   }, [sharedRoadmap]);
 
