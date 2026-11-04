@@ -229,7 +229,7 @@ test.describe('Analytics storage', () => {
     expect(surveyScripts).toEqual([]);
   });
 
-  test('PostHog masks share-link answers in any URL it records', async ({ browser }) => {
+  test('No share-link answers reach PostHog, in events or session replay', async ({ browser }) => {
     // PostHog drops events from headless and automated browsers, so look like a desktop Chrome.
     // main.jsx still sends nothing: analytics only starts in a production build.
     const context = await browser.newContext({
@@ -240,11 +240,29 @@ test.describe('Analytics storage', () => {
       Object.defineProperty(Navigator.prototype, 'webdriver', { get: () => false });
     });
     const page = await context.newPage();
-    // Web vitals report the URL the page was opened with, even after main.jsx
-    // has removed ?pathway= from the address bar, so PostHog must mask it too.
+    // Replay's network timeline is off on localhost, so serve the dev server under another name
+    await page.route(/^http:\/\/roadmap\.test\//, async (route) => {
+      const url = route.request().url().replace('http://roadmap.test/', BASE_URL.replace(/dlai-roadmap\/$/, ''));
+      return route.fulfill({ response: await route.fetch({ url }) });
+    });
     const bodies = [];
     await page.route(/posthog\.com/, (route) => {
       const request = route.request();
+      const { pathname } = new URL(request.url());
+      if (pathname.endsWith('/config.js')) {
+        // The live project's settings, including web vitals and replay's network timeline
+        const config = { ...REMOTE_CONFIG, capturePerformance: { network_timing: true, web_vitals: true } };
+        return route.fulfill({
+          contentType: 'application/javascript',
+          body: `window._POSTHOG_REMOTE_CONFIG = window._POSTHOG_REMOTE_CONFIG || {};
+            window._POSTHOG_REMOTE_CONFIG['phc_97p9Je7K9hYvBgK82mG2H2RVpjzwxHqeQPKeLCOgEYG'] = { config: ${JSON.stringify(config)}, siteApps: [] };`,
+        });
+      }
+      const script = pathname.match(/\/static\/[^/]+\/([\w-]+\.js)$/);
+      if (script) {
+        const file = require.resolve(`posthog-js/dist/${script[1]}`);
+        return route.fulfill({ contentType: 'application/javascript', body: fs.readFileSync(file, 'utf8') });
+      }
       const buffer = request.postDataBuffer();
       if (buffer) {
         let text;
@@ -252,24 +270,32 @@ test.describe('Analytics storage', () => {
         if (request.url().includes('compression=base64')) {
           text = Buffer.from(decodeURIComponent(text.replace(/^data=/, '')), 'base64').toString();
         }
-        bodies.push(text);
+        bodies.push({ pathname, text });
       }
       return route.fulfill({ status: 200, contentType: 'application/json', body: '{}' });
     });
-    await page.goto(BASE_URL);
-    const secret = Buffer.from(JSON.stringify(ANSWERS)).toString('base64');
-    await page.evaluate(async (pathway) => {
-      history.replaceState(null, '', `?utm_source=forum&pathway=${encodeURIComponent(pathway)}`);
-      const { startPostHog } = await import('/dlai-roadmap/src/utils/analytics.js');
-      const ph = startPostHog();
-      ph.capture('mask_check');
-    }, secret);
-    await expect.poll(() => bodies.some((b) => b.includes('mask_check')), { timeout: 10000 }).toBe(true);
 
-    const sent = bodies.join('\n');
+    const secret = Buffer.from(JSON.stringify(ANSWERS)).toString('base64');
+    await page.goto(`http://roadmap.test/dlai-roadmap/?pathway=${secret}&utm_source=forum`);
+    await expect(page.getByRole('heading', { name: 'Your Progress' })).toBeVisible({ timeout: 15000 });
+    await page.evaluate(async () => {
+      const { startPostHog } = await import('/dlai-roadmap/src/utils/analytics.js');
+      window.__ph = startPostHog();
+      window.__ph.capture('mask_check', { url: location.href });
+    });
+    await expect.poll(() => page.evaluate(() => window.__ph.sessionRecording?.status), { timeout: 15000 }).toBe('active');
+    await page.mouse.move(100, 100);
+    await page.waitForTimeout(3000);
+    await page.evaluate(() => window.__ph.sessionRecording?._lazyLoadedSessionRecording?._flushBuffer?.());
+
+    // Both an event batch and a replay batch with the network timeline must have been sent,
+    // or this test would not cover them
+    await expect.poll(() => bodies.some((b) => b.text.includes('mask_check')), { timeout: 10000 }).toBe(true);
+    await expect.poll(() => bodies.some((b) => b.text.includes('rrweb/network')), { timeout: 10000 }).toBe(true);
+    const sent = bodies.map((b) => b.text).join('\n');
+    expect(sent).not.toContain(secret.slice(0, 16));
     expect(sent).toContain('pathway=<masked>');
     expect(sent).toContain('utm_source=forum');
-    expect(sent).not.toContain(secret.slice(0, 16));
     await context.close();
   });
 });
