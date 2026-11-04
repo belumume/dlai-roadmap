@@ -713,6 +713,18 @@ export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
             . Not an official DeepLearning.AI product.
             Course details may change; check deeplearning.ai before enrolling.
           </p>
+          <p data-testid="dlai-github" className="mt-2 text-[var(--text-muted)] text-xs">
+            Want to see a course&apos;s code and library versions before enrolling? Many courses publish their notebooks on{' '}
+            <a
+              href="https://github.com/https-deeplearning-ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--node-cyan)] hover:underline"
+            >
+              DeepLearning.AI&apos;s GitHub
+            </a>
+            .
+          </p>
         </div>
       </div>
     </div>
