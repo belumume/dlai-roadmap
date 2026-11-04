@@ -714,7 +714,7 @@ export default function RoadmapView({ roadmap, onRestart, onAnswersChange }) {
             Course details may change; check deeplearning.ai before enrolling.
           </p>
           <p data-testid="dlai-github" className="mt-2 text-[var(--text-muted)] text-xs">
-            Want to see a course&apos;s code and library versions before enrolling? Many courses publish their notebooks on{' '}
+            Want to see a course&apos;s code before enrolling? Some courses publish their code and notebooks on{' '}
             <a
               href="https://github.com/https-deeplearning-ai"
               target="_blank"
