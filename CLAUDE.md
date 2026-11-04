@@ -77,7 +77,7 @@ Personalized learning pathway generator for DeepLearning.AI's 100+ courses. User
 - [x] Add any catalog course to a roadmap, reorder or remove it (stored as `answers.addedCourses`, so the share URL, PDF and .ics carry it; per Vinaysk1's forum request). An added course that a roadmap course builds on (by `prerequisites`, transitively) is placed right before it; the rest go in a "Your Added Courses" phase at the end, in the learner's order
 - [x] Footer link to DeepLearning.AI's public course repos on GitHub, so learners can check code and library versions before enrolling (forum suggestion, Oct 2026)
 - [x] Pathway phases respect prerequisites: the generator keeps phases in the order written, so a test fails if any path lists a course before one it builds on (NLP Specialization moved after the Deep Learning Specialization, Nov 2026)
-- [x] jsPDF loaded on demand (initial bundle about 200 kB gzip, was 275 kB); zero `npm audit` findings
+- [x] jsPDF loaded on demand (initial bundle about 200 kB gzip, was 275 kB); zero `npm audit` findings (eslint's `minimatch` is pinned to ^11.0.4 through `overrides` in `package.json` for GHSA-g3hv-75wg-m249; drop the override once eslint itself requires 11.0.1 or later)
 
 ### ALL FEATURES COMPLETE - READY FOR LAUNCH
 
