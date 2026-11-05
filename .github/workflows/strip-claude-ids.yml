@@ -30,5 +30,5 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
-            const { run } = require('./.github/scripts/strip-claude-ids.cjs');
+            const { run } = require('./.github/scripts/strip-claude-ids.js');
             await run({ github, context, core });
