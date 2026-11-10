@@ -1362,7 +1362,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/evaluating-ai-agents",
       "difficulty": "beginner",
-      "estimated_hours": 2.6,
+      "estimated_hours": 2.7,
       "categories": [
         "agents"
       ],
@@ -1967,7 +1967,7 @@
       "type": "short",
       "url": "https://learn.deeplearning.ai/courses/ai-agents-in-langgraph",
       "difficulty": "intermediate",
-      "estimated_hours": 1.7,
+      "estimated_hours": 1.8,
       "categories": [
         "agents"
       ],
