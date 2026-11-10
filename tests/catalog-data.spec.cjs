@@ -137,6 +137,12 @@ test.describe('Catalog data integrity', () => {
     });
   });
 
+  test('Nov 10 2026 sync: updated short-course durations match the DLAI course pages', () => {
+    // AI Agents in LangGraph now lists 1h47m, Evaluating AI Agents 2h41m
+    expect(data.courses.find(c => c.id === 'ai-agents-in-langgraph').estimated_hours).toBe(1.8);
+    expect(data.courses.find(c => c.id === 'evaluating-ai-agents').estimated_hours).toBe(2.7);
+  });
+
   test('short-course hours are not placeholders', () => {
     // Short courses used to default to 2h; real durations come from the DLAI course page
     const shorts = data.courses.filter(c => c.type === 'short');
