@@ -138,3 +138,10 @@ default attribution guidance.
   (itself a Claude identifier), run `git config --global user.name "Belu"` and
   `git config --global user.email "137732525+belumume@users.noreply.github.com"` first. On the
   owner's PC, leave their git identity alone.
+
+## Pull requests
+
+- Do not open a pull request, and do not post PR or issue comments, yourself. Push your work to a
+  `claude/` branch and stop: the "Auto PR for Claude branches" workflow opens the PR from your
+  commit messages. A PR or comment that a cloud session writes gets a session-link footer that no
+  setting turns off.

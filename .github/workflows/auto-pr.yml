@@ -1,0 +1,14 @@
+name: Auto PR for Claude branches
+# Cloud sessions push claude/* branches and stop; the shared workflow opens the PR from the
+# commit messages so no session link is written into the PR body.
+
+on:
+  push:
+    branches: ["claude/**"]
+
+jobs:
+  auto-pr:
+    uses: belumume/.github/.github/workflows/auto-pr-shared.yml@main
+    permissions:
+      contents: read
+      pull-requests: write
