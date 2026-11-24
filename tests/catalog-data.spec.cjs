@@ -91,13 +91,14 @@ test.describe('Catalog data integrity', () => {
   });
 
   test('Oct 27 2026 sync: Context Engineering carries the DLAI catalog values', () => {
-    // Full course released 2026-10-20: Intermediate, 68209s (18h56m), partner Chroma
+    // Full course released 2026-10-20: Intermediate, partner Chroma. The page listed 18h56m
+    // on Oct 27 and 19h56m on Nov 24 2026, so the hours follow the page.
     const course = data.courses.find(c => c.id === 'context-engineering');
     expect(course).toMatchObject({
       type: 'course',
       url: 'https://learn.deeplearning.ai/courses/context-engineering',
       difficulty: 'intermediate',
-      estimated_hours: 18.9,
+      estimated_hours: 19.9,
       partner: 'Chroma',
       instructor: 'Jeff Huber',
       career_paths: ['builder'],
@@ -141,6 +142,25 @@ test.describe('Catalog data integrity', () => {
     // AI Agents in LangGraph now lists 1h47m, Evaluating AI Agents 2h41m
     expect(data.courses.find(c => c.id === 'ai-agents-in-langgraph').estimated_hours).toBe(1.8);
     expect(data.courses.find(c => c.id === 'evaluating-ai-agents').estimated_hours).toBe(2.7);
+  });
+
+  test('Nov 24 2026 sync: Tabular Foundation Models carries the DLAI page values', () => {
+    // Short course released 2026-11-11: Intermediate, 1h32m, partner Prior Labs, lead instructor
+    // Frank Hutter; the page recommends familiarity with Python.
+    const course = data.courses.find(c => c.id === 'tabular-foundation-models-for-data-science-agents');
+    expect(course).toMatchObject({
+      title: 'Tabular Foundation Models for Data Science Agents',
+      type: 'short',
+      url: 'https://learn.deeplearning.ai/courses/tabular-foundation-models-for-data-science-agents',
+      difficulty: 'intermediate',
+      estimated_hours: 1.5,
+      categories: ['agents', 'general'],
+      partner: 'Prior Labs',
+      instructor: 'Frank Hutter',
+    });
+    expect(course.prerequisites).toEqual(['ai-python-for-beginners']);
+    // Spec-Driven Development with Coding Agents now lists 1h26m
+    expect(data.courses.find(c => c.id === 'spec-driven-development-with-coding-agents').estimated_hours).toBe(1.4);
   });
 
   test('short-course hours are not placeholders', () => {
